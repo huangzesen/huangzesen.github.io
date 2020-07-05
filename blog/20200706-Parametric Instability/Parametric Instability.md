@@ -12,7 +12,7 @@ Assume now we have a oscillating system with it's parameters changing over time,
 $$
 \ddot{x}+\omega^2(t)x=0
 $$
-Now assume the parameter-controled term $\omega(t)$ is periodic with period $T$, i.e. $\omega(t+T)=\omega(t)$. There are two solutions to this equation (there are two linearly independent solutions to a second-order differential equaiton), namely $x_1(t)$ and $x_2(t)$. 
+Now assume the parameter-controlled term $\omega(t)$ is periodic with period $T$, i.e. $\omega(t+T)=\omega(t)$. There are two solutions to this equation (there are two linearly independent solutions to a second-order differential equaiton), namely $x_1(t)$ and $x_2(t)$. 
 
 Since $\omega(t+T)=\omega(t)$, the equation does not change it's form with transformation $t\rightarrow t+T$, The solutions after the transformation, namely $x_1(t+T)$ and $x_2(t+T)$ should be the linear combination of $x_1(t)$ and $x_2(t)$, in other words:
 $$
