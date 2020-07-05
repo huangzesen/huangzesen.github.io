@@ -1,5 +1,7 @@
 # Parametric Instability
 
+[Main Page](huangzesen.github.io)
+
 2020-07-06
 
 This is a note about parametric instability, for more details, refer to chapter 27 in Landau Book 1.
