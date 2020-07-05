@@ -46,4 +46,28 @@ x_1'(t+T)\\
 x_2'(t+T)
 \end{pmatrix}
 $$
-Here the primed variables are linearly transformed solutions in the new coordinate system. In the following analysis, I will drop the prime for simplicity.
+Here the primed variables are linearly transformed solutions in the new coordinate system. In the following analysis, I will drop the prime for simplicity. 
+$$
+x_1(t+T)=\mu_1 x_1(t)\\
+x_2(t+T)=\mu_2 x_2(t)
+$$
+What is the restrictions on $\mu_1$ and $\mu_2$? Now let's plug in $x_1$ and $x_2$ into the original equation:
+$$
+\ddot{x}_1+\omega^2(t)x_1=0\\
+\ddot{x}_2+\omega^2(t)x_2=0
+$$
+Multiply $x_2$ on the first equation and $x_1 $ on the second equation and then substitute the second one from the first one, we have:
+$$
+x_2\ddot{x}_1-x_1\ddot{x}_2=0\\
+\Rightarrow \frac{d}{dt}(x_2 \dot{x}_1-x_1 \dot{x}_2)=0\\
+x_2\dot{x}_1-x_1\dot{x_2}=const
+$$
+
+This equation holds for the same constant at both $t=t$ and $t=t+T$, which implies $\mu_1\mu_2=1$. There are some detailed discussions in L&L chap27, but the basic idea being that if $\mu_1$ and $\mu_2$ begin real, there's one, e.g. $\mu_1$ larger than one and the other, here $\mu_2$ less than one. 
+
+Moreover, the usual form of solutions that can meeting the conditions here is:
+$$
+x_1(t+T)=\mu_1^{t/T}\Pi_1(t)\\
+x_2(t+T)=\mu_2^{t/T}\Pi_2(t)
+$$
+Where $\Pi_1$ and $\Pi_2$ are pure periodic functions. Hence one of the solutions grows exponentially while the other damps exponentially. This is what called <u>Parametric Instability</u>.
