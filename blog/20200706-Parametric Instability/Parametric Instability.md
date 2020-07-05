@@ -8,13 +8,13 @@ This is a note about parametric instability, for more details, refer to chapter 
 
 ## Elements of Parametric Instability
 
-Assume now we have a system with it's parameters changing over time, e.g.:
+Assume now we have a oscillating system with it's parameters changing over time, e.g.:
 $$
 \ddot{x}+\omega^2(t)x=0
 $$
 Now assume the parameter-controled term $\omega(t)$ is periodic with period $T$, i.e. $\omega(t+T)=\omega(t)$. There are two solutions to this equation (there are two linearly independent solutions to a second-order differential equaiton), namely $x_1(t)$ and $x_2(t)$. 
 
-Since $\omega(t+T)=\omega(t)$, the equation does not change it's form with transformation $t\rightarrow t+T$, The solutions after the transformation, namely $x_1(t+T)$ and $x_2(t+T)$ should be the linearly combination of $x_1(t)$ and $x_2(t)$, in other words:
+Since $\omega(t+T)=\omega(t)$, the equation does not change it's form with transformation $t\rightarrow t+T$, The solutions after the transformation, namely $x_1(t+T)$ and $x_2(t+T)$ should be the linear combination of $x_1(t)$ and $x_2(t)$, in other words:
 $$
 \begin{pmatrix}
 a_{11} & a_{12}\\
@@ -65,9 +65,9 @@ x_2\ddot{x}_1-x_1\ddot{x}_2=0\\
 x_2\dot{x}_1-x_1\dot{x_2}=const
 $$
 
-This equation holds for the same constant at both $t=t$ and $t=t+T$, which implies $\mu_1\mu_2=1$. There are some detailed discussions in L&L chap27, but the basic idea being that if $\mu_1$ and $\mu_2$ begin real, there's one, e.g. $\mu_1$ larger than one and the other, here $\mu_2$ less than one. 
+This equation holds for the same constant at both $t=t$ and $t=t+T$, which implies $\mu_1\mu_2=1$. There are some detailed discussions in L&L chap27, but the basic idea being that if $\mu_1$ and $\mu_2$ begin real, there's one, e.g. $\mu_1$ larger than unity and the other, here $\mu_2$ less than unity. 
 
-Moreover, the usual form of solutions that can meeting the conditions here is:
+Moreover, the usual form of solutions that can meet the conditions here is:
 $$
 x_1(t+T)=\mu_1^{t/T}\Pi_1(t)\\
 x_2(t+T)=\mu_2^{t/T}\Pi_2(t)
