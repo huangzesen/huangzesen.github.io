@@ -1,1 +1,356 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zesen Huang - Postdoctoral Researcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .links {
+            margin-top: 1.5rem;
+        }
+
+        .links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border: 2px solid white;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            background: white;
+            color: #1e3a8a;
+        }
+
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #1e3a8a;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #3b82f6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #1e3a8a;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3b82f6;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: #1e3a8a;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .award-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.5rem 0;
+            font-weight: 600;
+            border: 2px solid #fbbf24;
+        }
+
+        .publication {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: #1e3a8a;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-authors {
+            font-style: italic;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .publication-venue {
+            color: #444;
+            margin-top: 0.3rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: #e0e7ff;
+            color: #1e3a8a;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .contact-item strong {
+            color: #1e3a8a;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zesen Huang</h1>
+        <p>Postdoctoral Researcher | UCLA</p>
+        <p>Space Physics • Solar Wind Turbulence • MHD Simulations</p>
+        <div class="links">
+            <a href="mailto:zesenhuang@g.ucla.edu">Email</a>
+            <a href="https://orcid.org/0000-0001-9570-5975" target="_blank">ORCID</a>
+            <a href="#" target="_blank">NASA ADS</a>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#awards">Awards</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a postdoctoral researcher in the Department of Earth, Planetary, and Space Sciences at UCLA. My research focuses on understanding the energy sources of solar wind turbulence and fine structures in the solar wind through MHD simulations and analysis of satellite data from missions including Parker Solar Probe, Ulysses, and Solar Orbiter.</p>
+            
+            <h3>Education</h3>
+            <p><strong>Ph.D. in Geophysics and Space Physics</strong> - UCLA (June 2024)<br>
+            <strong>M.S. in Geophysics and Space Physics</strong> - UCLA (March 2022)<br>
+            <strong>B.S. in Geophysics</strong> - University of Science and Technology of China (June 2019)<br>
+            Space Physics Major, GPA: 3.83/4.3, Rank: 1/17</p>
+
+            <h3>Skills</h3>
+            <div class="skill-list">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Fortran</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">LaTeX</span>
+                <span class="skill-tag">Mathematica</span>
+                <span class="skill-tag">IDL</span>
+                <span class="skill-tag">Time Series Analysis</span>
+                <span class="skill-tag">Parallel Computing</span>
+            </div>
+        </section>
+
+        <section id="research">
+            <h2>Research Interests</h2>
+            <p>My work spans several key areas in space physics:</p>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li><strong>Solar Wind Turbulence:</strong> Investigating the energy sources and spectral evolution of turbulence in the solar wind, particularly the 1/f range observed by Parker Solar Probe</li>
+                <li><strong>Fine Structures:</strong> Studying magnetic switchbacks, coherent structures, and oscillations in the solar wind and corona</li>
+                <li><strong>MHD Simulations:</strong> Running advanced magnetohydrodynamic simulations to understand plasma dynamics in the expanding solar wind</li>
+                <li><strong>Data Analysis:</strong> Analyzing observations from Parker Solar Probe, Solar Orbiter, Ulysses, and other heliospheric missions</li>
+            </ul>
+
+            <h3>Current Projects</h3>
+            <p><strong>NASA ROSES AIAH-24 (Co-I):</strong> Solar Wind Structures Identified Via Shannon Information Entropy ($200,000, 2025-2026)</p>
+            <p><strong>NSF ACCESS Allocation (PI):</strong> Gaussianization of Magnetic Magnitude in MHD Turbulence (2024-2025)</p>
+        </section>
+
+        <section id="awards">
+            <h2>Awards & Recognition</h2>
+            <div class="award-badge">🏆 2024 IAU PhD Prize (Division E: Sun and Heliosphere) - 2025</div>
+            <p style="margin-top: 1rem;">This prestigious award recognizes outstanding doctoral research in solar and heliospheric physics.</p>
+            
+            <h3>Other Honors</h3>
+            <ul style="margin-left: 2rem; margin-top: 1rem;">
+                <li>Bachelor Honor Grade (Top 4%), USTC (2019)</li>
+                <li>UCLA EPSS Department Fellowship (2019)</li>
+            </ul>
+        </section>
+
+        <section id="publications">
+            <h2>Selected Publications</h2>
+            
+            <div class="publication">
+                <div class="publication-title">Two Types of 1/f Range in Solar Wind Turbulence</div>
+                <div class="publication-authors">Zesen Huang et al.</div>
+                <div class="publication-venue">The Astrophysical Journal Letters 990.2 (Sept. 2025), L34</div>
+            </div>
+
+            <div class="publication">
+                <div class="publication-title">Dominance of 2 Minute Oscillations near the Alfvén Surface</div>
+                <div class="publication-authors">Zesen Huang et al.</div>
+                <div class="publication-venue">The Astrophysical Journal Letters 977.1 (Dec. 2024), L12</div>
+            </div>
+
+            <div class="publication">
+                <div class="publication-title">Solar Wind Structures from the Gaussianity of Magnetic Magnitude</div>
+                <div class="publication-authors">Zesen Huang et al.</div>
+                <div class="publication-venue">The Astrophysical Journal Letters 973.1 (Sept. 2024), L26</div>
+            </div>
+
+            <div class="publication">
+                <div class="publication-title">New observations of solar wind 1/f turbulence spectrum from Parker Solar Probe</div>
+                <div class="publication-authors">Zesen Huang et al.</div>
+                <div class="publication-venue">The Astrophysical Journal Letters 950.1 (2023), L8</div>
+            </div>
+
+            <div class="publication">
+                <div class="publication-title">Conservation of Total Wave Action in the Expanding Solar Wind</div>
+                <div class="publication-authors">Zesen Huang et al.</div>
+                <div class="publication-venue">The Astrophysical Journal 935.1 (2022), 60</div>
+            </div>
+
+            <p style="margin-top: 1.5rem;"><strong>Total Publications:</strong> 18 peer-reviewed articles in leading journals including The Astrophysical Journal, The Astrophysical Journal Letters, and Journal of Geophysical Research</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>Email</strong>
+                    <a href="mailto:zesenhuang@g.ucla.edu">zesenhuang@g.ucla.edu</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Phone</strong>
+                    +1 (424) 832-6700
+                </div>
+                <div class="contact-item">
+                    <strong>Address</strong>
+                    Department of Earth, Planetary, and Space Sciences<br>
+                    595 Charles Young Drive East<br>
+                    Los Angeles, CA 90095-1567
+                </div>
+                <div class="contact-item">
+                    <strong>ORCID</strong>
+                    <a href="https://orcid.org/0000-0001-9570-5975" target="_blank">0000-0001-9570-5975</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Zesen Huang. All rights reserved.</p>
+        <p>Last updated: October 2025</p>
+    </footer>
+</body>
+</html>
