@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Eastern Sierra 六日行程档案 · 2026年8月3日至8日 · Mammoth Lakes base · 编制于 2026-07-28 的计划文档,非实时保证">
+<title>东部山脉六日 · 2026-08-03 → 08-08 · Eastern Sierra Dossier</title>
+<style>
+/* ============ 设计基座:花岗岩夜色 / 高山晨光 Alpenglow ============ */
+:root{
+  --bg:#131519;
+  --bg-2:#1a1d22;
+  --bg-3:#22262d;
+  --ink:#ece8de;
+  --ink-dim:#bab4a4;
+  --ink-faint:#99937f;
+  --line:rgba(236,232,222,.15);
+  --line-strong:rgba(236,232,222,.3);
+  --ember:#ff8a4d;
+  --ember-deep:#c95a26;
+  --ember-soft:rgba(255,138,77,.13);
+  --glacier:#9fc2de;
+  --glacier-soft:rgba(159,194,222,.12);
+  --go:#a3cd87;
+  --go-soft:rgba(163,205,135,.12);
+  --amber:#eab34f;
+  --amber-soft:rgba(234,179,79,.13);
+  --red:#ea6f58;
+  --red-soft:rgba(234,111,88,.15);
+  --font-display:"Songti SC","Noto Serif CJK SC","Source Han Serif SC","Songti TC",Georgia,"Times New Roman",serif;
+  --font-body:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:ui-monospace,"SF Mono",Menlo,Consolas,"PingFang SC",monospace;
+  --radius:14px;
+  --maxw:1080px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation:none !important;transition:none !important;}
+}
+html,body{overflow-x:clip;}
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 520px at 80% -140px, rgba(255,138,77,.08), transparent 60%),
+    radial-gradient(900px 620px at -10% 22%, rgba(159,194,222,.05), transparent 55%),
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--ember-deep);color:#fff;}
+a{color:var(--glacier);text-decoration-thickness:1px;text-underline-offset:3px;}
+a:hover{color:var(--ink);}
+:focus-visible{outline:2px solid var(--ember);outline-offset:2px;border-radius:4px;}
+.skip{
+  position:absolute;left:8px;top:-72px;z-index:99;
+  background:var(--ember-deep);color:#fff;padding:12px 18px;border-radius:8px;
+  transition:top .2s;font-weight:600;text-decoration:none;
+}
+.skip:focus{top:8px;}
+strong{color:var(--ink);}
+p{margin:.5em 0 1em;}
+ul,ol{padding-left:1.3em;}
+em{font-style:normal;color:var(--ember);}
+
+/* ============ 硬门槛统一图样(非仅颜色:文字标签 + 加粗 + 双线框) ============ */
+.hardchip{
+  display:inline-flex;align-items:center;gap:8px;
+  border:2px solid var(--red);border-radius:10px;
+  background:var(--red-soft);color:#ffddd4;
+  font-size:13.5px;font-weight:700;line-height:1.4;
+  padding:5px 12px 5px 5px;white-space:nowrap;
+}
+.hardchip b{
+  font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;
+  background:var(--red);color:#1a0d09;border-radius:6px;
+  padding:3px 8px;font-weight:800;flex:none;
+}
+.hardchip .hc-t{font-family:var(--font-mono);font-weight:700;}
+
+/* ============ 英雄区 ============ */
+.hero{
+  position:relative;overflow:clip;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#0d0f13 0%,#141720 52%,#1d1a17 100%);
+}
+.hero::after{ /* 细颗粒噪点:纸感 */
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.hero-ridge{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;display:block;pointer-events:none;}
+.hero-inner{position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;padding:46px 24px 150px;}
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;
+  padding:9px 14px;border-radius:999px;border:1px solid var(--line-strong);
+  color:var(--ink-dim);background:rgba(0,0,0,.28);
+  text-transform:uppercase;white-space:nowrap;
+}
+.badge-ember{
+  border-color:var(--ember-deep);color:#ffd8c0;background:var(--ember-soft);
+  box-shadow:0 0 22px rgba(255,138,77,.16);
+}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--ember);flex:none;}
+.badge-ember .dot{animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+.kicker{
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.32em;
+  color:var(--ink-faint);text-transform:uppercase;margin:0 0 14px;
+}
+h1{
+  font-family:var(--font-display);
+  font-size:clamp(42px,7.6vw,86px);
+  line-height:1.12;margin:0 0 10px;font-weight:700;letter-spacing:.02em;
+  text-wrap:balance;
+}
+h1 .thin{color:var(--ember);font-weight:400;}
+.hero-date{font-family:var(--font-mono);font-size:15px;color:#d4cfc1;letter-spacing:.06em;margin:0 0 6px;}
+.hero-mood{font-size:14.5px;color:#cac4b5;margin:0 0 24px;max-width:720px;}
+.conclusion{
+  max-width:780px;color:var(--ink);
+  border:1px solid #d06a30;border-left:5px solid #ff9a63;
+  background:linear-gradient(135deg,rgba(255,138,77,.18),rgba(255,138,77,.06));
+  box-shadow:0 14px 38px rgba(0,0,0,.26);
+  border-radius:var(--radius);padding:22px 24px;
+}
+.conclusion h2{margin:0 0 8px;font-family:var(--font-mono);font-size:12px;letter-spacing:.28em;color:#ffb68c;text-transform:uppercase;}
+.conclusion p{margin:0 0 .6em;color:var(--ink);font-size:16.5px;line-height:1.78;}
+.conclusion p:last-child{margin-bottom:0;}
+.prepared{margin:20px 0 0;font-family:var(--font-mono);font-size:13px;color:#cbc3b2;letter-spacing:.04em;max-width:760px;}
+.reveal{animation:rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.reveal:nth-child(2){animation-delay:.08s;}
+.reveal:nth-child(3){animation-delay:.14s;}
+.reveal:nth-child(4){animation-delay:.2s;}
+.reveal:nth-child(5){animation-delay:.26s;}
+.reveal:nth-child(6){animation-delay:.34s;}
+.reveal:nth-child(7){animation-delay:.42s;}
+@keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+/* ============ 目录(静态面板,在文档流内,永不覆盖内容,不使用粘性/固定定位) ============ */
+.toc{
+  max-width:var(--maxw);margin:0 auto;padding:26px 24px 6px;
+}
+.toc-panel{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 18px 14px;
+}
+.toc h2{
+  margin:0 0 12px;font-family:var(--font-mono);font-size:12.5px;
+  letter-spacing:.26em;color:var(--ink-dim);text-transform:uppercase;
+}
+.toc ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;}
+.toc a{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 16px;
+  border-radius:11px;text-decoration:none;color:var(--ink-dim);
+  font-size:14.5px;letter-spacing:.04em;white-space:nowrap;
+  background:var(--bg-3);border:1px solid var(--line);
+}
+.toc a .d{font-family:var(--font-mono);font-size:12.5px;color:var(--ember);margin-right:7px;letter-spacing:0;}
+.toc a:hover{color:var(--ink);border-color:var(--ember-deep);}
+
+/* ============ 章节骨架 ============ */
+main{max-width:var(--maxw);margin:0 auto;padding:0 24px 60px;}
+section{padding:60px 0 8px;scroll-margin-top:16px;}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
+.sec-num{font-family:var(--font-mono);font-size:13px;color:var(--ember);letter-spacing:.2em;flex:none;}
+.sec-head h2{font-family:var(--font-display);font-size:clamp(26px,4vw,36px);margin:0;font-weight:700;letter-spacing:.02em;}
+.sec-head .rule{flex:1;height:1px;background:var(--line);min-width:24px;}
+.up{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 15px;flex:none;
+  border-radius:11px;border:1px solid var(--line);background:var(--bg-2);
+  color:var(--ink-dim);text-decoration:none;font-size:13.5px;letter-spacing:.06em;white-space:nowrap;
+}
+.up:hover{color:var(--ink);border-color:var(--ember-deep);}
+.sec-sub{color:var(--ink-dim);margin:-10px 0 26px;font-size:15px;max-width:820px;}
+.card{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;}
+.note{
+  border:1px dashed var(--line-strong);border-radius:var(--radius);
+  padding:14px 18px;color:var(--ink-dim);font-size:15px;background:rgba(0,0,0,.16);
+}
+.note strong{color:var(--ink);}
+.note ul{margin:.4em 0 0;}
+.note li{margin-bottom:6px;}
+
+/* ============ 六日总览脊线 ============ */
+.spine{list-style:none;margin:0 0 22px;padding:0;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));align-items:start;}
+.spine li{min-width:0;}
+.spine a{
+  display:flex;flex-direction:column;gap:7px;
+  text-decoration:none;color:var(--ink);
+  background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;position:relative;overflow:clip;
+  transition:border-color .15s,transform .15s;
+  height:auto; /* 自然高度,不随同行卡片拉伸 */
+}
+.spine a:hover{border-color:var(--ember-deep);transform:translateY(-2px);}
+.spine a::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--sp-color,var(--ink-faint));opacity:.8;}
+.sp-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.sp-date{font-family:var(--font-mono);color:var(--ember);font-size:20px;line-height:1.2;letter-spacing:.02em;}
+.sp-date small{font-size:12px;color:var(--ink-faint);letter-spacing:.12em;text-transform:uppercase;margin-left:8px;}
+.sp-tag{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;border:1px solid var(--line-strong);color:var(--ink-dim);
+  white-space:nowrap;flex:none;
+}
+.sp-title{font-weight:700;font-size:16px;line-height:1.5;}
+.sp-gate{font-size:13.8px;color:var(--ink-dim);line-height:1.6;}
+.sp-hard{margin-top:auto;padding-top:4px;}
+.sp-hard .hardchip{font-size:12.8px;}
+.sp-max .sp-tag{color:var(--red);border-color:rgba(234,111,88,.55);background:var(--red-soft);}
+.sp-hi .sp-tag{color:var(--amber);border-color:rgba(234,179,79,.5);background:var(--amber-soft);}
+.sp-mid .sp-tag{color:var(--go);border-color:rgba(163,205,135,.5);background:var(--go-soft);}
+.sp-move .sp-tag{color:var(--glacier);border-color:rgba(159,194,222,.5);background:var(--glacier-soft);}
+.sp-max{--sp-color:var(--red);}
+.sp-hi{--sp-color:var(--amber);}
+.sp-mid{--sp-color:var(--go);}
+.sp-move{--sp-color:var(--glacier);}
+
+/* ============ 数据一览 ============ */
+.vitals{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:20px;align-items:start;}
+.vital{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 15px;position:relative;overflow:clip;}
+.vital::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--ember-deep);opacity:.65;}
+.vital .v-label{font-size:12.5px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;font-family:var(--font-mono);}
+.vital .v-value{font-family:var(--font-display);font-size:25px;line-height:1.3;margin:6px 0 2px;color:var(--ink);}
+.vital .v-note{font-size:13.8px;color:var(--ink-dim);line-height:1.6;}
+.est,.ofc,.live{
+  display:inline-block;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  border-radius:999px;padding:2px 9px;vertical-align:2px;text-transform:uppercase;white-space:nowrap;
+}
+.est{color:var(--amber);border:1px solid rgba(234,179,79,.5);background:var(--amber-soft);}
+.ofc{color:var(--go);border:1px solid rgba(163,205,135,.5);background:var(--go-soft);}
+.live{color:var(--glacier);border:1px solid rgba(159,194,222,.5);background:var(--glacier-soft);}
+
+/* ============ 表格(≥720px 表格 / <720px 堆叠卡片,零横向滚动零裁切) ============ */
+.tbl-wrap{border:1px solid var(--line);border-radius:var(--radius);background:var(--bg-2);}
+.tbl-cap{padding:14px 18px 0;color:var(--ink-dim);font-size:14px;line-height:1.65;}
+table{border-collapse:collapse;width:100%;font-size:14.5px;}
+th,td{padding:12px 18px;text-align:left;vertical-align:top;border-top:1px solid var(--line);line-height:1.65;}
+thead th{border-top:none;font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;color:var(--ink-faint);text-transform:uppercase;}
+td .en{color:var(--ink-dim);font-size:13px;display:block;}
+tbody th{font-weight:700;font-family:var(--font-mono);color:var(--ember);font-size:14px;}
+@media (max-width:719px){
+  table,tbody,tbody tr,tbody th,tbody td{display:block;width:100%;}
+  thead{display:none;}
+  table{padding:6px 12px 12px;}
+  tbody tr{
+    border:1px solid var(--line);border-radius:12px;background:var(--bg-3);
+    margin:10px 0 0;padding:6px 14px 12px;
+  }
+  tbody th,tbody td{border-top:none;padding:9px 0 0;}
+  tbody th{font-size:16px;border-bottom:1px dashed var(--line);padding-bottom:8px;}
+  td[data-label]::before{
+    content:attr(data-label);display:block;
+    font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;
+    color:var(--ink-faint);text-transform:uppercase;margin-bottom:1px;
+  }
+}
+
+/* ============ 日章节 ============ */
+.day{border-top:1px dashed var(--line);}
+.day-head{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:8px;}
+.day-num{
+  font-family:var(--font-mono);color:var(--ember);
+  font-size:clamp(30px,4.6vw,44px);line-height:1;letter-spacing:.02em;flex:none;
+  padding-top:6px;
+}
+.day-num small{display:block;font-size:12px;color:var(--ink-faint);letter-spacing:.22em;margin-top:6px;text-transform:uppercase;}
+.day-title{min-width:0;}
+.day-title h2{font-family:var(--font-display);font-size:clamp(24px,3.6vw,34px);margin:0 0 2px;font-weight:700;letter-spacing:.02em;text-wrap:balance;}
+.day-title .en{font-family:var(--font-mono);font-size:13px;color:var(--ink-faint);letter-spacing:.06em;}
+.day-tags{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0 20px;}
+.tag{
+  display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.13em;
+  border-radius:999px;padding:5px 12px;text-transform:uppercase;
+  border:1px solid var(--line-strong);color:var(--ink-dim);white-space:nowrap;
+}
+.tag-red{color:var(--red);border-color:rgba(234,111,88,.55);background:var(--red-soft);}
+.tag-amber{color:var(--amber);border-color:rgba(234,179,79,.5);background:var(--amber-soft);}
+.tag-go{color:var(--go);border-color:rgba(163,205,135,.5);background:var(--go-soft);}
+.tag-sky{color:var(--glacier);border-color:rgba(159,194,222,.5);background:var(--glacier-soft);}
+/* 日卡片组:多列独立堆叠(masonry 式),卡片一律自然高度,
+   不做等高拉伸,杜绝“短卡片被拉长出大片空白”。 */
+.day-grid{columns:320px 3;column-gap:14px;}
+.day-grid.cols-2{columns:430px 2;}
+.day-grid .card{
+  min-width:0;height:auto;
+  break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;
+  margin:0 0 14px;
+}
+.card h3{
+  margin:0 0 10px;font-family:var(--font-mono);font-size:12.5px;
+  letter-spacing:.2em;color:var(--ink-dim);text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.card h3::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ember);flex:none;}
+.card p{font-size:15px;color:var(--ink-dim);margin:0 0 .7em;}
+.card p:last-child{margin-bottom:0;}
+.card ul{margin:0;font-size:15px;color:var(--ink-dim);}
+.card li{margin-bottom:7px;}
+.card li:last-child{margin-bottom:0;}
+
+/* 时间门列表 */
+.gates{list-style:none;margin:0;padding:0;}
+.gates li{
+  display:grid;grid-template-columns:96px 1fr;gap:10px;
+  padding:9px 0;border-bottom:1px dashed var(--line);
+  font-size:14.5px;color:var(--ink-dim);align-items:baseline;
+}
+.gates li:last-child{border-bottom:none;}
+.gates .t{font-family:var(--font-mono);color:var(--glacier);font-size:13.5px;white-space:nowrap;letter-spacing:.01em;}
+.gates li.hard .t{color:var(--red);font-weight:700;}
+.gates li.hard{color:var(--ink);}
+.gates li.warn .t{color:var(--amber);}
+.gates .hardchip{font-size:12.5px;padding:3px 9px 3px 3px;margin-left:6px;vertical-align:1px;}
+.gates .hardchip b{font-size:10.5px;padding:2px 6px;}
+
+/* GO / NO-GO */
+.gng{display:grid;gap:10px;}
+.gng .go-line,.gng .nogo-line{
+  border-radius:12px;padding:12px 16px;font-size:15px;line-height:1.68;
+  border:1px solid var(--line);
+}
+.gng .go-line{border-color:rgba(163,205,135,.5);background:var(--go-soft);color:#d9ecca;}
+.gng .nogo-line{border-color:rgba(234,111,88,.5);background:var(--red-soft);color:#f6cfc5;}
+.gng b{font-family:var(--font-mono);letter-spacing:.1em;font-size:12.5px;display:block;margin-bottom:2px;}
+.gng .go-line b{color:var(--go);}
+.gng .nogo-line b{color:var(--red);}
+
+/* fallback 阶梯 */
+.ladder{list-style:none;margin:0;padding:0;}
+.ladder li{position:relative;padding:8px 0 8px 26px;font-size:15px;color:var(--ink-dim);}
+.ladder li::before{
+  content:"";position:absolute;left:6px;top:17px;width:8px;height:8px;border-radius:50%;
+  background:var(--go);
+}
+.ladder li+li::after{
+  content:"";position:absolute;left:9.5px;top:-12px;height:26px;width:1.5px;background:var(--line-strong);
+}
+.ladder li.l-amber::before{background:var(--amber);}
+.ladder li.l-red::before{background:var(--red);}
+
+/* 来源/链接 chips(全部 ≥44px 触控目标) */
+.srcchips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);}
+.srcchips .est,.srcchips .ofc,.srcchips .live{align-self:center;}
+.chip{
+  display:inline-flex;align-items:center;min-height:44px;padding:4px 15px;
+  border-radius:11px;border:1px solid var(--line);background:var(--bg-3);
+  color:var(--glacier);text-decoration:none;font-size:14px;line-height:1.4;
+}
+.chip:hover{border-color:var(--ember-deep);color:var(--ink);}
+.chip .dom{font-family:var(--font-mono);font-size:13px;color:var(--ink-dim);margin-left:8px;letter-spacing:.02em;}
+
+/* ============ 周四:硬规则横幅 ============ */
+.thu-rules{
+  border:1px solid var(--ember-deep);border-radius:var(--radius);
+  background:linear-gradient(125deg,rgba(255,138,77,.14),var(--bg-2) 58%);
+  padding:22px;margin:0 0 14px;
+}
+.thu-rules h3{
+  margin:0 0 12px;font-family:var(--font-mono);font-size:13px;letter-spacing:.24em;
+  color:var(--ember);text-transform:uppercase;display:flex;align-items:center;gap:10px;
+}
+.thu-rules h3::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--ember);box-shadow:0 0 12px var(--ember);flex:none;}
+.rule-grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));}
+.rule-grid .rule{
+  background:rgba(0,0,0,.24);border:1px solid var(--line);border-radius:12px;
+  padding:14px 16px;min-width:0;
+}
+.rule-grid .rule .r-big{font-family:var(--font-display);font-size:22px;color:var(--ink);line-height:1.3;margin:0 0 4px;}
+.rule-grid .rule .r-txt{font-size:13.8px;color:var(--ink-dim);line-height:1.65;margin:0;}
+.matrix{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));margin-top:14px;align-items:start;}
+.gate-card{
+  border-radius:var(--radius);border:1px solid var(--line);
+  background:var(--bg-2);padding:18px;position:relative;overflow:clip;min-width:0;
+}
+.gate-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;}
+.gate-green::before{background:var(--go);}
+.gate-amber::before{background:var(--amber);}
+.gate-red::before{background:var(--red);}
+.gate-closed::before{background:var(--ink-faint);}
+.gate-card h4{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:16.5px;}
+.gate-sig{width:12px;height:12px;border-radius:50%;flex:none;}
+.gate-green .gate-sig{background:var(--go);box-shadow:0 0 12px var(--go);}
+.gate-amber .gate-sig{background:var(--amber);box-shadow:0 0 12px var(--amber);}
+.gate-red .gate-sig{background:var(--red);box-shadow:0 0 12px var(--red);}
+.gate-closed .gate-sig{background:var(--ink-faint);}
+.gate-cond{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;margin:0 0 8px;}
+.gate-green .gate-cond{color:var(--go);}
+.gate-amber .gate-cond{color:var(--amber);}
+.gate-red .gate-cond{color:var(--red);}
+.gate-closed .gate-cond{color:var(--ink-dim);}
+.gate-card p{margin:0;font-size:14.5px;color:var(--ink-dim);}
+
+/* ============ 强度与恢复 ============ */
+.effort{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:10px;}
+.effort li{display:grid;grid-template-columns:96px 1fr;gap:12px;align-items:center;font-size:14px;color:var(--ink-dim);}
+.effort .e-day{font-family:var(--font-mono);color:var(--ember);font-size:13px;white-space:nowrap;}
+.effort .e-bar{position:relative;min-height:34px;border-radius:8px;background:var(--bg-2);border:1px solid var(--line);overflow:clip;}
+.effort .e-fill{position:absolute;inset:0;width:var(--w);border-radius:7px 0 0 7px;background:linear-gradient(90deg,var(--c1),var(--c2));opacity:.8;}
+.effort .e-lab{position:relative;z-index:1;display:flex;align-items:center;min-height:34px;padding:4px 12px;font-size:13.2px;color:var(--ink);line-height:1.4;}
+.effort-note{font-size:13.5px;color:var(--ink-faint);margin:0 0 20px;}
+@media (max-width:520px){
+  .effort li{grid-template-columns:1fr;gap:4px;}
+}
+
+/* ============ 检查节奏 ============ */
+.check-rhythm{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));align-items:start;}
+.rhythm{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:20px;position:relative;overflow:clip;min-width:0;}
+.rhythm::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--glacier);opacity:.7;}
+.rhythm h3{margin:0 0 4px;font-family:var(--font-mono);font-size:15px;letter-spacing:.12em;color:var(--glacier);text-transform:uppercase;}
+.rhythm .when{font-size:13.5px;color:var(--ink-faint);margin:0 0 12px;}
+.rhythm ul{margin:0;font-size:14.5px;color:var(--ink-dim);}
+.rhythm li{margin-bottom:7px;}
+
+/* ============ 清单 ============ */
+.check-cols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.check-block h3{
+  font-size:15px;margin:0 0 12px;font-family:var(--font-mono);
+  letter-spacing:.16em;color:var(--ink-dim);text-transform:uppercase;
+  display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+}
+.progress{font-size:12.5px;color:var(--ember);letter-spacing:.05em;}
+.checklist{list-style:none;margin:0;padding:0;}
+.checklist li+li{margin-top:8px;}
+.checklist label{
+  display:flex;align-items:flex-start;gap:14px;
+  min-height:48px;padding:11px 14px;border-radius:12px;cursor:pointer;
+  background:var(--bg-2);border:1px solid var(--line);
+  transition:border-color .15s,background .15s;
+}
+.checklist label:hover{border-color:var(--line-strong);}
+.checklist input{
+  appearance:none;-webkit-appearance:none;flex:none;
+  width:26px;height:26px;margin:0;border-radius:8px;
+  border:2px solid var(--ink-faint);background:transparent;
+  display:grid;place-content:center;cursor:pointer;
+}
+.checklist input::after{
+  content:"";width:14px;height:14px;
+  clip-path:polygon(14% 46%,0 62%,40% 100%,100% 18%,84% 4%,38% 70%);
+  background:var(--bg);transform:scale(0);transition:transform .12s;
+}
+.checklist input:checked{background:var(--ember);border-color:var(--ember);}
+.checklist input:checked::after{transform:scale(1);}
+.checklist input:focus-visible{outline:2px solid var(--ember);outline-offset:3px;}
+.checklist .txt{font-size:15px;line-height:1.6;padding-top:1px;min-width:0;text-wrap:pretty;}
+.checklist input:checked~.txt{color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--ember-deep);}
+.reset-btn{
+  margin-top:18px;min-height:44px;padding:0 20px;border-radius:12px;
+  background:transparent;border:1px solid var(--line-strong);color:var(--ink-dim);
+  font-family:var(--font-body);font-size:14.5px;cursor:pointer;letter-spacing:.05em;
+}
+.reset-btn:hover{color:var(--ink);border-color:var(--ink-faint);}
+
+/* ============ 来源 ============ */
+.src-tier{margin-bottom:26px;}
+.src-tier>h3{
+  font-family:var(--font-mono);font-size:13px;letter-spacing:.2em;text-transform:uppercase;
+  margin:0 0 6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:var(--ink);
+}
+.src-tier>p{font-size:14.5px;color:var(--ink-dim);margin:0 0 12px;max-width:820px;}
+.src{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+.src li{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:12px;
+  padding:13px 16px;font-size:14.5px;color:var(--ink-dim);min-width:0;line-height:1.65;
+  display:flex;flex-wrap:wrap;gap:4px 14px;align-items:center;justify-content:space-between;
+}
+.src .s-body{flex:1 1 300px;min-width:0;}
+.src .s-name{color:var(--ink);font-weight:600;display:block;}
+.src .s-desc{font-size:13.8px;color:var(--ink-dim);}
+.src .chip{flex:none;}
+
+/* ============ 页脚 ============ */
+footer{border-top:1px solid var(--line);margin-top:24px;padding:26px 24px 34px;color:#bdb5a3;font-size:14.5px;}
+.foot-inner{max-width:var(--maxw);margin:0 auto;text-align:center;}
+footer p{max-width:780px;margin:.5em auto;text-wrap:balance;}
+footer .f-mono{font-family:var(--font-mono);letter-spacing:.05em;font-size:13.5px;}
+.footnav{margin:0 auto 18px;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:820px;}
+.footnav a{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 16px;
+  border-radius:11px;border:1px solid var(--line);background:var(--bg-2);
+  color:var(--ink-dim);text-decoration:none;font-size:14px;white-space:nowrap;
+}
+.footnav a:hover{color:var(--ink);border-color:var(--ember-deep);}
+.footnav a.totop{color:#ffd8c0;border-color:var(--ember-deep);background:var(--ember-soft);}
+
+@media (max-width:430px){
+  .hero-inner{padding:34px 18px 112px;}
+  .toc{padding:22px 16px 4px;}
+  main{padding:0 16px 48px;}
+  section{padding:50px 0 6px;}
+  .day-head{gap:14px;}
+  .gates li{grid-template-columns:96px 1fr;gap:8px;}
+  .card{padding:16px 16px;}
+  .thu-rules{padding:18px 16px;}
+}
+@media print{
+  body{background:#fff;color:#111;}
+  .skip,.reset-btn,.up,.footnav{display:none;}
+  .card,.gate-card,.vital,.checklist label,.rhythm,.rule-grid .rule,.thu-rules,.tbl-wrap,.src li,.spine a,.note,.conclusion,.toc-panel,.chip,.gng .go-line,.gng .nogo-line{background:#fff;border-color:#bbb;color:#222;}
+  .card p,.card ul,.gates li,.rule-grid .rule .r-txt,.src li,.rhythm ul,.sp-gate,.gng .go-line,.gng .nogo-line{color:#333;}
+  .hardchip{background:#fff;color:#111;}
+  .hardchip b{background:#111;color:#fff;}
+  a{color:#134;}
+  .hero{background:#fff;border-color:#bbb;}
+  .hero-ridge{display:none;}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+
+<!-- ==================== 英雄区 ==================== -->
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="badge-row reveal">
+      <span class="badge badge-ember"><span class="dot" aria-hidden="true"></span>六日档案 · Aug 3–8</span>
+      <span class="badge">Prepared 2026-07-28</span>
+      <span class="badge">计划文档 · 非实时保证</span>
+    </div>
+    <p class="kicker reveal">Eastern Sierra · Expedition Dossier · Mammoth Lakes Base</p>
+    <h1 class="reveal">东部山脉<span class="thin">·</span>六日</h1>
+    <p class="hero-date reveal">2026年8月3日(周一)→ 8月8日(周六) · Mammoth Lakes base · Big Pine</p>
+    <p class="hero-mood reveal">高海拔花岗岩湖盆 · 干燥强日照 · 午后雷暴窗口 · 一条施工管制的山谷公路——这是一份把「能放弃什么」写得和「想去哪里」一样清楚的行程档案。</p>
+    <div class="conclusion reveal">
+      <h2>结论先行</h2>
+      <p><strong>最安全、最可执行的顺序:</strong>周一(8/3)从 Berkeley 转移到 <strong>Mammoth Lakes base</strong>;周二(8/4)用 <strong>Rush Creek Trailhead</strong> 做 Thousand Island Lake 的高强度尝试;周三(8/5)从 <strong>Coldwater Campground</strong> 走 Duck Pass 方向,保守成功线是 Barney Lake;周四(8/6)按既定的 <strong>Devils Postpile</strong> 强制班车方案;周五(8/7)清晨退房,南下 <strong>North Fork Big Pine Creek</strong>,以 First/Second/Third Lake 中能按时安全完成者为目标,夜宿 Big Pine;周六(8/8)离开。</p>
+      <p><em>强制降级原则:</em>Rush Creek→Thousand Island Lake 与 Big Pine Lakes 都是 <strong>very strenuous 的可选目标,不是必达清单</strong>。任何一天都可以缩短或取消——睡眠、步速、烟霾、雷暴、积雪/溪流与道路状态,永远优先于「打卡」。</p>
+    </div>
+    <p class="prepared reveal">本页编制于 2026-07-28,是一份定稿日期明确的计划文档,<strong>不是实时路况或天气保证</strong>;执行前按「72 小时 / 24 小时 / 当日清晨」节奏复核文末官方入口。</p>
+  </div>
+  <!-- 装饰:山脊剪影(纯装饰示意,非地图、非任何真实山体的海拔剖面,读屏忽略) -->
+  <svg class="hero-ridge" viewBox="0 0 1200 210" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="rg-far" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2c3140"/><stop offset="1" stop-color="#191c24"/>
+      </linearGradient>
+      <linearGradient id="rg-mid" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#33302e"/><stop offset="1" stop-color="#1c1a18"/>
+      </linearGradient>
+      <linearGradient id="rg-near" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#3e362c"/><stop offset="1" stop-color="#171411"/>
+      </linearGradient>
+    </defs>
+    <circle cx="960" cy="46" r="60" fill="#ff8a4d" opacity=".14"/>
+    <circle cx="960" cy="46" r="30" fill="#ff8a4d" opacity=".22"/>
+    <path fill="url(#rg-far)" opacity=".8" d="M0 210 L0 128 L70 96 L128 122 L210 70 L268 108 L340 58 L420 112 L500 74 L575 118 L640 88 L720 126 L800 66 L880 116 L950 92 L1030 130 L1110 100 L1200 132 L1200 210 Z"/>
+    <path fill="url(#rg-mid)" opacity=".92" d="M0 210 L0 156 L90 120 L160 148 L250 96 L330 142 L430 100 L520 150 L610 112 L700 152 L790 104 L890 150 L980 122 L1080 158 L1200 118 L1200 210 Z"/>
+    <path fill="url(#rg-near)" d="M0 210 L0 182 L110 150 L200 176 L310 134 L420 176 L540 142 L660 182 L780 148 L900 184 L1010 158 L1120 186 L1200 168 L1200 210 Z"/>
+  </svg>
+</header>
+
+<!-- ==================== 目录(静态,在文档流内,不覆盖任何内容) ==================== -->
+<nav class="toc" id="toc" aria-label="目录">
+  <div class="toc-panel">
+    <h2>目录 · Contents</h2>
+    <ul>
+      <li><a href="#overview">总览</a></li>
+      <li><a href="#d0803"><span class="d">8·3</span>转移</a></li>
+      <li><a href="#d0804"><span class="d">8·4</span>千岛湖</a></li>
+      <li><a href="#d0805"><span class="d">8·5</span>Duck Pass</a></li>
+      <li><a href="#d0806"><span class="d">8·6</span>魔鬼柱</a></li>
+      <li><a href="#d0807"><span class="d">8·7</span>Big Pine</a></li>
+      <li><a href="#d0808"><span class="d">8·8</span>返程</a></li>
+      <li><a href="#recovery">恢复逻辑</a></li>
+      <li><a href="#checks">检查节奏</a></li>
+      <li><a href="#gear">装备</a></li>
+      <li><a href="#sources">来源</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+
+  <!-- ==================== 01 总览 ==================== -->
+  <section id="overview" aria-labelledby="overview-h">
+    <div class="sec-head"><span class="sec-num">01</span><h2 id="overview-h">六日一览</h2><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <p class="sec-sub">顺序不可随意调换:Reds Meadow Road 周一至周三对<strong>所有交通</strong>关闭,魔鬼柱只能落在周四;两个 very strenuous 的可选目标(周二、周五)之间,用周三的可降级路线与周四的班车日充当恢复缓冲。点击任意一天直达详情。</p>
+
+    <ol class="spine">
+      <li class="sp-move"><a href="#d0803">
+        <span class="sp-top"><span class="sp-date">08·03<small>Mon 周一</small></span><span class="sp-tag">转移日</span></span>
+        <span class="sp-title">Berkeley → Mammoth Lakes base</span>
+        <span class="sp-gate">12:00 出发 · 预计 19:00–21:30 到 · 晚到只休息,不夜徒</span>
+        <span class="sp-hard"><span class="hardchip"><b>硬门槛</b><span class="hc-t">21:30</span>仍在路上 → 次日降级</span></span>
+      </a></li>
+      <li class="sp-max"><a href="#d0804">
+        <span class="sp-top"><span class="sp-date">08·04<small>Tue 周二</small></span><span class="sp-tag">极限·可选</span></span>
+        <span class="sp-title">Rush Creek → Thousand Island Lake(可选)</span>
+        <span class="sp-gate">04:00 起步 · 回退 Gem/Agnew Lake</span>
+        <span class="sp-hard"><span class="hardchip"><b>硬门槛</b><span class="hc-t">11:00–11:30</span>湖边硬返</span></span>
+      </a></li>
+      <li class="sp-hi"><a href="#d0805">
+        <span class="sp-top"><span class="sp-date">08·05<small>Wed 周三</small></span><span class="sp-tag">高强度·可降级</span></span>
+        <span class="sp-title">Coldwater → Duck Pass → Duck Lake</span>
+        <span class="sp-gate">保守成功线 Barney Lake</span>
+        <span class="sp-hard"><span class="hardchip"><b>硬门槛</b><span class="hc-t">12:00</span>Duck Lake 硬返</span></span>
+      </a></li>
+      <li class="sp-mid"><a href="#d0806">
+        <span class="sp-top"><span class="sp-date">08·06<small>Thu 周四</small></span><span class="sp-tag">班车管制</span></span>
+        <span class="sp-title">Devils Postpile · 强制班车日</span>
+        <span class="sp-gate">道路周四 07:00 才开 · 07:30 首班</span>
+        <span class="sp-hard"><span class="hardchip"><b>硬门槛</b><span class="hc-t">15:30</span>完成返程排队</span></span>
+      </a></li>
+      <li class="sp-max"><a href="#d0807">
+        <span class="sp-top"><span class="sp-date">08·07<small>Fri 周五</small></span><span class="sp-tag">极限·可选</span></span>
+        <span class="sp-title">North Fork Big Pine Creek(可选延伸)</span>
+        <span class="sp-gate">清晨退房 · First/Second 即成功 · 夜宿 Big Pine</span>
+        <span class="sp-hard"><span class="hardchip"><b>硬门槛</b><span class="hc-t">12:15</span>不再上推</span></span>
+      </a></li>
+      <li class="sp-move"><a href="#d0808">
+        <span class="sp-top"><span class="sp-date">08·08<small>Sat 周六</small></span><span class="sp-tag">转移日</span></span>
+        <span class="sp-title">自 Big Pine 离开</span>
+        <span class="sp-gate">出发前查 Caltrans 与 Inyo alerts · 疲劳则推迟 · 本日无硬门槛,状态优先</span>
+      </a></li>
+    </ol>
+
+    <div class="vitals">
+      <div class="vital">
+        <div class="v-label">基地策略</div>
+        <div class="v-value">1 + 1</div>
+        <div class="v-note">8/3–8/7 以 <strong>Mammoth Lakes base</strong> 为基地;8/7 徒步后移营 <strong>Big Pine</strong> 过夜。本页只使用「Mammoth Lakes base」这一公共称谓。</div>
+      </div>
+      <div class="vital">
+        <div class="v-label">海拔量级 <span class="est">估算</span></div>
+        <div class="v-value">≈10,000 ft</div>
+        <div class="v-note">三条主线均触及约 10,000 英尺级(约 3,000 米)高点;Island Pass 官方资料记 10,225 ft,Duck Pass 一带估算约 10,800 ft。高反症状即下撤。</div>
+      </div>
+      <div class="vital">
+        <div class="v-label">极限日往返 <span class="est">估算</span></div>
+        <div class="v-value">18–20+ mi</div>
+        <div class="v-note">周二 Thousand Island Lake 往返 18–20+ 英里、累计爬升约 3,000–3,900 英尺——为路线网站的保守规划值,<strong>非 USFS 官方精度</strong>。</div>
+      </div>
+      <div class="vital">
+        <div class="v-label">硬返时刻</div>
+        <div class="v-value">4 道</div>
+        <div class="v-note">周二 11:00–11:30(湖边)· 周三 12:00(Duck Lake)· 周四 15:30(返程排队)· 周五 12:15(不再上推)。写在表上,不靠现场意志力。</div>
+      </div>
+      <div class="vital">
+        <div class="v-label">山谷唯一窗口 <span class="ofc">官方</span></div>
+        <div class="v-value">周四 07:00</div>
+        <div class="v-note">Reds Meadow Road 2026 施工季(7/6–9/2)每周仅周四 07:00 → 周日 23:00 开放;周一至周三对含行人、自行车在内的所有交通关闭。</div>
+      </div>
+      <div class="vital">
+        <div class="v-label">许可 <span class="ofc">官方</span></div>
+        <div class="v-value">Day use 免许可</div>
+        <div class="v-note">USFS 明确当日往返徒步不需 wilderness permit;许可只针对荒野过夜。本计划全部城镇过夜,<strong>不提交任何许可申请</strong>。</div>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <p class="tbl-cap">路线量级速查 · 标注「估算」者为第三方路线网站/辅助资料的规划值,口径互有冲突,不是机构精确承诺;仅「官方」项出自 USFS/NPS 页面。</p>
+      <table>
+        <thead><tr><th scope="col">日期</th><th scope="col">目标</th><th scope="col">往返距离</th><th scope="col">累计爬升</th><th scope="col">高点</th><th scope="col">定位</th></tr></thead>
+        <tbody>
+          <tr>
+            <th scope="row">8·4 · Thousand Island Lake</th>
+            <td data-label="路线">via Rush Creek<span class="en">Agnew · Gem · Waugh 方向</span></td>
+            <td data-label="往返距离">18–20+ mi <span class="est">估算</span></td>
+            <td data-label="累计爬升">≈3,000–3,900 ft <span class="est">估算</span></td>
+            <td data-label="高点">≈10,000–10,225 ft</td>
+            <td data-label="定位">可选 · very strenuous;回退 Gem/Agnew Lake</td>
+          </tr>
+          <tr>
+            <th scope="row">8·5 · Duck Lake / Duck Pass</th>
+            <td data-label="路线">via Coldwater<span class="en">Arrowhead · Skelton · Barney</span></td>
+            <td data-label="往返距离">≈10–11+ mi;垭口观景点 ≈7.2 mi <span class="est">估算</span></td>
+            <td data-label="累计爬升">观景点 ≈1,680 ft;全程各资料冲突 <span class="est">估算</span></td>
+            <td data-label="高点">≈10,000–10,800 ft</td>
+            <td data-label="定位">有条件 · 首选回退 Barney Lake</td>
+          </tr>
+          <tr>
+            <th scope="row">8·6 · Devils Postpile → Rainbow Falls</th>
+            <td data-label="路线">强制 ESTA 班车进出山谷</td>
+            <td data-label="往返距离">≈3.8 mi <span class="ofc">官方注记</span></td>
+            <td data-label="累计爬升">官方标注 moderate</td>
+            <td data-label="高点">谷底 ≈7,560 ft 级</td>
+            <td data-label="定位">恢复/中等日,但施工延误可吞掉窗口</td>
+          </tr>
+          <tr>
+            <th scope="row">8·7 · Big Pine Lakes</th>
+            <td data-label="路线">North Fork Big Pine Creek<span class="en">First / Second / Third Lake</span></td>
+            <td data-label="往返距离">First ≈9–10 · Second ≈10–11 · Third ≈11–13+ mi <span class="est">估算</span></td>
+            <td data-label="累计爬升">≈2,100–2,700 ft 级 <span class="est">估算</span></td>
+            <td data-label="高点">湖群 ≈10,000 ft 级</td>
+            <td data-label="定位">可选 · First/Second 即成功;Third 仅状态全好</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== 02 · 8/3 周一 ==================== -->
+  <section id="d0803" class="day" aria-labelledby="d0803-h">
+    <div class="sec-head" style="margin-bottom:18px;"><span class="sec-num">02</span><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <div class="day-head">
+      <div class="day-num">08·03<small>Mon · 周一</small></div>
+      <div class="day-title">
+        <h2 id="d0803-h">转移日:Berkeley → Mammoth Lakes base</h2>
+        <span class="en">I-80 / US-50 / US-395 corridor · Sierra crossing</span>
+      </div>
+    </div>
+    <div class="day-tags"><span class="tag tag-sky">转移日</span><span class="tag">规划窗口 ≈6.5–8.5 h</span><span class="hardchip"><b>硬门槛</b><span class="hc-t">21:30</span>仍在路上 → 次日降级</span></div>
+    <div class="day-grid">
+      <div class="card">
+        <h3>行动骨架</h3>
+        <ul class="gates">
+          <li><span class="t">11:30</span><span class="g-body">完成退房、装车与食物分装的现实缓冲。</span></li>
+          <li><span class="t">12:00</span><span class="g-body">离开 Berkeley。途中安排 2 次短停,预留至少 60–90 分钟异常缓冲。</span></li>
+          <li class="warn"><span class="t">19:00–21:30</span><span class="g-body">计划到达窗口。车程不是保证值:约 6.5–8.5 小时,取决于 I-80/US-50/US-395 线路、施工、暑期车流与停车。</span></li>
+          <li><span class="t">到达后</span><span class="g-body">只做补水、晚餐、分装食物、检查装备与睡眠——不安排任何夜间徒步。</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>硬门槛与回退</h3>
+        <div class="gng">
+          <div class="nogo-line"><b>21:30 红线</b><span class="hardchip" style="margin:2px 0 6px;"><b>硬门槛</b><span class="hc-t">21:30</span>仍在路上</span><br>次日<strong>必须降级</strong>——不得用疲劳驾驶或压缩睡眠换取周二凌晨早出发。</div>
+          <div class="go-line"><b>睡眠优先</b>周二是全周最长一日:今晚的睡眠质量,就是明天最重要的安全装备。</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>路上三查</h3>
+        <p>出发前、Lee Vining/Bishop 交界前、到达前各查一次(均为实时入口,不是对 8/3 的预保证):</p>
+        <div class="srcchips" aria-label="本日实时查询链接">
+          <span class="live">实时</span>
+          <a class="chip" href="https://quickmap.dot.ca.gov/" rel="noopener">Caltrans QuickMap<span class="dom">quickmap.dot.ca.gov</span></a>
+          <a class="chip" href="https://roads.dot.ca.gov/" rel="noopener">Caltrans 路况总入口<span class="dom">roads.dot.ca.gov</span></a>
+          <a class="chip" href="https://roads.dot.ca.gov/?roadnumber=395" rel="noopener">US-395</a>
+          <a class="chip" href="https://roads.dot.ca.gov/?roadnumber=203" rel="noopener">SR-203</a>
+          <a class="chip" href="https://roads.dot.ca.gov/?roadnumber=158" rel="noopener">SR-158</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/alerts" rel="noopener">Inyo Forest Alerts<span class="dom">fs.usda.gov</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 03 · 8/4 周二 ==================== -->
+  <section id="d0804" class="day" aria-labelledby="d0804-h">
+    <div class="sec-head" style="margin-bottom:18px;"><span class="sec-num">03</span><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <div class="day-head">
+      <div class="day-num">08·04<small>Tue · 周二</small></div>
+      <div class="day-title">
+        <h2 id="d0804-h">千岛湖:Rush Creek 入口的高强度尝试</h2>
+        <span class="en">Thousand Island Lake via Rush Creek Trailhead · Ansel Adams Wilderness</span>
+      </div>
+    </div>
+    <div class="day-tags"><span class="tag tag-red">Very Strenuous · 可选</span><span class="tag">18–20+ mi 往返(估算)</span><span class="tag tag-go">回退:Gem / Agnew Lake</span><span class="hardchip"><b>硬门槛</b><span class="hc-t">11:00–11:30</span>湖边硬返</span></div>
+    <div class="day-grid">
+      <div class="card">
+        <h3>为什么走这里</h3>
+        <ul>
+          <li>Reds Meadow Road 施工季周一至周三对<strong>所有交通</strong>(含行人、自行车、e-bike)关闭——Agnew Meadows / High Trail / River Trail / Shadow Creek 等入口周二全部不可用。</li>
+          <li><strong>Rush Creek 是合法但极端的替代入口</strong>:自 US-395 转 CA-158,至 Silver Lake 北端右转入 Rush Creek Trailhead 停车场;USFS 说明该入口通往 Agnew Lake、Gem Lake、Waugh Lake 与 John Muir Trail。</li>
+          <li>沿 Rush Creek 上行经 Agnew Lake、Gem Lake,向 Waugh Lake/JMT 方向,按离线 topo 与现场标志朝 Thousand Island Lake / Island Pass 方向推进——<strong>仅在路线明确且时间充裕时继续</strong>。</li>
+          <li>USFS 未发布本线完整里程表;18–20+ mi、爬升 3,000–3,900 ft、高点 10,000–10,225 ft 均为路线网站保守规划值。现场停车位、标牌与临时限制以当日为准。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>时间门</h3>
+        <ul class="gates">
+          <li><span class="t">03:45</span><span class="g-body">到车。头灯出发,夜段走稳不走快。</span></li>
+          <li><span class="t">04:00</span><span class="g-body">起步。</span></li>
+          <li class="warn"><span class="t">06:30</span><span class="g-body">Agnew/Gem 体能门:步速或状态不稳,就把今天定格为 Gem/Agnew 往返。</span></li>
+          <li class="hard"><span class="t">09:00</span><span class="g-body">若尚未接近上段/JMT 方向,立即回撤。<span class="hardchip"><b>硬门槛</b><span class="hc-t">09:00</span></span></span></li>
+          <li class="hard"><span class="t">11:00–11:30</span><span class="g-body">Thousand Island Lake 硬返——不因「差一点」延长。<span class="hardchip"><b>硬门槛</b><span class="hc-t">11:00–11:30</span></span></span></li>
+          <li class="warn"><span class="t">18:30</span><span class="g-body">仍未回到 trailhead 即视为失败,疲劳风险显著上升。</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>GO / NO-GO</h3>
+        <div class="gng">
+          <div class="go-line"><b>GO 全部满足才成立</b>前晚睡眠足 · 无明显高反 · NWS 雷暴风险低 · 烟霾可接受 · CA-158 可通 · 现场无临时封闭 · 全队接受 10–12 小时 strenuous day。</div>
+          <div class="nogo-line"><b>NO-GO / 降级</b>任一不满足 → Gem Lake / Agnew Lake 往返(仍是高海拔 strenuous,但有恢复余地)。<strong>任何雷声都触发立即下撤</strong>,避开高地与水边。</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>许可与规则</h3>
+        <ul>
+          <li><strong>Day use 不需许可</strong>;Ansel Adams Wilderness 仅荒野过夜需 permit(Rush Creek 配额 5/1–11/1 为 30 人/日)。本计划城镇过夜,不提交许可。</li>
+          <li>食物、垃圾与有气味物品使用 bear-proof 容器;狗按 Inyo NF 规则控制,trailhead 与开发区系绳。</li>
+          <li>Trailhead 有旱厕;水龙头供水在官方页面间表述冲突——<strong>按「自带满水 + 天然水过滤/消毒」执行,不依赖龙头</strong>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>风险画像</h3>
+        <ul>
+          <li>起点约 7,000 ft 级、路线至约 10,000 ft 级:热晒、暴露、午后雷暴、烟霾、残雪/湿滑石面、溪流与迷路都可能出现。</li>
+          <li>头痛伴恶心、眩晕、异常疲劳、协调变差或静息呼吸困难 → <strong>下撤并求助,不「硬适应」</strong>。</li>
+          <li>手机无信号不能当救援计划;离线地图与回撤时间表才是。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>本日检查与来源</h3>
+        <p>72h/24h/当日清晨:Inyo alerts、CA-158、NWS 点预报、AirNow 烟霾,并向当地 visitor/ranger 询问残雪、溪流与临时封闭。</p>
+        <div class="srcchips" aria-label="本日官方来源链接">
+          <span class="ofc">官方</span>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/trails/rush-creek-trail" rel="noopener">USFS Rush Creek Trail<span class="dom">fs.usda.gov</span></a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/projects/reds-meadow-road-reconstruction" rel="noopener">Reds Meadow 施工公告</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/permits/wilderness-permits" rel="noopener">Wilderness Permits</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/animals-plants/animals/bears" rel="noopener">Bears 食物存放</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/safety-ethics/dogs-inyo-national-forest" rel="noopener">Dogs 规则</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/june-lake-loop" rel="noopener">June Lake Loop</a>
+          <a class="chip" href="https://www.fs.usda.gov/sites/nfs/files/legacy-media/inyo/JMT%20camp%20locations.pdf" rel="noopener">JMT itinerary PDF</a>
+        </div>
+        <div class="srcchips" aria-label="本日路线估算链接">
+          <span class="est">估算</span>
+          <a class="chip" href="https://www.gaiagps.com/hike/433100/island-pass-loop-via-rush-creek-trail/" rel="noopener">Gaia 路线估算<span class="dom">gaiagps.com</span></a>
+          <a class="chip" href="https://forevershewanders.com/thousand-island-lake-via-rush-creek-trail-an-awesome-backpacking-adventure/" rel="noopener">Forever She Wanders 估算</a>
+        </div>
+        <div class="srcchips" aria-label="本日实时查询链接">
+          <span class="live">实时</span>
+          <a class="chip" href="https://roads.dot.ca.gov/?roadnumber=158" rel="noopener">CA-158 路况<span class="dom">roads.dot.ca.gov</span></a>
+          <a class="chip" href="https://forecast.weather.gov/" rel="noopener">NWS 点预报</a>
+          <a class="chip" href="https://www.airnow.gov/state/?name=california" rel="noopener">AirNow California</a>
+          <a class="chip" href="https://www.weather.gov/safety/lightning-safety-overview" rel="noopener">NWS 雷电安全</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 04 · 8/5 周三 ==================== -->
+  <section id="d0805" class="day" aria-labelledby="d0805-h">
+    <div class="sec-head" style="margin-bottom:18px;"><span class="sec-num">04</span><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <div class="day-head">
+      <div class="day-num">08·05<small>Wed · 周三</small></div>
+      <div class="day-title">
+        <h2 id="d0805-h">湖盆日:Duck Pass 方向,以 Barney Lake 为保守成功线</h2>
+        <span class="en">Duck Lake / Duck Pass via Coldwater Campground · Mammoth Lakes Basin</span>
+      </div>
+    </div>
+    <div class="day-tags"><span class="tag tag-amber">高强度 · 可降级</span><span class="tag tag-go">首选回退:Barney Lake</span><span class="hardchip"><b>硬门槛</b><span class="hc-t">12:00</span>Duck Lake 硬返</span></div>
+    <div class="day-grid">
+      <div class="card">
+        <h3>入口与路线</h3>
+        <ul>
+          <li>自 Mammoth Lakes 走 CA-203 / Lake Mary Road,经 Lake Mary 按标志抵 <strong>Coldwater Campground</strong>;Duck Pass Trail 从营地后方起步。</li>
+          <li>序列:Coldwater → Arrowhead Lake → Skelton Lake → Barney Lake → Duck Pass → Duck Lake,原路返回。</li>
+          <li>官方确认线路与目的地但未给完整里程表:垭口观景点约 7.2 mi 往返、爬升约 1,680 ft、高点约 10,800 ft;Duck Lake 全程约 10–11+ mi,爬升在各资料间冲突——<strong>一律按 strenuous 规划,不采信单一「精确值」</strong>。</li>
+          <li>Lakes Basin trolley 时刻不可靠且可能需步行接驳:以合法自驾到 Coldwater、现场停车为主,<strong>不把 trolley 当保底接送</strong>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>时间门</h3>
+        <ul class="gates">
+          <li><span class="t">05:45</span><span class="g-body">起床。</span></li>
+          <li><span class="t">06:15</span><span class="g-body">到车;用 Coldwater 开放设施(状态当日确认)、装水。</span></li>
+          <li><span class="t">06:45–07:15</span><span class="g-body">起步。</span></li>
+          <li class="warn"><span class="t">09:00–09:30</span><span class="g-body">Barney 体能/天气门:不合格即以 Barney Lake 收官。</span></li>
+          <li><span class="t">10:30–11:00</span><span class="g-body">Duck Pass。垭口积雪超出装备/技能 → 回头。</span></li>
+          <li class="hard"><span class="t">12:00</span><span class="g-body">从 Duck Lake 硬返,不再逗留。<span class="hardchip"><b>硬门槛</b><span class="hc-t">12:00</span></span></span></li>
+          <li><span class="t">16:30–17:00</span><span class="g-body">收线目标;14:00 应已回到垭口下方。</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>GO / NO-GO 与回退阶梯</h3>
+        <div class="gng">
+          <div class="go-line"><b>GO 条件</b>Barney 处仍有稳定步速 · 无雷暴/强风 · 无超出能力的残雪。</div>
+          <div class="nogo-line"><b>NO-GO</b>雷声、垭口危险积雪、或回程将晚于时间门 → 立即执行回退。</div>
+        </div>
+        <ul class="ladder" style="margin-top:12px;">
+          <li><strong>Duck Lake</strong>——全值目标,仅当各门全过。</li>
+          <li class="l-amber"><strong>Duck Pass 观景点</strong>——次级目标(≈7.2 mi 往返,估算)。</li>
+          <li class="l-amber"><strong>Barney Lake</strong>——首选成功线:较短、低风险,足以称为完整的一天。</li>
+          <li class="l-red"><strong>Skelton / Arrowhead</strong>——更早回头同样合法。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>规则与设施</h3>
+        <ul>
+          <li>Day use 免许可;荒野过夜才需 permit(配额 30 人/日),本计划不露营、不提交。</li>
+          <li>Coldwater Canyon / Duck Creek / Purple Lake 一带禁营火,<strong>10,000 ft 以上全域禁营火</strong>;bear-proof 容器;距 Duck Lake / Purple Lake 出水口 300 ft 内不得扎营;队伍 ≤15 人。</li>
+          <li>天然水必须过滤/消毒;带足午餐与水,不预设沿途补水。</li>
+          <li>狗按 Inyo NF 规则;未查到该入口独立 day-use fee——<strong>以现场牌示为准,不预设免费</strong>。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>本日检查与来源</h3>
+        <p>72h/24h/当日清晨:Inyo alerts、NWS、AirNow、本地步道状态与停车/设施公告。午后雷暴、日晒、烟霾、残雪/冰与溪流是主要变量。</p>
+        <div class="srcchips" aria-label="本日官方来源链接">
+          <span class="ofc">官方</span>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/trails/duck-pass-trail" rel="noopener">USFS Duck Pass Trail<span class="dom">fs.usda.gov</span></a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/permits/wilderness-regulations" rel="noopener">Wilderness Regulations</a>
+          <a class="chip" href="https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5370647.pdf" rel="noopener">Inyo 步道里程附表 PDF</a>
+        </div>
+        <div class="srcchips" aria-label="本日路线估算链接">
+          <span class="est">估算</span>
+          <a class="chip" href="https://modernhiker.com/hike/hike-duck-lake/" rel="noopener">Modern Hiker 路线估算<span class="dom">modernhiker.com</span></a>
+        </div>
+        <div class="srcchips" aria-label="本日实时查询链接">
+          <span class="live">实时</span>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/alerts" rel="noopener">Inyo Alerts<span class="dom">fs.usda.gov</span></a>
+          <a class="chip" href="https://forecast.weather.gov/" rel="noopener">NWS 点预报</a>
+          <a class="chip" href="https://www.airnow.gov/" rel="noopener">AirNow</a>
+          <a class="chip" href="https://www.mammothtrails.org/" rel="noopener">Mammoth Trails 步道状态</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 05 · 8/6 周四 ==================== -->
+  <section id="d0806" class="day" aria-labelledby="d0806-h">
+    <div class="sec-head" style="margin-bottom:18px;"><span class="sec-num">05</span><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <div class="day-head">
+      <div class="day-num">08·06<small>Thu · 周四</small></div>
+      <div class="day-title">
+        <h2 id="d0806-h">魔鬼柱:全周唯一的山谷窗口,按既定班车方案执行</h2>
+        <span class="en">Devils Postpile National Monument → Rainbow Falls · mandatory ESTA shuttle</span>
+      </div>
+    </div>
+    <div class="day-tags"><span class="tag tag-go">恢复 / 中等日</span><span class="tag tag-red">道路仅周四 07:00 起开放</span><span class="tag tag-amber">施工延误 ≤2.5h</span><span class="hardchip"><b>硬门槛</b><span class="hc-t">15:30</span>完成返程排队</span></div>
+
+    <div class="thu-rules">
+      <h3>山谷硬规则 · 全周行程围绕它排布</h3>
+      <div class="rule-grid">
+        <div class="rule"><p class="r-big">周四 07:00 → 周日 23:00</p><p class="r-txt">2026-07-06 至 09-02,Reds Meadow Road 每周只在此窗口开放;<strong>周一至周三对所有交通关闭</strong>——机动车、行人、自行车、e-bike 一律包含。07:00 前进入不被授权。</p></div>
+        <div class="rule"><p class="r-big">延误最长 2.5 小时</p><p class="r-txt">周四 07:00–20:00 施工放行可能造成最长 2.5 小时交通延误。这是「可能的上限」,不是可预测的排队模型——<strong>必须用实际到谷时间现场决策</strong>。</p></div>
+        <div class="rule"><p class="r-big">ESTA 班车强制</p><p class="r-txt">道路开放期间 07:00–19:00 强制乘坐 ESTA 班车,上车点 <strong>Mammoth Mountain Main Lodge</strong>。Mammoth Lakes base 不属于山谷内住宿豁免——不能自驾进谷。</p></div>
+        <div class="rule"><p class="r-big">$15 · $7 · 免费</p><p class="r-txt">成人 $15;3–17 岁 $7;2 岁以下免费;官方强烈建议提前预约。周四自 Main Lodge 07:30–19:00 每两小时一班;山谷末班返程 19:00。宠物乘车需牵绳并戴口笼。</p></div>
+      </div>
+    </div>
+
+    <div class="day-grid cols-2">
+      <div class="card">
+        <h3>时间门</h3>
+        <ul class="gates">
+          <li><span class="t">06:15</span><span class="g-body">起床、早餐,灌满每人 ≥2 升水,装打包午餐——resort 餐饮不当作保证。</span></li>
+          <li><span class="t">06:50</span><span class="g-body">离开 Mammoth Lakes base 前往 Main Lodge。</span></li>
+          <li><span class="t">07:05–07:20</span><span class="g-body">停车、厕所、票/预约核对、排队。</span></li>
+          <li class="warn"><span class="t">07:30</span><span class="g-body">目标首班班车;此后每两小时一班,错过一班代价很大。</span></li>
+          <li><span class="t">入谷后</span><span class="g-body">先到 Devils Postpile 站/护林员站核实步道与班次,看柱体;再按官方 moderate 路线走向 Rainbow Falls(官方地图注记约 3.8 mi 至瀑布班车站),自 stop 9(Rainbow Falls Trailhead)或 stop 10(Reds Meadow Resort)返乘。以路线图与现场指示为准,非精密 GPS 承诺。</span></li>
+          <li class="hard"><span class="t">15:30</span><span class="g-body">开始排返程队——<strong>绝不把 19:00 末班车当计划的一部分</strong>,那是应急余量。<span class="hardchip"><b>硬门槛</b><span class="hc-t">15:30</span></span></span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>回退与检查</h3>
+        <div class="gng">
+          <div class="nogo-line"><b>道路/班车未确认开放 = NO-GO</b>当日早晨若道路或班车未被官方确认运行,整日切换为<strong>当日已确认可达</strong>的 Mammoth Lakes Basin / 镇内活动,不再尝试进谷。</div>
+        </div>
+        <ul style="margin-top:12px;font-size:15px;color:var(--ink-dim);">
+          <li>72h(8/3):查 NPS conditions、USFS 施工公告、NWS、AirNow。</li>
+          <li>24h(8/5)与当日清晨:复核道路开放、班次、延误、空气与雷暴。</li>
+        </ul>
+        <div class="srcchips" aria-label="本日官方来源链接">
+          <span class="ofc">官方</span>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/projects/reds-meadow-road-reconstruction" rel="noopener">USFS Reds Meadow 施工公告<span class="dom">fs.usda.gov</span></a>
+          <a class="chip" href="https://www.nps.gov/depo/planyourvisit/reds-meadow-and-devils-postpile-shuttle-information.htm" rel="noopener">NPS 班车信息<span class="dom">nps.gov</span></a>
+          <a class="chip" href="https://www.nps.gov/depo/planyourvisit/gettingaround.htm" rel="noopener">NPS Getting Around</a>
+        </div>
+        <div class="srcchips" aria-label="本日实时查询链接">
+          <span class="live">实时</span>
+          <a class="chip" href="https://www.nps.gov/depo/planyourvisit/conditions.htm" rel="noopener">NPS Conditions<span class="dom">nps.gov</span></a>
+          <a class="chip" href="https://forecast.weather.gov/" rel="noopener">NWS 点预报</a>
+          <a class="chip" href="https://www.airnow.gov/state/?name=california" rel="noopener">AirNow California</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="matrix" role="list" aria-label="到谷时间决策矩阵">
+      <div class="gate-card gate-green" role="listitem">
+        <h4><span class="gate-sig" aria-hidden="true"></span>绿灯 · 完整路线</h4>
+        <p class="gate-cond">10:00 前入谷</p>
+        <p>魔鬼柱(底部+柱顶)→ Rainbow Falls → stop 9/10 返程,节奏从容。</p>
+      </div>
+      <div class="gate-card gate-amber" role="listitem">
+        <h4><span class="gate-sig" aria-hidden="true"></span>黄灯 · 压缩版</h4>
+        <p class="gate-cond">10:00–12:00 入谷</p>
+        <p>路线不变但压缩停留,优先 stop 9 直接返程,守住 15:30 排队线。</p>
+      </div>
+      <div class="gate-card gate-red" role="listitem">
+        <h4><span class="gate-sig" aria-hidden="true"></span>红灯 · 只看柱体或取消</h4>
+        <p class="gate-cond">12:00 后入谷 / 雷暴 / 烟霾 / 不适</p>
+        <p>只走 Devils Postpile 短线,或放弃入谷;身体与天气红线出现即乘最近一班返回。</p>
+      </div>
+      <div class="gate-card gate-closed" role="listitem">
+        <h4><span class="gate-sig" aria-hidden="true"></span>封路 · 转备选</h4>
+        <p class="gate-cond">道路关闭或班车停运</p>
+        <p>切换为当日确认可达的湖盆/镇内活动;先查官方页面确认,不自行推断道路状态。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 06 · 8/7 周五 ==================== -->
+  <section id="d0807" class="day" aria-labelledby="d0807-h">
+    <div class="sec-head" style="margin-bottom:18px;"><span class="sec-num">06</span><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <div class="day-head">
+      <div class="day-num">08·07<small>Fri · 周五</small></div>
+      <div class="day-title">
+        <h2 id="d0807-h">南下 Big Pine:湖到哪一级,由状态说了算</h2>
+        <span class="en">North Fork Big Pine Creek · First / Second / Third Lake · Big Pine overnight</span>
+      </div>
+    </div>
+    <div class="day-tags"><span class="tag tag-red">Very Strenuous · 可选</span><span class="tag tag-go">First/Second 即成功</span><span class="tag tag-amber">连续行程末尾 · 疲劳敏感</span><span class="hardchip"><b>硬门槛</b><span class="hc-t">12:15</span>不再上推</span></div>
+    <div class="day-grid">
+      <div class="card">
+        <h3>转移与入口</h3>
+        <ul class="gates">
+          <li><span class="t">04:45</span><span class="g-body">起床;清晨从 Mammoth Lakes base 退房装车。</span></li>
+          <li><span class="t">05:00</span><span class="g-body">出发:CA-203 → US-395 South,经 Bishop 到 Big Pine;西转 Crocker Ave 接 Glacier Lodge Road 约 10 mi 到路尽头。车程规划 1h35–1h50 加停车缓冲——<strong>规划估计,非实时保证</strong>。</span></li>
+          <li><span class="t">06:25–06:40</span><span class="g-body">停 <strong>day-use parking</strong>(Glacier Lodge 附近路尽头);<strong>不得占用下方 overnight/backpacker 停车场</strong>。厕所、装水。</span></li>
+          <li><span class="t">06:45</span><span class="g-body">起步进入 North Fork,经 First Falls / Second Falls 方向上行。</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>时间门</h3>
+        <ul class="gates">
+          <li class="warn"><span class="t">10:15–10:45</span><span class="g-body">First Lake 门:状态一般就在此收官——这已是完整成功。</span></li>
+          <li class="warn"><span class="t">11:30–12:15</span><span class="g-body">Second/Third 决策窗:只有步速、天气、体力全好才考虑 Third。</span></li>
+          <li class="hard"><span class="t">12:15</span><span class="g-body">硬返——此后不再向上推进,不追 Black Lake / Fourth Lake / Glacier 方向。<span class="hardchip"><b>硬门槛</b><span class="hc-t">12:15</span></span></span></li>
+          <li><span class="t">14:00</span><span class="g-body">必须离开高湖盆地。</span></li>
+          <li><span class="t">16:30–18:00</span><span class="g-body">回到车上;随后 Big Pine 过夜。</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>路线量级(估算)</h3>
+        <ul class="ladder">
+          <li><strong>First Lake</strong> ≈9–10 mi 往返 · 爬升 ≈2,100–2,300 ft——保守目标,足够成功。</li>
+          <li class="l-amber"><strong>Second Lake</strong> ≈10–11 mi · ≈2,250–2,500 ft——常规目标。</li>
+          <li class="l-red"><strong>Third Lake</strong> ≈11–13+ mi · ≈2,600–2,700 ft 级——<strong>仅条件全好时的全值目标,默认不是承诺</strong>。</li>
+        </ul>
+        <p style="margin-top:10px;">湖群海拔约 10,000 ft 级;数字为第三方路线估算,随起点/停车点与 GPS 口径浮动,USFS 未发布逐湖里程表。</p>
+      </div>
+      <div class="card">
+        <h3>GO / NO-GO</h3>
+        <div class="gng">
+          <div class="go-line"><b>降级即胜利</b>前两日已有累积疲劳 → First/Second Lake 就是今天的成功定义。</div>
+          <div class="nogo-line"><b>NO-GO</b>Rock Fire 火情/烟霾、US-395 或 Glacier Lodge Road 受阻、临时封闭、雷暴、高反 → 留在 Mammoth Lakes 或只做已确认安全的短途;<strong>迟到后不硬攻湖区</strong>。雷声立即下撤;头痛/恶心/协调差/静息气促=下撤并必要时求援。</div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>规则与设施</h3>
+        <ul>
+          <li>Day use 免许可;North Fork 荒野过夜配额 25 人/日(5/1–11/1)——本计划在 Big Pine 城镇过夜,不涉及。</li>
+          <li>食物/垃圾/气味物品 bear-proof 或 counter-balanced;<strong>不在车内散放</strong>;禁营火;队伍 ≤15 人;天然水必须处理。</li>
+          <li>营地一带有旱厕但<strong>饮用水不可假定</strong>:车上装满水再进山。</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>本日检查与来源</h3>
+        <p>72h/24h/当日清晨:US-395、QuickMap、Inyo alerts、NWS、AirNow 与 trailhead 现场牌示。</p>
+        <div class="srcchips" aria-label="本日官方来源链接">
+          <span class="ofc">官方</span>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/trails/big-pine-creek-north-fork-trail" rel="noopener">USFS Big Pine Creek North Fork<span class="dom">fs.usda.gov</span></a>
+          <a class="chip" href="https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5195705.pdf" rel="noopener">Big Pine Canyon 徒步 PDF</a>
+          <a class="chip" href="https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd532455.pdf" rel="noopener">USFS 休憩概览 PDF</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/permits/wilderness-permits" rel="noopener">Wilderness Permits</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/animals-plants/animals/bears" rel="noopener">Bears 食物存放</a>
+        </div>
+        <div class="srcchips" aria-label="本日实时查询链接">
+          <span class="live">实时</span>
+          <a class="chip" href="https://roads.dot.ca.gov/?roadnumber=395" rel="noopener">US-395 路况<span class="dom">roads.dot.ca.gov</span></a>
+          <a class="chip" href="https://quickmap.dot.ca.gov/" rel="noopener">QuickMap</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/alerts" rel="noopener">Inyo Alerts</a>
+          <a class="chip" href="https://forecast.weather.gov/" rel="noopener">NWS 点预报</a>
+          <a class="chip" href="https://www.airnow.gov/" rel="noopener">AirNow</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 07 · 8/8 周六 ==================== -->
+  <section id="d0808" class="day" aria-labelledby="d0808-h">
+    <div class="sec-head" style="margin-bottom:18px;"><span class="sec-num">07</span><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <div class="day-head">
+      <div class="day-num">08·08<small>Sat · 周六</small></div>
+      <div class="day-title">
+        <h2 id="d0808-h">收官:自 Big Pine 从容离开</h2>
+        <span class="en">Depart Big Pine · US-395 corridor</span>
+      </div>
+    </div>
+    <div class="day-tags"><span class="tag tag-sky">转移日</span><span class="tag tag-go">允许推迟出发 · 无硬门槛</span></div>
+    <div class="day-grid cols-2">
+      <div class="card">
+        <h3>行动骨架</h3>
+        <p>退房、装车后按最终目的地选择 US-395 方向。出发前查:</p>
+        <div class="srcchips" aria-label="本日实时查询链接">
+          <span class="live">实时</span>
+          <a class="chip" href="https://roads.dot.ca.gov/?roadnumber=395" rel="noopener">Caltrans US-395<span class="dom">roads.dot.ca.gov</span></a>
+          <a class="chip" href="https://quickmap.dot.ca.gov/" rel="noopener">QuickMap</a>
+          <a class="chip" href="https://www.fs.usda.gov/r05/inyo/alerts" rel="noopener">Inyo Alerts</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>唯一门槛</h3>
+        <div class="gng">
+          <div class="go-line"><b>状态优先</b>若周五晚归、睡眠不足、烟霾或道路警报不佳——<strong>推迟出发并休息</strong>。周六 departure 不是必须在疲劳状态下赶完的硬任务。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 08 恢复逻辑 ==================== -->
+  <section id="recovery" aria-labelledby="recovery-h">
+    <div class="sec-head"><span class="sec-num">08</span><h2 id="recovery-h">强度节奏与恢复逻辑</h2><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <p class="sec-sub">两座 very strenuous 的可选高峰日(周二、周五)之间恢复余量本就不足——所以周三必须敢降级,周四被班车节奏「锁定」为中等日,这不是妥协,而是设计。</p>
+
+    <ul class="effort" aria-label="六日相对强度示意(计划定性,非测量数据)">
+      <li><span class="e-day">8·3 Mon</span><span class="e-bar"><span class="e-fill" style="--w:34%;--c1:#3d5a75;--c2:#9fc2de;"></span><span class="e-lab">长途驾驶 · 到达即休整</span></span></li>
+      <li><span class="e-day">8·4 Tue</span><span class="e-bar"><span class="e-fill" style="--w:97%;--c1:#8a3421;--c2:#ea6f58;"></span><span class="e-lab">极限长日(可选)· 随时可降为 Gem/Agnew</span></span></li>
+      <li><span class="e-day">8·5 Wed</span><span class="e-bar"><span class="e-fill" style="--w:68%;--c1:#8a6423;--c2:#eab34f;"></span><span class="e-lab">高强度 · 按体力降级到 Barney</span></span></li>
+      <li><span class="e-day">8·6 Thu</span><span class="e-bar"><span class="e-fill" style="--w:42%;--c1:#4b6b35;--c2:#a3cd87;"></span><span class="e-lab">中等 · 班车管制日,兼作恢复</span></span></li>
+      <li><span class="e-day">8·7 Fri</span><span class="e-bar"><span class="e-fill" style="--w:88%;--c1:#8a3421;--c2:#ea6f58;"></span><span class="e-lab">高强度(可选)· First/Second 即成功</span></span></li>
+      <li><span class="e-day">8·8 Sat</span><span class="e-bar"><span class="e-fill" style="--w:26%;--c1:#3d5a75;--c2:#9fc2de;"></span><span class="e-lab">离开 · 疲劳则推迟</span></span></li>
+    </ul>
+    <p class="effort-note">▲ 相对强度为计划定性示意,不是测量数据或海拔剖面。</p>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th scope="col">目标</th><th scope="col">约束性质</th><th scope="col">本周角色</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Devils Postpile</th><td data-label="约束性质">班车/施工时刻约束;官方 moderate 段</td><td data-label="本周角色">恢复/中等日,但交通延误可吞掉窗口</td></tr>
+          <tr><th scope="row">Barney Lake</th><td data-label="约束性质">较短、低风险 fallback</td><td data-label="本周角色">周三的首选成功标准</td></tr>
+          <tr><th scope="row">Duck Pass / Duck Lake</th><td data-label="约束性质">高海拔 strenuous;官方未给完整数据</td><td data-label="本周角色">Thousand Island 次日,只允许按体力降级</td></tr>
+          <tr><th scope="row">Rush Creek → Thousand Island</th><td data-label="约束性质">18–20+ mi、≈3,000–3,900 ft(估算);极端长日</td><td data-label="本周角色">周二的 optional stretch,不是保证</td></tr>
+          <tr><th scope="row">Big Pine Lakes</th><td data-label="约束性质">到 Third Lake 11–13+ mi(估算);高海拔、炎热进山</td><td data-label="本周角色">连续行程末尾,First/Second 已足够</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== 09 检查节奏 ==================== -->
+  <section id="checks" aria-labelledby="checks-h">
+    <div class="sec-head"><span class="sec-num">09</span><h2 id="checks-h">72h · 24h · 当日清晨</h2><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <p class="sec-sub">本页所有「开放/可达」都是编制日(2026-07-28)的计划假设。三道复核不通过,后面的一切都不成立;任何 NO-GO 都必须执行,不讨价还价。</p>
+    <div class="check-rhythm">
+      <div class="rhythm">
+        <h3>T−72h</h3>
+        <p class="when">每个徒步日前三天</p>
+        <ul>
+          <li>官方 alerts / closures 与道路状态(Caltrans、Inyo alerts)</li>
+          <li>NWS 山区点预报:雷暴窗口</li>
+          <li>AirNow 烟霾与空气质量</li>
+          <li>班车 / 停车 / 设施公告</li>
+        </ul>
+      </div>
+      <div class="rhythm">
+        <h3>T−24h</h3>
+        <p class="when">前一晚定案</p>
+        <ul>
+          <li>复核路线可达性与临时封闭</li>
+          <li>雷暴时段、残雪、溪流、烟霾</li>
+          <li>停车与厕所/水的最新状态</li>
+          <li><strong>把次日目标下调到与状态匹配的 fallback</strong></li>
+        </ul>
+      </div>
+      <div class="rhythm">
+        <h3>Morning-of</h3>
+        <p class="when">出发当日清晨</p>
+        <ul>
+          <li>现场标牌与工作人员 / 班车司机口头信息</li>
+          <li>天空、雷声、烟霾、身体状态</li>
+          <li>停车是否合法(day-use 与 overnight 分区)</li>
+          <li><strong>记下当日硬返时间;任何 NO-GO 都执行</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="note" style="margin-top:16px;">
+      <strong>通用红线(适用于全部六天):</strong>
+      <ul>
+        <li>任何雷声 = 立即下撤,避开高地与水边。</li>
+        <li>头痛伴恶心、眩晕、协调变差、静息呼吸困难 = 高反红线,下撤并必要时求援。</li>
+        <li>烟霾使心肺负荷增大;空气不好就缩短或取消。</li>
+        <li>积雪与溪流超出装备/技能即回头。</li>
+        <li>「尚能走」不是安全许可;手机信号不是救援计划。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ==================== 10 装备 ==================== -->
+  <section id="gear" aria-labelledby="gear-h">
+    <div class="sec-head"><span class="sec-num">10</span><h2 id="gear-h">装备与打包</h2><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <p class="sec-sub">按全周通用清单打包,徒步日早晨只做「补水+午餐」的增量。勾选状态只保存在你自己的浏览器里,页面本身不联网。</p>
+    <div class="check-cols">
+      <div class="check-block">
+        <h3>水与食物 <span class="progress" data-progress="food" aria-live="polite"></span></h3>
+        <ul class="checklist" data-store="food">
+          <li><label><input type="checkbox"><span class="txt">每人 2–4L 携水容量(实际水量按天气/时长)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">过滤器或消毒手段——天然水一律处理</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">午餐 + 高热量零食(坚果/能量棒/果干)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">垃圾袋:所有废弃物带出</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">bear-proof 容器;食物/气味物品不散放车内</span></label></li>
+        </ul>
+      </div>
+      <div class="check-block">
+        <h3>穿戴与防护 <span class="progress" data-progress="wear" aria-live="polite"></span></h3>
+        <ul class="checklist" data-store="wear">
+          <li><label><input type="checkbox"><span class="txt">帽子 + 防晒霜 + 墨镜(高海拔强日照)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">保暖层 + 雨壳(午后山区易变天)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">结实徒步鞋(碎石与湿滑石面)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">急救包 + 防水泡贴</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">头灯(周二 04:00 出发必备)</span></label></li>
+        </ul>
+      </div>
+      <div class="check-block">
+        <h3>导航与电子 <span class="progress" data-progress="nav" aria-live="polite"></span></h3>
+        <ul class="checklist" data-store="nav">
+          <li><label><input type="checkbox"><span class="txt">离线 topo 地图已下载(全部四条线)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">手机充满 + 充电宝(山里基本无信号)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">官方公告页离线截图(班车/道路/许可)</span></label></li>
+          <li><label><input type="checkbox"><span class="txt">现金/银行卡(班车购票与停车备用)</span></label></li>
+        </ul>
+      </div>
+    </div>
+    <button type="button" class="reset-btn" id="reset-all">清空本页全部勾选</button>
+  </section>
+
+  <!-- ==================== 11 来源 ==================== -->
+  <section id="sources" aria-labelledby="sources-h">
+    <div class="sec-head"><span class="sec-num">11</span><h2 id="sources-h">来源层级与全部链接</h2><span class="rule" aria-hidden="true"></span><a class="up" href="#toc">目录 ↑</a></div>
+    <p class="sec-sub">三层信息来源,效力从上到下递减:官方事实 → 第三方路线估算 → 实时查询入口。链接均为普通公开网址,本页不会自动加载它们——页面完全离线。</p>
+
+    <div class="src-tier">
+      <h3><span class="ofc">第一层 · 官方事实</span></h3>
+      <p>USFS / NPS 发布的规则与事实。本页所有硬门槛(道路窗口、班车、许可、熊桶、营火、队伍上限)只取自这一层。</p>
+      <ul class="src">
+        <li><span class="s-body"><span class="s-name">USFS · Reds Meadow Road 重建工程公告</span><span class="s-desc">道路开放窗口、周一至周三全封闭、周四 ≤2.5h 延误、强制班车条款的原始出处。</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/projects/reds-meadow-road-reconstruction" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">NPS · Devils Postpile 班车信息</span><span class="s-desc">票价、周四班次、末班车、宠物口笼规则。</span></span><a class="chip" href="https://www.nps.gov/depo/planyourvisit/reds-meadow-and-devils-postpile-shuttle-information.htm" rel="noopener">打开原文<span class="dom">nps.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">NPS · Getting Around</span><span class="s-desc">山谷站点与 Devils Postpile→Rainbow Falls ≈3.8 mi 的官方注记。</span></span><a class="chip" href="https://www.nps.gov/depo/planyourvisit/gettingaround.htm" rel="noopener">打开原文<span class="dom">nps.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Rush Creek Trail</span><span class="s-desc">周二入口、路线走向、设施。</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/trails/rush-creek-trail" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Duck Pass Trail</span><span class="s-desc">周三入口与线路目的地。</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/trails/duck-pass-trail" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Big Pine Creek North Fork Trail</span><span class="s-desc">周五入口、day-use 停车。</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/trails/big-pine-creek-north-fork-trail" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Wilderness Permits</span><span class="s-desc">day use 免许可、过夜配额(Rush Creek 30/日,Big Pine North Fork 25/日)。</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/permits/wilderness-permits" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Wilderness Regulations</span><span class="s-desc">禁营火区、离水扎营距离、队伍 ≤15。</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/permits/wilderness-regulations" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Bears(食物存放)</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/animals-plants/animals/bears" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Dogs on the Inyo</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/safety-ethics/dogs-inyo-national-forest" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · June Lake Loop</span><span class="s-desc">旱厕与「饮用水不可用」提示。</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/recreation/june-lake-loop" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · JMT itinerary 地点表(PDF)</span><span class="s-desc">Island Pass 10,225 ft 与 Rush Creek/JMT 连接关系。</span></span><a class="chip" href="https://www.fs.usda.gov/sites/nfs/files/legacy-media/inyo/JMT%20camp%20locations.pdf" rel="noopener">打开 PDF<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · Big Pine Canyon 徒步指南(PDF)</span></span><a class="chip" href="https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5195705.pdf" rel="noopener">打开 PDF<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">USFS · 休憩概览(PDF)</span></span><a class="chip" href="https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/fseprd532455.pdf" rel="noopener">打开 PDF<span class="dom">fs.usda.gov</span></a></li>
+      </ul>
+    </div>
+
+    <div class="src-tier">
+      <h3><span class="est">第二层 · 路线里程/爬升估算</span></h3>
+      <p>USFS 未发布这些线路的统一 day-hike 里程/爬升表。下列资料的 GPS 统计口径互有冲突——本页以范围表达,<strong>不把第三方估算当作机构事实</strong>。</p>
+      <ul class="src">
+        <li><span class="s-body"><span class="s-name">Gaia GPS · Island Pass Loop via Rush Creek</span><span class="s-desc">周二线路估算。</span></span><a class="chip" href="https://www.gaiagps.com/hike/433100/island-pass-loop-via-rush-creek-trail/" rel="noopener">打开原文<span class="dom">gaiagps.com</span></a></li>
+        <li><span class="s-body"><span class="s-name">Forever She Wanders · Thousand Island Lake via Rush Creek</span><span class="s-desc">周二线路估算。</span></span><a class="chip" href="https://forevershewanders.com/thousand-island-lake-via-rush-creek-trail-an-awesome-backpacking-adventure/" rel="noopener">打开原文<span class="dom">forevershewanders.com</span></a></li>
+        <li><span class="s-body"><span class="s-name">Modern Hiker · Duck Lake</span><span class="s-desc">周三线路估算。</span></span><a class="chip" href="https://modernhiker.com/hike/hike-duck-lake/" rel="noopener">打开原文<span class="dom">modernhiker.com</span></a></li>
+        <li><span class="s-body"><span class="s-name">Inyo 步道维护里程附表(PDF)</span><span class="s-desc">辅助里程参照,与其他资料口径不一。</span></span><a class="chip" href="https://www.fs.usda.gov/Internet/FSE_DOCUMENTS/stelprdb5370647.pdf" rel="noopener">打开 PDF<span class="dom">fs.usda.gov</span></a></li>
+      </ul>
+    </div>
+
+    <div class="src-tier">
+      <h3><span class="live">第三层 · 实时查询入口</span></h3>
+      <p>这些是「当下状态」的查询入口,不是对 8 月 3–8 日的预保证。72h/24h/当日清晨各查一轮。</p>
+      <ul class="src">
+        <li><span class="s-body"><span class="s-name">Caltrans QuickMap</span></span><a class="chip" href="https://quickmap.dot.ca.gov/" rel="noopener">打开原文<span class="dom">quickmap.dot.ca.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">Caltrans 路况总入口</span></span><a class="chip" href="https://roads.dot.ca.gov/" rel="noopener">打开原文<span class="dom">roads.dot.ca.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">Caltrans · US-395</span></span><a class="chip" href="https://roads.dot.ca.gov/?roadnumber=395" rel="noopener">打开原文<span class="dom">roads.dot.ca.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">Caltrans · SR-203</span></span><a class="chip" href="https://roads.dot.ca.gov/?roadnumber=203" rel="noopener">打开原文<span class="dom">roads.dot.ca.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">Caltrans · SR-158</span></span><a class="chip" href="https://roads.dot.ca.gov/?roadnumber=158" rel="noopener">打开原文<span class="dom">roads.dot.ca.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">Inyo National Forest · Alerts</span></span><a class="chip" href="https://www.fs.usda.gov/r05/inyo/alerts" rel="noopener">打开原文<span class="dom">fs.usda.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">NPS · Devils Postpile Conditions</span></span><a class="chip" href="https://www.nps.gov/depo/planyourvisit/conditions.htm" rel="noopener">打开原文<span class="dom">nps.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">NWS · 点预报</span></span><a class="chip" href="https://forecast.weather.gov/" rel="noopener">打开原文<span class="dom">forecast.weather.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">NWS · 雷电安全</span></span><a class="chip" href="https://www.weather.gov/safety/lightning-safety-overview" rel="noopener">打开原文<span class="dom">weather.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">AirNow(总入口)</span></span><a class="chip" href="https://www.airnow.gov/" rel="noopener">打开原文<span class="dom">airnow.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">AirNow · California</span></span><a class="chip" href="https://www.airnow.gov/state/?name=california" rel="noopener">打开原文<span class="dom">airnow.gov</span></a></li>
+        <li><span class="s-body"><span class="s-name">Mammoth Trails · 步道状态</span></span><a class="chip" href="https://www.mammothtrails.org/" rel="noopener">打开原文<span class="dom">mammothtrails.org</span></a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>本页刻意不承诺的事项</h3>
+      <ul>
+        <li><strong>天气/烟霾/雷电、残雪与溪流:</strong>不做预报,只给「查官方入口」的动作。</li>
+        <li><strong>周四实际施工延误:</strong>官方只给「最长 2.5 小时」上限,真实排队无法预测。</li>
+        <li><strong>各湖精确里程/爬升:</strong>官方未发布统一表;第三方估算口径冲突,本页仅以范围表达。</li>
+        <li><strong>Coldwater day-use 费用与设施状态:</strong>官方步道页未明确,以现场牌示为准。</li>
+        <li><strong>停车位、厕所与龙头供水:</strong>一律以当日现场为准;水按「自带满 + 处理天然水」执行。</li>
+        <li><strong>住宿细节:</strong>本页只使用「Mammoth Lakes base」与「Big Pine 过夜」的公共表述,不含任何住宿平台、房源或交易信息。</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <nav aria-label="页尾导航">
+      <ul class="footnav">
+        <li><a class="totop" href="#top">↑ 回到页首</a></li>
+        <li><a href="#toc">目录</a></li>
+        <li><a href="#overview">总览</a></li>
+        <li><a href="#d0803">8·3</a></li>
+        <li><a href="#d0804">8·4</a></li>
+        <li><a href="#d0805">8·5</a></li>
+        <li><a href="#d0806">8·6</a></li>
+        <li><a href="#d0807">8·7</a></li>
+        <li><a href="#d0808">8·8</a></li>
+        <li><a href="#checks">检查节奏</a></li>
+        <li><a href="#sources">来源</a></li>
+      </ul>
+    </nav>
+    <p class="f-mono">Prepared 2026-07-28 · A dated plan, not a live guarantee · Recheck T−72h / T−24h / morning-of</p>
+    <p>本页为完全离线的单文件档案:无外部字体、脚本、地图或追踪器;不含任何表单与登录;勾选状态仅保存在你自己的浏览器中。</p>
+    <p class="f-mono">EASTERN SIERRA · AUG 3–8 · MAMMOTH LAKES BASE → BIG PINE · SIX-DAY DOSSIER</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  /* 勾选持久化(localStorage 不可用时静默降级为会话内勾选) */
+  var PREFIX="es-20260803-";
+  function store(k,v){try{localStorage.setItem(PREFIX+k,v);}catch(e){}}
+  function read(k){try{return localStorage.getItem(PREFIX+k);}catch(e){return null;}}
+  var lists=document.querySelectorAll(".checklist[data-store]");
+  function refresh(list){
+    var key=list.getAttribute("data-store");
+    var boxes=list.querySelectorAll("input[type=checkbox]");
+    var done=0;
+    boxes.forEach(function(b){if(b.checked)done++;});
+    var badge=document.querySelector('.progress[data-progress="'+key+'"]');
+    if(badge){badge.textContent=done+" / "+boxes.length;}
+  }
+  lists.forEach(function(list){
+    var key=list.getAttribute("data-store");
+    var boxes=list.querySelectorAll("input[type=checkbox]");
+    var saved=read(key);
+    if(saved){
+      saved.split("").forEach(function(ch,i){
+        if(boxes[i]&&ch==="1")boxes[i].checked=true;
+      });
+    }
+    list.addEventListener("change",function(){
+      var bits="";
+      boxes.forEach(function(b){bits+=b.checked?"1":"0";});
+      store(key,bits);
+      refresh(list);
+    });
+    refresh(list);
+  });
+  var resetBtn=document.getElementById("reset-all");
+  if(resetBtn){
+    resetBtn.addEventListener("click",function(){
+      lists.forEach(function(list){
+        list.querySelectorAll("input[type=checkbox]").forEach(function(b){b.checked=false;});
+        store(list.getAttribute("data-store"),"");
+        refresh(list);
+      });
+    });
+  }
+  /* 本页刻意不使用滚动监听/粘性导航:目录与「目录 ↑」「回到页首」均为静态锚点,
+     不会覆盖内容,也不存在「高亮到错误章节」的可能。 */
+})();
+</script>
+</body>
+</html>
