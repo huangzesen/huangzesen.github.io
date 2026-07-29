@@ -3,7 +3,7 @@
   "schema_version": "1.0.0",
   "page_date": "2026-07-28",
   "page_timezone": "America/Los_Angeles",
-  "verified_at": "2026-07-29T00:52:12Z",
+  "verified_at": "2026-07-29T04:27:05Z",
   "methodology": {
     "evidence_policy": "Only provider, agency, facility, foundation, or provider-linked application pages were accepted as evidence. Aggregators were not used.",
     "endpoint_rule": "Endpoint liveness and program openness are checked separately. A live page or form can belong to a closed or repurposed call; a moved page can point to a valid new route.",
