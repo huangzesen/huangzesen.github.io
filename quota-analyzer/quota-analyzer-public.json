@@ -1,171 +1,60 @@
 {
-  "aggregates": {
-    "1h": {
-      "api_equivalent_usd": 90.31953415,
-      "calls": 1324,
-      "coverage_hours": null,
-      "coverage_note": "exact bounded window",
-      "now": "2026-07-29T10:46:52.794886Z",
-      "pricing_coverage_ratio": 0.9941758945845699,
-      "since": "2026-07-29T09:46:52.794886Z",
-      "total_tokens": 164454356,
-      "unpriced_tokens": 964534
-    },
-    "24h": {
-      "api_equivalent_usd": 1381.5377618,
-      "calls": 15405,
-      "coverage_hours": null,
-      "coverage_note": "exact bounded window",
-      "now": "2026-07-29T10:46:52.794886Z",
-      "pricing_coverage_ratio": 0.9856520918842904,
-      "since": "2026-07-28T10:46:52.794886Z",
-      "total_tokens": 2822461475,
-      "unpriced_tokens": 40659780
-    },
-    "current_week": {
-      "api_equivalent_usd": 1381.5377618,
-      "calls": 15405,
-      "coverage_hours": 24,
-      "coverage_note": "current-week live subset; canonical collector is bounded to 24h (24-hour coverage)",
-      "now": "2026-07-29T10:46:52.794886Z",
-      "pricing_coverage_ratio": 0.9856520918842904,
-      "since": "2026-07-28T10:46:52.794886Z",
-      "total_tokens": 2822461475,
-      "unpriced_tokens": 40659780
-    }
+  "as_of": "2026-07-30T10:04:50.371756Z",
+  "privacy": {
+    "account_identity": "anonymous stable display labels",
+    "excluded": [
+      "emails",
+      "credentials",
+      "auth metadata",
+      "local paths",
+      "raw requests",
+      "internal identifiers"
+    ]
   },
-  "as_of": "2026-07-29T10:46:52.794886Z",
-  "methodology": "For each independent subscription/account × quota window, the public page shows the provider-reported actual meter exactly once. A full quota value would be same-window account-attributed API-list-price-equivalent consumed USD divided by actual used fraction. When coverage begins after the quota-window start or usage is not attributable to the anonymous subscription, the page shows N/A or a lower bound with the reason. API-list-price equivalent is not actual subscription spend.",
   "quota_rows": [
     {
-      "account_label": "Claude subscription A",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: session/window start is not covered by account-attributed canonical usage; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=1h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Claude Max",
-      "remaining_percent": 87.0,
-      "reset_at": "Jul 29 at 4:59am (America/Los_Angeles)",
-      "span_hours": 0.858,
-      "used_percent": 13.0,
-      "window": "Current session"
-    },
-    {
-      "account_label": "Claude subscription A",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: Fable usage is model-scoped but not safely attributed to this subscription/window from quota-window start; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=24h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Claude Max",
-      "remaining_percent": 76.0,
-      "reset_at": "Aug 1 at 2:59pm (America/Los_Angeles)",
-      "span_hours": 0.858,
-      "used_percent": 24.0,
-      "window": "Current week (Fable)"
-    },
-    {
-      "account_label": "Claude subscription A",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: Claude usage is provider/model-scoped but not safely attributed to this subscription/window from quota-window start; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=24h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Claude Max",
-      "remaining_percent": 44.0,
-      "reset_at": "Aug 1 at 2:59pm (America/Los_Angeles)",
-      "span_hours": 0.858,
-      "used_percent": 56.0,
-      "window": "Current week (all models)"
-    },
-    {
-      "account_label": "Claude subscription B",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: session/window start is not covered by account-attributed canonical usage; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=1h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Claude Max",
-      "remaining_percent": 38.0,
-      "reset_at": "Jul 29 at 4:29am (America/Los_Angeles)",
-      "span_hours": 0.858,
-      "used_percent": 62.0,
-      "window": "Current session"
-    },
-    {
-      "account_label": "Claude subscription B",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: Fable usage is model-scoped but not safely attributed to this subscription/window from quota-window start; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=24h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Claude Max",
-      "remaining_percent": 51.0,
-      "reset_at": "Aug 3 at 8am (America/Los_Angeles)",
-      "span_hours": 0.858,
-      "used_percent": 49.0,
-      "window": "Current week (Fable)"
-    },
-    {
-      "account_label": "Claude subscription B",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: Claude usage is provider/model-scoped but not safely attributed to this subscription/window from quota-window start; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=24h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Claude Max",
-      "remaining_percent": 56.0,
-      "reset_at": "Aug 3 at 7:59am (America/Los_Angeles)",
-      "span_hours": 0.858,
-      "used_percent": 44.0,
-      "window": "Current week (all models)"
-    },
-    {
-      "account_label": "Codex subscription A",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: Codex usage materialization is explicitly not attributed to safe public account labels; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=24h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Codex",
-      "remaining_percent": 82.0,
+      "account_label": "Codex account A",
+      "confidence": "high",
+      "estimated_full_quota_value_usd": null,
+      "observed_at": "2026-07-30T10:04:50.371756Z",
+      "remaining_percent": 47.0,
       "reset_at": "2026-08-04T21:09:35-07:00",
-      "span_hours": 0.858,
-      "used_percent": 18.0,
-      "window": "rate_limit"
+      "sliding_window_midpoint_value_usd": null,
+      "status": "ok",
+      "used_percent": 53.0,
+      "value_reason": "N/A: no mechanically aligned same-account, same-quota-window, same-token-value sliding window is eligible",
+      "value_status": "blocked",
+      "window": "Weekly rate limit",
+      "window_duration_minutes": 10080
     },
     {
-      "account_label": "Codex subscription B",
-      "consumed_display": "N/A",
-      "estimate_reason": "N/A: Codex usage materialization is explicitly not attributed to safe public account labels; full quota value requires exact account-attributed USD divided by this used fraction",
-      "full_quota_display": "N/A",
-      "maturity": "immature: 0.858h observed; needs >=24h",
-      "observations": 15,
-      "observed_at": "2026-07-29T10:47:31.235599Z",
-      "provider": "Codex",
-      "remaining_percent": 86.0,
+      "account_label": "Codex account B",
+      "confidence": "high",
+      "estimated_full_quota_value_usd": null,
+      "observed_at": "2026-07-30T10:04:50.371756Z",
+      "remaining_percent": 57.0,
       "reset_at": "2026-08-04T21:10:29-07:00",
-      "span_hours": 0.858,
-      "used_percent": 14.0,
-      "window": "rate_limit"
+      "sliding_window_midpoint_value_usd": null,
+      "status": "ok",
+      "used_percent": 43.0,
+      "value_reason": "N/A: no mechanically aligned same-account, same-quota-window, same-token-value sliding window is eligible",
+      "value_status": "blocked",
+      "window": "Weekly rate limit",
+      "window_duration_minutes": 10080
     }
   ],
-  "schema": "quota_analyzer.public_pages.v1",
-  "summary": {
-    "estimate_semantics": "API-list-price equivalent, not actual subscription spend; no account/provider/window merging",
-    "identity": "anonymous render-local subscription labels only",
-    "providers": [
-      "Claude Max",
-      "Codex"
-    ],
-    "quota_card_count": 8
+  "schema": "quota_analyzer.codex_public.v2",
+  "scope": "Codex quota data only",
+  "source": {
+    "kind": "canonical sanitized quota collector snapshot",
+    "observed_at": "2026-07-30T10:04:50.371756Z",
+    "rows_selected": 2,
+    "snapshot_sha256": "5f239350a9bd6ee4931a76340b66391b77828da3d6acf92072c5409891846ebc"
+  },
+  "value_comparison": {
+    "estimated_weekly_value_usd": null,
+    "reason": "N/A: current audit does not prove same account, same weekly quota window, and same token-value sliding window",
+    "sliding_window_midpoint_value_usd": null,
+    "status": "blocked"
   }
 }
