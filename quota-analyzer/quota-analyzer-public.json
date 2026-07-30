@@ -1,60 +1,57 @@
 {
-  "as_of": "2026-07-30T10:04:50.371756Z",
-  "privacy": {
-    "account_identity": "anonymous stable display labels",
-    "excluded": [
-      "emails",
-      "credentials",
-      "auth metadata",
-      "local paths",
-      "raw requests",
-      "internal identifiers"
+  "schema": "quota_analyzer.codex_pro_product_meter.v1",
+  "as_of": "2026-07-30",
+  "product": "One Codex Pro subscription",
+  "estimate": {
+    "central_value_usd_per_week": 1890.698,
+    "display_value": "$1.89k/week",
+    "unit": "API list-price-equivalent USD per week",
+    "status": "experimental_estimate",
+    "confidence": "low",
+    "nominal_midpoint_pp": 5,
+    "not_actual_spend": true,
+    "not_official_provider_announcement": true
+  },
+  "supporting_observed_mix": {
+    "mapped_tokens_per_week": 2106647520,
+    "display_value": "2.107B mapped tokens/week",
+    "model_mix_dependent": true
+  },
+  "sensitivity": {
+    "interpretation": "Sensitivity band under an assumed displayed-delta midpoint; not a validated confidence interval or conservative bound.",
+    "formula": "weekly API-equivalent value = $94.5349 × 100 / midpoint_pp",
+    "curve": [
+      {"midpoint_pp": 3, "weekly_value_usd": 3151.16333333},
+      {"midpoint_pp": 3.5, "weekly_value_usd": 2700.99714286},
+      {"midpoint_pp": 4, "weekly_value_usd": 2363.3725},
+      {"midpoint_pp": 4.5, "weekly_value_usd": 2100.77555556},
+      {"midpoint_pp": 5, "weekly_value_usd": 1890.698},
+      {"midpoint_pp": 5.5, "weekly_value_usd": 1718.81636364},
+      {"midpoint_pp": 6, "weekly_value_usd": 1575.58166667},
+      {"midpoint_pp": 6.5, "weekly_value_usd": 1454.38307692},
+      {"midpoint_pp": 7, "weekly_value_usd": 1350.49857143}
     ]
   },
-  "quota_rows": [
-    {
-      "account_label": "Codex account A",
-      "confidence": "high",
-      "estimated_full_quota_value_usd": null,
-      "observed_at": "2026-07-30T10:04:50.371756Z",
-      "remaining_percent": 47.0,
-      "reset_at": "2026-08-04T21:09:35-07:00",
-      "sliding_window_midpoint_value_usd": null,
-      "status": "ok",
-      "used_percent": 53.0,
-      "value_reason": "N/A: no mechanically aligned same-account, same-quota-window, same-token-value sliding window is eligible",
-      "value_status": "blocked",
-      "window": "Weekly rate limit",
-      "window_duration_minutes": 10080
-    },
-    {
-      "account_label": "Codex account B",
-      "confidence": "high",
-      "estimated_full_quota_value_usd": null,
-      "observed_at": "2026-07-30T10:04:50.371756Z",
-      "remaining_percent": 57.0,
-      "reset_at": "2026-08-04T21:10:29-07:00",
-      "sliding_window_midpoint_value_usd": null,
-      "status": "ok",
-      "used_percent": 43.0,
-      "value_reason": "N/A: no mechanically aligned same-account, same-quota-window, same-token-value sliding window is eligible",
-      "value_status": "blocked",
-      "window": "Weekly rate limit",
-      "window_duration_minutes": 10080
-    }
-  ],
-  "schema": "quota_analyzer.codex_public.v2",
-  "scope": "Codex quota data only",
-  "source": {
-    "kind": "canonical sanitized quota collector snapshot",
-    "observed_at": "2026-07-30T10:04:50.371756Z",
-    "rows_selected": 2,
-    "snapshot_sha256": "5f239350a9bd6ee4931a76340b66391b77828da3d6acf92072c5409891846ebc"
+  "calibration": {
+    "mapped_lingtai_rows": 556,
+    "mapped_tokens": 105332376,
+    "exact_model_api_list_price_equivalent_usd": 94.5349,
+    "displayed_aggregate_quota_delta_pp": 5,
+    "delta_components_pp": [3, 2]
   },
-  "value_comparison": {
-    "estimated_weekly_value_usd": null,
-    "reason": "N/A: current audit does not prove same account, same weekly quota window, and same token-value sliding window",
-    "sliding_window_midpoint_value_usd": null,
-    "status": "blocked"
+  "assumptions": [
+    "Equal weekly entitlement across the calibrated observations.",
+    "Displayed integer quota percentages are used as an assumed midpoint signal.",
+    "Mapped exact-model token pricing is an API list-price-equivalent proxy."
+  ],
+  "limitations": [
+    "UI percentages are integer and asynchronous; raw sub-percent values are absent.",
+    "Durable quota-to-token identity is absent, so the aggregate is calibration input rather than personal usage reporting.",
+    "External Codex CLI usage was not in the mapped numerator.",
+    "Generic Codex was unpriced.",
+    "The estimate is not actual spend, official, exact, guaranteed, or provider-published."
+  ],
+  "privacy": {
+    "scope": "Product-level aggregate only; no personal observations are rendered."
   }
 }
