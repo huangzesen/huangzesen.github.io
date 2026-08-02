@@ -1,0 +1,4176 @@
+{
+  "schema_version": 1,
+  "title": "Agentic AI Summit 2026 — local evidence analysis",
+  "cutoff_utc": "2026-08-02T20:29:16Z",
+  "cutoff_note": "Accepted corpus cutoff; Aug-2 remained live/incomplete in the evidence snapshot.",
+  "scope": "Authorized local evidence only; no network research or external action in this candidate build.",
+  "summary": {
+    "conclusion": "The clearest technical through-line is an agent system stack: harness + memory/tools + execution + feedback + scalable environments, with scientific discovery and security as adjacent application/risk layers.",
+    "fact_boundary": "Aug-1 transcript evidence is auto-caption-derived. Aug-2 has six unavailable transcript entries; River photos and company notes are labeled separately.",
+    "interpretation_boundary": "Jason-fit and job/collaboration leads are analysis, not facts or recommendations to contact/apply."
+  },
+  "totals": {
+    "program_blocks": 43,
+    "speakers": 178,
+    "program_mapped_people": 169,
+    "featured_only_people": 9,
+    "session_speaker_joins": 202,
+    "organizations": 157,
+    "recordings_in_snapshot": 14,
+    "ended_recordings": 11,
+    "ended_aug1_recordings": 8,
+    "aug1_transcript_files": 8,
+    "aug1_normalized_cues": 68496,
+    "final_manifest_media": 11,
+    "final_manifest_bytes": 7053886387,
+    "final_manifest_duration_seconds": 123370.193451,
+    "fresh_playlist_entries": 13
+  },
+  "takeaway_claim_ids": [
+    "c01",
+    "c02",
+    "c04",
+    "c05",
+    "c06",
+    "c08",
+    "c09",
+    "c10",
+    "c11",
+    "i01",
+    "i02"
+  ],
+  "claims": [
+    {
+      "id": "c01",
+      "theme": "agent harness",
+      "label": "fact",
+      "statement": "The Atlas morning talk frames agentic modeling as turning a language model from a talker into a doer, coupled to an agent harness.",
+      "speaker_session_mapping": "Atlas / Session 1: Foundational Capabilities; speaker-level attribution withheld because the ASR self-introduction is noisy.",
+      "attribution_confidence": "medium — schedule-to-stream stage mapping; auto transcript; no speaker named in this claim",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/WeriQic-QW0.txt",
+        "official_url": "https://youtube.com/watch?v=WeriQic-QW0",
+        "recording_id": "WeriQic-QW0",
+        "relative_timestamp": "00:02:59",
+        "excerpt": "agentic modeling is the process where we want to turn this talker to a doer",
+        "excerpt_note": "Normalized English auto transcript; ASR artifacts are preserved in the excerpt."
+      }
+    },
+    {
+      "id": "c02",
+      "theme": "memory + tools",
+      "label": "fact",
+      "statement": "The same talk describes an information layer with memory, context management, and tools, plus an execution layer with prompt/action modules and error recovery.",
+      "speaker_session_mapping": "Atlas / Session 1: Foundational Capabilities; stage/session only.",
+      "attribution_confidence": "medium — stage-to-session schedule mapping; auto transcript",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/WeriQic-QW0.txt",
+        "official_url": "https://youtube.com/watch?v=WeriQic-QW0",
+        "recording_id": "WeriQic-QW0",
+        "relative_timestamp": "00:06:05",
+        "excerpt": "the information layer consists of the uh ma memory and the context measurement",
+        "excerpt_note": "Normalized English auto transcript; this is an excerpt, not a polished transcript."
+      }
+    },
+    {
+      "id": "c03",
+      "theme": "continual learning",
+      "label": "fact",
+      "statement": "The talk presents EvolveLab as a test-time learning framework intended to accumulate and reuse knowledge across a sequence of tasks.",
+      "speaker_session_mapping": "Atlas / Session 1: Foundational Capabilities; stage/session only.",
+      "attribution_confidence": "medium — stage-to-session schedule mapping; auto transcript",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/WeriQic-QW0.txt",
+        "official_url": "https://youtube.com/watch?v=WeriQic-QW0",
+        "recording_id": "WeriQic-QW0",
+        "relative_timestamp": "00:10:25",
+        "excerpt": "a new test time learning framework called evolve lab which allows large scale language models to accumulate, reuse and involve knowledge across a sequence of tasks",
+        "excerpt_note": "The normalized transcript renders some words as ASR artifacts (for example, ‘involve’)."
+      }
+    },
+    {
+      "id": "c04",
+      "theme": "agent infrastructure",
+      "label": "fact",
+      "statement": "The talk identifies a need for environments that can run very large numbers of agents in parallel to produce trajectory data for training.",
+      "speaker_session_mapping": "Atlas / Session 1: Foundational Capabilities; stage/session only.",
+      "attribution_confidence": "medium — stage-to-session schedule mapping; auto transcript",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/WeriQic-QW0.txt",
+        "official_url": "https://youtube.com/watch?v=WeriQic-QW0",
+        "recording_id": "WeriQic-QW0",
+        "relative_timestamp": "00:12:02",
+        "excerpt": "to run hundreds of thousands of uh agents simultaneously so that they can generate a lot of trajectory data",
+        "excerpt_note": "Normalized English auto transcript; quantity is reported as spoken, not independently measured."
+      }
+    },
+    {
+      "id": "c05",
+      "theme": "AI for science",
+      "label": "fact",
+      "statement": "The Nexus morning AI-for-Science block includes a talk introduced as using AI agents for scientific discovery.",
+      "speaker_session_mapping": "Nexus / Session 1: AI for Science; speaker-level attribution withheld because the transcript’s name rendering does not cleanly match the scheduled names.",
+      "attribution_confidence": "medium — stage/session mapping; opening introduction is audible but speaker identity is not safely resolved",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/LB7IkZhEYic.txt",
+        "official_url": "https://youtube.com/watch?v=LB7IkZhEYic",
+        "recording_id": "LB7IkZhEYic",
+        "relative_timestamp": "00:06:44",
+        "excerpt": "I'll be talking about how we use AI agents for scientific discovery",
+        "excerpt_note": "Normalized English auto transcript; no speaker inferred from the noisy name mention."
+      }
+    },
+    {
+      "id": "c06",
+      "theme": "RL + coding agents",
+      "label": "fact",
+      "statement": "Silas Alberti’s Nexus afternoon introduction names scaling RL for coding agents and calls out multi-turn training, parallel tool calls, asynchronous RL, and entropy collapse.",
+      "speaker_session_mapping": "Silas Alberti → Nexus / Session 2: Coding & Web Agents; self-introduction plus official schedule join.",
+      "attribution_confidence": "high — transcript self-introduction corroborated by official session schedule; auto transcript",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/ZIRc3EpzQJs.txt",
+        "official_url": "https://youtube.com/watch?v=ZIRc3EpzQJs",
+        "recording_id": "ZIRc3EpzQJs",
+        "relative_timestamp": "00:14:43",
+        "excerpt": "multi-turn training parallel tool calls asynchronous RL and entropy collapse",
+        "excerpt_note": "Exact adjacent topic list in the normalized auto transcript; punctuation and capitalization are not human-edited."
+      }
+    },
+    {
+      "id": "c07",
+      "theme": "robotics + RL",
+      "label": "fact",
+      "statement": "Peter Stone frames a research question around autonomous agents learning with teammates or adversaries in real-time dynamic domains.",
+      "speaker_session_mapping": "Peter Stone → Atlas / Session 2: Robotics & World Models; host introduction and official schedule join.",
+      "attribution_confidence": "high — transcript self-identification/context and official schedule join; auto transcript",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/psPzCQbjCCo.txt",
+        "official_url": "https://youtube.com/watch?v=psPzCQbjCCo",
+        "recording_id": "psPzCQbjCCo",
+        "relative_timestamp": "00:16:01",
+        "excerpt": "to what degree can autonomous intelligent agents learn in the presence of teammates and/or adversaries in real-time dynamic domains",
+        "excerpt_note": "Normalized English auto transcript."
+      }
+    },
+    {
+      "id": "c08",
+      "theme": "agent security",
+      "label": "fact",
+      "statement": "Itsik Mantin explains that when prompt injection reaches an agent connected to tools, the threat becomes agent-goal hijacking and can escalate to tool misuse or exploitation.",
+      "speaker_session_mapping": "Itsik Mantin → Nexus / Session 4: Secure Agentic AI; host introduction plus official schedule join.",
+      "attribution_confidence": "high — host introduction corroborated by the official schedule; the auto transcript renders the name noisily",
+      "evidence": {
+        "source_type": "official auto-transcript",
+        "source_path": "archive/recordings_attempt_02/transcripts/ZIRc3EpzQJs.txt",
+        "official_url": "https://youtube.com/watch?v=ZIRc3EpzQJs",
+        "recording_id": "ZIRc3EpzQJs",
+        "relative_timestamp": "03:17:04",
+        "excerpt": "threat is being upgraded ... agent goal hijacking ... connected to tools and tools misuse and tools exploitation",
+        "excerpt_note": "Selected adjacent normalized auto-caption fragments at 03:17:04–03:17:22; ellipses mark omitted ASR filler and intervening words."
+      }
+    },
+    {
+      "id": "c09",
+      "theme": "personal AI",
+      "label": "fact",
+      "statement": "Accepted field notes record River’s personal-AI framing around RL training, personalization, memory/long context, privacy/security, and cost; the Aug-2 recording has no accepted transcript.",
+      "speaker_session_mapping": "Igor Babuschkin / Plenary — Sunday, from official program join; the supplied photos do not show the speaker name.",
+      "attribution_confidence": "medium — user-provided event note plus official program/session mapping; no transcript",
+      "evidence": {
+        "source_type": "accepted event photo field note",
+        "source_path": "live_notes.md",
+        "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+        "relative_timestamp": "2026-08-02 13:44 PDT (photo note)",
+        "excerpt": "Personalization; Memory / Long Context; Privacy & Security; Cost",
+        "excerpt_note": "Photo-observation evidence, not a transcript; the official livestream was unavailable for transcript capture at cutoff."
+      }
+    },
+    {
+      "id": "c10",
+      "theme": "job lead",
+      "label": "fact",
+      "statement": "The accepted Periodic Labs snapshot recorded 21 public roles: 16 full-time, 4 contract, and 1 intern, as of 2026-08-02 14:21 PDT.",
+      "speaker_session_mapping": "Not a summit talk; company/job snapshot.",
+      "attribution_confidence": "high — accepted public-source research note with dated snapshot",
+      "evidence": {
+        "source_type": "accepted public-source job snapshot",
+        "source_path": "periodic_labs_lead_20260802.md",
+        "official_url": "https://jobs.ashbyhq.com/periodic-labs",
+        "relative_timestamp": "2026-08-02 14:21 PDT",
+        "excerpt": "21 listed roles; 16 full-time, 4 contract, 1 intern",
+        "excerpt_note": "Availability can change; this public snapshot does not report private application status."
+      }
+    },
+    {
+      "id": "c11",
+      "theme": "company map",
+      "label": "fact",
+      "statement": "River’s accepted diligence memo identifies a public River API v0.1 preview with sampling, fine-tuning, RL updates, serving, and durable checkpoints; personal-agent memory is not verified as a shipped public product.",
+      "speaker_session_mapping": "Company/product evidence connected to the River summit lead; not a transcript claim.",
+      "attribution_confidence": "high for API documentation summary; medium for absence claim because it is bounded to reviewed public materials",
+      "evidence": {
+        "source_type": "accepted company diligence memo",
+        "source_path": "company_research_river_ai_attempt_01/river_ai_report.md",
+        "official_url": "https://docs.river.ai/",
+        "relative_timestamp": "retrieved 2026-08-02",
+        "excerpt": "The currently verifiable product is a public v0.1-preview River API",
+        "excerpt_note": "The memo explicitly separates verified public facts from roadmap/claim language."
+      }
+    },
+    {
+      "id": "i01",
+      "theme": "Jason fit",
+      "label": "interpretation",
+      "statement": "For Jason, the most defensible opportunity cluster is agent-harness infrastructure: memory lifecycle, tool control, long-running execution, evaluation, and cost/reliability.",
+      "speaker_session_mapping": "Analysis synthesized from c01–c04, c06–c08 and the accepted River diligence memo; not an employer claim.",
+      "attribution_confidence": "analysis confidence: medium — evidence-backed fit judgment, not a fact",
+      "evidence": {
+        "source_type": "analysis synthesis",
+        "source_path": "analysis.json",
+        "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+        "excerpt": "memory; tools; feedback; parallel agents; RL; security",
+        "excerpt_note": "Interpretation only; requires role-specific diligence before any application."
+      }
+    },
+    {
+      "id": "i02",
+      "theme": "Jason fit",
+      "label": "interpretation",
+      "statement": "The AI-for-science and agent-infrastructure evidence makes scientific discovery systems a plausible collaboration/job research direction, but the corpus does not establish any relationship, endorsement, or open role for Jason.",
+      "speaker_session_mapping": "Analysis synthesized from c04–c07 and the official program graph; not a contact recommendation.",
+      "attribution_confidence": "analysis confidence: medium — bounded interpretation",
+      "evidence": {
+        "source_type": "analysis synthesis",
+        "source_path": "analysis.json",
+        "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+        "excerpt": "AI agents for scientific discovery; agent harness; RL for coding agents",
+        "excerpt_note": "No contact, application, or outreach is authorized or implied."
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "block": "Morning",
+      "recording_id": "UdS3iisKhCk",
+      "status": "ended_archive",
+      "transcript": "unavailable",
+      "cues": 0,
+      "watch_url": "https://www.youtube.com/watch?v=UdS3iisKhCk",
+      "limitation": "Ended archive, but public YouTube player metadata exposed no English official or auto caption track at cutoff; no transcript was generated."
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "block": "Afternoon",
+      "recording_id": "I2PosBXwoPI",
+      "status": "live",
+      "transcript": "unavailable",
+      "cues": 0,
+      "watch_url": "https://www.youtube.com/watch?v=I2PosBXwoPI",
+      "limitation": "Still live at cutoff; public player metadata exposed no English caption track, so no transcript was generated."
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Atlas",
+      "block": "Morning",
+      "recording_id": "LGW_6P1CMC8",
+      "status": "ended_archive",
+      "transcript": "unavailable",
+      "cues": 0,
+      "watch_url": "https://www.youtube.com/watch?v=LGW_6P1CMC8",
+      "limitation": "Ended archive, but public YouTube player metadata exposed no English official or auto caption track at cutoff; no transcript was generated."
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Atlas",
+      "block": "Afternoon",
+      "recording_id": "-7AJJLwYW1Q",
+      "status": "live",
+      "transcript": "unavailable",
+      "cues": 0,
+      "watch_url": "https://www.youtube.com/watch?v=-7AJJLwYW1Q",
+      "limitation": "Still live at cutoff; public player metadata exposed no English caption track, so no transcript was generated."
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Compass",
+      "block": "Morning",
+      "recording_id": "l8GS08n-25Q",
+      "status": "ended_archive",
+      "transcript": "unavailable",
+      "cues": 0,
+      "watch_url": "https://www.youtube.com/watch?v=l8GS08n-25Q",
+      "limitation": "Ended archive, but public YouTube player metadata exposed no English official or auto caption track at cutoff; no transcript was generated."
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Compass",
+      "block": "Afternoon",
+      "recording_id": "1UrriPJRSPU",
+      "status": "live",
+      "transcript": "unavailable",
+      "cues": 0,
+      "watch_url": "https://www.youtube.com/watch?v=1UrriPJRSPU",
+      "limitation": "Still live at cutoff; public player metadata exposed no English caption track, so no transcript was generated."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "block": "Morning",
+      "recording_id": "gKdeLQd_LIQ",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 8970,
+      "watch_url": "https://www.youtube.com/watch?v=gKdeLQd_LIQ",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "block": "Afternoon",
+      "recording_id": "Tcn5Yb2K0h4",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 12274,
+      "watch_url": "https://www.youtube.com/watch?v=Tcn5Yb2K0h4",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "block": "Morning",
+      "recording_id": "WeriQic-QW0",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 4202,
+      "watch_url": "https://www.youtube.com/watch?v=WeriQic-QW0",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "block": "Afternoon",
+      "recording_id": "psPzCQbjCCo",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 11064,
+      "watch_url": "https://www.youtube.com/watch?v=psPzCQbjCCo",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "block": "Morning",
+      "recording_id": "LB7IkZhEYic",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 6246,
+      "watch_url": "https://www.youtube.com/watch?v=LB7IkZhEYic",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "block": "Afternoon",
+      "recording_id": "ZIRc3EpzQJs",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 11022,
+      "watch_url": "https://www.youtube.com/watch?v=ZIRc3EpzQJs",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "block": "Morning",
+      "recording_id": "IBpR4uYftLY",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 4552,
+      "watch_url": "https://www.youtube.com/watch?v=IBpR4uYftLY",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "block": "Afternoon",
+      "recording_id": "AO0RXP-fVZQ",
+      "status": "ended_archive",
+      "transcript": "available",
+      "cues": 10166,
+      "watch_url": "https://www.youtube.com/watch?v=AO0RXP-fVZQ",
+      "limitation": "Eight Aug-1 normalized English transcript files accepted; auto caption, not human-edited."
+    }
+  ],
+  "sessions": [
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "09:15",
+      "end": "09:30",
+      "title": "Opening Remarks",
+      "kind": "opening",
+      "speakers": [
+        "Rich Lyons",
+        "Dawn Song"
+      ],
+      "organizations": [
+        "uc berkeley",
+        "uc berkeley; berkeley rdi; meta superintelligence labs"
+      ],
+      "recording_id": "gKdeLQd_LIQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/gKdeLQd_LIQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "09:30",
+      "end": "10:45",
+      "title": "Session 1: Agentic AI Infrastructure & Platform",
+      "kind": "session",
+      "speakers": [
+        "Peter DeSantis",
+        "Saurabh Tiwary",
+        "Jonathan Cohen",
+        "Chuan Li",
+        "Peter DeSantis",
+        "Saurabh Tiwary",
+        "Jonathan Cohen",
+        "Chuan Li",
+        "Todd Graham"
+      ],
+      "organizations": [
+        "amazon",
+        "google deepmind",
+        "lambda",
+        "m12",
+        "nvidia"
+      ],
+      "recording_id": "gKdeLQd_LIQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/gKdeLQd_LIQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "10:45",
+      "end": "11:10",
+      "title": "Fireside Chat: RSI: Demystifying the \"Foom\"",
+      "kind": "session",
+      "speakers": [
+        "Dawn Song",
+        "Jasjeet Sekhon"
+      ],
+      "organizations": [
+        "google deepmind",
+        "uc berkeley; berkeley rdi; meta superintelligence labs"
+      ],
+      "recording_id": "gKdeLQd_LIQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/gKdeLQd_LIQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "11:10",
+      "end": "12:00",
+      "title": "Session 2: Future of Software Engineering",
+      "kind": "session",
+      "speakers": [
+        "Peter Steinberger",
+        "Ryan Lopopolo",
+        "Michele Catasta",
+        "Alex Graveley",
+        "Peter Steinberger",
+        "Ryan Lopopolo",
+        "Michele Catasta",
+        "Alex Graveley",
+        "Anjney Midha"
+      ],
+      "organizations": [
+        "agentic google cloud platform",
+        "amp pbc",
+        "flyingobject.ai",
+        "openai",
+        "replit"
+      ],
+      "recording_id": "gKdeLQd_LIQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/gKdeLQd_LIQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "13:30",
+      "end": "15:10",
+      "title": "Session 3: Agentic AI Foundational Capabilities",
+      "kind": "session",
+      "speakers": [
+        "Dawn Song",
+        "Wojciech Zaremba",
+        "Jerry Tworek",
+        "Oriol Vinyals",
+        "Dan Roth",
+        "Weizhu Chen",
+        "Dawn Song",
+        "Wojciech Zaremba",
+        "Jerry Tworek",
+        "Oriol Vinyals",
+        "Dan Roth",
+        "Weizhu Chen",
+        "Maxwell Zeff"
+      ],
+      "organizations": [
+        "core automation",
+        "google deepmind",
+        "microsoft ai",
+        "openai",
+        "oracle; upenn",
+        "uc berkeley; berkeley rdi; meta superintelligence labs",
+        "wired"
+      ],
+      "recording_id": "Tcn5Yb2K0h4",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/Tcn5Yb2K0h4?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "15:10",
+      "end": "16:20",
+      "title": "Session 4: Robotics & World Models",
+      "kind": "session",
+      "speakers": [
+        "Sergey Levine",
+        "Jim Fan",
+        "Michael Spranger",
+        "Anastasis Germanidis",
+        "Wei Zhan",
+        "Sergey Levine",
+        "Jim Fan",
+        "Michael Spranger",
+        "Anastasis Germanidis",
+        "Wei Zhan",
+        "Guru Chahal"
+      ],
+      "organizations": [
+        "applied intuition",
+        "lightspeed venture partners",
+        "nvidia",
+        "physical intelligence; uc berkeley",
+        "runway",
+        "sony ai"
+      ],
+      "recording_id": "Tcn5Yb2K0h4",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/Tcn5Yb2K0h4?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "16:30",
+      "end": "17:00",
+      "title": "Session 5: Agentic AI in Capital Markets",
+      "kind": "session",
+      "speakers": [
+        "Jeff Wecker",
+        "Jen Allum",
+        "Ali Nazari",
+        "Li Deng",
+        "Bradley Olson"
+      ],
+      "organizations": [
+        "susquehanna international group",
+        "the d. e. shaw group",
+        "two sigma",
+        "vatic investments",
+        "wsj"
+      ],
+      "recording_id": "Tcn5Yb2K0h4",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/Tcn5Yb2K0h4?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Plenary",
+      "start": "17:00",
+      "end": "17:30",
+      "title": "Fireside Chat",
+      "kind": "session",
+      "speakers": [
+        "Andrew Ng",
+        "Alfred Lin"
+      ],
+      "organizations": [
+        "deeplearning.ai",
+        "sequoia capital"
+      ],
+      "recording_id": "Tcn5Yb2K0h4",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/Tcn5Yb2K0h4?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "start": "09:30",
+      "end": "09:40",
+      "title": "Opening Remarks",
+      "kind": "opening",
+      "speakers": [
+        "Jennifer Chayes",
+        "Dawn Song"
+      ],
+      "organizations": [
+        "uc berkeley",
+        "uc berkeley; berkeley rdi; meta superintelligence labs"
+      ],
+      "recording_id": "UdS3iisKhCk",
+      "recording_status": "ended_archive",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/UdS3iisKhCk?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "start": "09:40",
+      "end": "10:45",
+      "title": "Session 1: Enterprise AI",
+      "kind": "session",
+      "speakers": [
+        "Rao Surapaneni",
+        "Adarsh Hiremath",
+        "Duncan Lennox",
+        "Rao Surapaneni",
+        "Adarsh Hiremath",
+        "Duncan Lennox",
+        "Anahita Tafvizi",
+        "Surojit Chatterjee",
+        "Aaron Jacobson"
+      ],
+      "organizations": [
+        "ema",
+        "google cloud",
+        "hubspot",
+        "mercor",
+        "nea",
+        "snowflake"
+      ],
+      "recording_id": "UdS3iisKhCk",
+      "recording_status": "ended_archive",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/UdS3iisKhCk?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "start": "11:05",
+      "end": "11:30",
+      "title": "Fireside Chat",
+      "kind": "session",
+      "speakers": [
+        "Ali Ghodsi",
+        "Andy Konwinski"
+      ],
+      "organizations": [
+        "databricks",
+        "databricks; perplexity; laude ventures"
+      ],
+      "recording_id": "UdS3iisKhCk",
+      "recording_status": "ended_archive",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/UdS3iisKhCk?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "start": "13:00",
+      "end": "14:15",
+      "title": "Session 2: Frontier Research",
+      "kind": "session",
+      "speakers": [
+        "Richard Socher",
+        "Ed Chi",
+        "Ekin Dogus Cubuk",
+        "Igor Babuschkin",
+        "Richard Socher",
+        "Ed Chi",
+        "Ekin Dogus Cubuk",
+        "Igor Babuschkin"
+      ],
+      "organizations": [
+        "google deepmind",
+        "periodic labs",
+        "recursive & you.com",
+        "river ai"
+      ],
+      "recording_id": "I2PosBXwoPI",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/I2PosBXwoPI?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "start": "14:15",
+      "end": "14:50",
+      "title": "Session 3: Agentic AI Developer Platforms",
+      "kind": "session",
+      "speakers": [
+        "Matt White",
+        "Dima Dmytro Dzhulgakov",
+        "Ivan Burazin",
+        "Mazin Gilbert",
+        "Megan Morrone"
+      ],
+      "organizations": [
+        "PyTorch Foundation",
+        "agentic ai foundation; linux foundation",
+        "axios",
+        "daytona",
+        "fireworks ai"
+      ],
+      "recording_id": "I2PosBXwoPI",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/I2PosBXwoPI?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Plenary",
+      "start": "14:50",
+      "end": "16:50",
+      "title": "Session 4: Agentic AI in Finance & Legal",
+      "kind": "session",
+      "speakers": [
+        "Milind Naphade",
+        "Nikhil Chandhok",
+        "Faraz Shafiq",
+        "Nikhil Chandhok",
+        "Faraz Shafiq",
+        "Matt Carbonara"
+      ],
+      "organizations": [
+        "capital one",
+        "circle",
+        "mayfield",
+        "wells fargo"
+      ],
+      "recording_id": "I2PosBXwoPI",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/I2PosBXwoPI?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "start": "10:00",
+      "end": "10:50",
+      "title": "Session 1: Foundational Capabilities",
+      "kind": "session",
+      "speakers": [
+        "Jianfeng Gao",
+        "Sanja Fidler",
+        "Giambattista Parascandolo",
+        "Aditya Grover"
+      ],
+      "organizations": [
+        "inception labs",
+        "microsoft research",
+        "openai",
+        "university of toronto; nvidia"
+      ],
+      "recording_id": "WeriQic-QW0",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/WeriQic-QW0?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "start": "10:50",
+      "end": "11:50",
+      "title": "Workshop: Turning Chatbots into Agents: What Modern RL Looks Like by Daytona",
+      "kind": "workshop",
+      "speakers": [
+        "Lovre Pesut",
+        "Muhammad Hashmi"
+      ],
+      "organizations": [
+        "daytona"
+      ],
+      "recording_id": "WeriQic-QW0",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/WeriQic-QW0?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "start": "13:30",
+      "end": "14:30",
+      "title": "Session 2: Robotics & World Models",
+      "kind": "session",
+      "speakers": [
+        "Peter Stone",
+        "Vincent Vanhoucke",
+        "Trevor Darrell",
+        "Manmohan Chandraker",
+        "Bolei Zhou"
+      ],
+      "organizations": [
+        "sony ai; ut austin",
+        "uc berkeley",
+        "ucla; coco robotics",
+        "university of california, san diego",
+        "waymo"
+      ],
+      "recording_id": "psPzCQbjCCo",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/psPzCQbjCCo?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "start": "14:30",
+      "end": "15:30",
+      "title": "Workshop: Open-Source Agent Investigations: Security Arena, Distilled Traces, and Auto-Optimization by Lambda",
+      "kind": "workshop",
+      "speakers": [
+        "Devina Jain",
+        "Zach Mueller",
+        "Chuan Li"
+      ],
+      "organizations": [
+        "lambda"
+      ],
+      "recording_id": "psPzCQbjCCo",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/psPzCQbjCCo?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "start": "15:30",
+      "end": "16:30",
+      "title": "Workshop: Building Agentic Apps End-to-End with Replit Agent",
+      "kind": "workshop",
+      "speakers": [
+        "Brandon Middleton"
+      ],
+      "organizations": [
+        "replit"
+      ],
+      "recording_id": "psPzCQbjCCo",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/psPzCQbjCCo?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Atlas",
+      "start": "16:30",
+      "end": "17:45",
+      "title": "Session 3: Frameworks & Dev Platforms",
+      "kind": "session",
+      "speakers": [
+        "Philip Rathle",
+        "Josh Albrecht",
+        "Woosuk Kwon",
+        "Banghua Zhu",
+        "Ranjan Sinha"
+      ],
+      "organizations": [
+        "ibm",
+        "imbue",
+        "inferact",
+        "neo4j",
+        "radixark"
+      ],
+      "recording_id": "psPzCQbjCCo",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/psPzCQbjCCo?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Atlas",
+      "start": "10:00",
+      "end": "11:10",
+      "title": "Session 1: Enterprise AI",
+      "kind": "session",
+      "speakers": [
+        "Sunita Verma",
+        "Ori Goshen",
+        "Rene Pajta",
+        "Vincent Sunn Chen",
+        "David Hsu",
+        "Dan Klein"
+      ],
+      "organizations": [
+        "ai21 labs",
+        "ironclad",
+        "microsoft",
+        "retool",
+        "snorkel ai",
+        "uc berkeley; scaled cognition"
+      ],
+      "recording_id": "LGW_6P1CMC8",
+      "recording_status": "ended_archive",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/LGW_6P1CMC8?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Atlas",
+      "start": "11:10",
+      "end": "12:10",
+      "title": "Workshop: From Assistants to AI Employees: Designing Agents That Own a Role, Not a Task by Ema",
+      "kind": "workshop",
+      "speakers": [
+        "Anushka Pathak",
+        "Soham Shah",
+        "Eric Victorson"
+      ],
+      "organizations": [
+        "Ema"
+      ],
+      "recording_id": "LGW_6P1CMC8",
+      "recording_status": "ended_archive",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/LGW_6P1CMC8?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Atlas",
+      "start": "13:00",
+      "end": "13:45",
+      "title": "Session 2: Agent Evaluation & Benchmarks",
+      "kind": "session",
+      "speakers": [
+        "Anastasios N Angelopoulos",
+        "Michal Shmueli-Scheuer",
+        "Priya Ponnapalli",
+        "Srijith Rajamohan"
+      ],
+      "organizations": [
+        "ibm research",
+        "llmarena",
+        "redis",
+        "scale ai"
+      ],
+      "recording_id": "-7AJJLwYW1Q",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/-7AJJLwYW1Q?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Atlas",
+      "start": "13:45",
+      "end": "14:15",
+      "title": "Session 3: AI for Math",
+      "kind": "session",
+      "speakers": [
+        "Sergei Gukov",
+        "Lijie Chen",
+        "Vijay Ganesh"
+      ],
+      "organizations": [
+        "american institute of mathematics; california institute of technology",
+        "georgia institute of technology",
+        "openai"
+      ],
+      "recording_id": "-7AJJLwYW1Q",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/-7AJJLwYW1Q?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Atlas",
+      "start": "14:15",
+      "end": "15:15",
+      "title": "Workshop: Omnigent - A Meta Harness for AI Agents by Databricks",
+      "kind": "workshop",
+      "speakers": [
+        "Aravind Segu"
+      ],
+      "organizations": [
+        "Databricks"
+      ],
+      "recording_id": "-7AJJLwYW1Q",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/-7AJJLwYW1Q?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "start": "10:00",
+      "end": "11:00",
+      "title": "Session 1: AI for Science",
+      "kind": "session",
+      "speakers": [
+        "Markus J. Buehler",
+        "James Zou",
+        "Eric Ho",
+        "Andrew Schoen",
+        "Mengdi Wang",
+        "Rose Yu",
+        "Jonathan Welch"
+      ],
+      "organizations": [
+        "albert invent",
+        "goodfire",
+        "mit; unreasonable labs",
+        "nea",
+        "princeton",
+        "stanford",
+        "uc san diego"
+      ],
+      "recording_id": "LB7IkZhEYic",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/LB7IkZhEYic?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "start": "11:00",
+      "end": "12:10",
+      "title": "Building a Token-Efficient OpenClaw Agentic System by AMD",
+      "kind": "workshop",
+      "speakers": [
+        "Mahdi Ghodsi",
+        "Satya Devineni",
+        "Eda Zhou"
+      ],
+      "organizations": [
+        "AMD"
+      ],
+      "recording_id": "LB7IkZhEYic",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/LB7IkZhEYic?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "start": "13:30",
+      "end": "14:05",
+      "title": "Session 2: Coding & Web Agents",
+      "kind": "session",
+      "speakers": [
+        "Silas Alberti",
+        "Dhruv Batra",
+        "Shamir Abdul Aziz",
+        "Krishnakumar Sharma"
+      ],
+      "organizations": [
+        "cognition",
+        "microsoft",
+        "omokai",
+        "yutori"
+      ],
+      "recording_id": "ZIRc3EpzQJs",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/ZIRc3EpzQJs?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "start": "14:05",
+      "end": "15:05",
+      "title": "Workshop by Fetcherr",
+      "kind": "workshop",
+      "speakers": [
+        "Uri Yerushalmi",
+        "Hadar Sharvit"
+      ],
+      "organizations": [
+        "Fetcherr"
+      ],
+      "recording_id": "ZIRc3EpzQJs",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/ZIRc3EpzQJs?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "start": "15:05",
+      "end": "15:30",
+      "title": "Session 3: Agentic AI in Finance & Healthcare",
+      "kind": "session",
+      "speakers": [
+        "Krishnaram Kenthapadi",
+        "Venkat Bhat",
+        "Shaghayegh Gharghabi"
+      ],
+      "organizations": [
+        "nvidia",
+        "oracle health",
+        "university of toronto"
+      ],
+      "recording_id": "ZIRc3EpzQJs",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/ZIRc3EpzQJs?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "start": "15:30",
+      "end": "16:45",
+      "title": "Session 4: Secure Agentic AI",
+      "kind": "session",
+      "speakers": [
+        "Jon-Rav Shende",
+        "Bo Li",
+        "Eric Wallace",
+        "Milad Nasr",
+        "Itsik Mantin",
+        "John A McDermid",
+        "Mohamed Nabeel"
+      ],
+      "organizations": [
+        "anthropic",
+        "institute for safe autonomy, university of york",
+        "intuit",
+        "openai",
+        "palo alto networks",
+        "thales group",
+        "virtue ai; uiuc"
+      ],
+      "recording_id": "ZIRc3EpzQJs",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/ZIRc3EpzQJs?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Nexus",
+      "start": "16:45",
+      "end": "17:45",
+      "title": "Workshop: Future of Agent Evaluation",
+      "kind": "workshop",
+      "speakers": [],
+      "organizations": [],
+      "recording_id": "ZIRc3EpzQJs",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/ZIRc3EpzQJs?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "start": "10:00",
+      "end": "10:45",
+      "title": "Session 1: AI Systems",
+      "kind": "session",
+      "speakers": [
+        "Ion Stoica",
+        "Nick Harris",
+        "Gosia Steinder",
+        "Tim Hockin"
+      ],
+      "organizations": [
+        "databricks and anyscale; uc berkeley",
+        "google",
+        "ibm research",
+        "lightmatter"
+      ],
+      "recording_id": "IBpR4uYftLY",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/IBpR4uYftLY?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "start": "10:45",
+      "end": "11:45",
+      "title": "Workshop: Why Your AI Agent Needs a Wallet: Agentic commerce on Arc with USDC and Nanopayments",
+      "kind": "workshop",
+      "speakers": [
+        "Harshal Bhangale"
+      ],
+      "organizations": [
+        "Circle"
+      ],
+      "recording_id": "IBpR4uYftLY",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/IBpR4uYftLY?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "start": "13:30",
+      "end": "14:20",
+      "title": "Session 2: Frameworks & Dev Platforms",
+      "kind": "session",
+      "speakers": [
+        "Wenbo Guo",
+        "Ramesh Raskar",
+        "Shiva Kasiviswanthan",
+        "Tanya Roosta",
+        "Denis Akhiyarov",
+        "Nilou Salehi",
+        "Johann Schleier-Smith"
+      ],
+      "organizations": [
+        "Temporal",
+        "amazon web services",
+        "amd, berkeley",
+        "mit",
+        "servicenow",
+        "uc, berkeley",
+        "ucsb"
+      ],
+      "recording_id": "AO0RXP-fVZQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/AO0RXP-fVZQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "start": "14:20",
+      "end": "15:20",
+      "title": "Workshop: Build AI Agents That Survive Failure by Temporal",
+      "kind": "workshop",
+      "speakers": [
+        "Nikolay Advolodkin"
+      ],
+      "organizations": [
+        "Temporal"
+      ],
+      "recording_id": "AO0RXP-fVZQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/AO0RXP-fVZQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "start": "15:20",
+      "end": "16:10",
+      "title": "Session 3: Foundational Capabilities",
+      "kind": "session",
+      "speakers": [
+        "Doga Kerestecioglu",
+        "Ian Fischer",
+        "Yu Su",
+        "Furong Huang",
+        "Raja Giryes"
+      ],
+      "organizations": [
+        "microsoft corporation",
+        "neocognition; osu",
+        "poetiq",
+        "tel aviv university",
+        "university of maryland"
+      ],
+      "recording_id": "AO0RXP-fVZQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/AO0RXP-fVZQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-01",
+      "stage": "Compass",
+      "start": "16:10",
+      "end": "17:10",
+      "title": "Workshop: The Open Agentic Stack: Building the Future of AI Systems with Open Source, Open Standards and Composability by Linux Foundation",
+      "kind": "workshop",
+      "speakers": [
+        "Matt White",
+        "Ben Burtenshaw",
+        "Daniel-Han Chen",
+        "Shang Yang",
+        "Romil Bhardwaj"
+      ],
+      "organizations": [
+        "Hugging Face",
+        "PyTorch Foundation",
+        "RadixArk",
+        "SkyPilot",
+        "Unsloth"
+      ],
+      "recording_id": "AO0RXP-fVZQ",
+      "recording_status": "ended_archive",
+      "transcript_status": "available",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/AO0RXP-fVZQ?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Compass",
+      "start": "10:00",
+      "end": "11:00",
+      "title": "Session 1: AI Safety",
+      "kind": "session",
+      "speakers": [
+        "Chris Bregler",
+        "Kathy Baxter",
+        "Lovedeep Gondara",
+        "Alex Obadia",
+        "Neil Lawrence",
+        "Huan Sun",
+        "Navrina Singh"
+      ],
+      "organizations": [
+        "advanced research & invention agency",
+        "credo ai",
+        "google deepmind",
+        "salesforce",
+        "the ohio state university",
+        "trent ai",
+        "vanguard; university of british columbia"
+      ],
+      "recording_id": "l8GS08n-25Q",
+      "recording_status": "ended_archive",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/l8GS08n-25Q?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Compass",
+      "start": "11:00",
+      "end": "12:10",
+      "title": "Workshop: Infrastructure You Can Talk To by SUSE",
+      "kind": "workshop",
+      "speakers": [
+        "Jeff Price"
+      ],
+      "organizations": [
+        "suse"
+      ],
+      "recording_id": "l8GS08n-25Q",
+      "recording_status": "ended_archive",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/l8GS08n-25Q?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Compass",
+      "start": "13:00",
+      "end": "13:45",
+      "title": "Session 2: AI Systems",
+      "kind": "session",
+      "speakers": [
+        "Jun Yang",
+        "Ankit Sobti",
+        "Rahul Bakshi",
+        "John Liu",
+        "Jongryool Kim",
+        "Ben Athiwaratkun",
+        "Tushar Krishna"
+      ],
+      "organizations": [
+        "amazon",
+        "aws",
+        "georgia tech; infravana",
+        "nvidia",
+        "postman",
+        "sk hynix",
+        "together ai"
+      ],
+      "recording_id": "1UrriPJRSPU",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/1UrriPJRSPU?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Compass",
+      "start": "13:45",
+      "end": "14:30",
+      "title": "Session 3: Enterprise AI",
+      "kind": "session",
+      "speakers": [
+        "Eno Reyes",
+        "Ankit Goyal",
+        "Daniel Homola",
+        "Christopher Petrillo",
+        "Nayaki Nayyar",
+        "Surbhi Rathore",
+        "Daniel Fink"
+      ],
+      "organizations": [
+        "bmw research",
+        "cognizant",
+        "factory ai",
+        "invoca",
+        "linkedin",
+        "siteimprove",
+        "the wikimedia foundation"
+      ],
+      "recording_id": "1UrriPJRSPU",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/1UrriPJRSPU?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    },
+    {
+      "date": "2026-08-02",
+      "stage": "Compass",
+      "start": "14:30",
+      "end": "15:40",
+      "title": "Session 4: Agent Evaluation & Benchmarks",
+      "kind": "session",
+      "speakers": [
+        "Debarshi Raha",
+        "Yuan (Emily) Xue",
+        "Chenguang Wang",
+        "Zelin Wan",
+        "Rahul Krishna",
+        "Grace Tang",
+        "Arindam Sett",
+        "Scott Clark",
+        "Aayush Agrawal"
+      ],
+      "organizations": [
+        "digitalocean",
+        "distributional",
+        "genentech",
+        "hex",
+        "ibm software innovation labs",
+        "postman",
+        "scale ai",
+        "uber",
+        "university of california, santa cruz; scale ai"
+      ],
+      "recording_id": "1UrriPJRSPU",
+      "recording_status": "live",
+      "transcript_status": "unavailable",
+      "official_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "watch_url": "https://youtube.com/live/1UrriPJRSPU?feature=share",
+      "timing_basis": "derived_next_published_boundary"
+    }
+  ],
+  "speakers": [
+    {
+      "name": "Aaron Jacobson",
+      "title": "GP",
+      "organization": "nea",
+      "category": "investor",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Aayush Agrawal",
+      "title": "Product Lead",
+      "organization": "uber",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Adarsh Hiremath",
+      "title": "Co-CEO",
+      "organization": "mercor",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Aditya Grover",
+      "title": "Co-Founder/CTO",
+      "organization": "inception labs",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Alex Graveley",
+      "title": "Co-Founder, FlyingObject.ai; Co-creator, GitHub Copilot & Perplexity Computer",
+      "organization": "flyingobject.ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Alex Obadia",
+      "title": "Programme Director",
+      "organization": "advanced research & invention agency",
+      "category": "government/nonprofit",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Alfred Lin",
+      "title": "General Partner",
+      "organization": "sequoia capital",
+      "category": "investor",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ali Ghodsi",
+      "title": "Co-Founder/CEO",
+      "organization": "databricks",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ali Nazari",
+      "title": "Head of Deep Learning Research",
+      "organization": "susquehanna international group",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Anahita Tafvizi",
+      "title": "Chief Data & AI Officer",
+      "organization": "snowflake",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Anastasios N Angelopoulos",
+      "title": "Co-Founder/CEO",
+      "organization": "llmarena",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Anastasis Germanidis",
+      "title": "Co-Founder/Co-CEO",
+      "organization": "runway",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Andi Peng",
+      "title": "Co-Founder, Humans&",
+      "organization": "Co-Founder, Humans&",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Andrej Karpathy",
+      "title": "Co-Founder, OpenAI; Founder, Eureka Labs",
+      "organization": "Founder, Eureka Labs",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Andrew Ng",
+      "title": "Founder",
+      "organization": "deeplearning.ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Andrew Schoen",
+      "title": "Partner",
+      "organization": "nea",
+      "category": "investor",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Andy Konwinski",
+      "title": "Co-Founder, Databricks; Perplexity; Laude Ventures",
+      "organization": "databricks; perplexity; laude ventures",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Anjney Midha",
+      "title": "Founder",
+      "organization": "amp pbc",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ankit Goyal",
+      "title": "Principal Staff Software Engineer",
+      "organization": "linkedin",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ankit Sobti",
+      "title": "Co-Founder & CTO",
+      "organization": "postman",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Anushka Pathak",
+      "title": "Product Manager, Ema",
+      "organization": "Ema",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Aravind Segu",
+      "title": "Software Engineer, Databricks",
+      "organization": "Databricks",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Arindam Sett",
+      "title": "Principal ML Engineer",
+      "organization": "genentech",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Arvind Jain",
+      "title": "Founder/CEO, Glean",
+      "organization": "Founder/CEO, Glean",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Banghua Zhu",
+      "title": "Co-Founder",
+      "organization": "radixark",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ben Athiwaratkun",
+      "title": "Senior Director, Core ML (Turbo)",
+      "organization": "together ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ben Burtenshaw",
+      "title": "Community Engineer, Hugging Face",
+      "organization": "Hugging Face",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Bo Li",
+      "title": "Co-Founder and CEO, Virtue AI; UIUC",
+      "organization": "virtue ai; uiuc",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Bolei Zhou",
+      "title": "Associate Professor, UCLA; Chief AI Scientist, Coco Robotics",
+      "organization": "ucla; coco robotics",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Bradley Olson",
+      "title": "Technology Editor",
+      "organization": "wsj",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Brandon Middleton",
+      "title": "Head of Education",
+      "organization": "replit",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Chenguang Wang",
+      "title": "Assistant Professor, University of California, Santa Cruz; Research Advisor, Scale AI",
+      "organization": "university of california, santa cruz; scale ai",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Chris Bregler",
+      "title": "Senior Director / Distinguished Scientist, Google DeepMind; Academy Scientific and Technical Award Winner",
+      "organization": "google deepmind",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Christopher Petrillo",
+      "title": "Principal Product Manager",
+      "organization": "the wikimedia foundation",
+      "category": "government/nonprofit",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Chuan Li",
+      "title": "Chief Scientific Officer",
+      "organization": "lambda",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 2,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Dan Klein",
+      "title": "Professor, UC Berkeley; Co-founder CTO, Scaled Cognition",
+      "organization": "uc berkeley; scaled cognition",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Dan Roth",
+      "title": "Chief AI Scientist, Oracle",
+      "organization": "oracle; upenn",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Daniel Fink",
+      "title": "AI Engineering Lead",
+      "organization": "cognizant",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Daniel Homola",
+      "title": "Lead AI Engineer",
+      "organization": "bmw research",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Daniel-Han Chen",
+      "title": "Co-Founder, Unsloth",
+      "organization": "Unsloth",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "David Hsu",
+      "title": "CEO and founder",
+      "organization": "retool",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Dawn Song",
+      "title": "Professor, UC Berkeley; Co-Director, Berkeley RDI; VP of AI Research, Meta Superintelligence Labs",
+      "organization": "uc berkeley; berkeley rdi; meta superintelligence labs",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 4,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Debarshi Raha",
+      "title": "VP & Fellow Engineer",
+      "organization": "digitalocean",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Denis Akhiyarov",
+      "title": "Senior Staff AI Scientist",
+      "organization": "servicenow",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Devina Jain",
+      "title": "Research Engineer",
+      "organization": "lambda",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Dhruv Batra",
+      "title": "Chief Scientist / co-founder",
+      "organization": "yutori",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Dima Dmytro Dzhulgakov",
+      "title": "Co-Founder/CTO",
+      "organization": "fireworks ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Doga Kerestecioglu",
+      "title": "Principal Applied Scientist",
+      "organization": "microsoft corporation",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Duncan Lennox",
+      "title": "Chief Product & Technology Officer",
+      "organization": "hubspot",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ed Chi",
+      "title": "VP of Research",
+      "organization": "google deepmind",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Eda Zhou",
+      "title": "Software Development Engineer, AMD",
+      "organization": "AMD",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ekin Dogus Cubuk",
+      "title": "Co-Founder",
+      "organization": "periodic labs",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Eno Reyes",
+      "title": "Co-Founder / CTO",
+      "organization": "factory ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Eric Ho",
+      "title": "Co-Founder/CEO",
+      "organization": "goodfire",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Eric Victorson",
+      "title": "Software Engineer, Ema",
+      "organization": "Ema",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Eric Wallace",
+      "title": "Researcher",
+      "organization": "openai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Faraz Shafiq",
+      "title": "Head of AI",
+      "organization": "wells fargo",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Furong Huang",
+      "title": "Associate Professor",
+      "organization": "university of maryland",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Gabe Pereyra",
+      "title": "Co-Founder/President, Harvey AI",
+      "organization": "Co-Founder/President, Harvey AI",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Giambattista Parascandolo",
+      "title": "Research Fellow",
+      "organization": "openai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Gosia Steinder",
+      "title": "IBM Fellow",
+      "organization": "ibm research",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Grace Tang",
+      "title": "AI",
+      "organization": "hex",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Guru Chahal",
+      "title": "Partner",
+      "organization": "lightspeed venture partners",
+      "category": "investor",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Hadar Sharvit",
+      "title": "Director of Deep Learning, Fetcherr",
+      "organization": "Fetcherr",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Harshal Bhangale",
+      "title": "Staff Software Engineer, Circle",
+      "organization": "Circle",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Huan Sun",
+      "title": "Associate Professor",
+      "organization": "the ohio state university",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ian Fischer",
+      "title": "Co-CEO",
+      "organization": "poetiq",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Igor Babuschkin",
+      "title": "Co-Founder/CEO",
+      "organization": "river ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ion Stoica",
+      "title": "Co-Founder; Professor",
+      "organization": "databricks and anyscale; uc berkeley",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Itsik Mantin",
+      "title": "Head of AI Security Research",
+      "organization": "intuit",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ivan Burazin",
+      "title": "Co-Founder/CEO",
+      "organization": "daytona",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "James Zou",
+      "title": "Professor",
+      "organization": "stanford",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jasjeet Sekhon",
+      "title": "Chief Strategy Officer",
+      "organization": "google deepmind",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jeff Price",
+      "title": "Field CTO of North America",
+      "organization": "suse",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jeff Wecker",
+      "title": "CTO",
+      "organization": "two sigma",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jen Allum",
+      "title": "SVP, Co-Head of GenAI",
+      "organization": "the d. e. shaw group",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jennifer Chayes",
+      "title": "Dean of CDSS",
+      "organization": "uc berkeley",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jerry Tworek",
+      "title": "CEO; Former VP of Research",
+      "organization": "core automation",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jianfeng Gao",
+      "title": "Technical Fellow & Corporate Vice President",
+      "organization": "microsoft research",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jim Fan",
+      "title": "Director of Robotics & Distinguished Scientist",
+      "organization": "nvidia",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Johann Schleier-Smith",
+      "title": "Senior Staff Engineer, Temporal",
+      "organization": "Temporal",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "John A McDermid",
+      "title": "Director, Centre for Assuring Autonomy",
+      "organization": "institute for safe autonomy, university of york",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "John Liu",
+      "title": "Principal Product Manager",
+      "organization": "aws",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jon-Rav Shende",
+      "title": "Chief Technology Officer",
+      "organization": "thales group",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jonathan Cohen",
+      "title": "VP of Applied Research, Nvidia; Academy Scientific and Technical Award Winner",
+      "organization": "nvidia",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jonathan Welch",
+      "title": "Head of AI",
+      "organization": "albert invent",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jongryool Kim",
+      "title": "Senior Director / Head of AI System Infra.",
+      "organization": "sk hynix",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Josh Albrecht",
+      "title": "Co-founder and CTO",
+      "organization": "imbue",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Jun Yang",
+      "title": "Senior Director of Compute Architecture",
+      "organization": "nvidia",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Kathy Baxter",
+      "title": "VP / Principal Architect, Responsible AI & Tech",
+      "organization": "salesforce",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Krishnakumar Sharma",
+      "title": "CEO",
+      "organization": "omokai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Krishnaram Kenthapadi",
+      "title": "Chief Scientist",
+      "organization": "oracle health",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Krithik Puthalath",
+      "title": "CEO, Zyphra",
+      "organization": "CEO, Zyphra",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Li Deng",
+      "title": "Chief AI Officer, Global Head of ML",
+      "organization": "vatic investments",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Lijie Chen",
+      "title": "Researcher",
+      "organization": "openai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Lovedeep Gondara",
+      "title": "Head of AI R&D, Vanguard; Adjunct Professor, University of British Columbia",
+      "organization": "vanguard; university of british columbia",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Lovre Pesut",
+      "title": "AI Engineer",
+      "organization": "daytona",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Lukas Biewald",
+      "title": "Founder/CEO, Weights & Biases",
+      "organization": "Founder/CEO, Weights & Biases",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Mahdi Ghodsi",
+      "title": "AI Solutions Architect, AMD",
+      "organization": "AMD",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Manmohan Chandraker",
+      "title": "Professor",
+      "organization": "university of california, san diego",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Markus J. Buehler",
+      "title": "Professor, MIT; Founder & CTO, Unreasonable Labs",
+      "organization": "mit; unreasonable labs",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Martin Casado",
+      "title": "General Partner, a16z",
+      "organization": "General Partner, a16z",
+      "category": "investor",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Matt Carbonara",
+      "title": "Investor",
+      "organization": "mayfield",
+      "category": "investor",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Matt White",
+      "title": "Former Global CTO of AI, Linux Foundation; CTO, PyTorch Foundation",
+      "organization": "PyTorch Foundation",
+      "category": "government/nonprofit",
+      "status": "mapped_to_program",
+      "sessions": 2,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Maxwell Zeff",
+      "title": "Senior Writer",
+      "organization": "wired",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Mazin Gilbert",
+      "title": "Executive Director",
+      "organization": "agentic ai foundation; linux foundation",
+      "category": "government/nonprofit",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Megan Morrone",
+      "title": "Editor of Technology",
+      "organization": "axios",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Mengdi Wang",
+      "title": "Professor",
+      "organization": "princeton",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Michael Spranger",
+      "title": "President",
+      "organization": "sony ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Michal Shmueli-Scheuer",
+      "title": "Distinguished Engineer, AI Benchmarking and Evaluation",
+      "organization": "ibm research",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Michele Catasta",
+      "title": "President",
+      "organization": "replit",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Milad Nasr",
+      "title": "Research Scientist",
+      "organization": "anthropic",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Milind Naphade",
+      "title": "SVP, AI Foundations",
+      "organization": "capital one",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Mohamed Nabeel",
+      "title": "Senior Principal Researcher",
+      "organization": "palo alto networks",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Muhammad Hashmi",
+      "title": "DevRel",
+      "organization": "daytona",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Navrina Singh",
+      "title": "CEO, Founder",
+      "organization": "credo ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Nayaki Nayyar",
+      "title": "CEO",
+      "organization": "siteimprove",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Neil Lawrence",
+      "title": "Chief Scientist and Co-founder",
+      "organization": "trent ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Nick Harris",
+      "title": "Founder/CEO",
+      "organization": "lightmatter",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Nikhil Chandhok",
+      "title": "Chief Product & Technology Officer",
+      "organization": "circle",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Nikolay Advolodkin",
+      "title": "Senior Staff Developer Advocate, Temporal",
+      "organization": "Temporal",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Nilou Salehi",
+      "title": "Associate professor",
+      "organization": "uc, berkeley",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ori Goshen",
+      "title": "Co-Founder/CEO",
+      "organization": "ai21 labs",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Oriol Vinyals",
+      "title": "VP of Research",
+      "organization": "google deepmind",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Peter DeSantis",
+      "title": "SVP, Foundational AI Models, Custom Silicon, Quantum Computing",
+      "organization": "amazon",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Peter Steinberger",
+      "title": "Creator of OpenClaw",
+      "organization": "openai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Peter Stone",
+      "title": "Chief Scientist, Sony AI; Professor, UT Austin",
+      "organization": "sony ai; ut austin",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Philip Rathle",
+      "title": "CTO",
+      "organization": "neo4j",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Priya Ponnapalli",
+      "title": "SVP of Engineering, Enterprise AI",
+      "organization": "scale ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Pushmeet Kohli",
+      "title": "VP of Science, Google DeepMind",
+      "organization": "VP of Science, Google DeepMind",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Rahul Bakshi",
+      "title": "Director, Applied Science (Edge AI)",
+      "organization": "amazon",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Rahul Krishna",
+      "title": "Senior Research Scientist",
+      "organization": "ibm software innovation labs",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Raja Giryes",
+      "title": "Professor",
+      "organization": "tel aviv university",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ramesh Raskar",
+      "title": "Professor",
+      "organization": "mit",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ranjan Sinha",
+      "title": "IBM Fellow, CTO & VP for watsonx, Enterprise AI",
+      "organization": "ibm",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Rao Surapaneni",
+      "title": "VP/GM AI Search & Specialized AI",
+      "organization": "google cloud",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Rene Pajta",
+      "title": "Chief Architect Cloud & AI",
+      "organization": "microsoft",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Rich Lyons",
+      "title": "Chancellor",
+      "organization": "uc berkeley",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Richard Socher",
+      "title": "Co-Founder/CEO",
+      "organization": "recursive & you.com",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Romil Bhardwaj",
+      "title": "Co-Founder and CPO, SkyPilot",
+      "organization": "SkyPilot",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Rose Yu",
+      "title": "Professor; CEO/Co-Founder",
+      "organization": "uc san diego",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Ryan Lopopolo",
+      "title": "Principal Engineer",
+      "organization": "agentic google cloud platform",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Sanja Fidler",
+      "title": "Associate Professor, University of Toronto; Former VP of AI Research, Nvidia",
+      "organization": "university of toronto; nvidia",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Satya Devineni",
+      "title": "Product Application Engineer, AMD",
+      "organization": "AMD",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Saurabh Tiwary",
+      "title": "Vice President, Google DeepMind",
+      "organization": "google deepmind",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Scott Clark",
+      "title": "Co-Founder & CEO",
+      "organization": "distributional",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Sergei Gukov",
+      "title": "Executive Director, American Institute of Mathematics; John D. MacArthur Professor of Theoretical Physics and Mathematics, California Institute of Technology",
+      "organization": "american institute of mathematics; california institute of technology",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Sergey Levine",
+      "title": "Co-Founder; Professor",
+      "organization": "physical intelligence; uc berkeley",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Shaghayegh Gharghabi",
+      "title": "Deep Learning Scientists",
+      "organization": "nvidia",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Shamir Abdul Aziz",
+      "title": "Prinicipal Product Manager",
+      "organization": "microsoft",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Shang Yang",
+      "title": "RadixArk",
+      "organization": "RadixArk",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Shiva Kasiviswanthan",
+      "title": "Principal Applied Scientist",
+      "organization": "amazon web services",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Silas Alberti",
+      "title": "SVP of Research",
+      "organization": "cognition",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Soham Shah",
+      "title": "ML Engineer, Ema",
+      "organization": "Ema",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Srijith Rajamohan",
+      "title": "Head of AI Research",
+      "organization": "redis",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Sunita Verma",
+      "title": "Chief Technology Officer (CTO)",
+      "organization": "ironclad",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Surbhi Rathore",
+      "title": "VP, AI Products & Strategy",
+      "organization": "invoca",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Surojit Chatterjee",
+      "title": "Founder/CEO",
+      "organization": "ema",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Tanya Roosta",
+      "title": "Director of AI",
+      "organization": "amd, berkeley",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Tim Hockin",
+      "title": "Distinguished Engineer",
+      "organization": "google",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Todd Graham",
+      "title": "Managing Partner",
+      "organization": "m12",
+      "category": "investor",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Trevor Darrell",
+      "title": "Professor",
+      "organization": "uc berkeley",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Tushar Krishna",
+      "title": "Associate Professor, Georgia Tech",
+      "organization": "georgia tech; infravana",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Uri Yerushalmi",
+      "title": "Chief AI Officer, Fetcherr",
+      "organization": "Fetcherr",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Venkat Bhat",
+      "title": "Associate Professor; Director, AI for Mental Health (AI-M) Program",
+      "organization": "university of toronto",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Vijay Ganesh",
+      "title": "Professor",
+      "organization": "georgia institute of technology",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Vincent Sunn Chen",
+      "title": "VP & Founding Member",
+      "organization": "snorkel ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Vincent Vanhoucke",
+      "title": "Distinguished Engineer",
+      "organization": "waymo",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Waseem Alshikh",
+      "title": "Co-Founder/CTO, Writer",
+      "organization": "Co-Founder/CTO, Writer",
+      "category": "company",
+      "status": "featured_only_unmapped",
+      "sessions": 0,
+      "mapping_label": "featured-only / not program-mapped"
+    },
+    {
+      "name": "Wei Zhan",
+      "title": "Chief Scientist",
+      "organization": "applied intuition",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Weizhu Chen",
+      "title": "Technical Fellow & CVP",
+      "organization": "microsoft ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Wenbo Guo",
+      "title": "Assistant Professor",
+      "organization": "ucsb",
+      "category": "university/research institute",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Wojciech Zaremba",
+      "title": "Co-Founder",
+      "organization": "openai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Woosuk Kwon",
+      "title": "Co-Founder & CTO",
+      "organization": "inferact",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Yu Su",
+      "title": "CEO, NeoCognition; Associate Professor, OSU",
+      "organization": "neocognition; osu",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Yuan (Emily) Xue",
+      "title": "Head of Enterprise AI",
+      "organization": "scale ai",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Zach Mueller",
+      "title": "Head of Developer Relations",
+      "organization": "lambda",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    },
+    {
+      "name": "Zelin Wan",
+      "title": "Senior AI Engineer",
+      "organization": "postman",
+      "category": "company",
+      "status": "mapped_to_program",
+      "sessions": 1,
+      "mapping_label": "program-mapped"
+    }
+  ],
+  "organizations": [
+    {
+      "name": "advanced research & invention agency",
+      "category": "government/nonprofit",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "agentic ai foundation",
+      "category": "government/nonprofit",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "agentic google cloud platform",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ai21 labs",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "albert invent",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "amazon",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "amazon web services",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "AMD",
+      "category": "company",
+      "speakers": 3,
+      "sessions": 1
+    },
+    {
+      "name": "amd, berkeley",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "american institute of mathematics",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "amp pbc",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "anthropic",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "applied intuition",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "aws",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "axios",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "berkeley rdi",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 4
+    },
+    {
+      "name": "bmw research",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "california institute of technology",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "capital one",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "CEO, Zyphra",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "circle",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Circle",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Co-Founder, Humans&",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "Co-Founder/CTO, Writer",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "Co-Founder/President, Harvey AI",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "coco robotics",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "cognition",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "cognizant",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "core automation",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "credo ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "databricks",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 1
+    },
+    {
+      "name": "Databricks",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "databricks and anyscale",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "daytona",
+      "category": "company",
+      "speakers": 3,
+      "sessions": 2
+    },
+    {
+      "name": "deeplearning.ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "digitalocean",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "distributional",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ema",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Ema",
+      "category": "company",
+      "speakers": 3,
+      "sessions": 1
+    },
+    {
+      "name": "factory ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Fetcherr",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 1
+    },
+    {
+      "name": "fireworks ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "flyingobject.ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Founder, Eureka Labs",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "Founder/CEO, Glean",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "Founder/CEO, Weights & Biases",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "genentech",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "General Partner, a16z",
+      "category": "investor",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "georgia institute of technology",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "georgia tech",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "goodfire",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "google",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "google cloud",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "google deepmind",
+      "category": "company",
+      "speakers": 5,
+      "sessions": 5
+    },
+    {
+      "name": "hex",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "hubspot",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Hugging Face",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ibm",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ibm research",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "ibm software innovation labs",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "imbue",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "inception labs",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "inferact",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "infravana",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "institute for safe autonomy, university of york",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "intuit",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "invoca",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ironclad",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "lambda",
+      "category": "company",
+      "speakers": 3,
+      "sessions": 2
+    },
+    {
+      "name": "laude ventures",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "lightmatter",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "lightspeed venture partners",
+      "category": "investor",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "linkedin",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "linux foundation",
+      "category": "government/nonprofit",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "llmarena",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "m12",
+      "category": "investor",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "mayfield",
+      "category": "investor",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "mercor",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "meta superintelligence labs",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 4
+    },
+    {
+      "name": "microsoft",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "microsoft ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "microsoft corporation",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "microsoft research",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "mit",
+      "category": "university/research institute",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "nea",
+      "category": "investor",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "neo4j",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "neocognition",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "nvidia",
+      "category": "company",
+      "speakers": 5,
+      "sessions": 5
+    },
+    {
+      "name": "omokai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "openai",
+      "category": "company",
+      "speakers": 5,
+      "sessions": 5
+    },
+    {
+      "name": "oracle",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "oracle health",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "osu",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "palo alto networks",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "periodic labs",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "perplexity",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "physical intelligence",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "poetiq",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "postman",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "princeton",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "PyTorch Foundation",
+      "category": "government/nonprofit",
+      "speakers": 1,
+      "sessions": 2
+    },
+    {
+      "name": "radixark",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "RadixArk",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "recursive & you.com",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "redis",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "replit",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "retool",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "river ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "runway",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "salesforce",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "scale ai",
+      "category": "university/research institute",
+      "speakers": 3,
+      "sessions": 2
+    },
+    {
+      "name": "scaled cognition",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "sequoia capital",
+      "category": "investor",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "servicenow",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "siteimprove",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "sk hynix",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "SkyPilot",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "snorkel ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "snowflake",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "sony ai",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "stanford",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "suse",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "susquehanna international group",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "tel aviv university",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Temporal",
+      "category": "company",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "thales group",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "the d. e. shaw group",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "the ohio state university",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "the wikimedia foundation",
+      "category": "government/nonprofit",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "together ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "trent ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "two sigma",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "uber",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "uc berkeley",
+      "category": "university/research institute",
+      "speakers": 7,
+      "sessions": 8
+    },
+    {
+      "name": "uc san diego",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "uc, berkeley",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ucla",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ucsb",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "uiuc",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "university of british columbia",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "university of california, san diego",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "university of california, santa cruz",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "university of maryland",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "university of toronto",
+      "category": "university/research institute",
+      "speakers": 2,
+      "sessions": 2
+    },
+    {
+      "name": "unreasonable labs",
+      "category": "university/research institute",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "Unsloth",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "upenn",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "ut austin",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "vanguard",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "vatic investments",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "virtue ai",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "VP of Science, Google DeepMind",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 0
+    },
+    {
+      "name": "waymo",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "wells fargo",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "wired",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "wsj",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    },
+    {
+      "name": "yutori",
+      "category": "company",
+      "speakers": 1,
+      "sessions": 1
+    }
+  ],
+  "leads": [
+    {
+      "name": "Agent harness / continual learning",
+      "type": "analysis",
+      "priority": "high",
+      "summary": "Investigate memory lifecycle, tool permissions, evaluation, long-horizon recovery, and scalable agent environments.",
+      "claim_ids": [
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "i01"
+      ]
+    },
+    {
+      "name": "Scientific discovery systems",
+      "type": "analysis",
+      "priority": "high",
+      "summary": "AI-for-science and agent infrastructure are adjacent evidence-backed directions; no relationship or role is established.",
+      "claim_ids": [
+        "c04",
+        "c05",
+        "i02"
+      ]
+    },
+    {
+      "name": "River AI",
+      "type": "company watch",
+      "priority": "watch",
+      "summary": "Strong agent-harness/continual-learning fit signal in accepted notes; verify role, product maturity, memory governance, and work-authority details before acting.",
+      "claim_ids": [
+        "c09",
+        "c11",
+        "i01"
+      ]
+    },
+    {
+      "name": "Periodic Labs",
+      "type": "job snapshot",
+      "priority": "watch",
+      "summary": "21-role public snapshot; apparent fit is analysis only and availability may change.",
+      "claim_ids": [
+        "c10"
+      ]
+    }
+  ],
+  "gaps": [
+    "All six Aug-2 transcript entries remain unavailable in the accepted corpus; do not infer their contents.",
+    "Aug-2 Atlas afternoon -7AJJLwYW1Q was ended/was_live in the fresh playlist snapshot; Plenary afternoon I2PosBXwoPI and Compass afternoon 1UrriPJRSPU were still live at cutoff.",
+    "The fresh official playlist had 13 entries and omitted Aug-2 Atlas morning LGW_6P1CMC8; no Aug-2 Nexus entries were present.",
+    "Official schedule end times are derived from the next published boundary; the official page prints clock times without a timezone, so America/Los_Angeles is a venue-local inference.",
+    "No speaker is inferred from stage recording alone; ambiguous ASR names remain session-level or unattributed.",
+    "The accepted River and Periodic Labs material is public-source diligence/notes; it does not establish endorsement, funding, relationship, customer usage, or an application recommendation."
+  ],
+  "source_files_read": [
+    "BRIEF.md",
+    "archive/program_attempt_02/program.json",
+    "archive/program_attempt_02/sessions.csv",
+    "archive/program_attempt_02/speakers.csv",
+    "archive/program_attempt_02/session_speakers.csv",
+    "archive/program_attempt_02/companies.csv",
+    "archive/program_attempt_02/official_sources.json",
+    "archive/program_attempt_02/coverage_gaps.md",
+    "archive/recordings_attempt_02/recordings.json",
+    "archive/recordings_attempt_02/transcript_index.json",
+    "archive/recordings_attempt_02/final_recording_manifest_ended_11.json",
+    "archive/recordings_attempt_02/transcripts/*.txt",
+    "archive/recordings_recheck_20260802T222822Z/official_playlist.info.json",
+    "live_notes.md",
+    "company_research_river_ai_attempt_01/",
+    "periodic_labs_lead_20260802.md"
+  ]
+}

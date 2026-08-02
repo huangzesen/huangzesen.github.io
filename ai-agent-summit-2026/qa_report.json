@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "checks": {
+    "json_parse": true,
+    "html_parse": true,
+    "privacy": {
+      "absolute macOS path": true,
+      "absolute home path": true,
+      "email address": true,
+      "bearer credential": true,
+      "secret-key prefix": true
+    },
+    "source_paths": true,
+    "approved_public_domains": true,
+    "counts": {
+      "program_blocks": true,
+      "speakers": true,
+      "session_speaker_joins": true,
+      "organizations": true,
+      "recordings_in_snapshot": true,
+      "ended_recordings": true,
+      "aug1_transcript_files": true,
+      "aug1_normalized_cues": true,
+      "final_manifest_media": true,
+      "final_manifest_bytes": true,
+      "fresh_playlist_entries": true
+    },
+    "speaker_mapping": {
+      "all_178_people_present": true,
+      "mapped_169": true,
+      "featured_only_9": true,
+      "mapped_nonzero": true,
+      "featured_zero": true,
+      "distinct_block_counts_exact": true,
+      "mapping_labels_exact": true
+    },
+    "responsive_overflow_static": {
+      "viewport": true,
+      "responsive_breakpoint": true,
+      "overflow_x_hidden": true,
+      "no_external_assets": true,
+      "unique_ids": true,
+      "explorer_top_aligned": true,
+      "mobile_claim_search_full_row": true,
+      "mobile_coverage_scroll_cue": true
+    },
+    "brief_preserved": true
+  },
+  "claim_count": 13,
+  "source_count": 9,
+  "output_files": [
+    "BRIEF.md",
+    "analysis.json",
+    "browser_qa_v3.mjs",
+    "build_candidate.py",
+    "index.html",
+    "qa_check.py",
+    "qa_stdout.txt",
+    "sources.json",
+    "worker_report.md"
+  ],
+  "notes": [
+    "Static overflow checks cover CSS/markup invariants; no browser binary was required or invoked.",
+    "URLs are limited to official/public domains already present in accepted evidence notes or official event/recording links."
+  ]
+}

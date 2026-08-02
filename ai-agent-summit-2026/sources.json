@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "title": "Agentic AI Summit 2026 — public-safe source registry",
+  "cutoff_utc": "2026-08-02T20:29:16Z",
+  "privacy_note": "Relative evidence paths only; no absolute local paths, private IDs, credentials, mailbox content, or raw logs.",
+  "sources": [
+    {
+      "id": "S01",
+      "label": "Official Berkeley RDI program",
+      "evidence_type": "official program/schedule",
+      "path": "archive/program_attempt_02/program.json",
+      "public_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "coverage": "43 schedule blocks, speaker joins, organizations; end times derived from next published boundary; no transcript."
+    },
+    {
+      "id": "S02",
+      "label": "Program graph tables",
+      "evidence_type": "normalized CSV graph",
+      "path": "archive/program_attempt_02/sessions.csv; speakers.csv; session_speakers.csv; companies.csv",
+      "public_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "coverage": "Counts and explorer entities; organization labels are observable categories, not rankings."
+    },
+    {
+      "id": "S03",
+      "label": "Official-source register and gap note",
+      "evidence_type": "accepted provenance/gap metadata",
+      "path": "archive/program_attempt_02/official_sources.json; coverage_gaps.md",
+      "public_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "coverage": "Cutoff, source policy, timing/timezone/metadata gaps, and schedule coverage limits."
+    },
+    {
+      "id": "S04",
+      "label": "Recording snapshot",
+      "evidence_type": "official-channel recording metadata",
+      "path": "archive/recordings_attempt_02/recordings.json; final_recording_manifest_ended_11.json",
+      "public_url": "https://www.youtube.com/@BerkeleyRDI",
+      "coverage": "11 ended archives checksum/AV validated in the accepted manifest; six Aug-2 transcript entries unavailable."
+    },
+    {
+      "id": "S05",
+      "label": "Transcript index and normalized VTT text",
+      "evidence_type": "official YouTube auto-caption corpus",
+      "path": "archive/recordings_attempt_02/transcript_index.json; transcripts/*.txt",
+      "public_url": "https://www.youtube.com/@BerkeleyRDI",
+      "coverage": "Eight Aug-1 normalized English transcript files / 68,496 cues; auto-caption-derived, not human-edited."
+    },
+    {
+      "id": "S06",
+      "label": "Fresh official playlist snapshot",
+      "evidence_type": "official playlist metadata snapshot",
+      "path": "archive/recordings_recheck_20260802T222822Z/official_playlist.info.json",
+      "public_url": "https://www.youtube.com/@BerkeleyRDI/playlists",
+      "coverage": "13 entries at the accepted cutoff; omissions and live/ended state are time-bounded."
+    },
+    {
+      "id": "S07",
+      "label": "Accepted summit field notes",
+      "evidence_type": "user-provided event/photo observation",
+      "path": "live_notes.md",
+      "public_url": "https://rdi.berkeley.edu/events/agentic-ai-summit-2026",
+      "coverage": "River slide observations; no transcript and no facial-recognition inference; photo notes remain distinct from official captions."
+    },
+    {
+      "id": "S08",
+      "label": "Periodic Labs lead snapshot",
+      "evidence_type": "accepted public-source job snapshot",
+      "path": "periodic_labs_lead_20260802.md",
+      "public_url": "https://jobs.ashbyhq.com/periodic-labs",
+      "coverage": "21 roles at 2026-08-02 14:21 PDT; availability and fit can change; no application/contact."
+    },
+    {
+      "id": "S09",
+      "label": "River AI diligence memo",
+      "evidence_type": "accepted public-source company research",
+      "path": "company_research_river_ai_attempt_01/river_ai_report.md; river_ai_facts.json; river_ai_sources.json",
+      "public_url": "https://river.ai/",
+      "coverage": "Separates verified public facts, company claims, third-party reporting, and interpretation; no login/contact/application."
+    }
+  ],
+  "claim_source_map": {
+    "c01": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c02": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c03": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c04": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c05": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c06": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c07": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c08": [
+      "S01",
+      "S02",
+      "S03"
+    ],
+    "c09": [
+      "S07"
+    ],
+    "c10": [
+      "S08"
+    ],
+    "c11": [
+      "S09"
+    ],
+    "i01": [
+      "S01",
+      "S05"
+    ],
+    "i02": [
+      "S01",
+      "S05"
+    ]
+  }
+}
