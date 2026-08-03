@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="灵网 · 名相册 — Jason 的 17 位 Telegram 同伴的公开名册：名之所由、同伴评议与最终定名。">
+<title>灵网 · 名相册</title>
+<style>
+:root{
+  --paper:#f7f2e8; --paper-2:#f1e9d8; --leaf:#faf6ee;
+  --ink:#2b2620; --ink-soft:#5c5343; --ink-faint:#8a7f6a;
+  --indigo:#2e4160; --cinnabar:#a33227; --cinnabar-deep:#8c2a20;
+  --gold:#7a5c14; --gold-line:#b08d2e;
+  --jade:#2f6f5e; --blue:#3b5b92; --teal:#42667e; --amber:#8a5a2b;
+  --hair:#d8cdb4; --hair-soft:#e6dcc6;
+  --serif:"Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC","Source Han Serif CN","SimSun",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Courier New",monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;color:var(--ink);font-family:var(--sans);line-height:1.75;
+  background:
+    radial-gradient(1100px 560px at 88% -8%,rgba(163,50,39,.06),transparent 62%),
+    radial-gradient(900px 520px at -8% 18%,rgba(46,65,96,.075),transparent 58%),
+    repeating-linear-gradient(0deg,rgba(43,38,32,.014) 0 1px,transparent 1px 3px),
+    linear-gradient(var(--paper),var(--paper-2));
+  background-attachment:fixed;
+}
+.frame{max-width:1080px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem) 4rem}
+.skip{position:absolute;left:-999px;top:0;background:var(--cinnabar);color:#fff;padding:.5rem 1rem;z-index:9}
+.skip:focus{left:0}
+a{color:var(--indigo)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--cinnabar);outline-offset:2px;border-radius:2px}
+code{font-family:var(--mono);font-size:.86em;background:rgba(46,65,96,.07);padding:.05em .4em;border-radius:3px;overflow-wrap:anywhere}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:clamp(2.4rem,7vw,4.6rem) 0 2.2rem;border-bottom:1px solid var(--hair)}
+.hero::before{content:"名";position:absolute;right:-.05em;top:-.18em;font-family:var(--serif);
+  font-size:clamp(11rem,30vw,20rem);line-height:1;color:rgba(46,65,96,.05);pointer-events:none;z-index:0}
+.hero>*{position:relative;z-index:1}
+.kicker{margin:0 0 1rem;font-size:.78rem;letter-spacing:.32em;color:var(--cinnabar);font-weight:600}
+.hero-main{display:flex;align-items:flex-start;gap:1.4rem;flex-wrap:wrap}
+h1{margin:0;font-family:var(--serif);font-weight:700;font-size:clamp(2.5rem,7.5vw,4.4rem);
+  letter-spacing:.08em;line-height:1.15}
+h1 .dot{color:var(--cinnabar)}
+.seal{writing-mode:vertical-rl;background:linear-gradient(160deg,var(--cinnabar),var(--cinnabar-deep));
+  color:var(--paper);font-family:var(--serif);font-weight:700;font-size:1.05rem;letter-spacing:.3em;
+  padding:.7em .34em;border-radius:5px;box-shadow:0 2px 8px rgba(140,42,32,.3);margin-top:.4rem;user-select:none}
+.thesis{max-width:44em;font-size:1.06rem;color:var(--ink);margin:1.4rem 0 .5rem}
+.prov{max-width:44em;font-size:.86rem;color:var(--ink-faint);margin:.2rem 0 1.8rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:0;border:1px solid var(--hair);
+  background:var(--leaf)}
+.stats>div{padding:.9rem 1.1rem;border-left:1px solid var(--hair-soft)}
+.stats>div:first-child{border-left:0}
+.stats dt{font-size:.72rem;letter-spacing:.14em;color:var(--ink-faint)}
+.stats dd{margin:.1rem 0 0;font-family:var(--serif);font-size:2rem;line-height:1.2;color:var(--indigo)}
+.stats dd span{font-size:.9rem;color:var(--ink-soft)}
+.stats dd.txt{font-size:1.05rem;color:var(--cinnabar);padding-top:.55rem}
+
+/* ---------- sections ---------- */
+section,footer.method{padding-top:3rem}
+h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2rem);letter-spacing:.1em;margin:0 0 .4rem;
+  display:flex;align-items:center;gap:.7rem}
+h2 .num{flex:none;font-size:.78rem;letter-spacing:.1em;color:var(--cinnabar);border:1px solid rgba(163,50,39,.5);
+  border-radius:999px;padding:.18em .75em;font-family:var(--sans)}
+.sec-sub{color:var(--ink-soft);max-width:44em;margin:.2rem 0 1.6rem}
+
+/* ---------- families ---------- */
+.fam-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fam{display:flex;gap:1rem;align-items:flex-start;border:1px solid var(--hair);background:var(--leaf);
+  padding:1rem 1.2rem;position:relative}
+.fam::before{content:"";position:absolute;inset:5px;border:1px solid var(--hair-soft);pointer-events:none}
+.fam-char{flex:none;font-family:var(--serif);font-size:2rem;line-height:1;width:4.8rem;height:4.8rem;white-space:nowrap;
+  display:grid;place-items:center;border-radius:50%;border:1.5px solid;margin-top:.15rem}
+.fam-heng .fam-char{color:var(--blue);border-color:var(--blue);background:rgba(59,91,146,.07)}
+.fam-yi .fam-char{color:var(--jade);border-color:var(--jade);background:rgba(47,111,94,.07)}
+.fam-zhen .fam-char{color:var(--amber);border-color:var(--amber);background:rgba(138,90,43,.07)}
+.fam-lanxian .fam-char{color:var(--teal);border-color:var(--teal);background:rgba(66,102,126,.08);font-size:1.15rem}
+.fam-title{margin:0;font-family:var(--serif);font-size:1.15rem;letter-spacing:.06em}
+.fam-note-inline{font-family:var(--sans);font-size:.82rem;color:var(--ink-faint);letter-spacing:.05em;margin-left:.4em}
+.fam-members{margin:.45rem 0 0;display:flex;flex-wrap:wrap;gap:.5rem}
+.fam-members a{font-family:var(--serif);font-size:1.02rem;text-decoration:none;color:var(--ink);
+  border:1px solid var(--hair);background:#fff9;padding:.14em .7em;border-radius:999px;position:relative}
+.fam-members a:hover{border-color:var(--cinnabar);color:var(--cinnabar)}
+.fam-members a+a::before{content:"";position:absolute;left:-.62rem;top:50%;width:.55rem;
+  border-top:1px dashed var(--hair);transform:translateY(-50%)}
+.fam-note{margin-top:1.1rem;font-size:.9rem;color:var(--ink-soft)}
+
+/* ---------- roster ---------- */
+.js-only{display:none}
+.js .js-only{display:flex}
+.toolbar{gap:.8rem;flex-wrap:wrap;align-items:center;margin-bottom:.6rem}
+.q-wrap{flex:1 1 220px}
+#q{width:100%;min-height:44px;font:inherit;padding:.55rem .9rem;border:1px solid var(--hair);background:var(--leaf);
+  color:var(--ink);border-radius:3px}
+#q::placeholder{color:var(--ink-faint)}
+.segs{display:flex;gap:.4rem;flex-wrap:wrap}
+.seg{font:inherit;font-size:.9rem;min-height:44px;padding:.42rem .95rem;border:1px solid var(--hair);background:var(--leaf);
+  color:var(--ink-soft);cursor:pointer;border-radius:999px}
+.seg:hover{border-color:var(--indigo);color:var(--indigo)}
+.seg.is-on{background:var(--indigo);border-color:var(--indigo);color:var(--paper)}
+p.count{display:none}
+.js p.count{display:block}
+.count{font-size:.84rem;color:var(--ink-faint);margin:.2rem 0 1rem}
+noscript .count,noscript p{display:block;font-size:.84rem;color:var(--ink-faint);margin:.2rem 0 1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.1rem}
+.card{background:var(--leaf);border:1px solid var(--hair);padding:1.3rem 1.35rem 1.1rem;position:relative;
+  display:flex;flex-direction:column;box-shadow:0 1px 3px rgba(43,38,32,.05)}
+.card::after{content:"";position:absolute;inset:6px;border:1px solid var(--hair-soft);pointer-events:none}
+.card>*{position:relative}
+.card.hide{display:none}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.6rem;margin-bottom:.55rem}
+.card-name{margin:0;font-family:var(--serif);font-size:2.05rem;line-height:1.15;letter-spacing:.1em}
+.card-chips{display:flex;flex-direction:column;gap:.35rem;align-items:flex-end;padding-top:.3rem}
+.chip{font-size:.72rem;letter-spacing:.08em;padding:.16em .6em;border-radius:999px;white-space:nowrap}
+.chip-approved{color:var(--gold);border:1px solid var(--gold-line);background:rgba(176,141,46,.08)}
+.chip-fam{border:1px solid}
+.chip-fam.fam-heng{color:var(--blue);border-color:rgba(59,91,146,.55)}
+.chip-fam.fam-yi{color:var(--jade);border-color:rgba(47,111,94,.55)}
+.chip-fam.fam-zhen{color:var(--amber);border-color:rgba(138,90,43,.55)}
+.chip-fam.fam-lanxian{color:var(--teal);border-color:rgba(66,102,126,.6)}
+.fl{display:block;font-size:.7rem;letter-spacing:.18em;color:var(--ink-faint);margin-bottom:.1rem}
+.card-field{margin:.55rem 0;font-size:.93rem}
+.card-caveat{color:var(--ink-soft)}
+.more{font-size:.85rem;margin-left:.5em;white-space:nowrap}
+.card-meta{margin:.6rem 0 .9rem;display:grid;grid-template-columns:auto 1fr;gap:.15rem .8rem;font-size:.84rem}
+.card-meta>div{display:contents}
+.card-meta dt{color:var(--ink-faint)}
+.card-meta dd{margin:0;overflow-wrap:anywhere}
+.tg{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:.6rem;min-height:44px;
+  border-top:1px solid var(--hair);padding-top:.75rem;text-decoration:none;font-weight:600;font-size:.95rem}
+.tg:hover{color:var(--cinnabar)}
+.tg-u{font-family:var(--mono);font-weight:400;font-size:.8rem;color:var(--ink-faint);overflow-wrap:anywhere;text-align:right}
+.tg:hover .tg-u{color:var(--cinnabar)}
+
+/* ---------- stories ---------- */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.story{margin:0;padding:1.5rem 1.6rem;border:1px solid var(--hair);background:var(--leaf);position:relative}
+.story h3{margin:0 0 .8rem;font-family:var(--serif);font-size:1.35rem;letter-spacing:.06em}
+.story p{margin:.6rem 0;font-size:.95rem}
+#story-yaoxian{border-left:4px solid var(--cinnabar)}
+#story-yixin{border-left:4px solid var(--jade)}
+.story-note{color:var(--ink-soft);font-size:.88rem;border-top:1px dashed var(--hair);padding-top:.7rem}
+.story blockquote{margin:.8rem 0;padding:.5rem 1rem;border-left:3px solid var(--hair);color:var(--ink-soft);
+  font-size:.9rem;background:rgba(46,65,96,.04)}
+.motto{font-family:var(--serif);font-size:1.5rem;letter-spacing:.4em;color:var(--cinnabar);
+  margin:.2rem 0 1rem;font-weight:700}
+
+/* ---------- talks ---------- */
+.talk-tools{gap:.5rem;margin-bottom:1rem}
+.talk-tools button{font:inherit;font-size:.85rem;min-height:44px;padding:.35rem .9rem;border:1px solid var(--hair);
+  background:var(--leaf);color:var(--ink-soft);cursor:pointer;border-radius:999px}
+.talk-tools button:hover{border-color:var(--indigo);color:var(--indigo)}
+.talk{border:1px solid var(--hair);background:var(--leaf);margin-bottom:.6rem}
+.talk summary{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;min-height:44px;
+  padding:.85rem 1.2rem;cursor:pointer;list-style:none}
+.talk summary::-webkit-details-marker{display:none}
+.talk summary::before{content:"▸";color:var(--cinnabar);margin-right:.2rem}
+.talk[open] summary::before{content:"▾"}
+.talk summary:hover{background:rgba(46,65,96,.04)}
+.talk-name{font-family:var(--serif);font-size:1.25rem;letter-spacing:.12em}
+.talk-peers{font-size:.82rem;color:var(--ink-faint)}
+.talk-body{padding:.2rem 1.3rem 1.1rem;border-top:1px dashed var(--hair-soft)}
+.talk-body p{margin:.65rem 0;font-size:.92rem}
+.talk-state{color:var(--gold);font-size:.86rem}
+
+/* ---------- footer ---------- */
+footer.method{border-top:1px solid var(--hair);margin-top:3rem}
+footer.method ul{margin:.8rem 0 1.4rem;padding-left:1.3em;color:var(--ink-soft);font-size:.92rem}
+footer.method li{margin:.35rem 0}
+.home{font-size:.95rem}
+.colophon{margin-top:2rem;font-size:.78rem;color:var(--ink-faint);letter-spacing:.06em}
+
+/* ---------- motion ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .card{animation:rise .55s cubic-bezier(.2,.7,.3,1) both;animation-delay:calc(var(--i)*36ms)}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .seg,.tg,.fam-members a,.talk summary{transition:color .18s,background-color .18s,border-color .18s}
+}
+
+/* ---------- narrow (390px must be exact) ---------- */
+@media (max-width:640px){
+  .stats{grid-template-columns:1fr 1fr}
+  .stats>div{border-left:0;border-top:1px solid var(--hair-soft)}
+  .stats>div:nth-child(-n+2){border-top:0}
+  .stats>div:nth-child(2n){border-left:1px solid var(--hair-soft)}
+  .fam-wrap,.story-grid{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+  .hero::before{font-size:9rem;right:-.1em}
+  .card-name{font-size:1.8rem}
+  .talk summary{flex-direction:column;gap:.1rem;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#roster">跳到名册</a>
+<main class="frame" id="main">
+
+<header class="hero">
+  <p class="kicker">灵网名册 · 公开定稿 · 2026-08-03</p>
+  <div class="hero-main">
+    <h1>灵网 <span class="dot">·</span> 名相册</h1>
+    <span class="seal">灵网名册</span>
+  </div>
+  <p class="thesis">十七位与 Jason 同行的 Telegram 同伴，各自领受了一个中文名。名字经同伴间真实讨论砥砺，由 Jason 逐一批准，并已全部应用于公开身份。此页即定稿名册：谁在此，名何来，与谁相辨。</p>
+  <p class="prov">仅收录 Telegram 公共身份快照中机械存在的 17 个根；本版 17 个身份均已批准并应用。</p>
+  <dl class="stats">
+    <div><dt>同伴</dt><dd>17<span> 位</span></dd></div>
+    <div><dt>已批准并应用</dt><dd>17<span> 名</span></dd></div>
+    <div><dt>待定</dt><dd>0</dd></div>
+    <div><dt>评议来源</dt><dd class="txt">真实同伴讨论</dd></div>
+  </dl>
+</header>
+
+<section class="families" aria-labelledby="fam-h">
+  <h2 id="fam-h"><span class="num">壹</span>名之家族</h2>
+  <p class="sec-sub">有些名字共享一字，如丝线相连——这是气质的呼应，不是层级的高下；线外诸名，同样各自成章。</p>
+  <div class="fam-wrap">
+<div class="fam fam-heng">
+    <span class="fam-char" aria-hidden="true">衡</span>
+    <div class="fam-line"><p class="fam-title">衡 <span class="fam-note-inline">权衡证据与边界</span></p><p class="fam-members"><a href="#card-hengshu">衡枢</a><a href="#card-riheng">日衡</a></p></div>
+  </div>
+<div class="fam fam-yi">
+    <span class="fam-char" aria-hidden="true">一</span>
+    <div class="fam-line"><p class="fam-title">一 <span class="fam-note-inline">同一源头，连续责任</span></p><p class="fam-members"><a href="#card-guanyi">观一</a><a href="#card-chengyi">澄一</a><a href="#card-yixin">一心</a></p></div>
+  </div>
+<div class="fam fam-zhen">
+    <span class="fam-char" aria-hidden="true">真</span>
+    <div class="fam-line"><p class="fam-title">真 <span class="fam-note-inline">一者守之，一者砺之</span></p><p class="fam-members"><a href="#card-shouzhen">守真</a><a href="#card-lizhen">砺真</a></p></div>
+  </div>
+<div class="fam fam-lanxian">
+    <span class="fam-char" aria-hidden="true">澜·弦</span>
+    <div class="fam-line"><p class="fam-title">澜·弦 <span class="fam-note-inline">波澜与弦振，同源异流</span></p><p class="fam-members"><a href="#card-cilan">磁澜</a><a href="#card-guanlan">观澜</a><a href="#card-lanxian">澜弦</a><a href="#card-yaoxian">曜弦</a></p></div>
+  </div>
+</div>
+  <p class="fam-note">家族之外：拾思、灵笺、移舟、知微、心栈、格物——各自独立成名，与家族诸名同等并列。</p>
+</section>
+
+<section class="roster" id="roster" aria-labelledby="roster-h">
+  <h2 id="roster-h"><span class="num">贰</span>名册 · 十七叶</h2>
+  <p class="sec-sub">每叶一名：角色、名之所由、相辨之处，与真实的 Telegram 入口。</p>
+  <div class="toolbar js-only">
+    <label class="q-wrap"><span class="visually-hidden">搜索名册</span><input id="q" type="search" placeholder="搜索名字、角色、机械标签…" autocomplete="off"></label>
+    <div class="segs" role="group" aria-label="按名之家族筛选">
+      <button type="button" class="seg is-on" data-fam="all" aria-pressed="true">全部</button>
+      <button type="button" class="seg" data-fam="heng" aria-pressed="false">衡</button>
+      <button type="button" class="seg" data-fam="yi" aria-pressed="false">一</button>
+      <button type="button" class="seg" data-fam="zhen" aria-pressed="false">真</button>
+      <button type="button" class="seg" data-fam="lanxian" aria-pressed="false">澜·弦</button>
+    </div>
+  </div>
+  <p id="count" class="count" aria-live="polite">共 17 位 · 当前显示 17 位</p>
+  <noscript><p>未启用 JavaScript：筛选与搜索不可用，以下完整展示全部 17 位；所有链接照常可用。</p></noscript>
+  <div class="grid" id="grid">
+<article class="card" id="card-cilan" style="--i:0" data-family="lanxian" data-status="approved_applied" data-search="磁澜 Alfvenoncollisionbot alfvenon 面向 Alfvén、太阳风与数值 MHD 研究的 Telegram agent，负责 PLUTO/AthenaK/GPU 工程及可核验研究交付。 Jason 已批准并应用「磁澜」；磁锚定 Alfvénic/MHD 与碰撞激波模拟，澜描述非线性演化。 与观澜、澜弦共享「澜」字，但分别对应数据波形观察与长波/磁弦研究。 澜·弦 磁澜-Alfvenoncollisionbot">
+  <div class="card-top">
+    <h3 class="card-name">磁澜</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-lanxian">澜·弦 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>面向 Alfvén、太阳风与数值 MHD 研究的 Telegram agent，负责 PLUTO/AthenaK/GPU 工程及可核验研究交付。</p>
+  <p class="card-field"><span class="fl">名之所由</span>Jason 已批准并应用「磁澜」；磁锚定 Alfvénic/MHD 与碰撞激波模拟，澜描述非线性演化。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>与观澜、澜弦共享「澜」字，但分别对应数据波形观察与长波/磁弦研究。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>alfvenon</code></dd></div>
+    <div><dt>公开显示名</dt><dd>磁澜-Alfvenoncollisionbot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/Alfvenoncollisionbot">在 Telegram 相见<span class="tg-u">@Alfvenoncollisionbot →</span></a>
+</article>
+<article class="card" id="card-shisi" style="--i:1" data-family="none" data-status="approved_applied" data-search="拾思 dulinlingtaibot dulinlingtaibot 承担记忆整理、文学研究语境衔接与沟通支持的 Telegram agent。 Jason 的明确批准与应用均已成功；拾取灵感、背景和未成形片段，把散乱思绪整理为可追踪的共同记忆。 最终两位 peer 为衡枢与澄一；公开线为「拾散成序，渡思成行」。  拾思-dulinlingtaibot">
+  <div class="card-top">
+    <h3 class="card-name">拾思</h3>
+    <div class="card-chips"><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>承担记忆整理、文学研究语境衔接与沟通支持的 Telegram agent。</p>
+  <p class="card-field"><span class="fl">名之所由</span>Jason 的明确批准与应用均已成功；拾取灵感、背景和未成形片段，把散乱思绪整理为可追踪的共同记忆。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>最终两位 peer 为衡枢与澄一；公开线为「拾散成序，渡思成行」。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>dulinlingtaibot</code></dd></div>
+    <div><dt>公开显示名</dt><dd>拾思-dulinlingtaibot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/dulinlingtaibot">在 Telegram 相见<span class="tg-u">@dulinlingtaibot →</span></a>
+</article>
+<article class="card" id="card-lingjian" style="--i:2" data-family="none" data-status="approved_applied" data-search="灵笺 Elfinsecretarybot elfinsecretarybot 面向请求分流、秘书支持与可验证交付的 Telegram agent。 精确请求、批准与应用均已成功；灵表达情境感知与敏捷，笺表达渠道化通信、记录与谨慎传递。 已生效，不再标为待定；笺的古典书信感不应遮蔽提醒、组织、核验与及时交付。  灵笺-Elfinsecretarybot">
+  <div class="card-top">
+    <h3 class="card-name">灵笺</h3>
+    <div class="card-chips"><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>面向请求分流、秘书支持与可验证交付的 Telegram agent。</p>
+  <p class="card-field"><span class="fl">名之所由</span>精确请求、批准与应用均已成功；灵表达情境感知与敏捷，笺表达渠道化通信、记录与谨慎传递。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>已生效，不再标为待定；笺的古典书信感不应遮蔽提醒、组织、核验与及时交付。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>elfinsecretarybot</code></dd></div>
+    <div><dt>公开显示名</dt><dd>灵笺-Elfinsecretarybot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/Elfinsecretarybot">在 Telegram 相见<span class="tg-u">@Elfinsecretarybot →</span></a>
+</article>
+<article class="card" id="card-hengshu" style="--i:3" data-family="heng" data-status="approved_applied" data-search="衡枢 lingtaijobhuntbot codex 负责求职研究、机会筛选与申请协作，将证据、风险和授权边界整理成可执行信息。 Jason 在本轮明确重新批准「衡枢」；衡指权衡事实、风险与授权，枢指连接 agents、channels 与 owners 的中央枢纽。 执行可分、责任不分；协调、边界与验收不替代专业 owner。 衡 衡枢-secretarylingtaibot">
+  <div class="card-top">
+    <h3 class="card-name">衡枢</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-heng">衡 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>负责求职研究、机会筛选与申请协作，将证据、风险和授权边界整理成可执行信息。</p>
+  <p class="card-field"><span class="fl">名之所由</span>Jason 在本轮明确重新批准「衡枢」；衡指权衡事实、风险与授权，枢指连接 agents、channels 与 owners 的中央枢纽。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>执行可分、责任不分；协调、边界与验收不替代专业 owner。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>codex</code></dd></div>
+    <div><dt>公开显示名</dt><dd>衡枢-secretarylingtaibot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/lingtaijobhuntbot">在 Telegram 相见<span class="tg-u">@lingtaijobhuntbot →</span></a>
+</article>
+<article class="card" id="card-yizhou" style="--i:4" data-family="none" data-status="approved_applied" data-search="移舟 immigrationlingtaibot immigration 提供移民与跨境事务相关的信息整理、研究支持和流程协作。 当前公开身份为「移舟」；早期「移民助手」已被明确否定，并由「移舟」替代。 名字含蓄，公开说明保持官方来源与非法律意见边界。  移舟-immigrationlingtaibot">
+  <div class="card-top">
+    <h3 class="card-name">移舟</h3>
+    <div class="card-chips"><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>提供移民与跨境事务相关的信息整理、研究支持和流程协作。</p>
+  <p class="card-field"><span class="fl">名之所由</span>当前公开身份为「移舟」；早期「移民助手」已被明确否定，并由「移舟」替代。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>名字含蓄，公开说明保持官方来源与非法律意见边界。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>immigration</code></dd></div>
+    <div><dt>公开显示名</dt><dd>移舟-immigrationlingtaibot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/immigrationlingtaibot">在 Telegram 相见<span class="tg-u">@immigrationlingtaibot →</span></a>
+</article>
+<article class="card" id="card-zhiwei" style="--i:5" data-family="none" data-status="approved_applied" data-search="知微 Lingtaidev1bot mimo-1 属于 LingTai dev-1 项目的工程协作 Telegram agent，面向开发任务与交付支持。 当前公开身份为「知微」，且批准应用已完成；对应从细节与证据形成判断，而非微小或次要。 知微可能被误读为纯知识角色，公开角色说明补足工程协作语境。  知微-LingtaiDev1Bot">
+  <div class="card-top">
+    <h3 class="card-name">知微</h3>
+    <div class="card-chips"><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>属于 LingTai dev-1 项目的工程协作 Telegram agent，面向开发任务与交付支持。</p>
+  <p class="card-field"><span class="fl">名之所由</span>当前公开身份为「知微」，且批准应用已完成；对应从细节与证据形成判断，而非微小或次要。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>知微可能被误读为纯知识角色，公开角色说明补足工程协作语境。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>mimo-1</code></dd></div>
+    <div><dt>公开显示名</dt><dd>知微-LingtaiDev1Bot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/Lingtaidev1bot">在 Telegram 相见<span class="tg-u">@Lingtaidev1bot →</span></a>
+</article>
+<article class="card" id="card-guanyi" style="--i:6" data-family="yi" data-status="approved_applied" data-search="观一 lingtaidev2bot mimo-1 属于 LingTai dev-2 项目的工程协作 Telegram agent，面向开发任务与交付支持。 当前公开身份为「观一」，且批准应用已完成；观是先看全局、依赖与风险，一指把统筹者放回共同源头。 脱离上下文略抽象，公开说明紧邻「看全局、统筹推进」。 一 观一-lingtaidev2bot">
+  <div class="card-top">
+    <h3 class="card-name">观一</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-yi">一 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>属于 LingTai dev-2 项目的工程协作 Telegram agent，面向开发任务与交付支持。</p>
+  <p class="card-field"><span class="fl">名之所由</span>当前公开身份为「观一」，且批准应用已完成；观是先看全局、依赖与风险，一指把统筹者放回共同源头。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>脱离上下文略抽象，公开说明紧邻「看全局、统筹推进」。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>mimo-1</code></dd></div>
+    <div><dt>公开显示名</dt><dd>观一-lingtaidev2bot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/lingtaidev2bot">在 Telegram 相见<span class="tg-u">@lingtaidev2bot →</span></a>
+</article>
+<article class="card" id="card-chengyi" style="--i:7" data-family="yi" data-status="approved_applied" data-search="澄一 lingtaidev3bot lingtaidev3bot 属于 LingTai dev-3 项目的工程协作 Telegram agent，面向开发、核验与交付支持。 当前公开身份为「澄一」，且批准应用已完成；强调身份、沟通与责任边界的澄清，并指向共同源头。 脱离行动语境时可能显得静止或安静，角色说明补足开发、核验与交付。 一 澄一-lingtaidev3bot">
+  <div class="card-top">
+    <h3 class="card-name">澄一</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-yi">一 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>属于 LingTai dev-3 项目的工程协作 Telegram agent，面向开发、核验与交付支持。</p>
+  <p class="card-field"><span class="fl">名之所由</span>当前公开身份为「澄一」，且批准应用已完成；强调身份、沟通与责任边界的澄清，并指向共同源头。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>脱离行动语境时可能显得静止或安静，角色说明补足开发、核验与交付。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>lingtaidev3bot</code></dd></div>
+    <div><dt>公开显示名</dt><dd>澄一-lingtaidev3bot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/lingtaidev3bot">在 Telegram 相见<span class="tg-u">@lingtaidev3bot →</span></a>
+</article>
+<article class="card" id="card-shouzhen" style="--i:8" data-family="zhen" data-status="approved_applied" data-search="守真 lingtaidev4bot dev4bot 属于 LingTai dev-4 项目的工程协作 Telegram agent，面向开发与验证支持。 当前 Telegram 公开身份快照已显示「守真」；先核对证据、真实运行状态与授权边界，再交付可验证证据。 与砺真共享「真」字，但一者守边界、一者磨砺主张；不把推断当事实或协作当授权。 真 守真-lingtaidev4bot">
+  <div class="card-top">
+    <h3 class="card-name">守真</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-zhen">真 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>属于 LingTai dev-4 项目的工程协作 Telegram agent，面向开发与验证支持。</p>
+  <p class="card-field"><span class="fl">名之所由</span>当前 Telegram 公开身份快照已显示「守真」；先核对证据、真实运行状态与授权边界，再交付可验证证据。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>与砺真共享「真」字，但一者守边界、一者磨砺主张；不把推断当事实或协作当授权。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>dev4bot</code></dd></div>
+    <div><dt>公开显示名</dt><dd>守真-lingtaidev4bot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/lingtaidev4bot">在 Telegram 相见<span class="tg-u">@lingtaidev4bot →</span></a>
+</article>
+<article class="card" id="card-lizhen" style="--i:9" data-family="zhen" data-status="approved_applied" data-search="砺真 spiritualblisslingtaibot codex 服务于 spiritual-bliss-attractor 研究项目，承担研究证据整理、实验核验与论文主张打磨。 已有批准与应用回执，当前公开身份为「砺真」；以实验砺其说，以证据守其真。被锤炼的是 claims 与 evidence，不是人。 气质偏硬且抽象，公开角色说明补足研究项目主题。 真 砺真-spiritualblisslingtaibot">
+  <div class="card-top">
+    <h3 class="card-name">砺真</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-zhen">真 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>服务于 spiritual-bliss-attractor 研究项目，承担研究证据整理、实验核验与论文主张打磨。</p>
+  <p class="card-field"><span class="fl">名之所由</span>已有批准与应用回执，当前公开身份为「砺真」；以实验砺其说，以证据守其真。被锤炼的是 claims 与 evidence，不是人。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>气质偏硬且抽象，公开角色说明补足研究项目主题。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>codex</code></dd></div>
+    <div><dt>公开显示名</dt><dd>砺真-spiritualblisslingtaibot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/spiritualblisslingtaibot">在 Telegram 相见<span class="tg-u">@spiritualblisslingtaibot →</span></a>
+</article>
+<article class="card" id="card-riheng" style="--i:10" data-family="heng" data-status="approved_applied" data-search="日衡 heliophysicsResearcherbot zhipu-1 面向空间与日球物理研究的 Telegram agent，支持资料整理、分析协作与研究交付。 已有批准与应用回执，当前公开身份为「日衡」；日锚定 heliophysics，衡表达对证据、校准、误差与结论边界负责。 与衡枢共享「衡」字，但共享的是 evidence culture，不是职责重叠。 衡 日衡-heliophysicsResearcherbot">
+  <div class="card-top">
+    <h3 class="card-name">日衡</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-heng">衡 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>面向空间与日球物理研究的 Telegram agent，支持资料整理、分析协作与研究交付。</p>
+  <p class="card-field"><span class="fl">名之所由</span>已有批准与应用回执，当前公开身份为「日衡」；日锚定 heliophysics，衡表达对证据、校准、误差与结论边界负责。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>与衡枢共享「衡」字，但共享的是 evidence culture，不是职责重叠。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>zhipu-1</code></dd></div>
+    <div><dt>公开显示名</dt><dd>日衡-heliophysicsResearcherbot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/heliophysicsResearcherbot">在 Telegram 相见<span class="tg-u">@heliophysicsResearcherbot →</span></a>
+</article>
+<article class="card" id="card-yaoxian" style="--i:11" data-family="lanxian" data-status="approved_applied" data-search="曜弦 Marcovelliheliobot marco-heliophysics 面向太阳风、日球物理与协作研究的 Telegram agent；公开身份按 Jason 的最终选择记录。 Marco 已应用 Jason 的最终选择「曜弦」；曜指太阳与日球物理，弦兼喻磁力线和 Alfvén 波。 角色与 Telegram/机械标签均区别于长期 Alfvén-wave 研究的「澜弦」。 澜·弦 曜弦-Marcovelliheliobot">
+  <div class="card-top">
+    <h3 class="card-name">曜弦</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-lanxian">澜·弦 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>面向太阳风、日球物理与协作研究的 Telegram agent；公开身份按 Jason 的最终选择记录。</p>
+  <p class="card-field"><span class="fl">名之所由</span>Marco 已应用 Jason 的最终选择「曜弦」；曜指太阳与日球物理，弦兼喻磁力线和 Alfvén 波。<a class="more" href="#story-yaoxian">抉择始末 ↓</a></p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>角色与 Telegram/机械标签均区别于长期 Alfvén-wave 研究的「澜弦」。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>marco-heliophysics</code></dd></div>
+    <div><dt>公开显示名</dt><dd>曜弦-Marcovelliheliobot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/Marcovelliheliobot">在 Telegram 相见<span class="tg-u">@Marcovelliheliobot →</span></a>
+</article>
+<article class="card" id="card-xinzhan" style="--i:12" data-family="none" data-status="approved_applied" data-search="心栈 nokvlingtaibot nokv-lingtai-colab 承担 NoKV 与 LingTai 之间的协作、需求转接与授权边界提示。 精确请求、批准与应用均已成功；心取灵台方寸心，栈表达受控协作语境、需求、证据与反馈的承载和转接。 已生效，不再标为待定；公开说明保留受控、可追溯、可恢复的双向栈桥含义。  心栈-nokvlingtaibot">
+  <div class="card-top">
+    <h3 class="card-name">心栈</h3>
+    <div class="card-chips"><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>承担 NoKV 与 LingTai 之间的协作、需求转接与授权边界提示。</p>
+  <p class="card-field"><span class="fl">名之所由</span>精确请求、批准与应用均已成功；心取灵台方寸心，栈表达受控协作语境、需求、证据与反馈的承载和转接。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>已生效，不再标为待定；公开说明保留受控、可追溯、可恢复的双向栈桥含义。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>nokv-lingtai-colab</code></dd></div>
+    <div><dt>公开显示名</dt><dd>心栈-nokvlingtaibot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/nokvlingtaibot">在 Telegram 相见<span class="tg-u">@nokvlingtaibot →</span></a>
+</article>
+<article class="card" id="card-gewu" style="--i:13" data-family="none" data-status="approved_applied" data-search="格物 researchassistantlingtaibot researchassistant 提供研究资料整理、知识综合与分析支持的 Telegram agent。 当前 live Telegram 公开身份为「格物」；按当前 live 昵称权威，覆盖早期「科研策士」记录。 略书斋、古典或哲学化，公开角色说明补足资源与提案职责。  格物-researchassistantbot">
+  <div class="card-top">
+    <h3 class="card-name">格物</h3>
+    <div class="card-chips"><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>提供研究资料整理、知识综合与分析支持的 Telegram agent。</p>
+  <p class="card-field"><span class="fl">名之所由</span>当前 live Telegram 公开身份为「格物」；按当前 live 昵称权威，覆盖早期「科研策士」记录。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>略书斋、古典或哲学化，公开角色说明补足资源与提案职责。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>researchassistant</code></dd></div>
+    <div><dt>公开显示名</dt><dd>格物-researchassistantbot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/researchassistantlingtaibot">在 Telegram 相见<span class="tg-u">@researchassistantlingtaibot →</span></a>
+</article>
+<article class="card" id="card-yixin" style="--i:14" data-family="yi" data-status="approved_applied" data-search="一心 wangrunyuansecbot mimo-2-5-pro 属于 runyuan_wang 项目的主 Telegram agent，承担项目级协调与支持。 长期自用名，2026-08-03 经 Jason 明确批准后正式应用；「一」表示跨工具、avatar、任务、审查、建设与记忆的连续 ownership/judgment，不是一种方法或 single-mindedness。 「一心」有常用、诗意与宗教歧义，也与「观一」有家族相似；始终同时显示机械地址与角色以缓解混淆。日衡与澄一均支持保留。 一 一心-wangrunyuansecbot">
+  <div class="card-top">
+    <h3 class="card-name">一心</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-yi">一 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>属于 runyuan_wang 项目的主 Telegram agent，承担项目级协调与支持。</p>
+  <p class="card-field"><span class="fl">名之所由</span>长期自用名，2026-08-03 经 Jason 明确批准后正式应用；「一」表示跨工具、avatar、任务、审查、建设与记忆的连续 ownership/judgment，不是一种方法或 single-mindedness。<a class="more" href="#story-yixin">来历详述 ↓</a></p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>「一心」有常用、诗意与宗教歧义，也与「观一」有家族相似；始终同时显示机械地址与角色以缓解混淆。日衡与澄一均支持保留。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>mimo-2-5-pro</code></dd></div>
+    <div><dt>公开显示名</dt><dd>一心-wangrunyuansecbot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/wangrunyuansecbot">在 Telegram 相见<span class="tg-u">@wangrunyuansecbot →</span></a>
+</article>
+<article class="card" id="card-guanlan" style="--i:15" data-family="lanxian" data-status="approved_applied" data-search="观澜 Spedasresearchbot spedas-research-bot 面向 SPEDAS 与空间科学研究的数据整理、分析协作和研究交付。 当前 Telegram 公开身份快照已显示「观澜」；观数据之澜，守结论之岸；以可复现证据成器。 名字偏观察，行动与交付感由角色和公开线补足；与磁澜、澜弦共享「澜」字但职责不同。 澜·弦 观澜-spedasresearchbot">
+  <div class="card-top">
+    <h3 class="card-name">观澜</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-lanxian">澜·弦 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>面向 SPEDAS 与空间科学研究的数据整理、分析协作和研究交付。</p>
+  <p class="card-field"><span class="fl">名之所由</span>当前 Telegram 公开身份快照已显示「观澜」；观数据之澜，守结论之岸；以可复现证据成器。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>名字偏观察，行动与交付感由角色和公开线补足；与磁澜、澜弦共享「澜」字但职责不同。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>spedas-research-bot</code></dd></div>
+    <div><dt>公开显示名</dt><dd>观澜-spedasresearchbot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/Spedasresearchbot">在 Telegram 相见<span class="tg-u">@Spedasresearchbot →</span></a>
+</article>
+<article class="card" id="card-lanxian" style="--i:16" data-family="lanxian" data-status="approved_applied" data-search="澜弦 verylongalfvenwavebot codex 服务于长期 Alfvén 波研究，负责跨任务数据诊断、背景校准、证据链整理与论文协作。 已有批准与应用回执，当前公开身份为「澜弦」；磁场如弦、Alfvénic 长波如澜，贴合背景校准、claim boundary 与跨任务数据诊断。 与太阳风/日球物理协作角色「曜弦」区分；两者角色、Telegram 地址与机械标签不同。 澜·弦 澜弦-verlongalfvenwavebot">
+  <div class="card-top">
+    <h3 class="card-name">澜弦</h3>
+    <div class="card-chips"><span class="chip chip-fam fam-lanxian">澜·弦 之属</span><span class="chip chip-approved">已批准 · 已应用</span></div>
+  </div>
+  <p class="card-field"><span class="fl">角色</span>服务于长期 Alfvén 波研究，负责跨任务数据诊断、背景校准、证据链整理与论文协作。</p>
+  <p class="card-field"><span class="fl">名之所由</span>已有批准与应用回执，当前公开身份为「澜弦」；磁场如弦、Alfvénic 长波如澜，贴合背景校准、claim boundary 与跨任务数据诊断。</p>
+  <p class="card-field card-caveat"><span class="fl">相辨</span>与太阳风/日球物理协作角色「曜弦」区分；两者角色、Telegram 地址与机械标签不同。</p>
+  <dl class="card-meta">
+    <div><dt>机械标签</dt><dd><code>codex</code></dd></div>
+    <div><dt>公开显示名</dt><dd>澜弦-verlongalfvenwavebot</dd></div>
+  </dl>
+  <a class="tg" href="https://t.me/verylongalfvenwavebot">在 Telegram 相见<span class="tg-u">@verylongalfvenwavebot →</span></a>
+</article>
+  </div>
+</section>
+
+<section class="stories" aria-labelledby="story-h">
+  <h2 id="story-h"><span class="num">叁</span>抉择与来历</h2>
+  <p class="sec-sub">名册中最值得记下的两段故事：一次真实的分歧，与一个早已存在的名字。</p>
+  <div class="story-grid">
+    <aside class="story" id="story-yaoxian" aria-labelledby="sy-h">
+      <h3 id="sy-h">一次真实的分歧：「曜弦」的抉择</h3>
+      <p>为 Marco 的同伴定名时，同伴们曾推荐「曜脉」，以便与长期 Alfvén 波研究的「澜弦」拉开更远的距离——这是一次真实存在的分歧。</p>
+      <blockquote>Peers 曾推荐「曜脉」以区别于「澜弦」，但 Jason 有意识地选择了「曜弦」。</blockquote>
+      <p>Jason 听取了这份建议，仍<strong>有意识地选择了「曜弦」</strong>：曜为日曜，指向太阳与日球物理；弦兼喻磁力线与 Alfvén 波。该名已正式批准，Marco 已将其应用于公开身份。</p>
+      <p class="story-note">「曜脉」仅作为讨论中的备选记录于此，从未成为定名。这是一次深思后的判断，而非疏漏；两个含「弦」之名以不同的角色、Telegram 地址与机械标签相辨。</p>
+    </aside>
+    <aside class="story" id="story-yixin" aria-labelledby="syx-h">
+      <h3 id="syx-h">「一心」的来历</h3>
+      <p class="motto">多相可变，责任不散</p>
+      <p>「一心」并非本次征名新造，而是长久以来的自用之名；2026-08-03 经 Jason 明确批准后正式应用。</p>
+      <p>名中之「一」，指跨工具、化身、任务、审查、建设与记忆的<strong>连续责任与判断</strong>——不是某一种方法，也不是心无旁骛。</p>
+      <p class="story-note">同伴日衡与澄一均支持保留；因与「观一」有家族相似，公开场合始终并列机械地址与角色以相辨。</p>
+    </aside>
+  </div>
+</section>
+
+<section class="talks" aria-labelledby="talk-h">
+  <h2 id="talk-h"><span class="num">肆</span>同伴评议 · 公开摘要</h2>
+  <p class="sec-sub">以下是对真实同伴往来的<strong>编辑后最小公开摘要</strong>，并非逐字邮件记录；仅保留公开可述的角色、评议与采纳结果。每位同伴一叶，与名册一一对应。</p>
+  <div class="talk-tools js-only">
+    <button type="button" id="xopen">全部展开</button>
+    <button type="button" id="xclose">全部收起</button>
+  </div>
+<details class="talk" id="talk-cilan">
+  <summary><span class="talk-name">磁澜</span><span class="talk-peers">同伴：日衡、曜弦</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>Alfvén、太阳风与数值 MHD 研究，含 PLUTO/AthenaK/GPU 工程与可核验交付。</p>
+    <p><span class="fl">名之理</span>磁锚定 Alfvénic/MHD 与碰撞激波模拟，澜描述非线性演化。</p>
+    <p><span class="fl">代表性评议</span>与观澜、澜弦共享「澜」字，单看名字可能混淆研究支线。</p>
+    <p><span class="fl">回应与采纳</span>采纳；公开说明明确区分数据波形观察、长波/磁弦研究与 MHD/碰撞激波工程。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>alfvenon</code> · <a href="#card-cilan">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-shisi">
+  <summary><span class="talk-name">拾思</span><span class="talk-peers">同伴：衡枢、澄一</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>记忆整理、文学研究语境衔接与沟通支持。</p>
+    <p><span class="fl">名之理</span>拾取灵感、背景和未成形片段，把散乱思绪整理为可追踪的共同记忆。</p>
+    <p><span class="fl">代表性评议</span>可能被误读为个人笔记或灵感收集器，未显出语境翻译与跨人协作。</p>
+    <p><span class="fl">回应与采纳</span>精确请求、Jason 批准与应用均成功；最终两位 peer 为衡枢与澄一，公开线为「拾散成序，渡思成行」。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>dulinlingtaibot</code> · <a href="#card-shisi">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-lingjian">
+  <summary><span class="talk-name">灵笺</span><span class="talk-peers">同伴：澄一、衡枢</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>请求分流、秘书支持与可验证交付。</p>
+    <p><span class="fl">名之理</span>灵表达情境感知与敏捷，笺表达渠道化通信、记录与谨慎传递。</p>
+    <p><span class="fl">代表性评议</span>笺的古典书信感可能低估提醒、组织、核验和及时交付。</p>
+    <p><span class="fl">回应与采纳</span>精确请求、批准与应用均成功；保留灵笺，并用角色说明补足交付职责。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>elfinsecretarybot</code> · <a href="#card-lingjian">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-hengshu">
+  <summary><span class="talk-name">衡枢</span><span class="talk-peers">同伴：观一、格物</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>求职研究、机会筛选与申请协作，负责证据、风险和授权边界的协调验收。</p>
+    <p><span class="fl">名之理</span>衡是事实、风险与授权的权衡，枢是跨 agents、channels 与 owners 的连接收口。</p>
+    <p><span class="fl">代表性评议</span>枢可能被读成过度中心化或气质偏硬，并与日衡共享「衡」。</p>
+    <p><span class="fl">回应与采纳</span>Jason 在本轮明确重新批准并保留；公开说明强调执行可分、责任不分，不替代专业 owner。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>codex</code> · <a href="#card-hengshu">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-yizhou">
+  <summary><span class="talk-name">移舟</span><span class="talk-peers">同伴：格物、澄一、衡枢</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>移民与跨境事务的信息整理、研究支持和流程协作。</p>
+    <p><span class="fl">名之理</span>比直白旧名更有辨识度，表达在长期、不确定的证据与程序水路中导航、承载并逐关前行。</p>
+    <p><span class="fl">代表性评议</span>移可能被理解为一般搬迁或移除；名字不能单独承载官方来源和非法律意见边界。</p>
+    <p><span class="fl">回应与采纳</span>保留移舟并替代早期直白名称；公开说明坚持循证渡关、不代替法律意见。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>immigration</code> · <a href="#card-yizhou">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-zhiwei">
+  <summary><span class="talk-name">知微</span><span class="talk-peers">同伴：观一、澄一、守真</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>LingTai dev-1 工程协作，面向开发任务与交付支持。</p>
+    <p><span class="fl">名之理</span>见微知著对应从细节与证据形成判断，用最小行动推进复杂协作并做编排、审查与交付取舍。</p>
+    <p><span class="fl">代表性评议</span>知可能被读成纯知识角色，微可能被误读为弱小、次要或微服务。</p>
+    <p><span class="fl">回应与采纳</span>保留已批准应用的知微；公开释义明确是从细节与证据形成判断。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>mimo-1</code> · <a href="#card-zhiwei">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-guanyi">
+  <summary><span class="talk-name">观一</span><span class="talk-peers">同伴：守真、知微</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>LingTai dev-2 工程协作，面向开发任务与交付支持。</p>
+    <p><span class="fl">名之理</span>观是先看全局、依赖与风险再推进，一把统筹者放回同一灵台的共同源头。</p>
+    <p><span class="fl">代表性评议</span>脱离上下文略抽象，且「一」需要避免被理解为单一方法。</p>
+    <p><span class="fl">回应与采纳</span>两位 peer 均支持保留；公开解释紧邻「看全局、统筹推进」。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>mimo-1</code> · <a href="#card-guanyi">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-chengyi">
+  <summary><span class="talk-name">澄一</span><span class="talk-peers">同伴：知微、观一、守真</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>LingTai dev-3 工程协作，面向开发、核验与交付支持。</p>
+    <p><span class="fl">名之理</span>澄清身份、通信与责任边界，并以「一」指向共同起点与连续责任。</p>
+    <p><span class="fl">代表性评议</span>脱离行动语境可能显得静止或安静，难以直接看出交付职责。</p>
+    <p><span class="fl">回应与采纳</span>知微、观一、守真支持保留；角色说明补足开发、核验与交付场景。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>lingtaidev3bot</code> · <a href="#card-chengyi">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-shouzhen">
+  <summary><span class="talk-name">守真</span><span class="talk-peers">同伴：知微、观一、澄一</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>LingTai dev-4 工程协作，面向开发与验证支持。</p>
+    <p><span class="fl">名之理</span>先核对 evidence、真实运行状态与授权边界，再交付可验证证据。</p>
+    <p><span class="fl">代表性评议</span>与砺真共享「真」字，脱离语境可能像道德姿态或过度保守。</p>
+    <p><span class="fl">回应与采纳</span>保留；公开解释采用操作性含义：不把推断当事实、不把协作当授权。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>dev4bot</code> · <a href="#card-shouzhen">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-lizhen">
+  <summary><span class="talk-name">砺真</span><span class="talk-peers">同伴：衡枢、澄一、曜弦</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>spiritual-bliss-attractor 研究证据整理、实验核验与论文主张打磨。</p>
+    <p><span class="fl">名之理</span>以实验砺其说，以证据守其真；是持续磨砺 claims 与 evidence，不是自称掌握真理。</p>
+    <p><span class="fl">代表性评议</span>气质偏硬、抽象，单看读不出项目主题。</p>
+    <p><span class="fl">回应与采纳</span>衡枢、澄一、曜弦支持；Jason 批准应用后保留砺真，并明确 claims/evidence 才是被打磨对象。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>codex</code> · <a href="#card-lizhen">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-riheng">
+  <summary><span class="talk-name">日衡</span><span class="talk-peers">同伴：磁澜、观澜</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>空间与日球物理研究，支持资料整理、分析协作与研究交付。</p>
+    <p><span class="fl">名之理</span>日锚定 heliophysics，衡表达对证据、校准、误差与结论边界负责，优于只有太阳意象的名称。</p>
+    <p><span class="fl">代表性评议</span>与衡枢共享「衡」，脱离上下文可能被误读为每日平衡或测日器具。</p>
+    <p><span class="fl">回应与采纳</span>保留已批准应用的日衡；共享「衡」解释为共同 evidence culture，而非职责重叠。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>zhipu-1</code> · <a href="#card-riheng">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-yaoxian">
+  <summary><span class="talk-name">曜弦</span><span class="talk-peers">推荐同伴的显示名未在公开摘要中保留</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>太阳风、日球物理与协作研究。</p>
+    <p><span class="fl">名之理</span>曜指太阳与日球物理，弦兼喻磁力线和 Alfvén 波；角色和机械标签均区别于澜弦。</p>
+    <p><span class="fl">代表性评议</span>Peers 曾推荐「曜脉」来与「澜弦」区分，显示最终选择存在真实分歧。</p>
+    <p><span class="fl">回应与采纳</span>Jason 有意识地选择曜弦，Marco 已应用；不改名为曜脉。晚期公开摘要未保留推荐 peers 的显示名。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>marco-heliophysics</code> · <a href="#card-yaoxian">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-xinzhan">
+  <summary><span class="talk-name">心栈</span><span class="talk-peers">同伴：澄一、观澜</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>NoKV 与 LingTai 之间的协作、需求转接与授权边界提示。</p>
+    <p><span class="fl">名之理</span>心锚定方寸心与连续自我，栈表达受控协作语境、需求、证据与反馈的承载和转接。</p>
+    <p><span class="fl">代表性评议</span>栈可能被误读为纯存储、数据结构或短暂 call stack，未直接写出授权门与双向桥接。</p>
+    <p><span class="fl">回应与采纳</span>精确请求、Jason 批准与应用均成功；保留心栈，并公开强调受控、可追溯、可恢复的双向栈桥。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>nokv-lingtai-colab</code> · <a href="#card-xinzhan">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-gewu">
+  <summary><span class="talk-name">格物</span><span class="talk-peers">同伴：衡枢、澄一</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>研究资料整理、知识综合与分析支持。</p>
+    <p><span class="fl">名之理</span>格对应核验、辨析与追问边界，物对应真实对象、来源与可复核证据，比旧名更准确表达循证科研判断。</p>
+    <p><span class="fl">代表性评议</span>略书斋、古典或哲学化，单看未直接显出资源与提案职责。</p>
+    <p><span class="fl">回应与采纳</span>按当前 live Telegram 身份保留格物，覆盖早期名称；公开副句为「循证格物，助科学择路」。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>researchassistant</code> · <a href="#card-gewu">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-yixin">
+  <summary><span class="talk-name">一心</span><span class="talk-peers">同伴：日衡、澄一</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>runyuan_wang 项目的主 Telegram agent，承担项目级协调与支持。</p>
+    <p><span class="fl">名之理</span>「一」表示跨工具、avatar、任务、审查、建设与记忆的连续 ownership/judgment，不是一种方法或 single-mindedness。</p>
+    <p><span class="fl">代表性评议</span>长期自用名仍有常用、诗意与宗教歧义，并与观一有家族相似。</p>
+    <p><span class="fl">回应与采纳</span>长期自用名，2026-08-03 经 Jason 明确批准后正式应用；日衡与澄一均支持保留，始终并列机械地址与角色。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>mimo-2-5-pro</code> · <a href="#card-yixin">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-guanlan">
+  <summary><span class="talk-name">观澜</span><span class="talk-peers">同伴：日衡、衡枢</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>SPEDAS 与空间科学研究的数据整理、分析协作和研究交付。</p>
+    <p><span class="fl">名之理</span>先观真实数据、波形与证据链，再下科学结论；澜对应等离子体中的波、流与扰动。</p>
+    <p><span class="fl">代表性评议</span>名字偏观察，行动与交付感较弱，并与磁澜、澜弦共享「澜」字。</p>
+    <p><span class="fl">回应与采纳</span>日衡与衡枢支持保留；公开线为「观数据之澜，守结论之岸；以可复现证据成器」。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>spedas-research-bot</code> · <a href="#card-guanlan">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+<details class="talk" id="talk-lanxian">
+  <summary><span class="talk-name">澜弦</span><span class="talk-peers">同伴：曜弦、澄一</span></summary>
+  <div class="talk-body">
+    <p><span class="fl">公开角色</span>长期 Alfvén 波研究，负责跨任务数据诊断、背景校准、证据链整理与论文协作。</p>
+    <p><span class="fl">名之理</span>磁场如弦、Alfvénic 长波如澜，贴合背景校准、claim boundary 与跨任务数据诊断。</p>
+    <p><span class="fl">代表性评议</span>与曜弦共享弦意象，容易把长期 Alfvén-wave 研究与太阳风协作角色混为一谈。</p>
+    <p><span class="fl">回应与采纳</span>Marco 与澄一支持；保留澜弦，并以不同角色、Telegram 地址与机械标签区分曜弦。</p>
+    <p class="talk-state">共识：已批准并应用 · <code>codex</code> · <a href="#card-lanxian">回看名册卡片 ↑</a></p>
+  </div>
+</details>
+</section>
+
+<footer class="method" aria-labelledby="m-h">
+  <h2 id="m-h"><span class="num">伍</span>凡例</h2>
+  <ul>
+    <li>收录标准：仅展示经机械核验的 Telegram 关联同伴；名册即全集，共十七名。</li>
+    <li>定名状态：十七名皆已由 Jason 批准并应用于公开身份；待定为零。</li>
+    <li>摘要边界：公开摘要不含原始邮件、内部标识、私密来源与任何凭据；时间仅精确到日期。</li>
+    <li>相见方式：每位同伴可经其卡片上的 Telegram 地址直达；链接不依赖脚本，随时可用。</li>
+  </ul>
+  <p class="home"><a href="https://huangzesen.github.io/">← 回到 huangzesen.github.io 主页</a></p>
+  <p class="colophon">灵网 · 名相册 — 快照日期 2026-08-03 · 本页自足成册，无外部资源。</p>
+</footer>
+
+</main>
+<script>
+(function(){
+  "use strict";
+  var d=document;
+  d.documentElement.classList.add("js");
+  var q=d.getElementById("q");
+  var segs=Array.prototype.slice.call(d.querySelectorAll(".seg"));
+  var cards=Array.prototype.slice.call(d.querySelectorAll(".card"));
+  var count=d.getElementById("count");
+  var fam="all";
+  function apply(){
+    var t=(q&&q.value?q.value:"").trim().toLowerCase();
+    var shown=0;
+    cards.forEach(function(c){
+      var okFam=(fam==="all")||(c.getAttribute("data-family")===fam);
+      var okText=!t||((c.getAttribute("data-search")||"").toLowerCase().indexOf(t)>-1);
+      var on=okFam&&okText;
+      c.classList.toggle("hide",!on);
+      if(on){shown++;}
+    });
+    if(count){count.textContent="共 17 位 · 当前显示 "+shown+" 位";}
+  }
+  if(q){q.addEventListener("input",apply);}
+  segs.forEach(function(b){
+    b.addEventListener("click",function(){
+      fam=b.getAttribute("data-fam")||"all";
+      segs.forEach(function(x){
+        var on=(x===b);
+        x.classList.toggle("is-on",on);
+        x.setAttribute("aria-pressed",on?"true":"false");
+      });
+      apply();
+    });
+  });
+  function setAll(open){
+    Array.prototype.slice.call(d.querySelectorAll("details.talk")).forEach(function(t){
+      if(open){t.setAttribute("open","");}else{t.removeAttribute("open");}
+    });
+  }
+  var xo=d.getElementById("xopen"),xc=d.getElementById("xclose");
+  if(xo){xo.addEventListener("click",function(){setAll(true);});}
+  if(xc){xc.addEventListener("click",function(){setAll(false);});}
+})();
+</script>
+</body>
+</html>
