@@ -360,6 +360,8 @@
     });
 
     const ranks = {};
+    const barsLayer = svg('g', { 'data-layer': 'daemon-durations' });
+    const dotsLayer = svg('g', { 'data-layer': 'daemon-completions' });
     data.dispatches.forEach(group => { ranks[group.groupId] = 0; });
     data.daemons.forEach(item => {
       const base = groupBase[item.groupId];
@@ -374,7 +376,7 @@
           height: 1.4, rx: .7, class: selectedClass('tl-duration', 'daemon', item.id), fill: color
         });
         bindInteractive(bar, 'daemon', item, item.finishedAt, `${item.repo}#${item.issue}: ${item.title}`);
-        ui.svg.append(bar);
+        barsLayer.append(bar);
       }
       if (inView(item.finishedAt, (state.viewEnd - state.viewStart) * .02)) {
         const dot = svg('circle', {
@@ -384,9 +386,10 @@
         });
         bindInteractive(dot, 'daemon', item, item.finishedAt, `${item.repo}#${item.issue}: ${item.title}`);
         state.playbackNodes.push({ node: dot, time: asTime(item.finishedAt) });
-        ui.svg.append(dot);
+        dotsLayer.append(dot);
       }
     });
+    ui.svg.append(barsLayer, dotsLayer);
   }
 
   function drawPRs() {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-09T07:38:03Z",
+  "generatedAt": "2026-08-09T07:53:26Z",
   "meta": {
     "titleEn": "103 Agents · One Shared Clock",
     "titleZh": "103 个 Agent · 一条共享时间轴",
@@ -1683,7 +1683,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1253",
       "openedAt": "2026-08-09T02:15:11Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-21b1",
       "sequence": 1
     },
@@ -1696,7 +1696,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1254",
       "openedAt": "2026-08-09T02:15:13Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-0025",
       "sequence": 2
     },
@@ -1709,7 +1709,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1255",
       "openedAt": "2026-08-09T02:15:25Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-cb93",
       "sequence": 3
     },
@@ -1722,7 +1722,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1256",
       "openedAt": "2026-08-09T02:15:31Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-ba83",
       "sequence": 4
     },
@@ -1735,7 +1735,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1257",
       "openedAt": "2026-08-09T02:15:42Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-aecb",
       "sequence": 5
     },
@@ -1748,7 +1748,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1258",
       "openedAt": "2026-08-09T02:16:21Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-f507",
       "sequence": 6
     },
@@ -1761,7 +1761,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1259",
       "openedAt": "2026-08-09T02:16:27Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-31f5",
       "sequence": 7
     },
@@ -1774,7 +1774,7 @@
       "prRepo": "lingtai",
       "prUrl": "https://github.com/Lingtai-AI/lingtai/pull/821",
       "openedAt": "2026-08-09T02:16:39Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-56de",
       "sequence": 8
     },
@@ -1787,7 +1787,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1260",
       "openedAt": "2026-08-09T02:16:40Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-db77",
       "sequence": 9
     },
@@ -1800,7 +1800,7 @@
       "prRepo": "lingtai",
       "prUrl": "https://github.com/Lingtai-AI/lingtai/pull/822",
       "openedAt": "2026-08-09T02:17:05Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-b4f0",
       "sequence": 10
     },
@@ -1813,7 +1813,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1261",
       "openedAt": "2026-08-09T02:17:06Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-8c9c",
       "sequence": 11
     },
@@ -1826,7 +1826,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1262",
       "openedAt": "2026-08-09T02:17:10Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-a75a",
       "sequence": 12
     },
@@ -1839,7 +1839,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1263",
       "openedAt": "2026-08-09T02:17:11Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-0470",
       "sequence": 13
     },
@@ -1852,7 +1852,7 @@
       "prRepo": "lingtai",
       "prUrl": "https://github.com/Lingtai-AI/lingtai/pull/823",
       "openedAt": "2026-08-09T02:17:52Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-b987",
       "sequence": 14
     },
@@ -1865,7 +1865,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1264",
       "openedAt": "2026-08-09T02:18:20Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-a99d",
       "sequence": 15
     },
@@ -1878,7 +1878,7 @@
       "prRepo": "lingtai",
       "prUrl": "https://github.com/Lingtai-AI/lingtai/pull/824",
       "openedAt": "2026-08-09T02:18:24Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-4490",
       "sequence": 16
     },
@@ -1891,7 +1891,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1265",
       "openedAt": "2026-08-09T02:18:31Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-aa76",
       "sequence": 17
     },
@@ -1904,7 +1904,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1266",
       "openedAt": "2026-08-09T02:18:32Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-0af1",
       "sequence": 18
     },
@@ -1917,7 +1917,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1267",
       "openedAt": "2026-08-09T02:18:35Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-3bab",
       "sequence": 19
     },
@@ -1930,7 +1930,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1268",
       "openedAt": "2026-08-09T02:18:43Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-1aa5",
       "sequence": 20
     },
@@ -1943,7 +1943,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1269",
       "openedAt": "2026-08-09T02:18:48Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-ac93",
       "sequence": 21
     },
@@ -1956,7 +1956,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1270",
       "openedAt": "2026-08-09T02:19:11Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-6417",
       "sequence": 22
     },
@@ -1969,7 +1969,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1271",
       "openedAt": "2026-08-09T02:19:34Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-92c9",
       "sequence": 23
     },
@@ -1982,7 +1982,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1272",
       "openedAt": "2026-08-09T02:19:52Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-f855",
       "sequence": 24
     },
@@ -1995,7 +1995,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1273",
       "openedAt": "2026-08-09T02:19:57Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-2a0e",
       "sequence": 25
     },
@@ -2008,7 +2008,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1274",
       "openedAt": "2026-08-09T02:20:01Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-f12b",
       "sequence": 26
     },
@@ -2021,7 +2021,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1275",
       "openedAt": "2026-08-09T02:20:06Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-5f2a",
       "sequence": 27
     },
@@ -2034,7 +2034,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1276",
       "openedAt": "2026-08-09T02:20:08Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-1926",
       "sequence": 28
     },
@@ -2047,7 +2047,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1277",
       "openedAt": "2026-08-09T02:20:36Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-4b56",
       "sequence": 29
     },
@@ -2060,7 +2060,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1278",
       "openedAt": "2026-08-09T02:21:20Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-36fa",
       "sequence": 30
     },
@@ -2073,7 +2073,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1279",
       "openedAt": "2026-08-09T02:21:20Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-2e3b",
       "sequence": 31
     },
@@ -2086,7 +2086,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1280",
       "openedAt": "2026-08-09T02:21:28Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-903b",
       "sequence": 32
     },
@@ -2099,7 +2099,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1281",
       "openedAt": "2026-08-09T02:21:28Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-01c2",
       "sequence": 33
     },
@@ -2112,7 +2112,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1282",
       "openedAt": "2026-08-09T02:21:30Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-720c",
       "sequence": 34
     },
@@ -2125,7 +2125,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1283",
       "openedAt": "2026-08-09T02:21:37Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-6e41",
       "sequence": 35
     },
@@ -2138,7 +2138,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1284",
       "openedAt": "2026-08-09T02:21:45Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-62a3",
       "sequence": 36
     },
@@ -2151,7 +2151,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1285",
       "openedAt": "2026-08-09T02:21:59Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-33ea",
       "sequence": 37
     },
@@ -2164,7 +2164,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1286",
       "openedAt": "2026-08-09T02:22:04Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-a60d",
       "sequence": 38
     },
@@ -2177,7 +2177,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1287",
       "openedAt": "2026-08-09T02:22:36Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-c4f5",
       "sequence": 39
     },
@@ -2190,7 +2190,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1288",
       "openedAt": "2026-08-09T02:22:55Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-c8d8",
       "sequence": 40
     },
@@ -2203,7 +2203,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1289",
       "openedAt": "2026-08-09T02:22:59Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-ab55",
       "sequence": 41
     },
@@ -2216,7 +2216,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1290",
       "openedAt": "2026-08-09T02:23:20Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-cee1",
       "sequence": 42
     },
@@ -2229,7 +2229,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1291",
       "openedAt": "2026-08-09T02:24:53Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-a97d",
       "sequence": 43
     },
@@ -2242,7 +2242,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1292",
       "openedAt": "2026-08-09T02:27:22Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-5a5f",
       "sequence": 44
     },
@@ -2255,7 +2255,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1293",
       "openedAt": "2026-08-09T02:38:05Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-8c63",
       "sequence": 45
     },
@@ -2268,7 +2268,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1294",
       "openedAt": "2026-08-09T02:39:01Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-5e0a",
       "sequence": 46
     },
@@ -2281,7 +2281,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1295",
       "openedAt": "2026-08-09T02:39:11Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-c93c",
       "sequence": 47
     },
@@ -2294,7 +2294,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1296",
       "openedAt": "2026-08-09T02:41:55Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-0ee9",
       "sequence": 48
     },
@@ -2307,7 +2307,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1298",
       "openedAt": "2026-08-09T02:51:19Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-9181",
       "sequence": 49
     },
@@ -2320,7 +2320,7 @@
       "prRepo": "lingtai-kernel",
       "prUrl": "https://github.com/Lingtai-AI/lingtai-kernel/pull/1299",
       "openedAt": "2026-08-09T02:52:14Z",
-      "timeEvidence": "first exact PR URL in daemon daemon_tool_result",
+      "timeEvidence": "exact PR URL from daemon_tool_result (gh pr create)",
       "daemonId": "em-4cdd",
       "sequence": 50
     }
