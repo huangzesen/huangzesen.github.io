@@ -357,16 +357,7 @@
 }
 
 #timeline .tl-zoom-hint {
-  position: absolute;
-  right: 12px;
-  top: 10px;
-  padding: 5px 8px;
-  border: 1px solid var(--tl-line);
-  border-radius: 999px;
-  color: var(--tl-muted);
-  background: color-mix(in srgb, var(--tl-surface) 90%, transparent);
-  font-size: .7rem;
-  pointer-events: none;
+  display: none;
 }
 
 #timeline .tl-grid-line,
@@ -402,17 +393,17 @@
 }
 
 #timeline .tl-axis-label {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 #timeline .tl-lane-label {
   fill: var(--tl-text);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 800;
 }
 
 #timeline .tl-lane-sub {
-  font-size: 9px;
+  font-size: 11px;
 }
 
 #timeline .tl-concurrency-area {
@@ -576,10 +567,13 @@
 }
 
 #timeline .tl-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
   padding: 10px 14px 13px;
   border-top: 1px solid var(--tl-line);
   color: var(--tl-muted);
-  font-size: .72rem;
+  font-size: .78rem;
 }
 
 #timeline .tl-legend-item {

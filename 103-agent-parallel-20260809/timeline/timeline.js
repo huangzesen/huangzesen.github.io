@@ -265,9 +265,11 @@
   function configureState() {
     state.fullStart = asTime(data.meta.windowStart);
     state.fullEnd = asTime(data.meta.windowEnd);
-    state.viewStart = state.fullStart;
-    state.viewEnd = state.fullEnd;
-    state.playhead = state.fullStart;
+    const daemonStarts = data.daemons.map(item => asTime(item.startedAt));
+    const daemonEnds = data.daemons.map(item => asTime(item.finishedAt));
+    state.viewStart = Math.max(state.fullStart, Math.min(...daemonStarts) - 2 * 60000);
+    state.viewEnd = Math.min(state.fullEnd, Math.max(...daemonEnds) + 6 * 60000);
+    state.playhead = state.viewStart;
     state.selected = { kind: 'incident', id: 'artifact-001' };
     state.focusedEvent = 'artifact-001';
     root.dataset.theme = state.theme;
