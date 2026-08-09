@@ -179,10 +179,10 @@
   <div class="card c-blue"><div class="num">≈254M</div><div class="lbl">缓存命中（cached）</div></div>
   <div class="card c-violet"><div class="num">≈3.9M</div><div class="lbl">输出 token（out）</div></div>
 </div>
-<div class="note">独立复核（<code>logs/token_ledger.jsonl</code> + 各 daemon 的 <code>daemon.json#tokens</code>）：本批 106 个 daemon 运行（103 个 issue + 3 个补跑/重派）合计输入 ≈283M、缓存 ≈276M、输出 ≈4.1M + thinking ≈1.9M，与 taskcard 快照数值同一量级；<code>token_state.json</code>（02:14Z 快照，父会话）为 14.4M in / 13.8M cached。缓存命中率约 97–98%，批量并行下上下文缓存收益显著。</div>
+<div class="note">独立复核（token 台账 + 各 daemon 的 token 元数据）：本批 106 个 daemon 运行（103 个 issue + 3 个补跑/重派）合计输入 ≈283M、缓存 ≈276M、输出 ≈4.1M + thinking ≈1.9M，与 taskcard 快照数值同一量级；父会话快照（02:14Z）为 14.4M in / 13.8M cached。缓存命中率约 97–98%，批量并行下上下文缓存收益显著。</div>
 
 <h2>四、失败分析（4 个失败，全部恢复）</h2>
-<p>103+ 个 daemon 运行中共 4 个未按契约正常收尾，逐一核实（<code>daemons/em-*/logs/events.jsonl</code>）：</p>
+<p>103+ 个 daemon 运行中共 4 个未按契约正常收尾，逐一核实（各 daemon 运行日志）：</p>
 <table>
   <tr><th>Issue</th><th>原始 daemon</th><th>失败类型</th><th>耗时</th><th>恢复方式</th></tr>
   <tr><td><a href="https://github.com/Lingtai-AI/lingtai/issues/672">lingtai#672</a></td><td>em-e708</td><td><b>max_turns 耗尽</b>（<code>max_turns exhausted before the daemon completed its tool chain</code>）</td><td>1019s（02:27Z）</td><td>proposal.md 在失败前已落盘（COMMENT-ROUTE 处置），交付物完整</td></tr>
@@ -196,7 +196,7 @@
 <p>针对“并发 103 个 daemon 是否触发大量限流”做了专项核查：</p>
 <ul>
   <li><b>11 个 daemon 目录</b>的事件日志中出现 rate-limit 相关文本（retry_after / RateLimitError / usage_limit_reached / “rate limit” 等关键词），但<b>没有任何一个因此失败</b>——4 个失败全部是 max_turns / finish 契约问题，与限流无关。</li>
-  <li>主 <code>logs/events.jsonl</code> 历史日志中：<b>HTTP 429 相关 91 处、retry_after 出现 1,947 次</b>（历史累计，含 7 月以来的长期运行；其中大量 retry_after 来自 Telegram Bot API 限流处理代码的讨论/实现记录，而非本批 103 daemon 的实时 429 洪泛）。</li>
+  <li>主运行日志中：<b>HTTP 429 相关 91 处、retry_after 出现 1,947 次</b>（历史累计，含 7 月以来的长期运行；其中大量 retry_after 来自 Telegram Bot API 限流处理代码的讨论/实现记录，而非本批 103 daemon 的实时 429 洪泛）。</li>
 </ul>
 <div class="warn">说明：主日志计数为历史累计口径（含 7-16 起所有 daemon），与本批并发无直接因果；本批 103 daemon 的实时运行中未见因限流导致的失败。个别较难 issue（如 kernel#664 的 PR 路径）被 shell 工具故障阻断，已在 COMMENT 中记录待跟进。</div>
 
@@ -222,7 +222,7 @@
   <tr><td>批次 1</td><td>前 5 个 PR</td><td>1 APPROVE + 4 REQUEST CHANGES</td></tr>
   <tr><td>批次 2</td><td>#1254 #1255 #1256 #1257 #1258</td><td><b>1 APPROVE</b>（#1254，223 测试通过，关闭 #1238）+ <b>4 REQUEST CHANGES</b>（#1255 sqlite 坏 ts 未兜底；#1256 畸形 IPv6 中止整表 + 不支持 scheme 仍探 port 80；#1257 时区测试泄漏 libc TZ 状态；#1258 listen 并发检查非原子 + 契约未同步），P0 0 / P1 2 / P2 4</td></tr>
 </table>
-<div class="note">进度：<b>批次 1–2 完成（2 APPROVE + 8 REQUEST CHANGES，10/50 已审计）</b>；批次 2 的完整审计报告留档于 <code>mailbox/inbox/20260809T043716-dba8/attachments/fable-audit-batch-2.md</code>（身份/来源核查：所有被审 PR 的作者与提交者均为 <code>Huang Zesen &lt;hzsbazinga@outlook.com&gt;</code>，GitHub 侧 actor 均为 huangzesen，无身份失配；审计为只读，未做任何 GitHub 变更）。REQUEST CHANGES 项将交由后续补丁/跟进处理。</div>
+<div class="note">进度：<b>批次 1–2 完成（2 APPROVE + 8 REQUEST CHANGES，10/50 已审计）</b>；批次 2 的完整审计报告留档于 Fable 审计批次 2 附件（身份/来源核查：所有被审 PR 的作者与提交者均为 <code>Huang Zesen &lt;hzsbazinga@outlook.com&gt;</code>，GitHub 侧 actor 均为 huangzesen，无身份失配；审计为只读，未做任何 GitHub 变更）。REQUEST CHANGES 项将交由后续补丁/跟进处理。</div>
 
 <h2>八、Squash-first 合并策略</h2>
 <p>50 个 PR 按主题归入 11 个桶（<code>PR_CLASSIFICATION.md</code>），核心策略是「先按文件冲突面规划合并批次，再逐批合入」，要点：</p>
@@ -252,7 +252,7 @@
 </div>
 
 <div class="foot">
-  数据来源：<code>scratch/all-issues-parallel-20260809/</code>（PR_LIST.md · PROPOSAL_INDEX.md · PR_CLASSIFICATION.md · comment-decision-list.md · 各 issue proposal.md · close/fixed-close/repro-close execution receipts）· <code>daemons/</code>（em-*/daemon.json、logs/events.jsonl）· <code>logs/token_ledger.jsonl</code> · mailbox Fable 审计附件。<br>
+  数据来源：各 issue 的 proposal 记录（PR_LIST · PROPOSAL_INDEX · PR_CLASSIFICATION · comment-decision-list · 关闭执行回执）· daemon 运行记录 · token 台账 · Fable 审计报告。<br>
   本报告由 huangzesen.github.io 发布（新增子目录 <code>103-agent-parallel-20260809/</code>，仅新增文件，未改动仓库任何既有内容）。生成时间：2026-08-09 UTC。
 </div>
 
