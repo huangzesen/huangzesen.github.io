@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 1,
-  "generatedAt": "2026-08-09T07:53:26Z",
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-09T08:40:04Z",
   "meta": {
     "titleEn": "103 Agents · One Shared Clock",
     "titleZh": "103 个 Agent · 一条共享时间轴",
@@ -19,7 +19,11 @@
       "comment decision list",
       "token ledger",
       "Fable audit receipts",
-      "Pages git history"
+      "Pages git history",
+      "243 canonical daemon state records",
+      "243 structured daemon event logs · 112,229 JSONL rows",
+      "155 daemon history logs · 12,936 JSONL rows",
+      "GitHub provider rate-limit audit · 32 events · 0 observed HTTP429"
     ]
   },
   "summary": {
@@ -36,7 +40,22 @@
     "close": 14,
     "executedCloses": 23,
     "auditBatches": 9,
-    "auditComplete": 2
+    "auditComplete": 2,
+    "traceAuditFolders": 243,
+    "traceEventLogFiles": 243,
+    "traceEventLogLines": 112229,
+    "traceStructuredErrorEvents": 2234,
+    "traceDone": 192,
+    "traceFailed": 29,
+    "traceTimeout": 11,
+    "traceCancelled": 11,
+    "verifiedRateLimits": 0,
+    "currentWindowIncidents": 10,
+    "currentWindowRateLimits": 0,
+    "currentWindowTerminalFailures": 4,
+    "currentWindowRetries": 2,
+    "currentWindowRecoveries": 2,
+    "currentWindowArtifactsRetained": 2
   },
   "dispatches": [
     {
@@ -1630,10 +1649,12 @@
       "issue": 672,
       "failedAt": "2026-08-09T02:27:32Z",
       "mode": "artifact-salvaged",
-      "noteEn": "The COMMENT proposal already existed and was retained after max-turn exhaustion.",
-      "noteZh": "失败前已生成的提案/分支成果被保留并纳入最终分类。",
+      "noteEn": "Pre-failure artifact evidence was retained after terminal failure; this is not a retry or post-failure recovery.",
+      "noteZh": "失败前成果证据在终态失败后被保留；这不是重试，也不是失败后的恢复。",
       "recoveryDaemonId": null,
-      "recoveredAt": "2026-08-09T02:15:04Z"
+      "artifactProducedAt": "2026-08-09T02:15:04Z",
+      "artifactRetainedAfterFailure": true,
+      "causalClassification": "pre-failure-artifact-evidence"
     },
     {
       "failedDaemonId": "em-6417",
@@ -1641,10 +1662,12 @@
       "issue": 713,
       "failedAt": "2026-08-09T02:20:07Z",
       "mode": "artifact-salvaged",
-      "noteEn": "The PR proposal and branch work were retained after the missing finish-signal failure.",
-      "noteZh": "失败前已生成的提案/分支成果被保留并纳入最终分类。",
+      "noteEn": "Pre-failure artifact evidence was retained after terminal failure; this is not a retry or post-failure recovery.",
+      "noteZh": "失败前成果证据在终态失败后被保留；这不是重试，也不是失败后的恢复。",
       "recoveryDaemonId": null,
-      "recoveredAt": "2026-08-09T02:19:23Z"
+      "artifactProducedAt": "2026-08-09T02:19:23Z",
+      "artifactRetainedAfterFailure": true,
+      "causalClassification": "pre-failure-artifact-evidence"
     },
     {
       "failedDaemonId": "em-5faf",
@@ -2939,5 +2962,1983 @@
     "prOpenedAtFallbacks": [],
     "noteEn": "When an exact PR URL did not appear in daemon tool-result events, proposal.md mtime is retained and explicitly labeled as a fallback; no timestamp was invented.",
     "noteZh": "若 daemon tool-result 中没有精确 PR URL，则保留 proposal.md 修改时间并明确标为回退；未虚构时间戳。"
+  },
+  "trace": {
+    "schemaVersion": 2,
+    "sourceSha256": "ad2d4d82b42658b0a5c4feb537dac9ceaf67fa66e7c3d0a35ee9b8fb3f822968",
+    "auditGeneratedAt": "2026-08-09T08:19:20Z",
+    "summary": {
+      "traceFolders": 243,
+      "eventLogFiles": 243,
+      "eventLogLines": 112229,
+      "historyLogFiles": 155,
+      "historyLogLines": 12936,
+      "sourceJsonlLinesParsed": 125165,
+      "malformedSourceFiles": 0,
+      "states": {
+        "done": 192,
+        "failed": 29,
+        "timeout": 11,
+        "cancelled": 11
+      },
+      "providerRateLimits": 32,
+      "affectedRateLimitedDaemons": 29,
+      "explicitHttp403": 26,
+      "providerBodyWithoutExplicitStatus": 6,
+      "observedHttp429": 0,
+      "rateLimitFirstAt": "2026-08-09T02:10:59Z",
+      "rateLimitLastAt": "2026-08-09T02:12:54Z",
+      "rateLimitSpanSeconds": 115,
+      "rateLimitPeakEventsPerSecond": 3,
+      "rateLimitPeakSeconds": [
+        "2026-08-09T02:12:21Z",
+        "2026-08-09T02:12:24Z"
+      ],
+      "terminalNonSuccess": 51,
+      "publicTerminalFailures": 4,
+      "retryDispatches": 36,
+      "explicitRetryDispatches": 34,
+      "recoveryDispatches": 2,
+      "publicRetryDispatches": 23,
+      "operationalEvents": 59,
+      "artifactRetained": 2,
+      "plottedEvents": 61
+    },
+    "evidencePolicy": {
+      "rateLimitEn": "Count exact GitHub provider rate-limit error bodies in daemon tool results. Exclude quoted prose, issue/code text, tool arguments, and lifecycle copies. Do not relabel provider limits as HTTP429.",
+      "rateLimitZh": "仅统计 daemon 工具结果中 GitHub provider 的确切限流错误正文；排除引用文本、issue/代码内容、工具参数和生命周期副本，且不得把 provider 限流改称 HTTP429。",
+      "http429En": "Observed first-hand HTTP429 responses: 0. Of 32 provider rate-limit events, 26 are HTTP403 and 6 expose the exact body without an explicit status.",
+      "http429Zh": "一手观测到的 HTTP429 响应为 0。32 次 provider 限流中，26 次为 HTTP403，6 次有确切正文但无显式状态码。",
+      "retryEn": "The full corpus proves 34 explicit reattempt dispatches by reasoning + tool_call_id lifecycle and 2 failed-to-recovery dispatches; 23 join to the public timeline window.",
+      "retryZh": "全量语料通过 reasoning + tool_call_id 生命周期确认 34 次显式重试和 2 次失败后恢复重派；其中 23 次关联到公开时间窗。",
+      "artifactEn": "Two artifact timestamps precede terminal failure. They are provenance marks, not retries or backward recovery.",
+      "artifactZh": "两个成果时间戳早于终态失败，只作为溯源标记，不是重试或反向恢复。"
+    },
+    "confidence": {
+      "overall": "high",
+      "rateLimit": "high",
+      "failure": "high",
+      "retry": "high",
+      "limits": [
+        "No first-hand operational 429 response appears in the accepted records; quoted 429 prose is excluded.",
+        "Exact retry ordinals are not emitted because the source proves a reattempt but does not number the full attempt chain."
+      ]
+    },
+    "classificationAudit": {
+      "rateLimitCandidates": {
+        "logicalRecords": 1680,
+        "accepted": 32,
+        "excluded": 1648,
+        "excludedByReason": {
+          "argument_reasoning_or_lifecycle_copy": 507,
+          "conversation_or_task_prose": 470,
+          "final_result_prose": 8,
+          "incidental_identifier_or_filename": 223,
+          "issue_code_docs_or_search_output": 430,
+          "task_or_preview_prose": 10
+        }
+      },
+      "retryKeywordCandidates": {
+        "logicalRecords": 2240,
+        "acceptedExplicitDispatches": 34,
+        "excluded": 2206,
+        "excludedByReason": {
+          "argument_or_lifecycle_copy": 447,
+          "code_docs_manual_or_search_output": 840,
+          "conversation_or_task_prose": 847,
+          "final_result_prose": 21,
+          "generated_summary_copy": 12,
+          "reasoning_about_retry_code_or_docs": 25,
+          "task_or_preview_prose": 14
+        }
+      },
+      "publicRecoveryRows": {
+        "logicalRecords": 4,
+        "acceptedDispatches": 2,
+        "excludedSalvageOnlyRows": 2
+      }
+    },
+    "acceptedEvidenceWindow": {
+      "startedAt": "2026-07-16T05:46:13Z",
+      "finishedAt": "2026-08-09T02:51:48Z"
+    },
+    "plottedWindow": {
+      "startedAt": "2026-08-09T01:50:00Z",
+      "finishedAt": "2026-08-09T07:30:00Z",
+      "originalDaemons": 103,
+      "operationalEventCounts": {
+        "failure": 4,
+        "rate_limit": 32,
+        "retry": 23
+      },
+      "provenanceMarks": 2,
+      "scopeEn": "Concurrency uses the original 103-agent dispatch; 59 source-backed operational events and 2 provenance marks are overlaid.",
+      "scopeZh": "并发曲线使用最初 103 个 Agent 的派发；叠加 59 条有源操作事件和 2 个溯源标记。"
+    },
+    "events": [
+      {
+        "id": "trace-0061",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:10:59Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-355b",
+        "runId": "em-355b",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0062",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:11:01Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-50c7",
+        "runId": "em-50c7",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0063",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:11:02Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-bef8",
+        "runId": "em-bef8",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0064",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:11:07Z",
+        "completedAt": "2026-08-09T02:11:08Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-c4ae",
+        "runId": "em-c4ae",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0065",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:11:22Z",
+        "completedAt": "2026-08-09T02:11:23Z",
+        "state": "rate_limited",
+        "labelEn": "Retry still rate-limited",
+        "labelZh": "重试仍受限流",
+        "relation": "em-50c7",
+        "runId": "em-50c7",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "provider_limited"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0066",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:11:23Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-50c7",
+        "runId": "em-50c7",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "observationOrdinal": 2
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": null,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0067",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:11:29Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-7d5f",
+        "runId": "em-7d5f",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": null,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0068",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:15Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-92c9",
+        "runId": "em-92c9",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0069",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:16Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-8c63",
+        "runId": "em-8c63",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0070",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:17Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-a75a",
+        "runId": "em-a75a",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0071",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:17Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-aa76",
+        "runId": "em-aa76",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0072",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:20Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-1aa5",
+        "runId": "em-1aa5",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0073",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:20Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-6d7e",
+        "runId": "em-6d7e",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0074",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:21Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-609b",
+        "runId": "em-609b",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": null,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0075",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:21Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-6d7e",
+        "runId": "em-6d7e",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 2
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0076",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:21Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-c4f5",
+        "runId": "em-c4f5",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0077",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:22Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-f6b2",
+        "runId": "em-f6b2",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0078",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:24Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-4cdd",
+        "runId": "em-4cdd",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0079",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:24Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-f345",
+        "runId": "em-f345",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0080",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:24Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-f6f6",
+        "runId": "em-f6f6",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0081",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:25Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-75f4",
+        "runId": "em-75f4",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": null,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0082",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:26Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-ab55",
+        "runId": "em-ab55",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0083",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:28Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-6417",
+        "runId": "em-6417",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout",
+            "stderr"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0084",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:29Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-82b0",
+        "runId": "em-82b0",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout",
+            "stderr"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0085",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:30Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-2461",
+        "runId": "em-2461",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0086",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:30Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-a75a",
+        "runId": "em-a75a",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 2
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0087",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:31Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-5c47",
+        "runId": "em-5c47",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0088",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:31Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-ba83",
+        "runId": "em-ba83",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": null,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0089",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:36Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-720c",
+        "runId": "em-720c",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0090",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:12:42Z",
+        "completedAt": "2026-08-09T02:12:42Z",
+        "state": "failed",
+        "labelEn": "Retry failed",
+        "labelZh": "重试失败",
+        "relation": "em-f6b2",
+        "runId": "em-f6b2",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "failed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0091",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:45Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-b40f",
+        "runId": "em-b40f",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0092",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:48Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-0af1",
+        "runId": "em-0af1",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_failed",
+          "commandExitCode": 1,
+          "evidenceFields": [
+            "stdout",
+            "stderr",
+            "warning"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0093",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:51Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-8c9c",
+        "runId": "em-8c9c",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": null,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0094",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:52Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-1787",
+        "runId": "em-1787",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stderr"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0095",
+        "kind": "rate_limit",
+        "timestamp": "2026-08-09T02:12:54Z",
+        "state": "rate_limited",
+        "labelEn": "GitHub API rate limit",
+        "labelZh": "GitHub API 限流",
+        "relation": "em-120d",
+        "runId": "em-120d",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null,
+          "observationOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "tool_result_provider_rate_error",
+        "details": {
+          "provider": "GitHub API",
+          "httpStatus": 403,
+          "providerSignal": "exact_rate_limit_error_body",
+          "dispatchOutcome": "command_completed_with_provider_error",
+          "commandExitCode": 0,
+          "evidenceFields": [
+            "stdout"
+          ]
+        },
+        "evidence": {
+          "basis": "tool_result_provider_rate_error",
+          "precision": "exact",
+          "publicLabel": "daemon tool result · exact GitHub provider error body"
+        }
+      },
+      {
+        "id": "trace-0096",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:13:26Z",
+        "completedAt": "2026-08-09T02:13:47Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-1787",
+        "runId": "em-1787",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0097",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:13:45Z",
+        "completedAt": "2026-08-09T02:13:45Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-6d7e",
+        "runId": "em-6d7e",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0098",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:14:04Z",
+        "completedAt": "2026-08-09T02:14:04Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-362b",
+        "runId": "em-362b",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0099",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:14:24Z",
+        "completedAt": "2026-08-09T02:14:24Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-4b56",
+        "runId": "em-4b56",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0100",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:14:35Z",
+        "completedAt": "2026-08-09T02:14:36Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-bef8",
+        "runId": "em-bef8",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "artifact-001",
+        "kind": "artifact_retained",
+        "timestamp": "2026-08-09T02:15:04Z",
+        "labelEn": "Pre-failure artifact retained",
+        "labelZh": "失败前成果已保留",
+        "relation": "lingtai#672",
+        "causalNote": "Artifact existence predates terminal failure; this is provenance, not a retry or post-failure recovery.",
+        "evidence": {
+          "basis": "artifact existed before terminal failure",
+          "precision": "exact",
+          "publicLabel": "artifact production/retention receipt"
+        }
+      },
+      {
+        "id": "trace-0101",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:07Z",
+        "completedAt": "2026-08-09T02:15:08Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-1aa5",
+        "runId": "em-1aa5",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0102",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:19Z",
+        "completedAt": "2026-08-09T02:15:21Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-5c47",
+        "runId": "em-5c47",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0103",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:22Z",
+        "completedAt": "2026-08-09T02:15:22Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-362b",
+        "runId": "em-362b",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 2
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0104",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:29Z",
+        "completedAt": "2026-08-09T02:15:33Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-c8d8",
+        "runId": "em-c8d8",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0105",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:31Z",
+        "completedAt": "2026-08-09T02:15:54Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-903b",
+        "runId": "em-903b",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "shell",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0106",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:36Z",
+        "completedAt": "2026-08-09T02:15:36Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-8167",
+        "runId": "em-8167",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0107",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:54Z",
+        "completedAt": "2026-08-09T02:15:54Z",
+        "state": "failed",
+        "labelEn": "Retry failed",
+        "labelZh": "重试失败",
+        "relation": "em-4490",
+        "runId": "em-4490",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "failed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0108",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:15:56Z",
+        "completedAt": "2026-08-09T02:15:56Z",
+        "state": "failed",
+        "labelEn": "Retry failed",
+        "labelZh": "重试失败",
+        "relation": "em-ba83",
+        "runId": "em-ba83",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "failed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0109",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:16:15Z",
+        "completedAt": "2026-08-09T02:16:15Z",
+        "state": "failed",
+        "labelEn": "Retry failed",
+        "labelZh": "重试失败",
+        "relation": "em-92c9",
+        "runId": "em-92c9",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "failed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0110",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:17:15Z",
+        "completedAt": "2026-08-09T02:17:15Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-0af1",
+        "runId": "em-0af1",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0111",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:19:01Z",
+        "completedAt": "2026-08-09T02:19:01Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-ab55",
+        "runId": "em-ab55",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "artifact-002",
+        "kind": "artifact_retained",
+        "timestamp": "2026-08-09T02:19:23Z",
+        "labelEn": "Pre-failure artifact retained",
+        "labelZh": "失败前成果已保留",
+        "relation": "lingtai-kernel#713",
+        "causalNote": "Artifact existence predates terminal failure; this is provenance, not a retry or post-failure recovery.",
+        "evidence": {
+          "basis": "artifact existed before terminal failure",
+          "precision": "exact",
+          "publicLabel": "artifact production/retention receipt"
+        }
+      },
+      {
+        "id": "trace-0112",
+        "kind": "terminal_failure",
+        "timestamp": "2026-08-09T02:20:07Z",
+        "state": "failed",
+        "labelEn": "Daemon failed",
+        "labelZh": "子任务失败",
+        "relation": "em-6417",
+        "runId": "em-6417",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null
+        },
+        "sourceFieldEvidenceClass": "terminal_state_and_time",
+        "details": {
+          "terminalState": "failed"
+        },
+        "evidence": {
+          "basis": "terminal_state_and_time",
+          "precision": "exact",
+          "publicLabel": "canonical daemon terminal state + finished_at"
+        }
+      },
+      {
+        "id": "trace-0113",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:21:24Z",
+        "completedAt": "2026-08-09T02:21:24Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-720c",
+        "runId": "em-720c",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0114",
+        "kind": "terminal_failure",
+        "timestamp": "2026-08-09T02:27:32Z",
+        "state": "failed",
+        "labelEn": "Daemon failed",
+        "labelZh": "子任务失败",
+        "relation": "em-e708",
+        "runId": "em-e708",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null
+        },
+        "sourceFieldEvidenceClass": "terminal_state_and_time",
+        "details": {
+          "terminalState": "failed"
+        },
+        "evidence": {
+          "basis": "terminal_state_and_time",
+          "precision": "exact",
+          "publicLabel": "canonical daemon terminal state + finished_at"
+        }
+      },
+      {
+        "id": "trace-0115",
+        "kind": "terminal_failure",
+        "timestamp": "2026-08-09T02:32:28Z",
+        "state": "failed",
+        "labelEn": "Daemon failed",
+        "labelZh": "子任务失败",
+        "relation": "em-5faf",
+        "runId": "em-5faf",
+        "groupId": "dg-20260809-021152-4cb99e",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null
+        },
+        "sourceFieldEvidenceClass": "terminal_state_and_time",
+        "details": {
+          "terminalState": "failed"
+        },
+        "evidence": {
+          "basis": "terminal_state_and_time",
+          "precision": "exact",
+          "publicLabel": "canonical daemon terminal state + finished_at"
+        }
+      },
+      {
+        "id": "trace-0116",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:32:57Z",
+        "completedAt": "2026-08-09T02:39:36Z",
+        "state": "succeeded",
+        "labelEn": "Recovery dispatch succeeded",
+        "labelZh": "恢复调度成功",
+        "relation": "em-c93c",
+        "runId": "em-c93c",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "failed_terminal_then_recovery_start",
+        "details": {
+          "toolClass": "recovery_dispatch",
+          "dispatchResult": "completed",
+          "relatedFailedDaemonId": "em-5faf",
+          "relatedFailureAt": "2026-08-09T02:32:28Z"
+        },
+        "evidence": {
+          "basis": "failed_terminal_then_recovery_start",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0117",
+        "kind": "terminal_failure",
+        "timestamp": "2026-08-09T02:40:49Z",
+        "state": "failed",
+        "labelEn": "Daemon failed",
+        "labelZh": "子任务失败",
+        "relation": "em-b86d",
+        "runId": "em-b86d",
+        "groupId": "dg-20260809-021146-f9ccbb",
+        "attempt": {
+          "isRetry": null,
+          "ordinal": null,
+          "minimumOrdinal": null
+        },
+        "sourceFieldEvidenceClass": "terminal_state_and_time",
+        "details": {
+          "terminalState": "failed"
+        },
+        "evidence": {
+          "basis": "terminal_state_and_time",
+          "precision": "exact",
+          "publicLabel": "canonical daemon terminal state + finished_at"
+        }
+      },
+      {
+        "id": "trace-0118",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:41:09Z",
+        "completedAt": "2026-08-09T02:42:16Z",
+        "state": "succeeded",
+        "labelEn": "Recovery dispatch succeeded",
+        "labelZh": "恢复调度成功",
+        "relation": "em-0ee9",
+        "runId": "em-0ee9",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "failed_terminal_then_recovery_start",
+        "details": {
+          "toolClass": "recovery_dispatch",
+          "dispatchResult": "completed",
+          "relatedFailedDaemonId": "em-b86d",
+          "relatedFailureAt": "2026-08-09T02:40:49Z"
+        },
+        "evidence": {
+          "basis": "failed_terminal_then_recovery_start",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      },
+      {
+        "id": "trace-0119",
+        "kind": "retry",
+        "timestamp": "2026-08-09T02:51:48Z",
+        "completedAt": "2026-08-09T02:51:48Z",
+        "state": "succeeded",
+        "labelEn": "Retry succeeded",
+        "labelZh": "重试成功",
+        "relation": "em-9181",
+        "runId": "em-9181",
+        "groupId": "dg-20260809-021029-bb27eb",
+        "attempt": {
+          "isRetry": true,
+          "ordinal": null,
+          "minimumOrdinal": 2,
+          "reviewedRetryOrdinal": 1
+        },
+        "sourceFieldEvidenceClass": "explicit_reattempt_reasoning_with_dispatch_result",
+        "details": {
+          "toolClass": "file",
+          "dispatchResult": "completed"
+        },
+        "evidence": {
+          "basis": "explicit_reattempt_reasoning_with_dispatch_result",
+          "precision": "exact",
+          "publicLabel": "daemon reasoning + same-call dispatch/result lifecycle"
+        }
+      }
+    ]
   }
 }
