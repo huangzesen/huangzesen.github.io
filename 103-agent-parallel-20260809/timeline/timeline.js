@@ -325,8 +325,9 @@
       `<button class="tl-chip-toggle" style="--chip-color:${color}" type="button" data-layer="${key}" aria-pressed="${state.layers[key] ? 'true' : 'false'}">${escapeHTML(t(label))}</button>`
     ).join('');
     ui.filters.querySelectorAll('[data-layer]').forEach(button => button.addEventListener('click', () => {
-      state.layers[button.dataset.layer] = !state.layers[button.dataset.layer];
-      renderFilters();
+      const key = button.dataset.layer;
+      state.layers[key] = !state.layers[key];
+      button.setAttribute('aria-pressed', String(state.layers[key]));
       renderAll();
       renderEventList();
     }));
@@ -688,9 +689,11 @@
         select(kind, item, true);
       } else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
         event.preventDefault();
+        event.stopPropagation();
         focusAdjacent(1);
       } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
         event.preventDefault();
+        event.stopPropagation();
         focusAdjacent(-1);
       }
     });
@@ -709,7 +712,7 @@
     renderInspector(kind, item);
     renderStage();
     renderEventList();
-    if (keepFocus) restoreFocus();
+    if (keepFocus) restoreFocus(true);
   }
 
   function focusAdjacent(delta) {
@@ -722,9 +725,11 @@
     next.focus();
   }
 
-  function restoreFocus() {
+  function restoreFocus(shouldFocus = false) {
     const node = ui.stage.querySelector(`[data-event-id="${CSS.escape(state.focusedEvent || '')}"]`);
-    if (node) node.setAttribute('tabindex', '0');
+    if (!node) return;
+    node.setAttribute('tabindex', '0');
+    if (shouldFocus) node.focus({ preventScroll: true });
   }
 
   function showTooltip(event, kind, item) {
@@ -969,6 +974,7 @@
     ui.stage.addEventListener('pointerup', releaseStage);
     ui.stage.addEventListener('pointercancel', releaseStage);
     ui.stage.addEventListener('keydown', event => {
+      if (event.target !== ui.stage) return;
       const span = state.viewEnd - state.viewStart;
       if (event.key === 'ArrowLeft') { event.preventDefault(); setView(state.viewStart - span * .08, state.viewEnd - span * .08); }
       else if (event.key === 'ArrowRight') { event.preventDefault(); setView(state.viewStart + span * .08, state.viewEnd + span * .08); }
