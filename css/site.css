@@ -371,3 +371,7 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
 .explorer-go small { font-weight: 500; opacity: .8; font-size: 13px; }
 .explorer-go:hover { background: var(--brand-deep); }
 .explorer .explorer-frame { aspect-ratio: 3 / 2; background: #fff; border-radius: 0; }
+.vtabs { display: flex; gap: 6px; padding: 10px 12px; background: #f2f5f8; border-bottom: 1px solid var(--rule); }
+.vtabs button { font-family: var(--nav); font-size: 14px; font-weight: 600; padding: 6px 14px; border-radius: 999px; border: 1px solid #c4d3df; background: #fff; color: var(--brand); cursor: pointer; }
+.vtabs button[aria-selected=true] { background: var(--brand); color: #fff; border-color: var(--brand); }
+.wp-caption video { display: block; width: 100%; height: auto; }

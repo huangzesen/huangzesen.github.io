@@ -100,6 +100,33 @@
 
     <h3 id="collisions">Colliding Alfvénons <span class="tag">first results</span></h3>
 
+    <h4 id="small-collision">Two small Alfvénons, colliding again and again</h4>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="vtabs" role="tablist" aria-label="Choose what to show">
+        <button type="button" role="tab" aria-selected="true" data-src="/images/research/collision-small-2d-bmag.mp4" data-poster="/images/research/collision-small-2d-bmag-poster.jpg" data-cap="b">|B|: compressive waves</button>
+        <button type="button" role="tab" aria-selected="false" data-src="/images/research/collision-small-2d-theta.mp4" data-poster="/images/research/collision-small-2d-theta-poster.jpg" data-cap="t">θ: the Alfvénons</button>
+      </div>
+      <video id="small-collision-video" src="/images/research/collision-small-2d-bmag.mp4" poster="/images/research/collision-small-2d-bmag-poster.jpg" width="1280" height="854" autoplay muted loop playsinline controls preload="metadata" aria-label="Slices of a simulation of two small-amplitude Alfvénons colliding"></video></dt>
+      <dd><span class="cap-b">Two small Alfvénons (θ<sub>max</sub> ≈ 45°) collide head-on, again and again, in a periodic 2×1×1 box. The simulation uses the pseudo-spectral MHD code LAPS on a 512×256×256 grid. Each Alfvénon alone has nearly constant |B|. Where the two overlap, |B| departs from 1 by a few percent, and the disturbance radiates away as expanding fronts of compressive waves. Top left: <b>B</b> (solid) and <b>u</b> (dashed) along x through the centre. Other panels: |B| in three mid-planes, t = 0 to 5.8.</span><span class="cap-t" hidden>The same run, showing θ = cos⁻¹(B<sub>x</sub>/|B|) from t = 0 to 78. The two Alfvénons pass through each other at every crossing of the periodic box and are slowly worn down. Top left: <b>B</b> (solid) and <b>u</b> (dashed) along x through the centre. Other panels: θ in three mid-planes. LAPS, 512×256×256.</span></dd>
+    </dl>
+    <script>
+    (function () {
+      var v = document.getElementById('small-collision-video');
+      var tabs = document.querySelectorAll('.vtabs button');
+      tabs.forEach(function (b) {
+        b.addEventListener('click', function () {
+          tabs.forEach(function (o) { o.setAttribute('aria-selected', o === b ? 'true' : 'false'); });
+          v.poster = b.dataset.poster; v.src = b.dataset.src; v.play && v.play().catch(function () {});
+          var dd = v.closest('dl').querySelector('dd');
+          dd.querySelector('.cap-b').hidden = b.dataset.cap !== 'b';
+          dd.querySelector('.cap-t').hidden = b.dataset.cap !== 't';
+        });
+      });
+    })();
+    </script>
+
+    <h4 id="large-small-collision">A large Alfvénon meets a small one, in 3D</h4>
+
     <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
       <dt><div class="sim-player" data-tmax="1" data-frames="101"><video src="/images/research/alfvenon-collision.mp4" poster="/images/research/alfvenon-collision-poster.jpg" width="1600" height="1000" autoplay muted loop playsinline preload="auto" aria-label="Three-dimensional movie of a large and a small Alfvénon colliding, shown as nested translucent surfaces of the deflection angle theta"></video></div></dt>
       <dd>A large Alfvénon (θ<sub>max</sub> ≈ 164°) meets a small one (θ<sub>max</sub> ≈ 45°) head-on, in a double-precision MHD simulation on a 512×256×256 grid run on NVIDIA H100 GPUs. The nested shells are surfaces of constant θ from 4° to 60°, brighter where the field is bent more. The camera follows the large Alfvénon (centre x = 0.5 + t) and circles it once while the two pass through each other, from t = 0 to t = 1. Drag the slider to step through the 101 frames.</dd>
