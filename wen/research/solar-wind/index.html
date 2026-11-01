@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="lzh">
+<head>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>太阳风湍流 · 黄泽森</title>
+<meta name="description" content="以帕克太阳探测器、太阳轨道飞行器、尤利西斯号究太阳风之湍流与细微结构：五分钟与二分钟振荡，1/f 段之二类，|B| 之高斯性，与总波作用量。">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/wen/research/solar-wind/">
+<link rel="alternate" hreflang="en" href="https://zesen.me/research/solar-wind/">
+<meta property="og:title" content="太阳风湍流 · 黄泽森">
+<meta property="og:description" content="以帕克太阳探测器、太阳轨道飞行器、尤利西斯号究太阳风之湍流与细微结构：五分钟与二分钟振荡，1/f 段之二类，|B| 之高斯性，与总波作用量。">
+<meta property="og:url" content="https://zesen.me/wen/research/solar-wind/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap">
+<link rel="stylesheet" href="/css/site.css?v=20261101">
+</head>
+<body class="page-research">
+<a class="skip-link" href="#main">径至正文</a>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/wen/">黄泽森<span class="zh">Zesen Huang</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li><a href="/wen/">自述</a></li>
+        <li class="current"><a href="/wen/research/" aria-current="page">所究</a>
+          <ul class="sub-menu">
+            <li><a href="/wen/research/alfvenons/">阿尔芬子</a></li>
+            <li><a href="/wen/research/lingtai/">灵台</a></li>
+            <li><a href="/wen/research/scienceide/">ScienceIDE</a></li>
+            <li><a href="/wen/research/ale-astronomy/">器灵终试·天文</a></li>
+            <li><a href="/wen/research/solar-wind/">太阳风之湍流</a></li>
+          </ul>
+        </li>
+        <li><a href="/wen/publications/">著述</a></li>
+        <li><a href="/wen/cv/">履历</a></li>
+        <li><a href="/wen/software/">器用</a></li>
+        <li><a href="/wen/miscellany/">杂录</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch"><a href="/research/solar-wind/" lang="en" hreflang="en">EN</a><a href="/wen/research/solar-wind/" lang="lzh" aria-current="true" title="文言">文</a></div>
+  </div>
+</header>
+
+<section class="hero hero-research"><canvas class="hero-canvas" aria-hidden="true"></canvas><div class="wrapper hero-inner">
+<div class="crumbs"><a href="/wen/research/">所究</a> › 太阳风湍流</div>
+    <h1 class="post-title">太阳风之湍流与细微结构</h1>
+    <p class="lede">太阳风者，天体湍流等离子体中唯一可遣器穿行者也。余以帕克太阳探测器、太阳轨道飞行器、尤利西斯号，问其扰动何自而来，自日冕至 1 au 之间何以演变。</p>
+</div><svg class="hero-waves" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="w1" d="M0 34 C 160 14 300 14 460 30 S 760 52 920 34 S 1220 10 1440 30 V80 H0 Z"/><path class="w2" d="M0 52 C 200 34 360 40 540 52 S 860 66 1040 50 S 1300 38 1440 50 V80 H0 Z"/><path class="w3" d="M0 66 C 180 56 380 60 560 68 S 900 76 1100 66 S 1340 60 1440 66 V80 H0 Z"/></svg></section>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+
+  <article class="post-content">
+    <p class="btn-row"><a class="btn ghost" href="/switch_back.html">可交互：折返探览（Switchback Explorer）</a></p>
+
+    <h3 id="five-minute">五分钟振荡达于太阳风</h3>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/psp-5min-e22.jpg" class="lightbox-trigger"><img src="/images/research/psp-5min-e22.jpg" width="1500" height="1127" alt="左：交叉螺度随频率之变，及磁功率谱，于 3.2 毫赫有一锐峰，标为 +6.1σ。右：2024年12月24日 10:00 至 12:30 之小波谱图，及磁场之径向、切向、法向分量" loading="lazy"></a></dt>
+      <dd>帕克太阳探测器第 22 次近日交会，2024年12月24日，距日 9.9 R<sub>☉</sub>。(a) 归一化交叉螺度 σ<sub>c</sub>(f)；(b) 磁功率谱 P(f)·f，3.2 mHz 处有峰，高出均值 6.1σ；(c–i) 小波谱，及磁场 R、T、N 三分量。出自 <a href="https://doi.org/10.3847/2041-8213/ae43ec">Huang et al. (2026b)</a>。</dd>
+    </dl>
+    <p>日面振以 5 分钟之 <em>p</em> 模振荡，即困于对流层中之声波也。久疑其达于太阳风，而无就地之直证。<a href="https://doi.org/10.3847/2041-8213/ae43ec">Huang et al. (2026b)</a> 中，吾等据帕克太阳探测器最近日之三次近日点，呈有力之证。距日 9.9 太阳半径之二事件中，磁功率谱于 3.1–3.2 mHz 见统计显著（∼6σ）之峰。每峰皆现为大振幅、球偏振之阿尔芬性波列，历时约 35 分钟：日之全局振荡，确达于太阳风。</p>
+
+    <h3 id="two-minute">阿尔芬面附近之二分钟振荡</h3>
+    <p>遍观帕克太阳探测器前 19 次交会，最初生之太阳风，其扰动之能聚于 2 分钟周期左右（<a href="https://doi.org/10.3847/2041-8213/ad9271">Huang et al. 2024a</a>）。小波谱图示其多为外传、球偏振之阿尔芬波阵发。以多普勒之析，自航天器参考系之频率，推还至日冕底部之发射频率；SDO/AIA 于彼处亦见日冕结构之摇曳有相合之 ∼8 mHz 峰。此波源于太阳大气之有力证也。</p>
+
+    <h3 id="one-over-f">1/f 段：二源</h3>
+    <p>太阳风磁谱于最低频处循 1/f，而后陡入惯性区。近日之处，帕克太阳探测器所见之谱远浅于 1/f，随风之老而趋近之，可见其起源属动力过程（<a href="https://doi.org/10.3847/2041-8213/acd7f2">Huang et al. 2023</a>）。阿尔芬面附近，10⁻⁴ Hz 以上之 1/f 段系统性缺失。较诸多种风况，吾等得 1/f 段判然二类（<a href="https://doi.org/10.3847/2041-8213/adfa13">Huang et al. 2025</a>）。于快速而阿尔芬性之风，此段乃阿尔芬湍流固有之征，其演化几近完全合于 WKB。于慢风与混合风，则类经典之闪烁噪声，吾等溯之，贯太阳活动第 22–25 周。</p>
+
+    <h3 id="gaussianity">由 |B| 之高斯性识结构</h3>
+    <p>吾等提出<em>高斯性尺度图</em>（Gaussianity scalogram），令就地数据自显其语境（<a href="https://doi.org/10.3847/2041-8213/ad72f1">Huang et al. 2024b</a>）。施之于帕克太阳探测器与尤利西斯号之磁场强度，可于逾七个量级之时间尺度——自年至秒——拣出太阳结构之可能遗迹：极区与中纬之冕洞，及与超米粒组织、微喷流、皮耀斑相容之结构。阿尔芬湍流之模拟，复现数据中 |B| 之高斯化。今得美国航天局（NASA）AIAH 之资助，此信息论之尺度图方制为开源软件。</p>
+
+    <h3 id="wave-action">膨胀太阳风中之总波作用量</h3>
+    <p>β ∼ 1 附近，诸磁流体（MHD）波模并存，则波作用量不守恒。吾等示其不守恒源于模式转换，或由简并，或由线性转换，或由共振；而相互作用诸模之<em>总</em>波作用量，犹守恒也。膨胀盒磁流体模拟证之（<a href="https://doi.org/10.3847/1538-4357/ac74c5">Huang et al. 2022</a>）。</p>
+
+    <h3 id="collaborations">合撰</h3>
+    <p>余又与人合撰经同行评审之论文 14 篇，论磁场折返、间歇性、各向异性、加热与湍流；其中 <a href="https://doi.org/10.1038/s41550-026-02923-5">Hou et al. (2026)</a> 刊于 Nature Astronomy，论太阳风之非绝热熵增为速度尖峰所主。诸篇俱列于<a href="/wen/publications/">著述页</a>。</p>
+  </article>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 黄泽森 · 洛城加州大学 地球行星与空间科学系</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">书信</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · 2026年11月修订</span>
+  </div>
+</footer>
+
+<script src="/js/site.js?v=20261101" defer></script>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>

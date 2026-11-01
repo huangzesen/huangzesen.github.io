@@ -129,7 +129,7 @@
         });
         var h = g.previousElementSibling; g.hidden = !any; if (h && h.tagName === 'H2') h.hidden = !any;
       });
-      count.textContent = n + (n === 1 ? ' work' : ' works');
+      count.textContent = document.documentElement.lang === 'lzh' ? '凡 ' + n + ' 篇' : n + (n === 1 ? ' work' : ' works');
     }
     q.addEventListener('input', apply);
     chips.forEach(function (c) { c.addEventListener('click', function () {
@@ -145,7 +145,7 @@
     hs.forEach(function (h, i) {
       h.id = h.id || 'cv-' + i;
       var a = document.createElement('a'); a.href = '#' + h.id;
-      a.textContent = h.textContent.replace(/:.*$/, '').replace(/\b\w/g, function (c) { return c; });
+      a.textContent = h.textContent.replace(/[:：].*$/, '');
       nav.appendChild(a);
     });
     cvpage.insertBefore(nav, cvpage.firstChild);

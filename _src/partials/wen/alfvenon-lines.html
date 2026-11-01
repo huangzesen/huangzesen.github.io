@@ -1,0 +1,15 @@
+    <figure class="afl" data-base="/data/alfvenon/" data-scene="large">
+      <div class="afl-stage"></div>
+      <div class="afl-tools">
+        <button type="button" data-afl="rotate" aria-pressed="true">自转</button>
+        <button type="button" data-afl="pulses" aria-pressed="true">流光</button>
+        <button type="button" data-afl="reset">复位</button>
+        <button type="button" data-afl="full">全屏</button>
+      </div>
+      <div class="afl-cbar" aria-hidden="true"><span class="afl-cbar-lab">θ</span><span class="afl-cbar-max">150°</span><span class="afl-cbar-mid">90° 折</span><span class="afl-cbar-min">0°</span></div>
+      <div class="afl-hint">拖曳以转 · 滚轮或两指开合以缩放</div>
+      <div class="afl-load">方载磁力线1,360条…</div>
+      <figcaption>大幅之阿尔芬子（Alfvénon），即余<a href="/switch_back.html">折返磁力线探览（Switchback Field-Line Explorer）</a>中之折返模型，今以三维示之：拖之可转。磁力线凡1,360条，各依其局部之角 θ = cos⁻¹(B<sub>x</sub>/|B|) 着色；θ 者，与背景场 B₀ = x̂（箭头所示）之夹角也：场直处为钢蓝，60° 为品红，90° 为橙。过 90°，则场反折于己，是为折返，色续转为金：折者逾130条，最甚者 θ ≈ 145°。线之弯逾 25° 者，绘为实管，故每一折皆可于三维中循之。全本 Plotly 探览之页重59 MB；此图所载0.5 MB。</figcaption>
+    </figure>
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+    <script type="module" src="/js/alfvenon-lines.js?v=20261101j"></script>

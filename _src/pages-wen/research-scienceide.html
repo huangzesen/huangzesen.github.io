@@ -1,0 +1,48 @@
+<!--meta {"title": "ScienceIDE · 黄泽森", "description": "ScienceIDE 化锁定版本、未经改动之科学代码库为可执行之环境，器灵之功以代码自带之物理算例评之：27 代码库成 64 环境，有 ScienceIDE-Hard 测评，有 SFT 与强化学习。", "path": "/wen/research/scienceide/", "nav": "research"} -->
+<div class="post">
+  <header class="post-header">
+    <div class="crumbs"><a href="/wen/research/">所究</a> › ScienceIDE</div>
+    <h1 class="post-title">ScienceIDE</h1>
+    <p class="lede">以科学代码库为器灵之习场，以物理评之，不以 diff 评之。</p>
+  </header>
+
+  <article class="post-content">
+    <p class="btn-row"><a class="btn" href="https://arxiv.org/abs/2609.19134">论文：arXiv:2609.19134</a><a class="btn ghost" href="https://aitonomy.org/projects/scienceide">项目页</a><a class="btn ghost" href="https://github.com/aitofound/ScienceIDE">GitHub</a><a class="btn ghost" href="https://huggingface.co/collections/AItonomy/scienceide-model-series">模型</a></p>
+
+    <div class="stats">
+      <div class="stat"><b>64</b><span>可执行之环境</span></div>
+      <div class="stat"><b>27</b><span>科学代码库，锁定版本，不加改动</span></div>
+      <div class="stat"><b>2,812</b><span>所制之题</span></div>
+      <div class="stat"><b>1,076</b><span>科学之检验</span></div>
+      <div class="stat gold"><b>85</b><span>ScienceIDE-Hard 测评之题</span></div>
+    </div>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/scienceide-overview.png" class="lightbox-trigger"><img src="/images/research/scienceide-overview.png" width="1500" height="1268" alt="ScienceIDE 之图：上游科学代码如 Athena++、Gkeyll、DScribe、NEST、MITgcm、EDKit、Stim 入为环境；编辑器之视示一题之指令、所注之缺陷及其参考修复、验证器之物理算例表，及 SFT 与强化学习之栏" loading="lazy"></a></dt>
+      <dd>ScienceIDE 一览。锁定版本之上游科学代码（Athena++、MITgcm、Gkeyll、DScribe、NEST、EDKit、Stim 等）化为容器之环境。每题或注一缺陷，或删一例程；验证器重运代码自带之物理算例，以评器灵之修复。同此诸回合，亦供监督微调与强化学习之用。图出自<a href="https://github.com/aitofound/ScienceIDE">ScienceIDE 仓库</a>。</dd>
+    </dl>
+
+    <h3>其旨</h3>
+    <p>科学软件，凝数十年之学，且自带其真：代码所必复现之物理算例是也。<strong>ScienceIDE</strong> 化之为器灵之习场。每题为一容器之回合，立于锁定版本、未经改动之上游代码：天体磁流体（MHD）、海洋与大气之模式、等离子体动理学、量子线路、材料描述符。器灵改其源码；验证器乃重编代码，重运其物理算例，以所得之数较参考之输出。其赏出于模拟之<strong>数值复归于正</strong>，非出于合乎 diff，故难以取巧。</p>
+
+    <h3>题何以成</h3>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="fig-pad"><img src="/images/research/scienceide-pipeline.svg" width="1180" height="300" alt="五步之流程：真实科学代码、拟题、执行以验、确定性之关、发布；见黜之题连其证据归于题冢" loading="lazy"></div></dt>
+      <dd>自代码至发布之题。或注一缺陷（修复），或删一例程（实现），参考之修正即其确切之逆。于评分容器中执行，官方修正须得 1.0 分，而未修之构建须留赏之余地。确定性之关，察无一处泄其答案。难度以实测之事录之，非以人手标之；凡见黜之题，皆连其证据存之。图出自<a href="https://github.com/aitofound/ScienceIDE">ScienceIDE 仓库</a>。</dd>
+    </dl>
+    <ul>
+      <li><strong>修复</strong>：注一语义之缺陷于锁定之源码；器灵须寻而修之，使物理算例复过。</li>
+      <li><strong>实现</strong>：删一例程之体；器灵须重写之，使求解器复现参考之结果。</li>
+      <li><strong>评分</strong>：赏为诸物理算例得分之均值，复加缩放，使未动之仓库恰得零分。</li>
+    </ul>
+
+    <h3>一基三用</h3>
+    <p>同此诸环境，兼三用：测评器灵（ScienceIDE-Hard），以既验之轨迹作监督微调，以验证器之赏行强化学习。PhAI-IDE 诸模型（4B、9B、72B）已发布于 Hugging Face。其一环境为 LAPS，洛城加州大学（UCLA）之伪谱磁流体代码，余之<a href="/wen/research/alfvenons/">阿尔芬子（Alfvénon）</a>模拟即以之为本。</p>
+
+    <h4>余之所任</h4>
+    <p>余与 Hejia Geng 同为第一作者，并共领科学环境之生成。</p>
+    <ul class="reflist">
+      <li>Geng, H.*, <b>Huang, Z.*</b>, Li, H., et al.（作者凡 45 人）2026, “ScienceIDE: Turning World's Scientific Codebase into Agent Learnable Environments.” <a href="https://arxiv.org/abs/2609.19134">arXiv:2609.19134</a>（* 贡献同等）</li>
+    </ul>
+  </article>
+</div>

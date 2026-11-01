@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="lzh">
+<head>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阿尔芬子 · 黄泽森</title>
+<meta name="description" content="阿尔芬子（Alfvénon）：以理想磁流体（MHD）之非线性解所构之三维阿尔芬孤波；可交互之三维磁力线；阿尔芬子相撞模拟之初果。">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/wen/research/alfvenons/">
+<link rel="alternate" hreflang="en" href="https://zesen.me/research/alfvenons/">
+<meta property="og:title" content="阿尔芬子 · 黄泽森">
+<meta property="og:description" content="阿尔芬子（Alfvénon）：以理想磁流体（MHD）之非线性解所构之三维阿尔芬孤波；可交互之三维磁力线；阿尔芬子相撞模拟之初果。">
+<meta property="og:url" content="https://zesen.me/wen/research/alfvenons/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap">
+<link rel="stylesheet" href="/css/site.css?v=20261101">
+</head>
+<body class="page-research">
+<a class="skip-link" href="#main">径至正文</a>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/wen/">黄泽森<span class="zh">Zesen Huang</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li><a href="/wen/">自述</a></li>
+        <li class="current"><a href="/wen/research/" aria-current="page">所究</a>
+          <ul class="sub-menu">
+            <li><a href="/wen/research/alfvenons/">阿尔芬子</a></li>
+            <li><a href="/wen/research/lingtai/">灵台</a></li>
+            <li><a href="/wen/research/scienceide/">ScienceIDE</a></li>
+            <li><a href="/wen/research/ale-astronomy/">器灵终试·天文</a></li>
+            <li><a href="/wen/research/solar-wind/">太阳风之湍流</a></li>
+          </ul>
+        </li>
+        <li><a href="/wen/publications/">著述</a></li>
+        <li><a href="/wen/cv/">履历</a></li>
+        <li><a href="/wen/software/">器用</a></li>
+        <li><a href="/wen/miscellany/">杂录</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch"><a href="/research/alfvenons/" lang="en" hreflang="en">EN</a><a href="/wen/research/alfvenons/" lang="lzh" aria-current="true" title="文言">文</a></div>
+  </div>
+</header>
+
+<section class="hero hero-research"><canvas class="hero-canvas" aria-hidden="true"></canvas><div class="wrapper hero-inner">
+<div class="crumbs"><a href="/wen/research/">所究</a> › 阿尔芬子</div>
+    <h1 class="post-title">阿尔芬子</h1>
+    <p class="lede">三维之阿尔芬孤波：帕克太阳探测器所穿行之磁场折返，或即是物；二者相撞，又当何如。</p>
+</div><svg class="hero-waves" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="w1" d="M0 34 C 160 14 300 14 460 30 S 760 52 920 34 S 1220 10 1440 30 V80 H0 Z"/><path class="w2" d="M0 52 C 200 34 360 40 540 52 S 860 66 1040 50 S 1300 38 1440 50 V80 H0 Z"/><path class="w3" d="M0 66 C 180 56 380 60 560 68 S 900 76 1100 66 S 1340 60 1440 66 V80 H0 Z"/></svg></section>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+
+  <article class="post-content">
+<figure class="afl" data-base="/data/alfvenon/" data-scene="large">
+      <div class="afl-stage"></div>
+      <div class="afl-tools">
+        <button type="button" data-afl="rotate" aria-pressed="true">自转</button>
+        <button type="button" data-afl="pulses" aria-pressed="true">流光</button>
+        <button type="button" data-afl="reset">复位</button>
+        <button type="button" data-afl="full">全屏</button>
+      </div>
+      <div class="afl-cbar" aria-hidden="true"><span class="afl-cbar-lab">θ</span><span class="afl-cbar-max">150°</span><span class="afl-cbar-mid">90° 折</span><span class="afl-cbar-min">0°</span></div>
+      <div class="afl-hint">拖曳以转 · 滚轮或两指开合以缩放</div>
+      <div class="afl-load">方载磁力线1,360条…</div>
+      <figcaption>大幅之阿尔芬子（Alfvénon），即余<a href="/switch_back.html">折返磁力线探览（Switchback Field-Line Explorer）</a>中之折返模型，今以三维示之：拖之可转。磁力线凡1,360条，各依其局部之角 θ = cos⁻¹(B<sub>x</sub>/|B|) 着色；θ 者，与背景场 B₀ = x̂（箭头所示）之夹角也：场直处为钢蓝，60° 为品红，90° 为橙。过 90°，则场反折于己，是为折返，色续转为金：折者逾130条，最甚者 θ ≈ 145°。线之弯逾 25° 者，绘为实管，故每一折皆可于三维中循之。全本 Plotly 探览之页重59 MB；此图所载0.5 MB。</figcaption>
+    </figure>
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+    <script type="module" src="/js/alfvenon-lines.js?v=20261101j"></script>
+
+    <h3 id="solitary">三维阿尔芬孤波</h3>
+    <p>帕克太阳探测器察得，初生之太阳风中，满布大幅之阿尔芬式起伏，其状<em>孤立</em>。其为磁场之骤转，甚者全然反向（即所谓“折返”），处于本自平静之日冕磁场中，|B| 几近恒定，质子喷流独向一侧。教科书所载之非线性阿尔芬波，即球偏振阿尔芬波，以 <b>B</b> 之均值为其背景场 B₀。然于飞船所测之数据，此均值无定：虽同一太阳风流之内亦变，阿尔芬速度随之而变。</p>
+
+    <dl class="wp-caption alignright" style="width: 230px">
+      <dt><a href="/images/research/spaw-constant-b.png" class="lightbox-trigger"><img src="/images/research/spaw-constant-b.png" width="480" height="480" alt="场强恒定之圆：背景矢量 b0 向上，波场 b1 与总场 b 皆止于圆上，速度 u1 沿 b1 而绘"></a></dt>
+      <dd>|B| 恒定之约束：波场 <b>b</b>₁ 使总场 <b>b</b> = <b>b</b>₀ + <b>b</b>₁ 摆转于定径之球面上；流速 <b>u</b>₁ 与 <b>b</b>₁ 共线。出自 Huang et al. (2026a)。</dd>
+    </dl>
+
+    <p>吾等于 <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a> 别立一法，书阿尔芬波为<strong>理想磁流体（MHD）之孤波解</strong>：局部之扰动，乘于未受扰之远场之上，|B| 恒定。欲于三维构此场，非易事也。须严守无散，且磁力线皆开放；|B| 须几近恒定；远场须不为所动。吾等以迭代之法构之：谱域之 Helmholtz–Hodge 投影以去其散度，|B| 之归一，二者交替而行，迭代乃收敛。名其所得曰<strong>阿尔芬子</strong>（Alfvénon）。</p>
+
+    <dl class="wp-caption aligncenter" style="width: 640px; max-width: 100%">
+      <dt><a href="/images/research/alfvenon-theta.png" class="lightbox-trigger"><img src="/images/research/alfvenon-theta.png" width="1100" height="976" alt="场偏转角 θ 之半透明等值面层层相套，于单位盒中成一局部之肾形阿尔芬子；灰色磁力线径直穿之" loading="lazy"></a></dt>
+      <dd>128³ 网格上之阿尔芬子。层层相套之面示 θ = cos⁻¹(B<sub>x</sub>/|B|)，即局部之场与未受扰之背景场 B₀ = x̂ 之夹角；其极值 ≈45°。灰色磁力线沿 x̂ 出入此结构：扰动局于一处，|B| 几近恒定，磁力线无不开放。出自 <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>。</dd>
+    </dl>
+
+    <p>以伪谱代码 LAPS 直接作磁流体模拟（β = 0.1，不设显式之黏性与电阻），见阿尔芬子以阿尔芬速度行进，持其形，仅有轻微之弛豫。扰动之三分量皆保阿尔芬性，总能量守恒至约 10⁻⁹。其徐徐变形，主因相混合：阿尔芬子之内，V<sub>A</sub> 之变约1%。密度之微小起伏，生于所构之场之小疵，如 |B| 未尽恒定。阿尔芬子于理想磁流体之下，其行止如非线性之阿尔芬式孤立解。</p>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/alfvenon-propagation.png" class="lightbox-trigger"><img src="/images/research/alfvenon-propagation.png" width="1600" height="1465" alt="四行子图，时刻 0、5、10、100：一维之场与速度剖面，θ、阿尔芬速度与密度之切片" loading="lazy"></a></dt>
+      <dd>阿尔芬子之磁流体模拟，t = 0、5、10、100（各行）。(a) 过中心之 <b>B</b> 与 <b>u</b> 剖面，平移至同一位置；(b) x–y 中平面之 θ；(c) 阿尔芬速度 V<sub>A</sub> = |B|/√ρ；(d) 密度 ρ。注意 (c)、(d) 之色标，所跨仅 ±0.5%。出自 <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>。</dd>
+    </dl>
+
+    <h3 id="collisions">阿尔芬子相撞 <span class="tag">初果</span></h3>
+
+    <h4 id="small-collision">二小阿尔芬子，屡屡相撞</h4>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="vtabs" role="tablist" aria-label="择所示">
+        <button type="button" role="tab" aria-selected="true" data-src="/images/research/collision-small-2d-bmag.mp4" data-poster="/images/research/collision-small-2d-bmag-poster.jpg" data-cap="b">|B|：压缩波</button>
+        <button type="button" role="tab" aria-selected="false" data-src="/images/research/collision-small-2d-theta.mp4" data-poster="/images/research/collision-small-2d-theta-poster.jpg" data-cap="t">θ：阿尔芬子</button>
+      </div>
+      <video id="small-collision-video" src="/images/research/collision-small-2d-bmag.mp4" poster="/images/research/collision-small-2d-bmag-poster.jpg" width="1280" height="854" autoplay muted loop playsinline controls preload="metadata" aria-label="二小幅阿尔芬子相撞之模拟切片"></video></dt>
+      <dd><span class="cap-b">二小阿尔芬子（θ<sub>max</sub> ≈ 45°）于 2×1×1 周期盒中迎面相撞，再三不已。模拟用伪谱磁流体代码 LAPS，网格 512×256×256。阿尔芬子独处时，|B| 几近恒定。二者相叠之处，|B| 偏离 1 数个百分点，其扰动化为压缩波之波前，向外扩展，辐射而去。左上：过中心沿 x 之 <b>B</b>（实线）与 <b>u</b>（虚线）。余图：三中平面之 |B|，t = 0 至 5.8。</span><span class="cap-t" hidden>同一模拟，示 θ = cos⁻¹(B<sub>x</sub>/|B|)，自 t = 0 至 78。周期盒中二阿尔芬子每一相交，辄互相穿过，渐渐磨损。左上：过中心沿 x 之 <b>B</b>（实线）与 <b>u</b>（虚线）。余图：三中平面之 θ。LAPS，512×256×256。</span></dd>
+    </dl>
+    <script>
+    (function () {
+      var v = document.getElementById('small-collision-video');
+      var tabs = document.querySelectorAll('.vtabs button');
+      tabs.forEach(function (b) {
+        b.addEventListener('click', function () {
+          tabs.forEach(function (o) { o.setAttribute('aria-selected', o === b ? 'true' : 'false'); });
+          v.poster = b.dataset.poster; v.src = b.dataset.src; v.play && v.play().catch(function () {});
+          var dd = v.closest('dl').querySelector('dd');
+          dd.querySelector('.cap-b').hidden = b.dataset.cap !== 'b';
+          dd.querySelector('.cap-t').hidden = b.dataset.cap !== 't';
+        });
+      });
+    })();
+    </script>
+
+    <p>湍流之级串，须反向传播之阿尔芬波相撞；阿尔芬子使纯净之相撞实验可行。孤立之阿尔芬子无压缩分量（δ|B| ≈ 0，δρ ≈ 0），传播之中始终如是。故二者相遇之时，凡所现之压缩能量，皆相撞所生。其理甚简：阿尔芬子各自 |B| 恒定，相叠则不然。相叠之处，量级为 <b>b</b>₊·<b>b</b>₋ 之磁压失衡激发磁声波，携去阿尔芬能量之一份，其量级为 (δb/B₀)²。帕克太阳探测器近日所见振幅甚大，于此振幅，此份之量级为一。</p>
+
+    <p>吾等方以 GPU 模拟迎面之相撞以验之：激波捕捉，双精度，网格至 1024×512×512，能量守恒优于 10⁸ 分之一。</p>
+    <div class="stats">
+      <div class="stat"><b>&lt;10⁻⁸</b><span>每一双精度模拟之能量相对误差</span></div>
+      <div class="stat"><b>5–6%</b><span>二小阿尔芬子初遇既毕，内能之增幅</span></div>
+      <div class="stat gold"><b>≈10%</b><span>二者之一为大幅（θ<sub>max</sub> ≈ 164°）时之增幅</span></div>
+      <div class="stat"><b>5</b><span>迄今相撞模拟之数，自 512×256×256 至 1024×512×512</span></div>
+    </div>
+    <p>能量之转移随振幅而增；波包经相遇而出，受损而未毁。今方行者数事：</p>
+    <ul>
+      <li>相配之单波包对照与同向传播对照，以别相撞之加热与数值之加热；</li>
+      <li>振幅之扫描，下至寻常波之极限；</li>
+      <li>异形阿尔芬子之相撞；</li>
+      <li>相撞所发快波、慢波之普查。</li>
+    </ul>
+    <p>所期首用，在日冕之闭合磁环：足点反射，使反向传播之波为常。有<a href="/wen/research/lingtai/">灵台</a>研究器灵，助行此番模拟，并录每一模拟之始末。</p>
+
+    <h4>论文</h4>
+    <ul class="reflist">
+      <li><b>Huang, Z.</b>, Velli, M., Shi, C., &amp; Ding, Y. 2026, “Solitary Alfvén Waves,” <em>ApJL</em> 1006, L20. <a href="https://doi.org/10.3847/2041-8213/ae82f5">doi</a> · <a href="https://arxiv.org/abs/2512.02292">arXiv:2512.02292</a></li>
+      <li><b>Huang, Z.</b>, Velli, M., &amp; Ding, Y. 2025, “What are Switchbacks?” 穿越内嵌旋转间断之阿尔芬子，所得之磁场反转类乎折返。 <a href="https://arxiv.org/abs/2512.12585">arXiv:2512.12585</a></li>
+      <li>Ding, Y., Velli, M., <b>Huang, Z.</b>, et al. 2026, “Spherically Polarized Alfvén Waves and the Gosling Boost.” <a href="https://arxiv.org/abs/2608.05091">arXiv:2608.05091</a></li>
+    </ul>
+    <h4>代码</h4>
+    <ul class="reflist">
+      <li><a href="https://github.com/huangzesen/helmholtz-skill">helmholtz-skill</a>：Helmholtz 交替投影求解器，以求无散、模恒定之三维场（亦见 <a href="https://github.com/huangzesen/Helmholtz_algo_public">Helmholtz_algo_public</a>）</li>
+      <li><a href="https://github.com/huangzesen/alfvenon-pluto-cuda">alfvenon-pluto-cuda</a>：PLUTO 之 NVIDIA GPU 移植，已验证，开源，为阿尔芬子诸实验而作</li>
+      <li><a href="https://github.com/huangzesen/LAPS">LAPS</a>：洛城加州大学（UCLA）之伪谱、MPI 并行三维霍尔磁流体（Hall-MHD）代码</li>
+    </ul>
+  </article>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 黄泽森 · 洛城加州大学 地球行星与空间科学系</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">书信</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · 2026年11月修订</span>
+  </div>
+</footer>
+
+<script src="/js/site.js?v=20261101" defer></script>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>

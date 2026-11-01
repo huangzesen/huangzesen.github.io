@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="lzh">
+<head>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>所究 · 黄泽森</title>
+<meta name="description" content="阿尔芬子（三维阿尔芬孤波及其相撞）、灵台器灵运行时、ScienceIDE 可执行之科学环境、器灵终试之天文一科，及以帕克太阳探测器究太阳风湍流。">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/wen/research/">
+<link rel="alternate" hreflang="en" href="https://zesen.me/research/">
+<meta property="og:title" content="所究 · 黄泽森">
+<meta property="og:description" content="阿尔芬子（三维阿尔芬孤波及其相撞）、灵台器灵运行时、ScienceIDE 可执行之科学环境、器灵终试之天文一科，及以帕克太阳探测器究太阳风湍流。">
+<meta property="og:url" content="https://zesen.me/wen/research/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap">
+<link rel="stylesheet" href="/css/site.css?v=20261101">
+</head>
+<body class="page-research">
+<a class="skip-link" href="#main">径至正文</a>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/wen/">黄泽森<span class="zh">Zesen Huang</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li><a href="/wen/">自述</a></li>
+        <li class="current"><a href="/wen/research/" aria-current="page">所究</a>
+          <ul class="sub-menu">
+            <li><a href="/wen/research/alfvenons/">阿尔芬子</a></li>
+            <li><a href="/wen/research/lingtai/">灵台</a></li>
+            <li><a href="/wen/research/scienceide/">ScienceIDE</a></li>
+            <li><a href="/wen/research/ale-astronomy/">器灵终试·天文</a></li>
+            <li><a href="/wen/research/solar-wind/">太阳风之湍流</a></li>
+          </ul>
+        </li>
+        <li><a href="/wen/publications/">著述</a></li>
+        <li><a href="/wen/cv/">履历</a></li>
+        <li><a href="/wen/software/">器用</a></li>
+        <li><a href="/wen/miscellany/">杂录</a></li>
+      </ul>
+    </nav>
+    <div class="lang-switch"><a href="/research/" lang="en" hreflang="en">EN</a><a href="/wen/research/" lang="lzh" aria-current="true" title="文言">文</a></div>
+  </div>
+</header>
+
+<section class="hero hero-research"><canvas class="hero-canvas" aria-hidden="true"></canvas><div class="wrapper hero-inner">
+<h1 class="post-title">所究</h1>
+</div><svg class="hero-waves" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="w1" d="M0 34 C 160 14 300 14 460 30 S 760 52 920 34 S 1220 10 1440 30 V80 H0 Z"/><path class="w2" d="M0 52 C 200 34 360 40 540 52 S 860 66 1040 50 S 1300 38 1440 50 V80 H0 Z"/><path class="w3" d="M0 66 C 180 56 380 60 560 68 S 900 76 1100 66 S 1340 60 1440 66 V80 H0 Z"/></svg></section>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+
+  <article class="post-content">
+    <h4 class="links"><a href="https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-9570-5975&amp;sort=date%20desc">余之著述，见于 ADS</a> · <a href="/wen/publications/">本站全目</a> · <a href="/wen/cv/">履历</a></h4>
+    <p class="lede">余之所为，分为两端，相资相养。其一，太阳风中阿尔芬波之物理，自帕克太阳探测器之实测，至三维之模拟。其二，筑基以使器灵能治真实之科学，而以研究供其真值。每题各有专页。</p>
+
+    <section class="topic">
+      <div>
+        <h3><a href="/wen/research/alfvenons/">阿尔芬子：三维之阿尔芬孤波</a></h3>
+        <p>帕克太阳探测器近日所遇之大阿尔芬结构，其状若<em>孤</em>：日冕他处皆静，独一处之磁场旋转焉。余以理想磁流体（MHD）之非线性解构之，名曰<strong>阿尔芬子（Alfvénon）</strong>（<a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. 2026a</a>）。今以 GPU 使之相撞，以观其能几何化为压缩波。</p>
+        <p class="more"><a href="/wen/research/alfvenons/">三维观览、相撞之影与初得之果</a></p>
+      </div>
+      <a class="media dark" href="/wen/research/alfvenons/" aria-label="阿尔芬子之页"><video src="/images/research/alfvenon-collision.mp4" poster="/images/research/alfvenon-collision-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="二阿尔芬子相撞之影，以磁场偏转角之层叠等值面示之"></video></a>
+    </section>
+
+    <section class="topic">
+      <div>
+        <h3><a href="/wen/research/lingtai/">灵台：终身之数字格物者</a></h3>
+        <p>开源之运行时，所育之治学器灵，能持一问以数周，以寻常文卷存久长之藏识与技艺，化生专精之分身，以共用之信箱相协而作。余为其首要贡献者，余之研究亦行于其上。</p>
+        <p class="more"><a href="/wen/research/lingtai/">其制何如</a></p>
+      </div>
+      <a class="media" href="/wen/research/lingtai/" aria-label="灵台之页"><video src="/images/research/lingtai-network.mp4" poster="/images/research/lingtai-network-still.jpg" autoplay muted loop playsinline preload="metadata" aria-label="灵台器灵之网，动图"></video></a>
+    </section>
+
+    <section class="topic">
+      <div>
+        <h3><a href="/wen/research/scienceide/">ScienceIDE：以科学代码库为器灵之习场</a></h3>
+        <p>取锁定版本、未经改动之科学代码，化为可执行之环境。器灵修补或重写其源码，验证器复运行代码自带之物理算例以评之。今有环境64，出自代码库27，用于测评、微调与强化学习（<a href="https://arxiv.org/abs/2609.19134">Geng, Huang et al. 2026</a>）。</p>
+        <p class="more"><a href="/wen/research/scienceide/">环境、流程与诸数</a></p>
+      </div>
+      <a class="media" href="/wen/research/scienceide/" aria-label="ScienceIDE 之页"><img src="/images/research/scienceide-thumb.jpg" alt="ScienceIDE 编辑器之视：题之指令、参考之修补，及验证器之表" loading="lazy"></a>
+    </section>
+
+    <section class="topic">
+      <div>
+        <h3><a href="/wen/research/ale-astronomy/">器灵终试：天文</a> <span class="tag">方今</span></h3>
+        <p>余主器灵终试（Agent Last Exam）之天文一科。至今所得：本领域研究方向71之图，采自文献之未解之问1,779，及题种891；于此等题中，器灵之方法可对封存之评分器精进不已。</p>
+        <p class="more"><a href="/wen/research/ale-astronomy/">本领域之星图，可交互</a></p>
+      </div>
+      <a class="media dark" href="/wen/research/ale-astronomy/" aria-label="器灵终试天文一科之页"><img src="/images/research/ale-map-thumb.jpg" alt="天文研究方向之辐射状星图" loading="lazy"></a>
+    </section>
+
+    <section class="topic">
+      <div>
+        <h3><a href="/wen/research/solar-wind/">太阳风之湍流与精细结构</a></h3>
+        <p>太阳风之起伏从何而来，何以演化：5分钟与2分钟之振荡达于风中，1/f 区段之二类，|B| 之高斯性，膨胀之风中之波作用量；所据者帕克太阳探测器、太阳轨道飞行器与尤利西斯号。</p>
+        <p class="more"><a href="/wen/research/solar-wind/">所得与诸图</a></p>
+      </div>
+      <a class="media" href="/wen/research/solar-wind/" aria-label="太阳风之页"><img src="/images/research/psp-5min-e22.jpg" alt="帕克太阳探测器之磁场功率谱，峰在 3.2 mHz，并小波时频图" loading="lazy"></a>
+    </section>
+
+    <h4>所受资助</h4>
+    <ul class="support">
+      <li>共同研究者（Co-I），NASA ROSES-2024 AIAH：<em>Solar Wind Structures Identified via Shannon Information Entropy</em>，2026–2027</li>
+      <li>主持（PI），NAIRR Pilot 起步资助：<em>GPU-Accelerated PLUTO MHD Simulations of Alfvén-Wave Collisions</em>，2026（SDSC Expanse）</li>
+      <li>主持（PI），NSF ACCESS 算力分配：<em>Gaussianization of Magnetic Magnitude in MHD Turbulence</em>，2024–2025</li>
+    </ul>
+  </article>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 黄泽森 · 洛城加州大学 地球行星与空间科学系</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">书信</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · 2026年11月修订</span>
+  </div>
+</footer>
+
+<script src="/js/site.js?v=20261101" defer></script>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>

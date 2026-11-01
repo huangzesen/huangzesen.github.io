@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{lang}}">
 <head>
 <meta charset="utf-8">
 <script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
@@ -8,21 +8,21 @@
 <meta name="description" content="{{description}}">
 <meta name="author" content="Zesen Huang">
 <link rel="canonical" href="https://zesen.me{{path}}">
-<meta property="og:title" content="{{title}}">
+{{alternates}}<meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
 <meta property="og:url" content="https://zesen.me{{path}}">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap">
 <link rel="stylesheet" href="/css/site.css?v={{version}}">
 </head>
 <body class="page-{{slug}}">
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">{{skip}}</a>
 <header class="site-header">
   <div class="wrapper">
-    <a class="site-title" href="/">Zesen Huang<span class="zh">黄泽森</span></a>
+    <a class="site-title" href="{{home}}">{{brand}}</a>
     <nav class="site-nav" aria-label="Main">
       <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
       <label for="nav-toggle" class="menu-icon" aria-hidden="true">
@@ -32,6 +32,7 @@
 {{nav}}
       </ul>
     </nav>
+    {{langswitch}}
   </div>
 </header>
 
@@ -47,8 +48,7 @@
 
 <footer class="site-footer">
   <div class="wrapper">
-    <span>© 2026 Zesen Huang · Department of Earth, Planetary, and Space Sciences, UCLA</span>
-    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated {{updated}}</span>
+    {{footer}}
   </div>
 </footer>
 

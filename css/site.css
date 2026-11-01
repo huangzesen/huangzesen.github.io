@@ -511,3 +511,23 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
 .zishu-scroll p { letter-spacing: .1em; line-height: 1.9; }
 .zishu-en { padding: 18px 24px 20px; }
 .hero .lede, .hero .crumbs { text-shadow: 0 0 14px #0b1530, 0 0 5px #0b1530, 0 0 2px #0b1530; }
+
+/* ---------- language switch (EN | 文) and the 文言 pages under /wen/ ---------- */
+.lang-switch { display: inline-flex; flex: none; border: 1px solid rgba(255,255,255,.4); border-radius: 4px; overflow: hidden; margin-left: 4px; }
+.lang-switch a { font-family: "Cormorant Garamond", "Noto Serif SC", Georgia, serif; font-size: 15px; font-weight: 600; line-height: 1; color: #e8eef7; padding: 6px 9px; }
+.lang-switch a:hover { text-decoration: none; background: rgba(255,255,255,.12); }
+.lang-switch a[aria-current=true] { background: #ad3824; color: #fff; }
+html[lang=lzh] body { font-family: "Noto Serif SC", "Songti SC", STSong, "Source Han Serif SC", SimSun, serif; line-height: 1.9; letter-spacing: .02em; }
+html[lang=lzh] h1, html[lang=lzh] h2, html[lang=lzh] h3, html[lang=lzh] h4 { font-family: "Noto Serif SC", "Songti SC", STSong, serif; font-weight: 600; letter-spacing: .06em; }
+html[lang=lzh] .site-nav .menu > li > a { font-family: "Noto Serif SC", "Songti SC", serif; letter-spacing: .18em; text-transform: none; font-size: 16px; }
+html[lang=lzh] .site-title { font-family: "Ma Shan Zheng", "Kaiti SC", KaiTi, serif; letter-spacing: .06em; }
+html[lang=lzh] .site-title .zh { font-family: "Cormorant Garamond", Georgia, serif; letter-spacing: 0; }
+html[lang=lzh] .hero .post-title { font-family: "Cormorant Garamond", "Ma Shan Zheng", "Kaiti SC", KaiTi, serif; font-weight: 400; letter-spacing: .08em; }
+html[lang=lzh] .hero .post-title .gilt { letter-spacing: .1em; }
+html[lang=lzh] .hero .lede, html[lang=lzh] .hero .crumbs { font-family: "Noto Serif SC", "Songti SC", serif; font-size: 1.08rem; letter-spacing: .06em; }
+html[lang=lzh] .hero-tags a, html[lang=lzh] .btn, html[lang=lzh] .afl-tools button, html[lang=lzh] .pub-filter button { font-family: "Noto Serif SC", "Songti SC", serif; letter-spacing: .08em; }
+html[lang=lzh] .wp-caption dd, html[lang=lzh] figcaption { letter-spacing: .02em; line-height: 1.75; }
+@media (max-width: 760px) { .lang-switch a { padding: 6px 7px; font-size: 14px; } }
+html[lang=lzh] .hero .post-title .zh { font-family: "Cormorant Garamond", Georgia, serif; font-size: .5em; letter-spacing: .02em; margin-left: .5em; }
+@media (max-width: 720px) { .hero-hint { display: none; } }
+html[lang=lzh] .fields, html[lang=lzh] .hero .fields { font-style: normal; letter-spacing: .06em; }
