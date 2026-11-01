@@ -57,7 +57,7 @@
 <div class="post">
 
   <article class="post-content">
-<figure class="afl" data-base="/data/alfvenon/">
+<figure class="afl" data-base="/data/alfvenon/" data-scene="large">
       <div class="afl-stage"></div>
       <div class="afl-tools">
         <button type="button" data-afl="rotate" aria-pressed="true">Auto-rotate</button>
@@ -65,13 +65,13 @@
         <button type="button" data-afl="reset">Reset</button>
         <button type="button" data-afl="full">Full screen</button>
       </div>
-      <div class="afl-cbar" aria-hidden="true"><span class="afl-cbar-max">45°</span><span class="afl-cbar-min">0°</span><span class="afl-cbar-lab">θ</span></div>
+      <div class="afl-cbar" aria-hidden="true"><span class="afl-cbar-max">90°+</span><span class="afl-cbar-min">0°</span><span class="afl-cbar-lab">θ</span></div>
       <div class="afl-hint">drag to rotate · scroll or pinch to zoom</div>
-      <div class="afl-load">Loading field lines…</div>
-      <figcaption>Field lines of the Alfvénon, in 3D: drag to turn it. Each line is coloured by its local angle θ = cos⁻¹(B<sub>x</sub>/|B|) to the background field B₀ = x̂ (arrow), from 0° in steel blue to 45° in gold, and glows brighter where it bends. The lines enter straight, twist through the structure and leave straight again: the perturbation is localized, and every field line stays open. 85 lines traced through the 128³ field of <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>.</figcaption>
+      <div class="afl-load">Loading 1,360 field lines…</div>
+      <figcaption>A large-amplitude Alfvénon, the switchback model of my <a href="/switch_back.html">Switchback Field-Line Explorer</a>, in 3D: drag to turn it. Each of the 1,360 field lines is coloured by its local angle θ = cos⁻¹(B<sub>x</sub>/|B|) to the background field B₀ = x̂ (arrow), from steel blue at 0° to gold at 90°, and glows brighter where it bends. Past 90° the field folds back on itself, a switchback, and the line turns white-hot: more than 130 of the lines do, up to θ ≈ 145°. Lines bent past 60° are drawn thicker. The full Plotly explorer is a 59 MB page; this view loads 0.5 MB.</figcaption>
     </figure>
     <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-    <script type="module" src="/js/alfvenon-lines.js?v=20261101e"></script>
+    <script type="module" src="/js/alfvenon-lines.js?v=20261101h"></script>
 
     <h3 id="solitary">Solitary Alfvén waves in three dimensions</h3>
     <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>. They are abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>

@@ -449,7 +449,11 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
 .afl-load { position: absolute; left: 0; right: 0; top: 0; height: 480px; display: flex; align-items: center; justify-content: center; font-family: var(--nav); color: #9fb4cc; pointer-events: none; }
 .afl-ready .afl-load { display: none; }
 .afl figcaption { background: #fff; color: var(--muted, #555); font-size: 14px; line-height: 1.55; padding: 12px 16px 14px; border-top: 1px solid rgba(0,0,0,.06); }
-.afl-nogl .afl-stage { background: #05070d url(/images/research/alfvenon-theta.png) center / contain no-repeat; }
+.afl-nogl .afl-stage::after { content: "This 3D view needs WebGL 2. The full explorer is linked below."; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; text-align: center; color: #9fb4cc; font-family: var(--nav); }
 .afl-nogl .afl-tools, .afl-nogl .afl-cbar, .afl-nogl .afl-hint, .afl-nogl .afl-load { display: none; }
 @media (max-width: 760px) { .afl-stage, .afl-load { height: 400px; } .afl-hint { top: 370px; } .afl-tools button { font-size: 11.5px; padding: 4px 9px; } }
 @media print { .afl { display: none; } }
+.afl-hint { left: auto; right: 16px; transform: none; top: auto; bottom: 14px; }
+.afl figcaption { position: relative; }
+.afl-hint { bottom: auto; top: 450px; }
+@media (max-width: 760px) { .afl-hint { top: 372px; } }
