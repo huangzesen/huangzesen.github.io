@@ -46,35 +46,50 @@
   </div>
 </header>
 
+<section class="hero hero-research"><canvas class="hero-canvas" aria-hidden="true"></canvas><div class="wrapper hero-inner">
+<div class="crumbs"><a href="/research/">Research</a> › Alfvénons</div>
+    <h1 class="post-title">Alfvénons</h1>
+    <p class="lede">Three-dimensional solitary Alfvén waves: what the switchbacks Parker Solar Probe flies through could be, and what happens when two of them collide.</p>
+</div></section>
+
 <main id="main" class="page-content">
   <div class="wrapper">
 <div class="post">
-  <header class="post-header">
-    <div class="crumbs"><a href="/research/">Research</a> › Alfvénons</div>
-    <h1 class="post-title">Alfvénons</h1>
-    <p class="lede">Three-dimensional solitary Alfvén waves: what the switchbacks Parker Solar Probe flies through could be, and what happens when two of them collide.</p>
-  </header>
 
   <article class="post-content">
-<h3 id="explore">Explore an Alfvénon in 3D <span class="tag">interactive</span></h3>
-    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
-      <dt><div class="explorer" data-src="/explorers/alfvenon-small-amplitude.html">
-        <img src="/images/research/alfvenon-explorer-poster.jpg" width="1200" height="800" alt="Preview of the 3D Alfvénon explorer: nested isosurfaces of theta inside a unit box, with a bundle of field lines along x">
-        <button type="button" class="explorer-go">▶ Load the interactive 3D view <small>(3.4 MB)</small></button>
-      </div></dt>
-      <dd>The Alfvénon from <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>, θ<sub>max</sub> ≈ 45°, on its 128³ grid. Nested surfaces show θ = cos⁻¹(B<sub>x</sub>/|B|) from 0° to 45°. The field lines (grey) are traced from the most-deflected cell and its neighbours; the red one starts at that cell. Drag to rotate, scroll or pinch to zoom, and shift-drag to pan. Built with PyVista and vtk.js.</dd>
-    </dl>
-    <p class="btn-row"><a class="btn ghost" href="/explorers/alfvenon-small-amplitude.html">Open the 3D view full screen</a><a class="btn ghost" href="/switch_back.html">Switchback field-line explorer (59 MB)</a></p>
-    <script>
-    document.querySelectorAll('.explorer').forEach(function (box) {
-      box.querySelector('.explorer-go').addEventListener('click', function () {
-        var f = document.createElement('iframe');
-        f.src = box.dataset.src; f.className = 'explorer-frame'; f.title = 'Interactive 3D Alfvénon: theta isosurfaces and field lines';
-        f.setAttribute('allowfullscreen', '');
-        box.innerHTML = ''; box.appendChild(f);
-      });
-    });
-    </script>
+<div class="av bleed" data-base="/data/alfvenon/" data-start="collision">
+      <div class="av-stage"></div>
+      <div class="av-top" role="tablist" aria-label="Choose a simulation">
+        <button type="button" role="tab" data-mode="collision" aria-selected="true">Collision</button>
+        <button type="button" role="tab" data-mode="single" aria-selected="false">One Alfvénon</button>
+      </div>
+      <div class="av-cap" data-for="collision"><b>A large Alfvénon meets a small one</b>Double-precision MHD on a 512×256×256 grid. Glow shows the angle θ = cos⁻¹(B<sub>x</sub>/|B|) by which the field is bent; it turns white-hot where the field folds back past 90°, as in a switchback. Pulses run along the field lines.</div>
+      <div class="av-cap" data-for="single" hidden><b>One Alfvénon</b>The 128³ solitary Alfvén wave of Huang et al. (2026a), θ<sub>max</sub> ≈ 45°. The field lines enter and leave along the background field: the structure is localized, with nearly constant |B| and open field lines.</div>
+      <div class="av-tools"><button type="button" class="av-reset">Reset view</button><button type="button" class="av-full">Full screen</button></div>
+      <div class="av-cbar" aria-hidden="true"><span class="av-cbar-max">90°+</span><span class="av-cbar-min">0°</span><span class="av-cbar-lab">θ</span></div>
+      <div class="av-panel">
+        <label>Show θ above <b class="av-thr-v">5°</b></label>
+        <input type="range" class="av-thr" min="0" max="76" value="5" aria-label="Minimum theta shown">
+        <label>Glow</label>
+        <input type="range" class="av-gain" min="0.2" max="3" step="0.05" value="1" aria-label="Glow">
+        <div class="av-chips">
+          <button type="button" data-toggle="lines" aria-pressed="true">Field lines</button>
+          <button type="button" data-toggle="bands" aria-pressed="false">Nested shells</button>
+          <button type="button" data-toggle="rotate" aria-pressed="true">Auto-rotate</button>
+        </div>
+      </div>
+      <div class="av-timeline" hidden>
+        <button type="button" class="av-play" aria-label="Pause">❚❚</button>
+        <input type="range" class="av-scrub" min="0" max="1000" value="0" aria-label="Simulation time">
+        <span class="av-t">t = 0.00</span>
+        <button type="button" class="av-speed" aria-label="Playback speed">1×</button>
+      </div>
+      <div class="av-hint">drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
+      <div class="av-load">Loading the simulation…</div>
+    </div>
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+    <script type="module" src="/js/alfvenon-viewer.js?v=20261101c"></script>
+    <p class="btn-row"><a class="btn ghost" href="/explorers/alfvenon-small-amplitude.html">Classic 3D view (PyVista, θ shells and field lines)</a><a class="btn ghost" href="/switch_back.html">Switchback field-line explorer (59 MB)</a></p>
 
     <h3 id="solitary">Solitary Alfvén waves in three dimensions</h3>
     <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>. They are abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>
@@ -174,6 +189,7 @@
   </div>
 </footer>
 
+<script src="/js/site.js?v=20261031" defer></script>
 <script src="/js/player.js?v=20261031" defer></script>
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
 <script>

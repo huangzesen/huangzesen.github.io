@@ -60,6 +60,10 @@ def main():
         # <!--include partials/x.svg --> pastes a generated file (e.g. the ALE chart) in place
         body = re.sub(r"<!--include ([\w./-]+) -->",
                       lambda mm: (SRC / mm.group(1)).read_text().strip(), body)
+        hm = re.search(r'\s*<header class="post-header">(.*?)</header>\n?', body, re.S)
+        hero = hm.group(1).strip() if hm else ""
+        if hm:
+            body = body[:hm.start()] + "\n" + body[hm.end():]
         html = layout
         for k, v in {
             "title": meta["title"],
@@ -70,6 +74,7 @@ def main():
             "version": version,
             "updated": updated,
             "content": body.rstrip(),
+            "hero": hero,
             "scripts": "".join(f'<script src="{u}?v={version}" defer></script>\n' for u in meta.get("scripts", [])),
         }.items():
             html = html.replace("{{" + k + "}}", v)

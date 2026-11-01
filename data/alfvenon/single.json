@@ -1,0 +1,1 @@
+{"box": [1, 1, 1], "dims": [39, 128, 128], "order": "x fastest", "crop": [[0.3515625, 0.65625], [0.0, 1.0], [0.0, 1.0]], "theta_max": 44.9940753388615, "lines": 43, "npts": 160, "center": [0.5, 0.5038409541271616, 0.4976729214909938], "source": "Helmholtz checkpoint 128-small-amp-1/loop_200 (Huang et al. 2026a, ApJL 1006, L20)"}

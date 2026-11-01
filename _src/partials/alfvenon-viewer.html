@@ -1,0 +1,33 @@
+    <div class="av bleed" data-base="/data/alfvenon/" data-start="collision">
+      <div class="av-stage"></div>
+      <div class="av-top" role="tablist" aria-label="Choose a simulation">
+        <button type="button" role="tab" data-mode="collision" aria-selected="true">Collision</button>
+        <button type="button" role="tab" data-mode="single" aria-selected="false">One Alfvénon</button>
+      </div>
+      <div class="av-cap" data-for="collision"><b>A large Alfvénon meets a small one</b>Double-precision MHD on a 512×256×256 grid. Glow shows the angle θ = cos⁻¹(B<sub>x</sub>/|B|) by which the field is bent; it turns white-hot where the field folds back past 90°, as in a switchback. Pulses run along the field lines.</div>
+      <div class="av-cap" data-for="single" hidden><b>One Alfvénon</b>The 128³ solitary Alfvén wave of Huang et al. (2026a), θ<sub>max</sub> ≈ 45°. The field lines enter and leave along the background field: the structure is localized, with nearly constant |B| and open field lines.</div>
+      <div class="av-tools"><button type="button" class="av-reset">Reset view</button><button type="button" class="av-full">Full screen</button></div>
+      <div class="av-cbar" aria-hidden="true"><span class="av-cbar-max">90°+</span><span class="av-cbar-min">0°</span><span class="av-cbar-lab">θ</span></div>
+      <div class="av-panel">
+        <label>Show θ above <b class="av-thr-v">5°</b></label>
+        <input type="range" class="av-thr" min="0" max="76" value="5" aria-label="Minimum theta shown">
+        <label>Glow</label>
+        <input type="range" class="av-gain" min="0.2" max="3" step="0.05" value="1" aria-label="Glow">
+        <div class="av-chips">
+          <button type="button" data-toggle="lines" aria-pressed="true">Field lines</button>
+          <button type="button" data-toggle="bands" aria-pressed="false">Nested shells</button>
+          <button type="button" data-toggle="rotate" aria-pressed="true">Auto-rotate</button>
+        </div>
+      </div>
+      <div class="av-timeline" hidden>
+        <button type="button" class="av-play" aria-label="Pause">❚❚</button>
+        <input type="range" class="av-scrub" min="0" max="1000" value="0" aria-label="Simulation time">
+        <span class="av-t">t = 0.00</span>
+        <button type="button" class="av-speed" aria-label="Playback speed">1×</button>
+      </div>
+      <div class="av-hint">drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
+      <div class="av-load">Loading the simulation…</div>
+    </div>
+    <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+    <script type="module" src="/js/alfvenon-viewer.js?v=20261101c"></script>
+    <p class="btn-row"><a class="btn ghost" href="/explorers/alfvenon-small-amplitude.html">Classic 3D view (PyVista, θ shells and field lines)</a><a class="btn ghost" href="/switch_back.html">Switchback field-line explorer (59 MB)</a></p>
