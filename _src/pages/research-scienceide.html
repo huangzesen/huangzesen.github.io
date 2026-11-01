@@ -1,0 +1,48 @@
+<!--meta {"title": "ScienceIDE · Zesen Huang", "description": "ScienceIDE turns pinned, unmodified scientific codebases into executable environments where AI agents are graded by the code's own physics cases: 64 environments from 27 codebases, the ScienceIDE-Hard benchmark, SFT and RL.", "path": "/research/scienceide/", "nav": "research"} -->
+<div class="post">
+  <header class="post-header">
+    <div class="crumbs"><a href="/research/">Research</a> › ScienceIDE</div>
+    <h1 class="post-title">ScienceIDE</h1>
+    <p class="lede">Scientific codebases as training grounds for AI agents, graded by the physics rather than by a diff.</p>
+  </header>
+
+  <article class="post-content">
+    <p class="btn-row"><a class="btn" href="https://arxiv.org/abs/2609.19134">Paper: arXiv:2609.19134</a><a class="btn ghost" href="https://aitonomy.org/projects/scienceide">Project page</a><a class="btn ghost" href="https://github.com/aitofound/ScienceIDE">GitHub</a><a class="btn ghost" href="https://huggingface.co/collections/AItonomy/scienceide-model-series">Models</a></p>
+
+    <div class="stats">
+      <div class="stat"><b>64</b><span>executable environments</span></div>
+      <div class="stat"><b>27</b><span>scientific codebases, pinned and unmodified</span></div>
+      <div class="stat"><b>2,812</b><span>manufactured tasks</span></div>
+      <div class="stat"><b>1,076</b><span>scientific checks</span></div>
+      <div class="stat gold"><b>85</b><span>tasks in the ScienceIDE-Hard benchmark</span></div>
+    </div>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/scienceide-overview.png" class="lightbox-trigger"><img src="/images/research/scienceide-overview.png" width="1500" height="1268" alt="Diagram of ScienceIDE: upstream scientific codes such as Athena++, Gkeyll, DScribe, NEST, MITgcm, EDKit and Stim feed environments; an editor view shows a task's instruction, the injected defect and its reference repair, a verifier table of physics cases, and SFT and RL panels" loading="lazy"></a></dt>
+      <dd>ScienceIDE in one view. Pinned upstream scientific codes (Athena++, MITgcm, Gkeyll, DScribe, NEST, EDKit, Stim, …) become containerized environments. A task injects a defect or removes a routine, and a verifier re-runs the code's own physics cases to grade the agent's repair. The same episodes feed supervised fine-tuning and reinforcement learning. From the <a href="https://github.com/aitofound/ScienceIDE">ScienceIDE repository</a>.</dd>
+    </dl>
+
+    <h3>The idea</h3>
+    <p>Scientific software holds decades of expertise, and it carries its own ground truth: the physics test cases a code must reproduce. <strong>ScienceIDE</strong> turns that into a training ground for AI agents. Each task is a containerized episode on a pinned, unmodified upstream code: astrophysical MHD, ocean and atmosphere models, plasma kinetics, quantum circuits, materials descriptors. The agent edits source. A verifier then recompiles the code, re-runs its physics cases and compares the numbers against reference output. The reward comes from the simulation being <strong>numerically right again</strong>, not from matching a diff, which makes it hard to game.</p>
+
+    <h3>How a task is made</h3>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="fig-pad"><img src="/images/research/scienceide-pipeline.svg" width="1180" height="300" alt="Five-step pipeline: real science code, propose a task, execute to validate, deterministic gates, release; rejected tasks go to a graveyard with their evidence" loading="lazy"></div></dt>
+      <dd>From code to released task. A defect is injected (repair) or a routine excised (implementation), and the reference fix is its exact inverse. Execution in the grading container must give the official fix a score of 1.0, while the unfixed build leaves room for a reward signal. Deterministic gates check that nothing leaks the answer. Difficulty is recorded as measured facts, not a hand label, and every rejected task is kept with its evidence. From the <a href="https://github.com/aitofound/ScienceIDE">ScienceIDE repository</a>.</dd>
+    </dl>
+    <ul>
+      <li><strong>Repair</strong>: a semantic defect is injected into the pinned source; the agent must find and fix it so the physics cases pass again.</li>
+      <li><strong>Implementation</strong>: the body of a routine is removed; the agent reimplements it so the solver reproduces the reference results.</li>
+      <li><strong>Grading</strong>: the reward is the mean physics-case score, rescaled so that an untouched repository earns exactly zero.</li>
+    </ul>
+
+    <h3>Three uses of one foundation</h3>
+    <p>The same environments serve three purposes: evaluating agents (ScienceIDE-Hard), supervised fine-tuning on verified trajectories, and reinforcement learning from verifier rewards. The PhAI-IDE models (4B, 9B, 72B) are released on Hugging Face. One environment is LAPS, the UCLA pseudo-spectral MHD code behind my own simulations of <a href="/research/alfvenons/">Alfvénons</a>.</p>
+
+    <h4>My role</h4>
+    <p>I am co-first author with Hejia Geng, and I co-led the generation of the scientific environments.</p>
+    <ul class="reflist">
+      <li>Geng, H.*, <b>Huang, Z.*</b>, Li, H., et al. (45 authors) 2026, “ScienceIDE: Turning World's Scientific Codebase into Agent Learnable Environments.” <a href="https://arxiv.org/abs/2609.19134">arXiv:2609.19134</a> (* equal contribution)</li>
+    </ul>
+  </article>
+</div>

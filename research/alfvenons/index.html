@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alfvénons · Zesen Huang</title>
+<meta name="description" content="Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, an interactive 3D explorer, and first results from simulations of colliding Alfvénons.">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/research/alfvenons/">
+<meta property="og:title" content="Alfvénons · Zesen Huang">
+<meta property="og:description" content="Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, an interactive 3D explorer, and first results from simulations of colliding Alfvénons.">
+<meta property="og:url" content="https://zesen.me/research/alfvenons/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/site.css?v=20261031">
+</head>
+<body class="page-research">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">Zesen Huang<span class="zh">黄泽森</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li><a href="/">About</a></li>
+        <li class="current"><a href="/research/" aria-current="page">Research</a>
+          <ul class="sub-menu">
+            <li><a href="/research/alfvenons/">Alfvénons</a></li>
+            <li><a href="/research/lingtai/">LingTai 灵台</a></li>
+            <li><a href="/research/scienceide/">ScienceIDE</a></li>
+            <li><a href="/research/ale-astronomy/">Agent Last Exam: Astronomy</a></li>
+            <li><a href="/research/solar-wind/">Solar-wind turbulence</a></li>
+          </ul>
+        </li>
+        <li><a href="/publications/">Publications</a></li>
+        <li><a href="/cv/">CV</a></li>
+        <li><a href="/software/">Software</a></li>
+        <li><a href="/miscellany/">Miscellany</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+  <header class="post-header">
+    <div class="crumbs"><a href="/research/">Research</a> › Alfvénons</div>
+    <h1 class="post-title">Alfvénons</h1>
+    <p class="lede">Three-dimensional solitary Alfvén waves: what the switchbacks Parker Solar Probe flies through could be, and what happens when two of them collide.</p>
+  </header>
+
+  <article class="post-content">
+<!-- 3D explorer: pending -->
+
+    <h3 id="solitary">Solitary Alfvén waves in three dimensions</h3>
+    <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>. They are abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>
+
+    <dl class="wp-caption alignright" style="width: 230px">
+      <dt><a href="/images/research/spaw-constant-b.png" class="lightbox-trigger"><img src="/images/research/spaw-constant-b.png" width="480" height="480" alt="Circle of constant field magnitude with the background vector b0 pointing up, the wave field b1 and the total field b ending on the circle, and the velocity u1 drawn along b1"></a></dt>
+      <dd>The constant-|B| constraint: the wave field <b>b</b>₁ swings the total field <b>b</b> = <b>b</b>₀ + <b>b</b>₁ around a sphere of fixed radius; the flow <b>u</b>₁ is aligned with <b>b</b>₁. From Huang et al. (2026a).</dd>
+    </dl>
+
+    <p>In <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a> we instead write the Alfvén wave as a <strong>solitary solution of ideal MHD</strong>: a localized perturbation riding on an unperturbed far field, with constant |B|. Building such a field in three dimensions is not trivial. It has to be divergence-free with open field lines exactly, keep |B| nearly constant, and leave the far field untouched. We construct it with an iterative algorithm that alternates a spectral Helmholtz–Hodge projection, which removes the divergence, with a normalization of |B|, and the iteration converges. We call the result an <strong>Alfvénon</strong>.</p>
+
+    <dl class="wp-caption aligncenter" style="width: 640px; max-width: 100%">
+      <dt><a href="/images/research/alfvenon-theta.png" class="lightbox-trigger"><img src="/images/research/alfvenon-theta.png" width="1100" height="976" alt="Nested translucent contours of the field deflection angle theta forming a localized, kidney-shaped Alfvénon in a unit box, with grey field lines threading straight through it" loading="lazy"></a></dt>
+      <dd>An Alfvénon on a 128³ grid. Nested surfaces show θ = cos⁻¹(B<sub>x</sub>/|B|), the angle between the local field and the unperturbed background field B₀ = x̂; it peaks at ≈45°. The grey field lines enter and leave the structure along x̂: the perturbation is localized, |B| stays nearly constant, and every field line stays open. From <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>.</dd>
+    </dl>
+
+    <p>Direct MHD simulations with the pseudo-spectral code LAPS (β = 0.1, no explicit viscosity or resistivity) show the Alfvénon travelling at the Alfvén speed and holding its shape, with only mild relaxation. The perturbations stay Alfvénic in all three components, and total energy is conserved to about 10⁻⁹. The slow deformation comes mainly from phase mixing: V<sub>A</sub> varies by about 1% inside the Alfvénon. Small density fluctuations grow from minor defects of the constructed field, such as its slightly non-constant |B|. The Alfvénon behaves as a nonlinear solitary Alfvénic solution under ideal MHD.</p>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/alfvenon-propagation.png" class="lightbox-trigger"><img src="/images/research/alfvenon-propagation.png" width="1600" height="1465" alt="Four rows of panels at times 0, 5, 10 and 100: one-dimensional field and velocity profiles, slices of theta, of the Alfvén speed and of density" loading="lazy"></a></dt>
+      <dd>MHD simulation of the Alfvénon at t = 0, 5, 10 and 100 (rows). (a) Profiles of <b>B</b> and <b>u</b> through the centre, shifted to a common position; (b) θ in the x–y mid-plane; (c) the Alfvén speed V<sub>A</sub> = |B|/√ρ; (d) density ρ. Note the colour scales of (c) and (d), which span only ±0.5%. From <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>.</dd>
+    </dl>
+
+    <h3 id="collisions">Colliding Alfvénons <span class="tag">first results</span></h3>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="sim-player" data-tmax="1" data-frames="101"><video src="/images/research/alfvenon-collision.mp4" poster="/images/research/alfvenon-collision-poster.jpg" width="1600" height="1000" autoplay muted loop playsinline preload="auto" aria-label="Three-dimensional movie of a large and a small Alfvénon colliding, shown as nested translucent surfaces of the deflection angle theta"></video></div></dt>
+      <dd>A large Alfvénon (θ<sub>max</sub> ≈ 164°) meets a small one (θ<sub>max</sub> ≈ 45°) head-on, in a double-precision MHD simulation on a 512×256×256 grid run on NVIDIA H100 GPUs. The nested shells are surfaces of constant θ from 4° to 60°, brighter where the field is bent more. The camera follows the large Alfvénon (centre x = 0.5 + t) and circles it once while the two pass through each other, from t = 0 to t = 1. Drag the slider to step through the 101 frames.</dd>
+    </dl>
+
+    <p>A turbulent cascade needs counter-propagating Alfvén waves to collide, and the Alfvénon makes a clean collision experiment possible. An isolated Alfvénon carries no compressive component (δ|B| ≈ 0, δρ ≈ 0) and stays that way as it propagates. Any compressive energy that appears when two of them meet is therefore made by the collision. The mechanism is simple: each Alfvénon has constant |B| on its own, but their superposition does not. Where they overlap, a magnetic-pressure imbalance of order <b>b</b>₊·<b>b</b>₋ launches magnetosonic waves carrying a fraction of order (δb/B₀)² of the Alfvénic energy. That is order unity at the large amplitudes Parker Solar Probe sees near the Sun.</p>
+
+    <p>We are testing this with shock-capturing, double-precision GPU simulations of head-on collisions, on grids up to 1024×512×512, which conserve energy to better than one part in 10⁸.</p>
+    <div class="stats">
+      <div class="stat"><b>&lt;10⁻⁸</b><span>relative energy error in every double-precision run</span></div>
+      <div class="stat"><b>5–6%</b><span>rise in internal energy for two small Alfvénons, by the end of the first encounter</span></div>
+      <div class="stat gold"><b>≈10%</b><span>rise when one of the pair is large (θ<sub>max</sub> ≈ 164°)</span></div>
+      <div class="stat"><b>5</b><span>collision runs so far, 512×256×256 to 1024×512×512</span></div>
+    </div>
+    <p>The transfer grows with amplitude, and the packets come out of the encounter damaged rather than destroyed. Several things are now under way:</p>
+    <ul>
+      <li>matched single-packet and co-propagating controls, which separate collisional from numerical heating;</li>
+      <li>an amplitude scan down to the ordinary-wave limit;</li>
+      <li>collisions of Alfvénons with different shapes;</li>
+      <li>a census of the fast and slow waves the collision emits.</li>
+    </ul>
+    <p>Closed coronal loops, where reflection at the footpoints makes counter-propagating waves the rule, are the first application in view. A <a href="/research/lingtai/">LingTai</a> research agent helps run the campaign and keeps the record of every run.</p>
+
+    <h4>Papers</h4>
+    <ul class="reflist">
+      <li><b>Huang, Z.</b>, Velli, M., Shi, C., &amp; Ding, Y. 2026, “Solitary Alfvén Waves,” <em>ApJL</em> 1006, L20. <a href="https://doi.org/10.3847/2041-8213/ae82f5">doi</a> · <a href="https://arxiv.org/abs/2512.02292">arXiv:2512.02292</a></li>
+      <li><b>Huang, Z.</b>, Velli, M., &amp; Ding, Y. 2025, “What are Switchbacks?” Crossings of Alfvénons with embedded rotational discontinuities give switchback-like field reversals. <a href="https://arxiv.org/abs/2512.12585">arXiv:2512.12585</a></li>
+      <li>Ding, Y., Velli, M., <b>Huang, Z.</b>, et al. 2026, “Spherically Polarized Alfvén Waves and the Gosling Boost.” <a href="https://arxiv.org/abs/2608.05091">arXiv:2608.05091</a></li>
+    </ul>
+    <h4>Code</h4>
+    <ul class="reflist">
+      <li><a href="https://github.com/huangzesen/helmholtz-skill">helmholtz-skill</a>: the Helmholtz alternating-projection solver for divergence-free, constant-magnitude 3D fields (also <a href="https://github.com/huangzesen/Helmholtz_algo_public">Helmholtz_algo_public</a>)</li>
+      <li><a href="https://github.com/huangzesen/alfvenon-pluto-cuda">alfvenon-pluto-cuda</a>: a validated, open-source NVIDIA GPU port of PLUTO for the Alfvénon experiments</li>
+      <li><a href="https://github.com/huangzesen/LAPS">LAPS</a>: the UCLA pseudo-spectral, MPI-parallel 3D Hall-MHD code</li>
+    </ul>
+  </article>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 Zesen Huang · Department of Earth, Planetary, and Space Sciences, UCLA</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated October 2026</span>
+  </div>
+</footer>
+
+<script src="/js/player.js?v=20261031" defer></script>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>

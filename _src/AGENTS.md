@@ -11,13 +11,16 @@ before pushing.**
 
 | Path | What |
 |---|---|
-| `_src/layout.html` | shared header bar (name + uppercase nav with a Research sub-menu), footer, figure lightbox |
-| `_src/pages/*.html` | page bodies; first line `<!--meta {"title", "description", "path", "nav"} -->`; `<!--include partials/x -->` pastes a generated file |
-| `_src/build.py` | writes `index.html`, `research/`, `publications/`, `software/`, `miscellany/` from the above (`python3 -I _src/build.py`) |
-| `_src/make_ale_chart.py` | `partials/ale-chart.svg` + `ale-thumb.svg` (ALE astronomy counts; `--live` recounts from `~/work/projects/ale-astronomy`) |
-| `_src/make_pubs.py` | `partials/pubs-{first,co,pre}.html` from Crossref works carrying ORCID 0000-0001-9570-5975 (review before building) |
+| `_src/layout.html` | shared header bar (name + uppercase nav; Research sub-menu lists the topic pages), footer, figure lightbox, the github.io redirect line |
+| `_src/pages/*.html` | page bodies; first line `<!--meta {"title", "description", "path", "nav", "scripts"?} -->`; `<!--include partials/x -->` pastes a file from `_src/` |
+| `_src/build.py` | writes every page's `index.html` at its `path` (`python3 -I _src/build.py`): About `/`, Research overview `/research/` plus one page per topic (`research-alfvenons.html` → `/research/alfvenons/`, `research-lingtai`, `research-scienceide`, `research-ale-astronomy`, `research-solar-wind`), `/publications/`, `/cv/`, `/software/`, `/miscellany/` |
+| `_src/pages/cv.html` → `cv/` | the CV as a web page, from `~/work/projects/job-search/2026-academic/latex/shared/cv.tex` (Oct 30). Public edits: pending proposals left out, the high-school mentee not named, title Postdoctoral Researcher (Assistant Researcher from Jan 2027 is pending; SPINE.md section 3b), B.S. with Honors, School of Earth and Space Sciences (Zesen, 2026-10-31). `cv/Zesen_Huang_CV.pdf` is printed from the page: `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer --print-to-pdf=cv/Zesen_Huang_CV.pdf http://127.0.0.1:18431/cv/` (print styles at the end of `css/site.css`); re-print after editing the CV |
+| `_src/make_ale_map.py` → `data/ale-map.json` | names and counts per category / area / direction for the interactive star map `js/ale-map.js` (ALE astronomy page); `images/research/ale-map-thumb.jpg` is a screenshot of it (static fallback and card image) |
+| `_src/make_ale_chart.py` | `partials/ale-chart.svg` (bar chart by category; `--live` recounts) |
+| `_src/make_pubs.py` | `partials/pubs-{first,co}.html` from Crossref works carrying ORCID 0000-0001-9570-5975 (review before building); `pubs-extra.html` (preprints) and `pubs-workshop.html` are hand-kept from the CV |
+| `js/player.js` | movie player with a time scrubber for `.sim-player` blocks (Alfvénon collision) |
 | `css/site.css` | all styles (UCLA darker blue header `#005587`, gold rule `#ffb81c`) |
-| `images/research/` | figures: Alfvénon θ contour and constant-|B| diagram (Huang+ 2026 ApJL 1006 L20, from `~/work/GitHub/Spherically-Polarized-Alfven-Waves-PRL/figures`), PSP 5-min E22 figure (Huang+ 2026 ApJL 999 L4, from `solar-wind/analyses/energy_budget_5_min_pub_plots`), ScienceIDE overview (repo `aitofound/ScienceIDE`), LingTai network loop (repo `Lingtai-AI/lingtai` `docs/assets/network-demo.gif`, re-encoded as MP4 starting at 12 s, poster = first frame) |
+| `images/research/` | Alfvénon θ contour, constant-|B| diagram and propagation figure (Huang+ 2026 ApJL 1006 L20, from `~/work/GitHub/Spherically-Polarized-Alfven-Waves-PRL/figures`); collision movie `alfvenon-collision.mp4` (re-encoded r3c render of the native-f64 large–small run, `alfvenon/data/in-use/large_small_collision_512/analysis/theta3d_large_small_orbit_v1/full101_highpoly_v3_60deg/production_v3c_prominent_contained/movie/`); PSP 5-min E22 figure (Huang+ 2026 ApJL 999 L4); ScienceIDE overview and pipeline (repo `aitofound/ScienceIDE`); LingTai network loop (repo `Lingtai-AI/lingtai`, MP4 starting at 12 s) |
 
 Other folders and the two big `switch_back*.html` pages are older standalone pages linked from Miscellany; leave
 them alone. `travel-plan/` is a personal trip page, public but unlinked; keep it out of the nav.

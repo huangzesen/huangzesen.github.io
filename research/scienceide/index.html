@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ScienceIDE · Zesen Huang</title>
+<meta name="description" content="ScienceIDE turns pinned, unmodified scientific codebases into executable environments where AI agents are graded by the code's own physics cases: 64 environments from 27 codebases, the ScienceIDE-Hard benchmark, SFT and RL.">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/research/scienceide/">
+<meta property="og:title" content="ScienceIDE · Zesen Huang">
+<meta property="og:description" content="ScienceIDE turns pinned, unmodified scientific codebases into executable environments where AI agents are graded by the code's own physics cases: 64 environments from 27 codebases, the ScienceIDE-Hard benchmark, SFT and RL.">
+<meta property="og:url" content="https://zesen.me/research/scienceide/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/site.css?v=20261031">
+</head>
+<body class="page-research">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">Zesen Huang<span class="zh">黄泽森</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li><a href="/">About</a></li>
+        <li class="current"><a href="/research/" aria-current="page">Research</a>
+          <ul class="sub-menu">
+            <li><a href="/research/alfvenons/">Alfvénons</a></li>
+            <li><a href="/research/lingtai/">LingTai 灵台</a></li>
+            <li><a href="/research/scienceide/">ScienceIDE</a></li>
+            <li><a href="/research/ale-astronomy/">Agent Last Exam: Astronomy</a></li>
+            <li><a href="/research/solar-wind/">Solar-wind turbulence</a></li>
+          </ul>
+        </li>
+        <li><a href="/publications/">Publications</a></li>
+        <li><a href="/cv/">CV</a></li>
+        <li><a href="/software/">Software</a></li>
+        <li><a href="/miscellany/">Miscellany</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+  <header class="post-header">
+    <div class="crumbs"><a href="/research/">Research</a> › ScienceIDE</div>
+    <h1 class="post-title">ScienceIDE</h1>
+    <p class="lede">Scientific codebases as training grounds for AI agents, graded by the physics rather than by a diff.</p>
+  </header>
+
+  <article class="post-content">
+    <p class="btn-row"><a class="btn" href="https://arxiv.org/abs/2609.19134">Paper: arXiv:2609.19134</a><a class="btn ghost" href="https://aitonomy.org/projects/scienceide">Project page</a><a class="btn ghost" href="https://github.com/aitofound/ScienceIDE">GitHub</a><a class="btn ghost" href="https://huggingface.co/collections/AItonomy/scienceide-model-series">Models</a></p>
+
+    <div class="stats">
+      <div class="stat"><b>64</b><span>executable environments</span></div>
+      <div class="stat"><b>27</b><span>scientific codebases, pinned and unmodified</span></div>
+      <div class="stat"><b>2,812</b><span>manufactured tasks</span></div>
+      <div class="stat"><b>1,076</b><span>scientific checks</span></div>
+      <div class="stat gold"><b>85</b><span>tasks in the ScienceIDE-Hard benchmark</span></div>
+    </div>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/scienceide-overview.png" class="lightbox-trigger"><img src="/images/research/scienceide-overview.png" width="1500" height="1268" alt="Diagram of ScienceIDE: upstream scientific codes such as Athena++, Gkeyll, DScribe, NEST, MITgcm, EDKit and Stim feed environments; an editor view shows a task's instruction, the injected defect and its reference repair, a verifier table of physics cases, and SFT and RL panels" loading="lazy"></a></dt>
+      <dd>ScienceIDE in one view. Pinned upstream scientific codes (Athena++, MITgcm, Gkeyll, DScribe, NEST, EDKit, Stim, …) become containerized environments. A task injects a defect or removes a routine, and a verifier re-runs the code's own physics cases to grade the agent's repair. The same episodes feed supervised fine-tuning and reinforcement learning. From the <a href="https://github.com/aitofound/ScienceIDE">ScienceIDE repository</a>.</dd>
+    </dl>
+
+    <h3>The idea</h3>
+    <p>Scientific software holds decades of expertise, and it carries its own ground truth: the physics test cases a code must reproduce. <strong>ScienceIDE</strong> turns that into a training ground for AI agents. Each task is a containerized episode on a pinned, unmodified upstream code: astrophysical MHD, ocean and atmosphere models, plasma kinetics, quantum circuits, materials descriptors. The agent edits source. A verifier then recompiles the code, re-runs its physics cases and compares the numbers against reference output. The reward comes from the simulation being <strong>numerically right again</strong>, not from matching a diff, which makes it hard to game.</p>
+
+    <h3>How a task is made</h3>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="fig-pad"><img src="/images/research/scienceide-pipeline.svg" width="1180" height="300" alt="Five-step pipeline: real science code, propose a task, execute to validate, deterministic gates, release; rejected tasks go to a graveyard with their evidence" loading="lazy"></div></dt>
+      <dd>From code to released task. A defect is injected (repair) or a routine excised (implementation), and the reference fix is its exact inverse. Execution in the grading container must give the official fix a score of 1.0, while the unfixed build leaves room for a reward signal. Deterministic gates check that nothing leaks the answer. Difficulty is recorded as measured facts, not a hand label, and every rejected task is kept with its evidence. From the <a href="https://github.com/aitofound/ScienceIDE">ScienceIDE repository</a>.</dd>
+    </dl>
+    <ul>
+      <li><strong>Repair</strong>: a semantic defect is injected into the pinned source; the agent must find and fix it so the physics cases pass again.</li>
+      <li><strong>Implementation</strong>: the body of a routine is removed; the agent reimplements it so the solver reproduces the reference results.</li>
+      <li><strong>Grading</strong>: the reward is the mean physics-case score, rescaled so that an untouched repository earns exactly zero.</li>
+    </ul>
+
+    <h3>Three uses of one foundation</h3>
+    <p>The same environments serve three purposes: evaluating agents (ScienceIDE-Hard), supervised fine-tuning on verified trajectories, and reinforcement learning from verifier rewards. The PhAI-IDE models (4B, 9B, 72B) are released on Hugging Face. One environment is LAPS, the UCLA pseudo-spectral MHD code behind my own simulations of <a href="/research/alfvenons/">Alfvénons</a>.</p>
+
+    <h4>My role</h4>
+    <p>I am co-first author with Hejia Geng, and I co-led the generation of the scientific environments.</p>
+    <ul class="reflist">
+      <li>Geng, H.*, <b>Huang, Z.*</b>, Li, H., et al. (45 authors) 2026, “ScienceIDE: Turning World's Scientific Codebase into Agent Learnable Environments.” <a href="https://arxiv.org/abs/2609.19134">arXiv:2609.19134</a> (* equal contribution)</li>
+    </ul>
+  </article>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 Zesen Huang · Department of Earth, Planetary, and Space Sciences, UCLA</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated October 2026</span>
+  </div>
+</footer>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>

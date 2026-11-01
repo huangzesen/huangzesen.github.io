@@ -18,13 +18,14 @@ ROOT = SRC.parent
 NAV = [
     ("about", "About", "/", []),
     ("research", "Research", "/research/", [
-        ("Alfvénons", "/research/#alfvenons"),
-        ("LingTai 灵台", "/research/#lingtai"),
-        ("ScienceIDE", "/research/#scienceide"),
-        ("Agent Last Exam: Astronomy", "/research/#ale-astronomy"),
-        ("Solar-wind turbulence", "/research/#solar-wind"),
+        ("Alfvénons", "/research/alfvenons/"),
+        ("LingTai 灵台", "/research/lingtai/"),
+        ("ScienceIDE", "/research/scienceide/"),
+        ("Agent Last Exam: Astronomy", "/research/ale-astronomy/"),
+        ("Solar-wind turbulence", "/research/solar-wind/"),
     ]),
     ("publications", "Publications", "/publications/", []),
+    ("cv", "CV", "/cv/", []),
     ("software", "Software", "/software/", []),
     ("miscellany", "Miscellany", "/miscellany/", []),
 ]
@@ -69,6 +70,7 @@ def main():
             "version": version,
             "updated": updated,
             "content": body.rstrip(),
+            "scripts": "".join(f'<script src="{u}?v={version}" defer></script>\n' for u in meta.get("scripts", [])),
         }.items():
             html = html.replace("{{" + k + "}}", v)
         leftover = re.findall(r"\{\{[a-z]+\}\}", html)

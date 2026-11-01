@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Last Exam: Astronomy · Zesen Huang</title>
+<meta name="description" content="The astronomy track of the Agent Last Exam: an interactive star map of 71 research directions, 1,779 open problems harvested from the literature, and 891 recursive-self-improvement task seeds.">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/research/ale-astronomy/">
+<meta property="og:title" content="Agent Last Exam: Astronomy · Zesen Huang">
+<meta property="og:description" content="The astronomy track of the Agent Last Exam: an interactive star map of 71 research directions, 1,779 open problems harvested from the literature, and 891 recursive-self-improvement task seeds.">
+<meta property="og:url" content="https://zesen.me/research/ale-astronomy/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/site.css?v=20261031">
+</head>
+<body class="page-research">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">Zesen Huang<span class="zh">黄泽森</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li><a href="/">About</a></li>
+        <li class="current"><a href="/research/" aria-current="page">Research</a>
+          <ul class="sub-menu">
+            <li><a href="/research/alfvenons/">Alfvénons</a></li>
+            <li><a href="/research/lingtai/">LingTai 灵台</a></li>
+            <li><a href="/research/scienceide/">ScienceIDE</a></li>
+            <li><a href="/research/ale-astronomy/">Agent Last Exam: Astronomy</a></li>
+            <li><a href="/research/solar-wind/">Solar-wind turbulence</a></li>
+          </ul>
+        </li>
+        <li><a href="/publications/">Publications</a></li>
+        <li><a href="/cv/">CV</a></li>
+        <li><a href="/software/">Software</a></li>
+        <li><a href="/miscellany/">Miscellany</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+  <header class="post-header">
+    <div class="crumbs"><a href="/research/">Research</a> › Agent Last Exam: Astronomy</div>
+    <h1 class="post-title">Agent Last Exam: Astronomy</h1>
+    <p class="lede">Can AI agents work on the open problems of a science, not just answer questions about it? Since October 2026 I have led the astronomy track.</p>
+  </header>
+
+  <article class="post-content">
+    <div class="stats">
+      <div class="stat"><b>7</b><span>arXiv categories: six astro-ph plus space physics</span></div>
+      <div class="stat"><b>32</b><span>areas keyed to IAU Divisions and Commissions</span></div>
+      <div class="stat"><b>71</b><span>research directions</span></div>
+      <div class="stat"><b>1,779</b><span>open problems harvested from the literature</span></div>
+      <div class="stat gold"><b>891</b><span>RSI task seeds, 225 rated strong</span></div>
+    </div>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="ale-map" data-ale-map="/data/ale-map.json"><noscript><img src="/images/research/ale-map-thumb.jpg" alt="Static star map of astronomy research directions"></noscript></div></dt>
+      <dd>The field as a star map. The inner ring holds the seven arXiv categories and the next ring their 32 areas. Each ray is one of the 71 research directions: its length is the number of open problems harvested for it, the gold base counts strong recursive-self-improvement seeds, and the pale band counts possible ones. Hover or tap a ray or an area for details; click a category, here or in the legend, to focus it. Counts as of October 2026.</dd>
+    </dl>
+
+    <h3>Mapping the field</h3>
+    <p>The <strong>Agent Last Exam</strong> asks whether AI agents can work on the open problems of a science. For astronomy we began with a map: a taxonomy that runs from the six astro-ph categories plus space physics, through 32 areas keyed to the IAU Divisions and Commissions, down to 71 research directions.</p>
+
+    <h3>Harvesting open problems</h3>
+    <p>For every direction, and then for every area as a whole, we harvested open problems from the current literature, with the cited sources checked. That gave 1,779 problems so far. Each is recorded with why it is still open, who cares about it, the state of the art, and what would count as the truth.</p>
+
+    <h3>Which problems can become tasks?</h3>
+    <p>We judged each problem against one question: can it become a <strong>recursive-self-improvement</strong> task? In such a task the agent submits a method as a script, and a sealed grader runs it on unseen scenarios. A single metric then says which method is better, and the metric leaves room to keep improving. 891 seeds passed, 225 of them rated strong. Each seed names its metric with units and direction, its naive, good and limiting values, its evaluator and its data.</p>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="fig-pad"><svg viewBox="0 0 900 420" role="img" aria-labelledby="ale-t ale-d" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+<title id="ale-t">Agent Last Exam astronomy track: open problems and RSI task seeds by arXiv category</title>
+<desc id="ale-d">1,779 open problems and 891 RSI task seeds (225 strong, 666 possible) across seven arXiv categories.</desc>
+<rect width="900" height="420" fill="#fff"/>
+<g font-size="13" fill="#444"><rect x="268" y="20" width="14" height="10" fill="#d5dee6"/><text x="288" y="29">open problems harvested</text>
+<rect x="458" y="20" width="14" height="10" fill="#005587"/><text x="478" y="29">strong RSI seeds</text>
+<rect x="608" y="20" width="14" height="10" fill="#8db5d2"/><text x="628" y="29">possible RSI seeds</text></g>
+<line x1="268" y1="52" x2="268" y2="378" stroke="#bbb"/>
+<text x="254" y="76" text-anchor="end" font-size="15" fill="#161616" font-weight="600">Earth & planetary</text>
+<text x="254" y="93" text-anchor="end" font-size="12" fill="#777" font-family="Menlo, monospace">astro-ph.EP · 12 directions</text>
+<rect x="268" y="64" width="470.0" height="15" fill="#d5dee6"/>
+<text x="745.0" y="76" font-size="13" fill="#555">315</text>
+<rect x="268" y="82" width="44.8" height="15" fill="#005587"/>
+<rect x="312.8" y="82" width="167.1" height="15" fill="#8db5d2"/>
+<text x="486.9" y="94" font-size="13" fill="#555">30 + 112</text>
+<text x="254" y="122" text-anchor="end" font-size="15" fill="#161616" font-weight="600">High-energy phenomena</text>
+<text x="254" y="139" text-anchor="end" font-size="12" fill="#777" font-family="Menlo, monospace">astro-ph.HE · 11 directions</text>
+<rect x="268" y="110" width="449.1" height="15" fill="#d5dee6"/>
+<text x="724.1" y="122" font-size="13" fill="#555">301</text>
+<rect x="268" y="128" width="40.3" height="15" fill="#005587"/>
+<rect x="308.3" y="128" width="155.2" height="15" fill="#8db5d2"/>
+<text x="470.5" y="140" font-size="13" fill="#555">27 + 104</text>
+<text x="254" y="168" text-anchor="end" font-size="15" fill="#161616" font-weight="600">Instrumentation & methods</text>
+<text x="254" y="185" text-anchor="end" font-size="12" fill="#777" font-family="Menlo, monospace">astro-ph.IM · 11 directions</text>
+<rect x="268" y="156" width="413.3" height="15" fill="#d5dee6"/>
+<text x="688.3" y="168" font-size="13" fill="#555">277</text>
+<rect x="268" y="174" width="64.2" height="15" fill="#005587"/>
+<rect x="332.2" y="174" width="195.5" height="15" fill="#8db5d2"/>
+<text x="534.6" y="186" font-size="13" fill="#555">43 + 131</text>
+<text x="254" y="214" text-anchor="end" font-size="15" fill="#161616" font-weight="600">Galaxies</text>
+<text x="254" y="231" text-anchor="end" font-size="12" fill="#777" font-family="Menlo, monospace">astro-ph.GA · 10 directions</text>
+<rect x="268" y="202" width="364.1" height="15" fill="#d5dee6"/>
+<text x="639.1" y="214" font-size="13" fill="#555">244</text>
+<rect x="268" y="220" width="41.8" height="15" fill="#005587"/>
+<rect x="309.8" y="220" width="123.8" height="15" fill="#8db5d2"/>
+<text x="440.6" y="232" font-size="13" fill="#555">28 + 83</text>
+<text x="254" y="260" text-anchor="end" font-size="15" fill="#161616" font-weight="600">Solar & stellar</text>
+<text x="254" y="277" text-anchor="end" font-size="12" fill="#777" font-family="Menlo, monospace">astro-ph.SR · 10 directions</text>
+<rect x="268" y="248" width="355.1" height="15" fill="#d5dee6"/>
+<text x="630.1" y="260" font-size="13" fill="#555">238</text>
+<rect x="268" y="266" width="47.7" height="15" fill="#005587"/>
+<rect x="315.7" y="266" width="137.3" height="15" fill="#8db5d2"/>
+<text x="460.0" y="278" font-size="13" fill="#555">32 + 92</text>
+<text x="254" y="306" text-anchor="end" font-size="15" fill="#161616" font-weight="600">Cosmology</text>
+<text x="254" y="323" text-anchor="end" font-size="12" fill="#777" font-family="Menlo, monospace">astro-ph.CO · 10 directions</text>
+<rect x="268" y="294" width="323.8" height="15" fill="#d5dee6"/>
+<text x="598.8" y="306" font-size="13" fill="#555">217</text>
+<rect x="268" y="312" width="58.2" height="15" fill="#005587"/>
+<rect x="326.2" y="312" width="119.4" height="15" fill="#8db5d2"/>
+<text x="452.6" y="324" font-size="13" fill="#555">39 + 80</text>
+<text x="254" y="352" text-anchor="end" font-size="15" fill="#161616" font-weight="600">Heliosphere (space physics)</text>
+<text x="254" y="369" text-anchor="end" font-size="12" fill="#777" font-family="Menlo, monospace">physics.space-ph · 7 directions</text>
+<rect x="268" y="340" width="279.0" height="15" fill="#d5dee6"/>
+<text x="554.0" y="352" font-size="13" fill="#555">187</text>
+<rect x="268" y="358" width="38.8" height="15" fill="#005587"/>
+<rect x="306.8" y="358" width="95.5" height="15" fill="#8db5d2"/>
+<text x="409.3" y="370" font-size="13" fill="#555">26 + 64</text>
+<text x="268" y="400" font-size="13" fill="#444"><tspan font-weight="600">Total</tspan>  1,779 problems · 891 seeds (225 strong, 666 possible) · 32 areas · 71 research directions</text>
+</svg></div></dt>
+      <dd>The same counts by arXiv category: open problems harvested (grey) and RSI task seeds judged from them, strong (dark) and possible (light).</dd>
+    </dl>
+
+    <h3>From seeds to tasks</h3>
+    <p>From the strongest seeds we are now building tasks on real survey data. One has grown into a project of its own: a GPU search of the Dark Energy Camera archive for distant, slow-moving bodies in the outer solar system.</p>
+  </article>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 Zesen Huang · Department of Earth, Planetary, and Space Sciences, UCLA</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated October 2026</span>
+  </div>
+</footer>
+
+<script src="/js/ale-map.js?v=20261031" defer></script>
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solar-Wind Turbulence · Zesen Huang</title>
+<meta name="description" content="Solar-wind turbulence and fine structures with Parker Solar Probe, Solar Orbiter and Ulysses: five-minute and two-minute oscillations, two types of 1/f range, the Gaussianity of |B| and total wave action.">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/research/solar-wind/">
+<meta property="og:title" content="Solar-Wind Turbulence · Zesen Huang">
+<meta property="og:description" content="Solar-wind turbulence and fine structures with Parker Solar Probe, Solar Orbiter and Ulysses: five-minute and two-minute oscillations, two types of 1/f range, the Gaussianity of |B| and total wave action.">
+<meta property="og:url" content="https://zesen.me/research/solar-wind/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/site.css?v=20261031">
+</head>
+<body class="page-research">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">Zesen Huang<span class="zh">黄泽森</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li><a href="/">About</a></li>
+        <li class="current"><a href="/research/" aria-current="page">Research</a>
+          <ul class="sub-menu">
+            <li><a href="/research/alfvenons/">Alfvénons</a></li>
+            <li><a href="/research/lingtai/">LingTai 灵台</a></li>
+            <li><a href="/research/scienceide/">ScienceIDE</a></li>
+            <li><a href="/research/ale-astronomy/">Agent Last Exam: Astronomy</a></li>
+            <li><a href="/research/solar-wind/">Solar-wind turbulence</a></li>
+          </ul>
+        </li>
+        <li><a href="/publications/">Publications</a></li>
+        <li><a href="/cv/">CV</a></li>
+        <li><a href="/software/">Software</a></li>
+        <li><a href="/miscellany/">Miscellany</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+  <header class="post-header">
+    <div class="crumbs"><a href="/research/">Research</a> › Solar-wind turbulence</div>
+    <h1 class="post-title">Solar-Wind Turbulence and Fine Structures</h1>
+    <p class="lede">The solar wind is the one turbulent astrophysical plasma we can fly through. I use Parker Solar Probe, Solar Orbiter and Ulysses to ask where its fluctuations come from and how they evolve between the corona and 1 au.</p>
+  </header>
+
+  <article class="post-content">
+    <p class="btn-row"><a class="btn ghost" href="/switch_back.html">Interactive: Switchback Explorer</a></p>
+
+    <h3 id="five-minute">Five-Minute Oscillations Reach the Solar Wind</h3>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/psp-5min-e22.jpg" class="lightbox-trigger"><img src="/images/research/psp-5min-e22.jpg" width="1500" height="1127" alt="Left: cross helicity versus frequency and the magnetic power spectrum with a sharp peak at 3.2 millihertz marked plus 6.1 sigma. Right: wavelet spectrograms and the radial, tangential and normal magnetic field components from 10:00 to 12:30 on 2024 December 24" loading="lazy"></a></dt>
+      <dd>Parker Solar Probe Encounter 22, 2024 December 24, at 9.9 R<sub>☉</sub>. (a) Normalized cross helicity σ<sub>c</sub>(f); (b) magnetic power spectrum P(f)·f with a 3.2 mHz peak 6.1σ above the mean; (c–i) wavelet spectra and the R, T, N field components. From <a href="https://doi.org/10.3847/2041-8213/ae43ec">Huang et al. (2026b)</a>.</dd>
+    </dl>
+    <p>The Sun's surface rings with 5-minute <em>p</em>-mode oscillations, sound waves trapped in the convection zone. They have long been suspected of reaching the solar wind, but direct in situ evidence was missing. In <a href="https://doi.org/10.3847/2041-8213/ae43ec">Huang et al. (2026b)</a> we present strong evidence from Parker Solar Probe's three closest perihelia. In two events at 9.9 solar radii, the magnetic power spectrum shows statistically significant (∼6σ) peaks at 3.1–3.2 mHz. Each appears as a large-amplitude, spherically polarized Alfvénic wave train lasting about 35 minutes: global solar oscillations do reach the solar wind.</p>
+
+    <h3 id="two-minute">Two-Minute Oscillations near the Alfvén Surface</h3>
+    <p>Across the first 19 encounters of Parker Solar Probe, the fluctuation energy of the youngest solar wind is concentrated around 2-minute periods (<a href="https://doi.org/10.3847/2041-8213/ad9271">Huang et al. 2024a</a>). Wavelet spectrograms show these are mostly outward-propagating, spherically polarized Alfvén-wave bursts. A Doppler analysis maps their spacecraft-frame frequency back to the launch frequency at the base of the corona, where SDO/AIA sees a matching ∼8 mHz peak in the swaying of coronal structures. This is strong evidence that the waves originate in the solar atmosphere.</p>
+
+    <h3 id="one-over-f">The 1/f Range: Two Origins</h3>
+    <p>At the lowest frequencies the solar-wind magnetic spectrum follows 1/f before steepening into the inertial range. Closer to the Sun, Parker Solar Probe sees spectra much shallower than 1/f that evolve toward it as the wind ages, which points to a dynamic origin (<a href="https://doi.org/10.3847/2041-8213/acd7f2">Huang et al. 2023</a>). Near the Alfvén surface the 1/f range is systematically absent above 10⁻⁴ Hz. Comparing many wind conditions, we found two distinct types of 1/f range (<a href="https://doi.org/10.3847/2041-8213/adfa13">Huang et al. 2025</a>). In fast, Alfvénic wind it is an intrinsic feature of Alfvénic turbulence and follows near-perfect WKB evolution. In slow and mixed wind it resembles classical flicker noise, which we traced across solar cycles 22–25.</p>
+
+    <h3 id="gaussianity">Structures from the Gaussianity of |B|</h3>
+    <p>We introduced the <em>Gaussianity scalogram</em>, a way to let in situ data contextualize itself (<a href="https://doi.org/10.3847/2041-8213/ad72f1">Huang et al. 2024b</a>). Applied to the magnetic magnitude from Parker Solar Probe and Ulysses, it picks out possible remnants of solar structures across more than seven orders of magnitude in time scale, from years to seconds: polar and midlatitude coronal holes, and structures compatible with supergranulation, jetlets and picoflares. Simulations of Alfvénic turbulence reproduce the Gaussianization of |B| seen in the data. With NASA AIAH funding, these information-theoretic scalograms are now being developed into open-source software.</p>
+
+    <h3 id="wave-action">Total Wave Action in the Expanding Solar Wind</h3>
+    <p>Wave action is not conserved when MHD wave modes coexist near β ∼ 1. We showed that the violation comes from mode conversion, through degeneracy, linear conversion or resonance, and that the <em>total</em> wave action summed over the interacting modes is still conserved. Expanding-box MHD simulations confirm this (<a href="https://doi.org/10.3847/1538-4357/ac74c5">Huang et al. 2022</a>).</p>
+
+    <h3 id="collaborations">Collaborations</h3>
+    <p>I am also a co-author of 14 refereed papers on switchbacks, intermittency, anisotropy, heating and turbulence, including <a href="https://doi.org/10.1038/s41550-026-02923-5">Hou et al. (2026)</a> in Nature Astronomy on the non-adiabatic entropy increase of the solar wind governed by velocity spikes. The <a href="/publications/">publications page</a> lists them all.</p>
+  </article>
+</div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 Zesen Huang · Department of Earth, Planetary, and Space Sciences, UCLA</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated October 2026</span>
+  </div>
+</footer>
+
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
+<script>
+(function () {
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
+})();
+</script>
+</body>
+</html>
