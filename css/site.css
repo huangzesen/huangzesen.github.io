@@ -457,3 +457,57 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
 .afl figcaption { position: relative; }
 .afl-hint { bottom: auto; top: 450px; }
 @media (max-width: 760px) { .afl-hint { top: 372px; } }
+
+.afl-cbar { top: 40px; height: 170px; background: linear-gradient(to top, #5680cd, #7c62e6 20%, #cd46aa 40%, #fa6e32 60%, #ffbe3c 80%, #fff096); }
+.afl-cbar .afl-cbar-lab { top: -22px; left: -1px; transform: none; font-style: italic; }
+.afl-cbar .afl-cbar-mid { bottom: 60%; transform: translateY(50%); color: #ffb48a; }
+
+/* ---------- night-sky hero, gilt titles, seal, ink reveal (after lingtai.ai) ---------- */
+:root { --gilt: linear-gradient(100deg, #b8913f 0%, #e2c682 22%, #fff3c8 42%, #e2c682 58%, #b8913f 80%, #d9b765 100%); --vermilion: #d0563d; }
+.hero { background: radial-gradient(130% 120% at 50% 118%, #1d3264 0%, #0c1630 46%, #060c1c 100%); border-bottom: 0; }
+.hero-inner { padding-bottom: 64px; }
+.hero .post-title { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; font-weight: 600; letter-spacing: 0; font-size: 52px; line-height: 1.08; text-shadow: none; }
+.hero .post-title, .hero .post-title .gilt { background: var(--gilt); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: gilt-sweep 3.2s cubic-bezier(.3,.6,.2,1) .5s both; }
+.hero .post-title .zh { font-family: "Ma Shan Zheng", "Kaiti SC", KaiTi, STKaiti, serif; font-weight: 400; background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #efe6cf; font-size: .78em; margin-left: .25em; animation: none; text-shadow: 0 0 22px rgba(226,198,130,.25); }
+.hero-about .post-title { font-size: 76px; }
+.hero .lede { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.32rem; font-weight: 500; color: #d9d2bd; letter-spacing: .01em; }
+.hero .crumbs { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.02rem; letter-spacing: .04em; }
+.seal { display: inline-block; width: 58px; height: 58px; margin-left: 18px; vertical-align: 6px; color: var(--vermilion); transform: rotate(-2.5deg); animation: seal-stamp .7s cubic-bezier(.3,1.4,.5,1) 1.9s both; filter: drop-shadow(0 2px 8px rgba(0,0,0,.35)); }
+.seal svg { display: block; width: 100%; height: 100%; }
+.hero-waves { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 56px; z-index: 1; pointer-events: none; }
+.hero-waves .w1 { fill: #13224a; opacity: .75; }
+.hero-waves .w2 { fill: #0b1736; opacity: .9; }
+.hero-waves .w3 { fill: var(--paper); }
+.hero-hint { bottom: 60px; }
+@keyframes gilt-sweep { 0% { background-position: 100% 0; } 100% { background-position: 0% 0; } }
+@keyframes ink-reveal { 0% { opacity: 0; filter: blur(7px); transform: translateY(10px); } 100% { opacity: 1; filter: blur(0); transform: none; } }
+@keyframes seal-stamp { 0% { opacity: 0; transform: rotate(-2.5deg) scale(1.6); } 55% { opacity: 1; } 100% { opacity: 1; transform: rotate(-2.5deg) scale(1); } }
+.hero-inner > * { animation: ink-reveal 1.2s cubic-bezier(.2,.7,.2,1) both; }
+.hero-inner > :nth-child(1) { animation-delay: .1s; } .hero-inner > :nth-child(2) { animation-delay: .35s; }
+.hero-inner > :nth-child(3) { animation-delay: .6s; } .hero-inner > :nth-child(4) { animation-delay: .8s; } .hero-inner > :nth-child(5) { animation-delay: 1s; }
+.hero-inner > .post-title { animation: ink-reveal 1.3s cubic-bezier(.2,.7,.2,1) .1s both, gilt-sweep 3.2s cubic-bezier(.3,.6,.2,1) .5s both; }
+.hero-inner > .post-title:has(.gilt) { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: #efe6cf; animation: ink-reveal 1.3s cubic-bezier(.2,.7,.2,1) .1s both; }
+@media (max-width: 720px) { .hero .post-title { font-size: 40px; } .hero-about .post-title { font-size: 50px; } .seal { width: 44px; height: 44px; margin-left: 10px; } .hero-inner { padding-bottom: 54px; } }
+@media (prefers-reduced-motion: reduce) { .hero-inner > *, .hero .post-title, .hero .post-title .gilt, .seal { animation: none !important; } }
+@media print { .hero-waves, .seal { display: none; } .hero .post-title, .hero .post-title .gilt { background: none !important; color: #000 !important; -webkit-text-fill-color: #000; } }
+
+/* ---------- 自述: classical self-account on paper, written top to bottom (after lingtai.ai) ---------- */
+.zishu { display: grid; grid-template-columns: auto 1fr; gap: 0; margin: 30px 0 34px; border-radius: 12px; overflow: hidden; background: #efe7d5; color: #27232a; box-shadow: 0 8px 26px rgba(40,30,10,.12);
+  background-image: radial-gradient(rgba(120,90,40,.10) 1px, transparent 1.2px), radial-gradient(rgba(120,90,40,.06) 1px, transparent 1.4px); background-size: 23px 19px, 37px 31px; background-position: 0 0, 11px 7px; }
+.zishu-scroll { position: relative; writing-mode: vertical-rl; text-orientation: upright; height: 330px; padding: 26px 24px 26px 30px; border-right: 1px solid rgba(110,82,29,.22); font-family: "Noto Serif SC", "Songti SC", STSong, SimSun, serif; }
+.zishu-scroll h2 { font-family: "Ma Shan Zheng", "Kaiti SC", KaiTi, STKaiti, serif; font-weight: 400; font-size: 30px; letter-spacing: .3em; color: #ad3824; margin: 0 0 0 18px; border: 0; padding: 0; }
+.zishu-scroll p { font-size: 18px; line-height: 1.95; letter-spacing: .14em; margin: 0; color: #27232a; }
+.zishu-seal { position: absolute; left: 14px; bottom: 14px; writing-mode: horizontal-tb; }
+.zishu-seal .seal { width: 46px; height: 46px; margin: 0; vertical-align: 0; color: #ad3824; animation: none; filter: none; opacity: .92; }
+.zishu-en { padding: 24px 26px; align-self: center; }
+.zishu-en .k { font-family: "Cormorant Garamond", Georgia, serif; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: #8a6a2a; margin-bottom: 8px; }
+.zishu-en p { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.12rem; line-height: 1.6; color: #3a332c; margin: 0 0 10px; }
+.zishu-en .src { font-family: var(--sans); font-size: 12.5px; color: #8b8171; margin: 0; }
+.zishu-en .src a { color: #ad3824; }
+@media (max-width: 760px) { .zishu { grid-template-columns: 1fr; } .zishu-scroll { height: 300px; border-right: 0; border-bottom: 1px solid rgba(110,82,29,.22); overflow-x: auto; } .zishu-scroll p { font-size: 16.5px; } }
+@media print { .zishu { box-shadow: none; background: none; } }
+.zishu { grid-template-columns: 1fr; }
+.zishu-scroll { height: 372px; border-right: 0; border-bottom: 1px solid rgba(110,82,29,.22); overflow-x: auto; padding: 26px 26px 22px 26px; }
+.zishu-scroll p { letter-spacing: .1em; line-height: 1.9; }
+.zishu-en { padding: 18px 24px 20px; }
+.hero .lede, .hero .crumbs { text-shadow: 0 0 14px #0b1530, 0 0 5px #0b1530, 0 0 2px #0b1530; }

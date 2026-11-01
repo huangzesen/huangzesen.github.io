@@ -16,6 +16,26 @@
         a: amp || (14 + Math.random() * 16), w: 34 + Math.random() * 26, h: 46 + Math.random() * 40, life: 0 });
       if (solitons.length > 9) solitons.shift();
     }
+    var stars = [];
+    function seedStars() { stars = []; for (var i = 0; i < Math.round(W * H / 5200); i++) stars.push([Math.random() * W, Math.random() * H, Math.random() * 1.1 + 0.3, Math.random() * 6.28]); }
+    function chart(ts) {
+      var cx = W * 0.5, cy = H * 1.32, R = Math.max(W, H), rot = reduce ? 0 : ts * 0.000012;
+      ctx.save(); ctx.lineWidth = 1;
+      [0.46, 0.74, 1.02, 1.36].forEach(function (f, k) {
+        ctx.beginPath(); ctx.arc(cx, cy, H * f * 1.15 + k * 40, 0, 6.2832);
+        ctx.setLineDash(k === 2 ? [3, 7] : []); ctx.strokeStyle = 'rgba(226,198,130,' + (k === 2 ? 0.1 : 0.075) + ')'; ctx.stroke();
+      });
+      ctx.setLineDash([]); ctx.strokeStyle = 'rgba(226,198,130,0.055)';
+      for (var a = 0; a < 28; a++) {
+        var th = rot + a * 6.2832 / 28, r0 = H * 0.46 * 1.15;
+        ctx.beginPath(); ctx.moveTo(cx + r0 * Math.cos(th), cy + r0 * Math.sin(th)); ctx.lineTo(cx + R * 1.6 * Math.cos(th), cy + R * 1.6 * Math.sin(th)); ctx.stroke();
+      }
+      for (var i = 0; i < stars.length; i++) {
+        var st = stars[i], tw = reduce ? 0.7 : 0.55 + 0.45 * Math.sin(ts * 0.0012 + st[3]);
+        ctx.fillStyle = 'rgba(236,227,204,' + (0.5 * tw).toFixed(3) + ')'; ctx.fillRect(st[0], st[1], st[2], st[2]);
+      }
+      ctx.restore();
+    }
     function seedInitial() { for (var i = 0; i < 4; i++) spawn(Math.random() * W, H * (0.2 + Math.random() * 0.6), i % 2 ? 1 : -1); }
     function disp(x, y) {
       var d = 0, gold = 0;
@@ -31,6 +51,7 @@
       var dt = Math.min(0.05, (ts - (last || ts)) / 1000); last = ts;
       if (!seen) { requestAnimationFrame(frame); return; }
       ctx.clearRect(0, 0, W, H);
+      chart(ts);
       for (var i = solitons.length - 1; i >= 0; i--) {
         var s = solitons[i]; s.x += s.v * dt; s.life += dt;
         if (s.x < -200 || s.x > W + 200) solitons.splice(i, 1);
@@ -46,7 +67,7 @@
         var r = rings[i]; r.r += 90 * dt; r.a -= 0.28 * dt;
         if (r.a <= 0) { rings.splice(i, 1); continue; }
         ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, 6.2832);
-        ctx.strokeStyle = 'rgba(255,184,28,' + r.a.toFixed(3) + ')'; ctx.lineWidth = 1.4; ctx.stroke();
+        ctx.strokeStyle = 'rgba(226,198,130,' + r.a.toFixed(3) + ')'; ctx.lineWidth = 1.4; ctx.stroke();
       }
       var step = Math.max(6, W / 220);
       for (var l = 0; l < NL; l++) {
@@ -59,13 +80,13 @@
           if (x <= -10) ctx.moveTo(x, y); else ctx.lineTo(x, y);
         }
         var g = Math.min(1, hot / 20);
-        ctx.strokeStyle = 'rgba(' + Math.round(120 + 135 * g) + ',' + Math.round(170 + 14 * g) + ',' + Math.round(255 - 227 * g) + ',' + (0.22 + 0.4 * g).toFixed(3) + ')';
+        ctx.strokeStyle = 'rgba(' + Math.round(150 + 76 * g) + ',' + Math.round(175 + 23 * g) + ',' + Math.round(230 - 100 * g) + ',' + (0.12 + 0.45 * g).toFixed(3) + ')';
         ctx.lineWidth = 1 + 0.6 * g; ctx.stroke();
       }
       if (!reduce) requestAnimationFrame(frame);
     }
-    size(); seedInitial();
-    window.addEventListener('resize', size);
+    size(); seedStars(); seedInitial();
+    window.addEventListener('resize', function () { size(); seedStars(); });
     var hero = cv.parentElement;
     hero.addEventListener('pointermove', function (e) {
       var now = performance.now(); if (now - lastSpawn < 380) return; lastSpawn = now;

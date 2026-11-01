@@ -14,6 +14,8 @@
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&display=swap">
 <link rel="stylesheet" href="/css/site.css?v=20261101">
 </head>
 <body class="page-research">
@@ -50,7 +52,7 @@
 <div class="crumbs"><a href="/research/">Research</a> › Alfvénons</div>
     <h1 class="post-title">Alfvénons</h1>
     <p class="lede">Three-dimensional solitary Alfvén waves: what the switchbacks Parker Solar Probe flies through could be, and what happens when two of them collide.</p>
-</div></section>
+</div><svg class="hero-waves" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="w1" d="M0 34 C 160 14 300 14 460 30 S 760 52 920 34 S 1220 10 1440 30 V80 H0 Z"/><path class="w2" d="M0 52 C 200 34 360 40 540 52 S 860 66 1040 50 S 1300 38 1440 50 V80 H0 Z"/><path class="w3" d="M0 66 C 180 56 380 60 560 68 S 900 76 1100 66 S 1340 60 1440 66 V80 H0 Z"/></svg></section>
 
 <main id="main" class="page-content">
   <div class="wrapper">
@@ -65,13 +67,13 @@
         <button type="button" data-afl="reset">Reset</button>
         <button type="button" data-afl="full">Full screen</button>
       </div>
-      <div class="afl-cbar" aria-hidden="true"><span class="afl-cbar-max">90°+</span><span class="afl-cbar-min">0°</span><span class="afl-cbar-lab">θ</span></div>
+      <div class="afl-cbar" aria-hidden="true"><span class="afl-cbar-lab">θ</span><span class="afl-cbar-max">150°</span><span class="afl-cbar-mid">90° fold</span><span class="afl-cbar-min">0°</span></div>
       <div class="afl-hint">drag to rotate · scroll or pinch to zoom</div>
       <div class="afl-load">Loading 1,360 field lines…</div>
-      <figcaption>A large-amplitude Alfvénon, the switchback model of my <a href="/switch_back.html">Switchback Field-Line Explorer</a>, in 3D: drag to turn it. Each of the 1,360 field lines is coloured by its local angle θ = cos⁻¹(B<sub>x</sub>/|B|) to the background field B₀ = x̂ (arrow), from steel blue at 0° to gold at 90°, and glows brighter where it bends. Past 90° the field folds back on itself, a switchback, and the line turns white-hot: more than 130 of the lines do, up to θ ≈ 145°. Lines bent past 60° are drawn thicker. The full Plotly explorer is a 59 MB page; this view loads 0.5 MB.</figcaption>
+      <figcaption>A large-amplitude Alfvénon, the switchback model of my <a href="/switch_back.html">Switchback Field-Line Explorer</a>, in 3D: drag to turn it. Each of the 1,360 field lines is coloured by its local angle θ = cos⁻¹(B<sub>x</sub>/|B|) to the background field B₀ = x̂ (arrow): steel blue where the field is straight, magenta at 60°, orange at 90°. Past 90° the field folds back on itself, a switchback, and the colour runs on to gold: more than 130 of the lines fold, up to θ ≈ 145°. Where a line bends by more than 25° it is drawn as a solid tube, so each fold can be followed in 3D. The full Plotly explorer is a 59 MB page; this view loads 0.5 MB.</figcaption>
     </figure>
     <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-    <script type="module" src="/js/alfvenon-lines.js?v=20261101h"></script>
+    <script type="module" src="/js/alfvenon-lines.js?v=20261101j"></script>
 
     <h3 id="solitary">Solitary Alfvén waves in three dimensions</h3>
     <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>. They are abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>

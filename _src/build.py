@@ -58,8 +58,9 @@ def main():
         meta = json.loads(m.group(1))
         body = text[m.end():]
         # <!--include partials/x.svg --> pastes a generated file (e.g. the ALE chart) in place
-        body = re.sub(r"<!--include ([\w./-]+) -->",
-                      lambda mm: (SRC / mm.group(1)).read_text().strip(), body)
+        for _ in range(4):  # partials may include partials
+            body = re.sub(r"<!--include ([\w./-]+) -->",
+                          lambda mm: (SRC / mm.group(1)).read_text().strip(), body)
         hm = re.search(r'\s*<header class="post-header">(.*?)</header>\n?', body, re.S)
         hero = hm.group(1).strip() if hm else ""
         if hm:

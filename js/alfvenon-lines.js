@@ -1,8 +1,9 @@
 /* Interactive 3D field lines of an Alfvénon. Default scene 'large': the large-amplitude Alfvénon (switchback model)
    of switch_back.html, 1,360 lines (make_switchback_lines.py); scene 'single': the 128^3 Alfvénon of Huang et al. 2026a.
-   Each line is a tube coloured by its local bend angle theta = arccos(Bx/|B|), taken from the line's own tangent
-   (a field line runs along B), with light pulses flowing along it. Drag to rotate, scroll or pinch to zoom.
-   Data: /data/alfvenon/<scene>.json + <scene>-lines.bin.gz. Lines bent past 60 deg are tubes, the rest thin glowing lines.
+   Lines are coloured by the local bend angle theta = arccos(Bx/|B|), taken from each line's tangent (a field line
+   runs along B), with light pulses flowing along them. Drag to rotate, scroll or pinch to zoom.
+   Data: /data/alfvenon/<scene>.json + <scene>-lines.bin.gz. All lines are faint additive glows; lines bent past 60 deg are
+   also solid lit tubes where they bend past 25 deg, so each fold can be followed.
    Markup: _src/partials/alfvenon-lines.html. Needs WebGL and an import map for "three". */
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -20,10 +21,10 @@ async function bytes(url) {
   return buf;
 }
 
-// colour scale for theta / theta_max: steel blue (straight field) -> violet -> magenta -> orange -> white-gold
-const STOPS = [[0, [86, 128, 205]], [0.22, [124, 98, 230]], [0.45, [205, 70, 170]], [0.7, [250, 128, 60]], [1, [255, 236, 190]]];
-function cmap(x) {
-  x = Math.min(1, Math.max(0, x));
+// colour by theta in degrees: steel blue (straight) -> violet -> magenta -> orange at 90 (fold) -> gold -> pale yellow at 150
+const STOPS = [[0, [86, 128, 205]], [30, [124, 98, 230]], [60, [205, 70, 170]], [90, [250, 110, 50]], [120, [255, 190, 60]], [150, [255, 240, 150]]];
+function cmap(deg) {
+  const x = Math.min(150, Math.max(0, deg));
   let k = 0; while (k < STOPS.length - 2 && x > STOPS[k + 1][0]) k++;
   const [x0, c0] = STOPS[k], [x1, c1] = STOPS[k + 1], f = (x - x0) / (x1 - x0);
   return c0.map((c, i) => (c + (c1[i] - c) * f) / 255);
@@ -39,15 +40,16 @@ void main() {
 const FRAG = /* glsl */`
 precision highp float;
 in float vS; in float vId; in vec3 vCol; in vec3 vN; in float vT; out vec4 fragColor;
-uniform float uTime, uPulse, uBase, uPow, uThin;
+uniform float uTime, uPulse, uCut, uThin;
 void main() {
+  if (vT < uCut) discard;                                   // solid tube only where the line bends
   float ph = fract(vS * 1.6 - uTime * 0.12 + vId * 0.173);
   float pulse = smoothstep(0.0, 0.03, ph) * (1.0 - smoothstep(0.03, 0.22, ph)) * uPulse;
-  float face = abs(vN.z);                                   // 1 facing the camera, 0 at the silhouette
-  float edge = smoothstep(0.0, 0.05, vS) * (1.0 - smoothstep(0.95, 1.0, vS));
-  float lit = (0.45 + 0.4 * face) * (uBase + 0.9 * pow(min(vT, 1.0), uPow));     // straight field dim, bent field bright
-  vec3 c = vCol * lit * (1.0 + 1.1 * pulse) + vec3(1.0, 0.95, 0.85) * pulse * min(vT, 1.0) * 0.6;
-  fragColor = vec4(c * edge, 1.0);
+  vec3 n = normalize(vN);
+  float dif = max(dot(n, normalize(vec3(0.35, 0.55, 0.75))), 0.0);
+  float rim = pow(1.0 - abs(n.z), 2.0);
+  vec3 c = vCol * (0.25 + 0.75 * dif + 0.2 * rim) * (1.0 + 0.4 * pulse);
+  fragColor = vec4(c, 1.0);
 }`;
 
 const THIN_VERT = /* glsl */`
@@ -57,13 +59,13 @@ void main() { vS = s; vId = lid; vCol = col; vT = tw; gl_Position = projectionMa
 const THIN_FRAG = /* glsl */`
 precision highp float;
 in float vS; in float vId; in vec3 vCol; in float vT; out vec4 fragColor;
-uniform float uTime, uPulse, uBase, uPow, uThin;
+uniform float uTime, uPulse, uCut, uThin;
 void main() {
   float ph = fract(vS * 1.6 - uTime * 0.12 + vId * 0.173);
   float pulse = smoothstep(0.0, 0.03, ph) * (1.0 - smoothstep(0.03, 0.22, ph)) * uPulse;
   float edge = smoothstep(0.0, 0.05, vS) * (1.0 - smoothstep(0.95, 1.0, vS));
-  float g = uThin + 0.5 * vT * vT;                         // faint where straight, bright where bent
-  fragColor = vec4(vCol * g * (1.0 + 1.6 * pulse) * edge, 1.0);
+  float t = min(vT, 1.0), g = uThin + 0.2 * t * t;          // faint where straight, a little brighter where bent
+  fragColor = vec4(vCol * g * (1.0 + 1.2 * pulse) * edge, 1.0);
 }`;
 
 async function start(root) {
@@ -76,8 +78,26 @@ async function start(root) {
 
   const renderer = new THREE.WebGLRenderer({ canvas, context: gl, antialias: true });
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.setClearColor(0x05070d, 1);
+  renderer.setClearColor(0x060c1c, 1);
   const scene = new THREE.Scene();
+  const sky = document.createElement('canvas'), skyTex = new THREE.CanvasTexture(sky);
+  skyTex.colorSpace = THREE.SRGBColorSpace; scene.background = skyTex;
+  function paintSky(w, h) {          // night-sky star chart behind the field lines (after lingtai.ai)
+    const k = Math.min(devicePixelRatio, 2); sky.width = Math.round(w * k); sky.height = Math.round(h * k);
+    const c = sky.getContext('2d'); c.scale(k, k);
+    const g = c.createRadialGradient(w * 0.5, h * 1.1, 0, w * 0.5, h * 1.1, Math.max(w, h) * 1.1);
+    g.addColorStop(0, '#1d3264'); g.addColorStop(0.45, '#0c1630'); g.addColorStop(1, '#060c1c');
+    c.fillStyle = g; c.fillRect(0, 0, w, h);
+    const cx = w * 0.5, cy = h * 1.25; c.lineWidth = 1;
+    [0.5, 0.8, 1.12, 1.5].forEach((f, i) => { c.beginPath(); c.arc(cx, cy, h * f, 0, 6.2832); c.setLineDash(i === 2 ? [3, 7] : []);
+      c.strokeStyle = 'rgba(226,198,130,' + (i === 2 ? 0.1 : 0.07) + ')'; c.stroke(); });
+    c.setLineDash([]); c.strokeStyle = 'rgba(226,198,130,0.05)';
+    for (let a = 0; a < 28; a++) { const t = a * 6.2832 / 28; c.beginPath(); c.moveTo(cx + h * 0.5 * Math.cos(t), cy + h * 0.5 * Math.sin(t));
+      c.lineTo(cx + h * 3 * Math.cos(t), cy + h * 3 * Math.sin(t)); c.stroke(); }
+    let sd = 11; const rnd = () => (sd = (sd * 16807) % 2147483647) / 2147483647;
+    for (let i = 0; i < w * h / 2600; i++) { c.fillStyle = 'rgba(236,227,204,' + (0.15 + 0.4 * rnd()).toFixed(2) + ')'; const r = 0.4 + rnd(); c.fillRect(rnd() * w, rnd() * h, r, r); }
+    skyTex.needsUpdate = true;
+  }
   const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 30);
   camera.up.set(0, 0, 1);
   const controls = new OrbitControls(camera, canvas);
@@ -88,7 +108,7 @@ async function start(root) {
   const base = root.dataset.base || '/data/alfvenon/', name = root.dataset.scene || 'large';
   const [meta, raw] = await Promise.all([(await fetch(base + name + '.json')).json(), bytes(base + name + '-lines.bin.gz')]);
   const L = meta.box, nl = meta.lines, np = meta.npts, c0 = [L[0] / 2, meta.center[1], meta.center[2]];
-  const vis = meta.theta_max > 90 ? 90 : meta.theta_max;      // colour scale end; past 90 deg the field folds back: white-hot
+  const degScale = meta.theta_max > 90 ? 1 : 150 / meta.theta_max;   // a small Alfvénon uses the whole colour scale
   const tubeMin = meta.theta_max > 90 ? 60 : 0;               // lines bent more than this are drawn as glowing tubes
   let q;
   if (meta.encoding === 'delta-int16') {                      // first point absolute (mod 65536), then steps along the line
@@ -99,9 +119,8 @@ async function start(root) {
     }
   } else q = new Uint16Array(raw.buffer, raw.byteOffset, raw.byteLength / 2);
 
-  const colour = (th) => { const x = th / vis, c = cmap(Math.min(1, x)), w = Math.min(1, Math.max(0, (x - 1) * 2.2));
-    return [c[0] + (1 - c[0]) * w, c[1] + (0.97 - c[1]) * w, c[2] + (0.9 - c[2]) * w]; };
-  const thin = { pos: [], col: [], tw: [], s: [], id: [], idx: [] }, parts = [], R = tubeMin ? 0.0022 : 0.0026, RAD = tubeMin ? 6 : 8;
+  const colour = (th) => cmap(th * degScale), bend = (th) => Math.min(1.6, th / 90);
+  const thin = { pos: [], col: [], tw: [], s: [], id: [], idx: [] }, parts = [], R = tubeMin ? 0.0024 : 0.0026, RAD = 8;
   for (let l = 0; l < nl; l++) {
     const pts = [];
     for (let i = 0; i < np; i++) {
@@ -117,7 +136,7 @@ async function start(root) {
       const v0 = thin.s.length;
       for (let i = 0; i < np; i++) {
         thin.pos.push(pts[i].x, pts[i].y, pts[i].z); thin.col.push(...colour(th[i]));
-        thin.tw.push(Math.min(1.3, th[i] / vis)); thin.s.push(i / (np - 1)); thin.id.push(l);
+        thin.tw.push(bend(th[i])); thin.s.push(i / (np - 1)); thin.id.push(l);
         if (i < np - 1) thin.idx.push(v0 + i, v0 + i + 1);
       }
     }
@@ -125,7 +144,7 @@ async function start(root) {
     const g = new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts), np - 1, R, RAD, false);
     const nv = g.attributes.position.count, s = new Float32Array(nv), id = new Float32Array(nv), col = new Float32Array(nv * 3), tw = new Float32Array(nv);
     for (let i = 0; i < np; i++) {
-      const x = Math.min(1.3, th[i] / vis), c = colour(th[i]);
+      const x = bend(th[i]), c = colour(th[i]);
       for (let j = 0; j <= RAD; j++) {
         const v = i * (RAD + 1) + j; s[v] = i / (np - 1); id[v] = l; tw[v] = x; col.set(c, v * 3);
       }
@@ -138,9 +157,8 @@ async function start(root) {
     parts.push(g);
   }
   const uniforms = { uTime: { value: 0 }, uPulse: { value: reduce ? 0 : 1 },
-    uBase: { value: tubeMin ? 0.02 : 0.42 }, uPow: { value: tubeMin ? 2.0 : 1.0 }, uThin: { value: 0.03 } };
-  const mat = new THREE.ShaderMaterial({ glslVersion: THREE.GLSL3, vertexShader: VERT, fragmentShader: FRAG,
-    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, uniforms });
+    uCut: { value: tubeMin ? 25 / 90 : 0 }, uThin: { value: 0.035 } };
+  const mat = new THREE.ShaderMaterial({ glslVersion: THREE.GLSL3, vertexShader: VERT, fragmentShader: FRAG, uniforms });   // opaque, depth-tested
   if (parts.length) { const geo = mergeGeometries(parts); parts.forEach((g) => g.dispose()); scene.add(new THREE.Mesh(geo, mat)); }
   if (thin.s.length) {
     const g = new THREE.BufferGeometry();
@@ -156,14 +174,14 @@ async function start(root) {
   }
 
   const edges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(L[0], L[1], L[2])),
-    new THREE.LineBasicMaterial({ color: 0x3b5a86, transparent: true, opacity: 0.35 }));
+    new THREE.LineBasicMaterial({ color: 0xa9853a, transparent: true, opacity: 0.32 }));
   edges.position.set(L[0] / 2 - c0[0], L[1] / 2 - c0[1], L[2] / 2 - c0[2]);
   scene.add(edges);
   // background field direction B0 = x
   const ay = 0, az = tubeMin ? -0.3 : -0.27;   // under the bundle of lines
-  scene.add(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.22, ay, az), 0.44, 0x9fb4cc, 0.05, 0.026));
+  scene.add(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-0.22, ay, az), 0.44, 0xe2c682, 0.05, 0.026));
   const lc = document.createElement('canvas'); lc.width = 128; lc.height = 64;
-  const lx = lc.getContext('2d'); lx.fillStyle = '#cfdbec'; lx.font = 'italic 600 40px Georgia, serif'; lx.fillText('B', 30, 46);
+  const lx = lc.getContext('2d'); lx.fillStyle = '#e2c682'; lx.font = 'italic 600 40px Georgia, serif'; lx.fillText('B', 30, 46);
   lx.font = '600 24px Georgia, serif'; lx.fillText('0', 58, 56);
   const lab = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(lc), transparent: true, depthWrite: false }));
   lab.scale.set(0.12, 0.06, 1); lab.position.set(0.28, ay, az + 0.05); scene.add(lab);
@@ -183,7 +201,7 @@ async function start(root) {
   sync();
 
   const resize = () => { const r = stage.getBoundingClientRect();
-    renderer.setSize(r.width, r.height, false); camera.aspect = r.width / Math.max(1, r.height); camera.updateProjectionMatrix(); };
+    renderer.setSize(r.width, r.height, false); paintSky(r.width, r.height); camera.aspect = r.width / Math.max(1, r.height); camera.updateProjectionMatrix(); };
   new ResizeObserver(resize).observe(stage); resize();
   let visible = true;
   new IntersectionObserver((e) => { visible = e[0].isIntersecting; }).observe(root);
