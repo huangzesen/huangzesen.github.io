@@ -56,7 +56,25 @@
   </header>
 
   <article class="post-content">
-<!-- 3D explorer: pending -->
+<h3 id="explore">Explore an Alfvénon in 3D <span class="tag">interactive</span></h3>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="explorer" data-src="/explorers/alfvenon-small-amplitude.html">
+        <img src="/images/research/alfvenon-explorer-poster.jpg" width="1200" height="800" alt="Preview of the 3D Alfvénon explorer: nested isosurfaces of theta inside a unit box, with a bundle of field lines along x">
+        <button type="button" class="explorer-go">▶ Load the interactive 3D view <small>(3.4 MB)</small></button>
+      </div></dt>
+      <dd>The Alfvénon from <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>, θ<sub>max</sub> ≈ 45°, on its 128³ grid. Nested surfaces show θ = cos⁻¹(B<sub>x</sub>/|B|) from 0° to 45°. The field lines (grey) are traced from the most-deflected cell and its neighbours; the red one starts at that cell. Drag to rotate, scroll or pinch to zoom, and shift-drag to pan. Built with PyVista and vtk.js.</dd>
+    </dl>
+    <p class="btn-row"><a class="btn ghost" href="/explorers/alfvenon-small-amplitude.html">Open the 3D view full screen</a><a class="btn ghost" href="/switch_back.html">Switchback field-line explorer (59 MB)</a></p>
+    <script>
+    document.querySelectorAll('.explorer').forEach(function (box) {
+      box.querySelector('.explorer-go').addEventListener('click', function () {
+        var f = document.createElement('iframe');
+        f.src = box.dataset.src; f.className = 'explorer-frame'; f.title = 'Interactive 3D Alfvénon: theta isosurfaces and field lines';
+        f.setAttribute('allowfullscreen', '');
+        box.innerHTML = ''; box.appendChild(f);
+      });
+    });
+    </script>
 
     <h3 id="solitary">Solitary Alfvén waves in three dimensions</h3>
     <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>. They are abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>

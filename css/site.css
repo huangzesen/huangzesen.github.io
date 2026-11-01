@@ -365,3 +365,9 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
   .pubs li { padding: 3pt 0 3pt 2.6rem; font-size: 9pt; }
   .pubs li::before { top: 4pt; }
 }
+.explorer { position: relative; background: #fff; }
+.explorer img { display: block; width: 100%; height: auto; }
+.explorer-go { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: var(--nav); font-size: 16px; font-weight: 600; color: #fff; background: rgba(0, 85, 135, .94); border: 0; border-radius: 999px; padding: 13px 24px; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+.explorer-go small { font-weight: 500; opacity: .8; font-size: 13px; }
+.explorer-go:hover { background: var(--brand-deep); }
+.explorer .explorer-frame { aspect-ratio: 3 / 2; background: #fff; border-radius: 0; }
