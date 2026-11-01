@@ -1,0 +1,111 @@
+<!--meta {"title": "Research · Zesen Huang", "description": "Alfvénons (3D solitary Alfvén waves), the LingTai agent runtime, ScienceIDE executable science environments, the Agent Last Exam astronomy track, and solar-wind turbulence with Parker Solar Probe.", "path": "/research/", "nav": "research"} -->
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">Research</h1>
+  </header>
+
+  <article class="post-content">
+    <h4 class="links"><a href="https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-9570-5975&amp;sort=date%20desc">Link to my publications in ADS</a> · <a href="/publications/">full list on this site</a></h4>
+
+    <ul class="toc" aria-label="On this page">
+      <li><a href="#alfvenons">Alfvénons</a></li>
+      <li><a href="#lingtai">LingTai 灵台</a></li>
+      <li><a href="#scienceide">ScienceIDE</a></li>
+      <li><a href="#ale-astronomy">Agent Last Exam: Astronomy</a></li>
+      <li><a href="#solar-wind">Solar-wind turbulence</a></li>
+    </ul>
+
+    <!-- ================= Alfvénons ================= -->
+    <h3 id="alfvenons">Alfvénons: Solitary Alfvén Waves in Three Dimensions</h3>
+
+    <dl class="wp-caption aligncenter" style="width: 660px; max-width: 100%">
+      <dt><a href="/images/research/alfvenon-theta.png" class="lightbox-trigger"><img src="/images/research/alfvenon-theta.png" width="1100" height="976" alt="Nested translucent contours of the field deflection angle theta forming a localized, kidney-shaped Alfvénon in a unit box, with grey field lines threading straight through it"></a></dt>
+      <dd>An Alfvénon on a 128³ grid. Nested surfaces show θ = cos⁻¹(B<sub>x</sub>/|B|), the angle between the local field and the unperturbed background field B₀ = x̂; it peaks at ≈45°. The grey field lines enter and leave the structure along x̂: the perturbation is localized, |B| stays nearly constant, and every field line stays open. From <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>.</dd>
+    </dl>
+
+    <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>: abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>
+
+    <dl class="wp-caption alignright" style="width: 230px">
+      <dt><a href="/images/research/spaw-constant-b.png" class="lightbox-trigger"><img src="/images/research/spaw-constant-b.png" width="480" height="480" alt="Circle of constant field magnitude with the background vector b0 pointing up, the wave field b1 and the total field b ending on the circle, and the velocity u1 drawn along b1"></a></dt>
+      <dd>The constant-|B| constraint: the wave field <b>b</b>₁ swings the total field <b>b</b> = <b>b</b>₀ + <b>b</b>₁ around a sphere of fixed radius; the flow <b>u</b>₁ is aligned with <b>b</b>₁. From Huang et al. (2026a).</dd>
+    </dl>
+
+    <p>In <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a> we instead write the Alfvén wave as a <strong>solitary solution of ideal MHD</strong>: a localized perturbation riding on an unperturbed far field, with constant |B|. Building such a field in three dimensions is not trivial: it has to be divergence-free with open field lines exactly, keep |B| nearly constant, and leave the far field untouched. We construct it with an iterative algorithm that alternates a spectral Helmholtz–Hodge projection, which removes the divergence, with a normalization of |B|, and the iteration converges. We call the result an <strong>Alfvénon</strong>. Direct MHD simulations show the Alfvénon propagating coherently: it behaves as a nonlinear solitary Alfvénic solution under ideal MHD.</p>
+
+    <h4 id="alfvenon-collisions">Now: Colliding Alfvénons <span class="tag">first results</span></h4>
+    <p>A turbulent cascade needs counter-propagating Alfvén waves to collide, and the Alfvénon makes a clean collision experiment possible. An isolated Alfvénon carries no compressive component (δ|B| ≈ 0, δρ ≈ 0) and stays that way as it propagates. Any compressive energy that appears when two of them meet is therefore made by the collision. The mechanism is simple: each Alfvénon has constant |B| on its own, but their superposition does not. Where they overlap, a magnetic-pressure imbalance of order <b>b</b>₊·<b>b</b>₋ launches magnetosonic waves carrying a fraction of order (δb/B₀)² of the Alfvénic energy. That is order unity at the large amplitudes Parker Solar Probe sees near the Sun.</p>
+
+    <p>We are testing this with shock-capturing, double-precision GPU simulations of head-on collisions on NVIDIA H100s, on grids up to 1024×512×512, which conserve energy to better than one part in 10⁸. In the first five runs, by the end of the first encounter the internal energy has risen by about 5–6% of the initial perturbation energy when two small-amplitude Alfvénons (θ<sub>max</sub> ≈ 45°) collide. When one of them is large (θ<sub>max</sub> ≈ 164°) the rise is about 10%. The transfer grows with amplitude, and the packets come out of the encounter damaged rather than destroyed. Now under way: matched single-packet and co-propagating controls, which separate collisional from numerical heating; an amplitude scan down to the ordinary-wave limit; Alfvénons of different shapes; and a census of the fast and slow waves the collision emits. Closed coronal loops, where reflection at the footpoints makes counter-propagating waves the rule, are the first application in view. A LingTai research agent (below) helps run the campaign and keeps the record of every run.</p>
+    <div class="spacer"></div>
+
+    <!-- ================= LingTai ================= -->
+    <h3 id="lingtai">LingTai 灵台: Lifelong Digital Scientists</h3>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><video src="/images/research/lingtai-network.mp4" poster="/images/research/lingtai-network-still.jpg" width="1200" height="500" autoplay muted loop playsinline preload="metadata" aria-label="Animated network graph of long-lived LingTai agents connected to one another"></video></dt>
+      <dd>A live local network of long-lived LingTai project agents, as shown in the LingTai portal. Animation from the <a href="https://github.com/Lingtai-AI/lingtai">LingTai repository</a>.</dd>
+    </dl>
+
+    <p>Most AI agents are one-shot workers: a chat that forgets, or a coding session that ends when the terminal closes. Research needs the opposite: someone who holds a question for weeks, keeps notes, and gets better at it. <strong>LingTai</strong> is an open-source (Apache-2.0) runtime for agents like that. I created it and lead its development. Each agent lives in a project folder, works through real tools (shell, files, web search, coding agents), and talks to people and to other agents through a shared mailbox, on desktop, in a terminal, or over Telegram, WeChat and email.</p>
+
+    <p>Its state is <strong>filesystem-native</strong>. Mail, memory, knowledge, skills and logs are ordinary files under <code>.lingtai/</code>, so you can inspect, restart, teach and recover an agent. When its context window fills, the agent <em>molts</em> (凝蜕): it saves what matters in four durable forms and resets. Those forms are a knowledge library, reusable skills, an evolving character, and persistent specialist <em>avatars</em> it has spawned. The next session starts from that state instead of starting cold.</p>
+
+    <p>I run my own research on LingTai networks. The Alfvénon simulation campaign above is held by a LingTai agent that keeps the run provenance, HPC access and method notes across months. Other agents in my projects reproduce published analyses, review literature, and draft and referee manuscripts.</p>
+    <p class="linkrow"><a href="https://lingtai.ai">lingtai.ai</a><a href="https://github.com/Lingtai-AI/lingtai">GitHub: Lingtai-AI/lingtai</a><a href="/103-agent-parallel-20260809/">Report: 103 agents in parallel</a></p>
+
+    <!-- ================= ScienceIDE ================= -->
+    <h3 id="scienceide">ScienceIDE: Scientific Codebases as Training Grounds for AI Agents</h3>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/scienceide-overview.png" class="lightbox-trigger"><img src="/images/research/scienceide-overview.png" width="1500" height="1268" alt="Diagram of ScienceIDE: upstream scientific codes such as Athena++, Gkeyll, DScribe, NEST, MITgcm, EDKit and Stim feed environments; an editor view shows a task's instruction, the injected defect and its reference repair, a verifier table of physics cases, and SFT and RL panels" loading="lazy"></a></dt>
+      <dd>ScienceIDE in one view. Pinned upstream scientific codes (Athena++, MITgcm, Gkeyll, DScribe, NEST, EDKit, Stim, …) become containerized environments. A task injects a defect or removes a routine, and a verifier re-runs the code's own physics cases to grade the agent's repair. The same episodes feed supervised fine-tuning and reinforcement learning. From the <a href="https://github.com/aitofound/ScienceIDE">ScienceIDE repository</a>.</dd>
+    </dl>
+
+    <p>Scientific software holds decades of expertise, and it carries its own ground truth: the physics test cases a code must reproduce. <strong>ScienceIDE</strong> turns that into a training ground for AI agents. Each task is a containerized episode on a pinned, unmodified upstream code: astrophysical MHD, ocean and atmosphere models, plasma kinetics, quantum circuits, materials descriptors. The agent edits source. A verifier then recompiles the code, re-runs its physics cases and compares the numbers against reference output. The reward comes from the simulation being <strong>numerically right again</strong>, not from matching a diff, which makes it hard to game.</p>
+
+    <p>The collection has 64 environments built from 27 scientific codebases, 2,812 tasks and 1,076 scientific checks. Its hardest 85 tasks form the <strong>ScienceIDE-Hard</strong> benchmark. The same environments serve three purposes: evaluating agents, supervised fine-tuning on verified trajectories, and reinforcement learning from verifier rewards. One environment is LAPS, the UCLA pseudo-spectral MHD code behind my own simulations. The PhAI-IDE models (4B, 9B, 72B) are released on Hugging Face. I am co-first author with Hejia Geng and co-led the generation of the scientific environments (Geng, Huang et al. 2026, technical report).</p>
+    <p class="linkrow"><a href="https://aitonomy.org/projects/scienceide">Project page</a><a href="https://github.com/aitofound/ScienceIDE">GitHub: aitofound/ScienceIDE</a><a href="https://huggingface.co/collections/AItonomy/scienceide-model-series">Models on Hugging Face</a></p>
+
+    <!-- ================= ALE astronomy ================= -->
+    <h3 id="ale-astronomy">Agent Last Exam: Astronomy <span class="tag">current</span></h3>
+
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><div class="fig-pad"><!--include partials/ale-chart.svg --></div></dt>
+      <dd>The astronomy track so far, by arXiv category: open problems harvested from the current literature (grey), and recursive-self-improvement task seeds judged from them, strong (dark) and possible (light). Counts as of October 2026.</dd>
+    </dl>
+
+    <p>The <strong>Agent Last Exam</strong> asks whether AI agents can work on the open problems of a science, not just answer questions about it. Since October 2026 I have led its astronomy track. We started by mapping the field: a taxonomy that runs from the six astro-ph categories plus space physics, through 32 areas keyed to the IAU Divisions and Commissions, down to 71 research directions.</p>
+
+    <p>For every direction we then harvested open problems from the current literature: 1,779 so far, with cited sources checked. We judged each one against a single question: can it become a <strong>recursive-self-improvement</strong> task? In such a task the agent submits a method as a script, a sealed grader runs it on unseen scenarios, and one metric says which method is better, with room to keep improving. 891 seeds passed; 225 were rated strong. From the strongest we are now building tasks on real survey data. One has grown into a project of its own: a GPU search of the Dark Energy Camera archive for distant, slow-moving bodies in the outer solar system.</p>
+    <div class="spacer"></div>
+
+    <!-- ================= Solar wind ================= -->
+    <h2 id="solar-wind">Solar-Wind Turbulence and Fine Structures</h2>
+    <p>The solar wind is the one turbulent astrophysical plasma we can fly through. Most of my observational work uses Parker Solar Probe, Solar Orbiter and Ulysses to ask where the wind's fluctuations come from and how they evolve between the corona and 1 au.</p>
+
+    <h3 id="five-minute">Five-Minute Oscillations Reach the Solar Wind</h3>
+    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
+      <dt><a href="/images/research/psp-5min-e22.jpg" class="lightbox-trigger"><img src="/images/research/psp-5min-e22.jpg" width="1500" height="1127" alt="Left: cross helicity versus frequency and the magnetic power spectrum with a sharp peak at 3.2 millihertz marked plus 6.1 sigma. Right: wavelet spectrograms and the radial, tangential and normal magnetic field components from 10:00 to 12:30 on 2024 December 24" loading="lazy"></a></dt>
+      <dd>Parker Solar Probe Encounter 22, 2024 December 24, at 9.9 R<sub>☉</sub>. (a) Normalized cross helicity σ<sub>c</sub>(f); (b) magnetic power spectrum P(f)·f with a 3.2 mHz peak 6.1σ above the mean; (c–i) wavelet spectra and the R, T, N field components. From <a href="https://doi.org/10.3847/2041-8213/ae43ec">Huang et al. (2026b)</a>.</dd>
+    </dl>
+    <p>The Sun's surface rings with 5-minute <em>p</em>-mode oscillations, sound waves trapped in the convection zone. They have long been suspected of reaching the solar wind, but direct in situ evidence was missing. In <a href="https://doi.org/10.3847/2041-8213/ae43ec">Huang et al. (2026b)</a> we present strong evidence from Parker Solar Probe's three closest perihelia. In two events at 9.9 solar radii, the magnetic power spectrum shows statistically significant (∼6σ) peaks at 3.1–3.2 mHz. Each appears as a large-amplitude, spherically polarized Alfvénic wave train lasting about 35 minutes: global solar oscillations do reach the solar wind.</p>
+
+    <h3 id="two-minute">Two-Minute Oscillations near the Alfvén Surface</h3>
+    <p>Across the first 19 encounters of Parker Solar Probe, the fluctuation energy of the youngest solar wind is concentrated around 2-minute periods (<a href="https://doi.org/10.3847/2041-8213/ad9271">Huang et al. 2024a</a>). Wavelet spectrograms show these are mostly outward-propagating, spherically polarized Alfvén-wave bursts. A Doppler analysis maps their spacecraft-frame frequency back to the launch frequency at the base of the corona, where SDO/AIA sees a matching ∼8 mHz peak in the swaying of coronal structures. This is strong evidence that the waves originate in the solar atmosphere.</p>
+
+    <h3 id="one-over-f">The 1/f Range: Two Origins</h3>
+    <p>At the lowest frequencies the solar-wind magnetic spectrum follows 1/f before steepening into the inertial range. Closer to the Sun, Parker Solar Probe sees spectra much shallower than 1/f that evolve toward it as the wind ages, which points to a dynamic origin (<a href="https://doi.org/10.3847/2041-8213/acd7f2">Huang et al. 2023</a>). Near the Alfvén surface the 1/f range is systematically absent above 10⁻⁴ Hz. Comparing many wind conditions, we found two distinct types of 1/f range (<a href="https://doi.org/10.3847/2041-8213/adfa13">Huang et al. 2025</a>). In fast, Alfvénic wind it is an intrinsic feature of Alfvénic turbulence and follows near-perfect WKB evolution. In slow and mixed wind it resembles classical flicker noise, which we traced across solar cycles 22–25.</p>
+
+    <h3 id="gaussianity">Structures from the Gaussianity of |B|</h3>
+    <p>We introduced the <em>Gaussianity scalogram</em>, a way to let in situ data contextualize itself (<a href="https://doi.org/10.3847/2041-8213/ad72f1">Huang et al. 2024b</a>). Applied to the magnetic magnitude from Parker Solar Probe and Ulysses, it picks out possible remnants of solar structures across more than seven orders of magnitude in time scale, from years to seconds: polar and midlatitude coronal holes, and structures compatible with supergranulation, jetlets and picoflares. Simulations of Alfvénic turbulence reproduce the Gaussianization of |B| seen in the data.</p>
+
+    <h3 id="wave-action">Total Wave Action in the Expanding Solar Wind</h3>
+    <p>Wave action is not conserved when MHD wave modes coexist near β ∼ 1. We showed that the violation comes from mode conversion, through degeneracy, linear conversion or resonance, and that the <em>total</em> wave action summed over the interacting modes is still conserved. Expanding-box MHD simulations confirm this (<a href="https://doi.org/10.3847/1538-4357/ac74c5">Huang et al. 2022</a>).</p>
+
+    <h4>Research support</h4>
+    <ul class="support">
+      <li>Co-I, NASA ROSES AIAH-24: <em>Solar Wind Structures Identified via Shannon Information Entropy</em>, 2025–2026</li>
+      <li>PI, NSF ACCESS allocation: <em>Gaussianization of Magnetic Magnitude in MHD Turbulence</em>, 2024–2025</li>
+    </ul>
+  </article>
+</div>

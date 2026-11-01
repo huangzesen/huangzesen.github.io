@@ -1,991 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zesen Huang — Assistant Researcher, UCLA</title>
-<meta name="description" content="Zesen Huang is an Assistant Researcher at UCLA studying solar-wind turbulence and fine structures with Parker Solar Probe, Solar Orbiter, and Ulysses, and building open agent infrastructure for heliophysics.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23151b28'/%3E%3Ccircle%20cx='32'%20cy='32'%20r='7'%20fill='%23d9a23f'/%3E%3Cpath%20d='M32%2032%20C%2045%2029%2051%2018%2048%208'%20stroke='%23d9a23f'%20stroke-width='2.5'%20fill='none'%20opacity='.65'/%3E%3Cpath%20d='M32%2032%20C%2019%2035%2013%2046%2016%2056'%20stroke='%23d9a23f'%20stroke-width='2.5'%20fill='none'%20opacity='.65'/%3E%3C/svg%3E">
-<style>
-:root {
-  --paper: #f6f3ec;
-  --paper-deep: #efe9dd;
-  --ink: #26231d;
-  --ink-soft: #5a5648;
-  --navy: #2c3a52;
-  --accent: #8a4b0f;
-  --hairline: rgba(44, 58, 82, 0.22);
-  --hairline-soft: rgba(44, 58, 82, 0.12);
-  --night: #151b28;
-  --night-ink: #e9e4d7;
-  --night-dim: #b8b3a2;
-  --gold: #d9a23f;
-  --serif: "Charter", "Bitstream Charter", "Iowan Old Style", "Palatino", "Palatino Linotype", Georgia, serif;
-  --mono: ui-monospace, "SF Mono", "Menlo", "Cascadia Code", "Consolas", monospace;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-}
-
-body {
-  font-family: var(--serif);
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 1.0625rem;
-  line-height: 1.62;
-  -webkit-font-smoothing: antialiased;
-}
-
-::selection { background: rgba(217, 162, 63, 0.35); }
-
-.skip-link {
-  position: absolute;
-  left: 1rem;
-  top: -3.5rem;
-  z-index: 20;
-  background: var(--night);
-  color: var(--night-ink);
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  padding: 0.55rem 1rem;
-  border-radius: 0 0 6px 6px;
-  text-decoration: none;
-  transition: top 0.15s ease;
-}
-.skip-link:focus { top: 0; }
-
-a { color: var(--accent); text-decoration-color: rgba(138, 75, 15, 0.4); text-underline-offset: 3px; }
-a:hover { text-decoration-color: var(--accent); }
-a:focus-visible, .skip-link:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-sub, sup { font-size: 0.72em; line-height: 0; }
-
-/* ---------- layout ---------- */
-
-.layout {
-  display: grid;
-  grid-template-columns: 18.5rem minmax(0, 1fr);
-  max-width: 76rem;
-  margin: 0 auto;
-}
-
-/* ---------- identity rail ---------- */
-
-.rail {
-  padding: 2.9rem 2rem 2.4rem 2.3rem;
-  border-right: 1px solid var(--hairline-soft);
-}
-.rail-inner {
-  position: sticky;
-  top: 2rem;
-}
-@media (max-height: 780px) {
-  .rail-inner {
-    top: 1.25rem;
-    max-height: calc(100vh - 2rem);
-    overflow-y: auto;
-    padding-right: 0.4rem;
-  }
-}
-
-.mark { display: block; margin-bottom: 1.15rem; }
-
-.kicker {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 0.65rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  line-height: 1.08;
-  font-weight: 700;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-  margin-bottom: 0.25rem;
-}
-.han {
-  display: block;
-  font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0.45em;
-  color: var(--ink-soft);
-  margin-top: 0.4rem;
-}
-
-.role {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--navy);
-  line-height: 1.45;
-  margin: 0.7rem 0 0.8rem;
-}
-
-.tagline {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  line-height: 1.75;
-  color: var(--ink-soft);
-  letter-spacing: 0.02em;
-  border-top: 1px solid var(--hairline-soft);
-  padding: 0.6rem 0 0;
-  margin-bottom: 0.85rem;
-}
-.tagline b { color: var(--navy); font-weight: 600; }
-
-.build {
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  line-height: 1.9;
-  color: var(--ink-soft);
-  border-bottom: 1px solid var(--hairline-soft);
-  padding-bottom: 0.75rem;
-  margin-bottom: 1.1rem;
-}
-.build .build-k {
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--navy);
-  margin-right: 0.3rem;
-}
-
-nav ol {
-  list-style: none;
-  margin-bottom: 1.3rem;
-}
-nav li { margin: 0.22rem 0; }
-nav a {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.65rem;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--ink-soft);
-  text-decoration: none;
-  padding: 0.12rem 0;
-}
-nav a .n {
-  font-size: 0.66rem;
-  color: var(--accent);
-  opacity: 0.75;
-}
-nav a:hover, nav a[aria-current="true"] { color: var(--ink); }
-nav a[aria-current="true"] .n { opacity: 1; }
-nav a span.t { border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
-nav a:hover span.t, nav a[aria-current="true"] span.t { border-bottom-color: var(--gold); }
-
-.idlinks {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-.idlinks a {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  color: var(--navy);
-  text-decoration: none;
-  border: 1px solid var(--hairline);
-  border-radius: 999px;
-  padding: 0.3rem 0.8rem;
-  transition: border-color 0.2s ease, background 0.2s ease;
-}
-.idlinks a:hover {
-  border-color: var(--accent);
-  background: rgba(138, 75, 15, 0.06);
-}
-
-/* ---------- main column ---------- */
-
-main {
-  padding: 3.1rem 3.2rem 3.6rem;
-  max-width: 52rem;
-}
-
-section + section { margin-top: 2.7rem; }
-
-.sect-head {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  border-bottom: 1px solid var(--hairline);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.2rem;
-}
-.sect-head .num {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  color: var(--accent);
-}
-h2 {
-  font-size: 1.42rem;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: -0.005em;
-}
-.sect-head .aside {
-  margin-left: auto;
-  text-align: right;
-  font-family: var(--mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-
-h3 {
-  font-size: 1.05rem;
-  color: var(--navy);
-  margin-bottom: 0.3rem;
-}
-
-p + p { margin-top: 0.8rem; }
-
-.lede { font-size: 1.15rem; line-height: 1.58; }
-.lede em { font-style: italic; }
-
-/* ---------- overview ---------- */
-
-#overview { margin-top: 0.3rem; }
-
-/* ---------- figure ---------- */
-
-figure.instrument {
-  margin: 1.6rem 0 0.3rem;
-  background: var(--night);
-  border-radius: 10px;
-  padding: 1.3rem 1.3rem 1rem;
-}
-figure.instrument svg { display: block; width: 100%; height: auto; }
-figcaption {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  line-height: 1.7;
-  color: var(--night-dim);
-  margin-top: 0.75rem;
-  padding: 0 0.2rem;
-}
-figcaption b { color: var(--gold); font-weight: 600; }
-figcaption i { font-style: italic; }
-
-/* ---------- research themes ---------- */
-
-.themes { list-style: none; }
-.themes li {
-  display: grid;
-  grid-template-columns: 10.5rem minmax(0, 1fr);
-  gap: 1.1rem;
-  padding: 0.78rem 0;
-  border-bottom: 1px solid var(--hairline-soft);
-}
-.themes li:last-child { border-bottom: 0; }
-.themes h3 { font-size: 1rem; margin: 0; }
-.themes p { font-size: 0.97rem; color: var(--ink); }
-.theme-tags {
-  display: block;
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  color: var(--ink-soft);
-  margin-top: 0.35rem;
-}
-
-.support {
-  margin-top: 1.3rem;
-  border: 1px solid var(--hairline);
-  border-left: 3px solid var(--gold);
-  border-radius: 0 8px 8px 0;
-  padding: 0.9rem 1.2rem;
-  background: var(--paper-deep);
-}
-.support .kicker { margin-bottom: 0.4rem; }
-.support ul { list-style: none; }
-.support li { padding: 0.22rem 0; font-size: 0.95rem; }
-.support .grant-role {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--accent);
-  letter-spacing: 0.06em;
-  margin-right: 0.5rem;
-}
-
-/* ---------- publications ---------- */
-
-.pubs { list-style: none; }
-.pubs li {
-  display: grid;
-  grid-template-columns: 3.4rem minmax(0, 1fr);
-  gap: 1.1rem;
-  padding: 0.68rem 0;
-  border-bottom: 1px solid var(--hairline-soft);
-}
-.pubs li:last-child { border-bottom: 0; }
-.pub-year {
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--accent);
-  padding-top: 0.2rem;
-}
-.pub-title { font-weight: 600; color: var(--ink); }
-.pub-venue {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  color: var(--ink-soft);
-  margin-top: 0.22rem;
-  letter-spacing: 0.02em;
-}
-.pub-venue i {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.85rem;
-}
-.pub-note {
-  margin-top: 1.1rem;
-  font-size: 0.97rem;
-  color: var(--ink-soft);
-}
-
-/* ---------- software ---------- */
-
-.instruments { list-style: none; }
-.instruments li {
-  padding: 0.88rem 0;
-  border-bottom: 1px solid var(--hairline-soft);
-}
-.instruments li:last-child { border-bottom: 0; }
-.inst-head {
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 0.25rem;
-}
-.inst-head h3 { margin: 0; }
-.role-chip {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--paper);
-  background: var(--navy);
-  border-radius: 999px;
-  padding: 0.18rem 0.6rem;
-}
-.inst-head .repo {
-  margin-left: auto;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  overflow-wrap: anywhere;
-}
-.instruments p { font-size: 0.96rem; }
-.throughline {
-  margin-top: 1.2rem;
-  padding: 0.8rem 1.2rem;
-  border-left: 3px solid var(--navy);
-  background: var(--paper-deep);
-  border-radius: 0 8px 8px 0;
-  font-style: italic;
-  color: var(--navy);
-  font-size: 0.98rem;
-}
-
-/* ---------- trajectory ---------- */
-
-.timeline { list-style: none; border-left: 1px solid var(--hairline); margin-left: 0.4rem; }
-.timeline li { position: relative; padding: 0 0 1.05rem 1.5rem; }
-.timeline li:last-child { padding-bottom: 0.2rem; }
-.timeline li::before {
-  content: "";
-  position: absolute;
-  left: -0.32rem;
-  top: 0.5rem;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--paper);
-  border: 2px solid var(--gold);
-}
-.tl-years {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-}
-.timeline h3 { margin: 0.12rem 0 0.08rem; }
-.timeline p { font-size: 0.94rem; color: var(--ink-soft); }
-
-/* ---------- recognition ---------- */
-
-.prize {
-  border: 1px solid rgba(217, 162, 63, 0.55);
-  background: linear-gradient(180deg, rgba(217, 162, 63, 0.12), rgba(217, 162, 63, 0.05));
-  border-radius: 10px;
-  padding: 1.05rem 1.3rem;
-  margin-bottom: 1rem;
-}
-.prize h3 { color: var(--ink); font-size: 1.08rem; }
-.prize p { font-size: 0.95rem; color: var(--ink-soft); margin-top: 0.25rem; }
-.honors { list-style: none; }
-.honors li {
-  font-size: 0.96rem;
-  padding: 0.24rem 0 0.24rem 1.2rem;
-  position: relative;
-}
-.honors li::before {
-  content: "·";
-  position: absolute;
-  left: 0.25rem;
-  color: var(--gold);
-  font-weight: 700;
-}
-
-/* ---------- on this site ---------- */
-
-.stations {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.9rem;
-}
-.stations li { display: block; }
-.stations a {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  height: 100%;
-  background: var(--night);
-  color: var(--night-ink);
-  border-radius: 10px;
-  padding: 1.05rem 1.15rem 0.95rem;
-  text-decoration: none;
-  border: 1px solid transparent;
-  transition: border-color 0.2s ease, transform 0.2s ease;
-}
-.stations a:hover { border-color: var(--gold); }
-@media (prefers-reduced-motion: no-preference) {
-  .stations a:hover { transform: translateY(-3px); }
-}
-.station-kicker {
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.stations strong { font-size: 1.02rem; }
-.stations p { font-size: 0.85rem; color: var(--night-dim); line-height: 1.5; }
-.station-go {
-  margin-top: auto;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  color: var(--gold);
-  letter-spacing: 0.06em;
-}
-
-/* ---------- contact ---------- */
-
-.contact { display: grid; gap: 0.15rem; }
-.contact > div {
-  display: grid;
-  grid-template-columns: 8.5rem minmax(0, 1fr);
-  gap: 1rem;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid var(--hairline-soft);
-}
-.contact > div:last-child { border-bottom: 0; }
-.contact dt {
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  padding-top: 0.3rem;
-}
-.contact dd { font-size: 0.98rem; overflow-wrap: anywhere; }
-
-/* ---------- footer ---------- */
-
-footer {
-  border-top: 1px solid var(--hairline-soft);
-  margin-top: 1rem;
-}
-.foot-inner {
-  max-width: 76rem;
-  margin: 0 auto;
-  padding: 1.5rem 3.2rem 2rem;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  line-height: 1.8;
-  color: var(--ink-soft);
-}
-
-/* ---------- load reveal ---------- */
-
-@media (prefers-reduced-motion: no-preference) {
-  .rail-inner, main > section {
-    animation: rise 0.7s cubic-bezier(0.2, 0.6, 0.2, 1) both;
-  }
-  main > section:nth-child(1) { animation-delay: 0.08s; }
-  main > section:nth-child(2) { animation-delay: 0.16s; }
-  main > section:nth-child(n+3) { animation-delay: 0.22s; }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: none; }
-  }
-}
-
-/* ---------- responsive ---------- */
-
-@media (max-width: 900px) {
-  .layout { grid-template-columns: 1fr; }
-  .rail {
-    border-right: 0;
-    border-bottom: 1px solid var(--hairline-soft);
-    padding: 2.1rem 1.25rem 1.4rem;
-  }
-  .rail-inner { position: static; max-height: none; overflow: visible; }
-  nav ol {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.1rem 1rem;
-    margin-bottom: 1.1rem;
-  }
-  nav li { margin: 0; }
-  main { padding: 2rem 1.25rem 2.6rem; }
-  section + section { margin-top: 2.2rem; }
-  .sect-head .aside { display: none; }
-  figure.instrument { padding: 0.95rem 0.85rem 0.75rem; }
-  .themes li { grid-template-columns: 1fr; gap: 0.3rem; }
-  .stations { grid-template-columns: 1fr; }
-  .contact > div { grid-template-columns: 6.6rem minmax(0, 1fr); gap: 0.7rem; }
-  .foot-inner { padding: 1.3rem 1.25rem 1.8rem; }
-  h1 { font-size: 2.05rem; }
-}
-
-@media print {
-  .rail-inner, main > section { animation: none !important; }
-  .stations a, figure.instrument { background: #fff; color: var(--ink); border: 1px solid var(--hairline); }
-  .skip-link { display: none; }
-}
-</style>
+<meta charset="utf-8">
+<script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zesen Huang 黄泽森 · UCLA</title>
+<meta name="description" content="Zesen Huang is an Assistant Researcher at UCLA working on Alfvénons and solar-wind turbulence, and on infrastructure for AI-driven science: LingTai, ScienceIDE and the Agent Last Exam astronomy track.">
+<meta name="author" content="Zesen Huang">
+<link rel="canonical" href="https://zesen.me/">
+<meta property="og:title" content="Zesen Huang 黄泽森 · UCLA">
+<meta property="og:description" content="Zesen Huang is an Assistant Researcher at UCLA working on Alfvénons and solar-wind turbulence, and on infrastructure for AI-driven science: LingTai, ScienceIDE and the Agent Last Exam astronomy track.">
+<meta property="og:url" content="https://zesen.me/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/css/site.css?v=20261031">
 </head>
-<body>
+<body class="page-about">
 <a class="skip-link" href="#main">Skip to content</a>
-
-<div class="layout">
-  <header class="rail">
-    <div class="rail-inner">
-      <svg class="mark" width="42" height="42" viewBox="0 0 64 64" aria-hidden="true">
-        <rect width="64" height="64" rx="14" fill="#151b28"/>
-        <circle cx="32" cy="32" r="7" fill="#d9a23f"/>
-        <path d="M32 32 C 45 29 51 18 48 8" stroke="#d9a23f" stroke-width="2.5" fill="none" opacity=".65"/>
-        <path d="M32 32 C 19 35 13 46 16 56" stroke="#d9a23f" stroke-width="2.5" fill="none" opacity=".65"/>
-      </svg>
-      <p class="kicker">Heliophysics · UCLA</p>
-      <h1>Zesen Huang<span class="han" aria-hidden="true" lang="zh-Hans">黄泽森</span></h1>
-      <p class="role">Assistant Researcher, Department of Earth, Planetary, and Space Sciences, UCLA</p>
-      <p class="tagline"><b>heliophysics</b> — solar-wind turbulence, fine structures, MHD simulations<br>
-      <b>scientific agents</b> — open infrastructure for AI-driven research</p>
-      <p class="build"><span class="build-k">Building</span>
-        <a href="https://github.com/spedas/spedas_agent_kit">SPEDAS Agent Kit</a> ·
-        <a href="https://github.com/Lingtai-AI/lingtai">LingTai 灵台</a></p>
-      <nav aria-label="Sections">
-        <ol>
-          <li><a href="#research"><span class="n">01</span><span class="t">Research</span></a></li>
-          <li><a href="#publications"><span class="n">02</span><span class="t">Publications</span></a></li>
-          <li><a href="#software"><span class="n">03</span><span class="t">Software &amp; agents</span></a></li>
-          <li><a href="#trajectory"><span class="n">04</span><span class="t">Trajectory</span></a></li>
-          <li><a href="#recognition"><span class="n">05</span><span class="t">Recognition</span></a></li>
-          <li><a href="#site"><span class="n">06</span><span class="t">On this site</span></a></li>
-          <li><a href="#contact"><span class="n">07</span><span class="t">Contact</span></a></li>
-        </ol>
-      </nav>
-      <ul class="idlinks">
-        <li><a href="mailto:zesenhuang@g.ucla.edu">Email</a></li>
-        <li><a href="https://orcid.org/0000-0001-9570-5975">ORCID</a></li>
-        <li><a href="https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-9570-5975">NASA ADS</a></li>
-        <li><a href="https://github.com/huangzesen">GitHub</a></li>
+<header class="site-header">
+  <div class="wrapper">
+    <a class="site-title" href="/">Zesen Huang<span class="zh">黄泽森</span></a>
+    <nav class="site-nav" aria-label="Main">
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+      <label for="nav-toggle" class="menu-icon" aria-hidden="true">
+        <svg viewBox="0 0 18 15"><path d="M18 1.48C18 2.3 17.34 2.97 16.52 2.97H1.48C.67 2.97 0 2.3 0 1.48S.67 0 1.48 0h15.04C17.34 0 18 .67 18 1.48z"/><path d="M18 7.52C18 8.34 17.34 9 16.52 9H1.48C.67 9 0 8.34 0 7.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/><path d="M18 13.52c0 .82-.66 1.48-1.48 1.48H1.48C.67 15 0 14.34 0 13.52s.67-1.49 1.48-1.49h15.04c.82 0 1.48.67 1.48 1.49z"/></svg>
+      </label>
+      <ul class="menu">
+        <li class="current"><a href="/" aria-current="page">About</a></li>
+        <li><a href="/research/">Research</a>
+          <ul class="sub-menu">
+            <li><a href="/research/#alfvenons">Alfvénons</a></li>
+            <li><a href="/research/#lingtai">LingTai 灵台</a></li>
+            <li><a href="/research/#scienceide">ScienceIDE</a></li>
+            <li><a href="/research/#ale-astronomy">Agent Last Exam: Astronomy</a></li>
+            <li><a href="/research/#solar-wind">Solar-wind turbulence</a></li>
+          </ul>
+        </li>
+        <li><a href="/publications/">Publications</a></li>
+        <li><a href="/software/">Software</a></li>
+        <li><a href="/miscellany/">Miscellany</a></li>
       </ul>
-    </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main" class="page-content">
+  <div class="wrapper">
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">Zesen Huang <span class="zh">黄泽森</span></h1>
+    <p class="lede">Assistant Researcher · Department of Earth, Planetary, and Space Sciences · UCLA</p>
   </header>
 
-  <main id="main">
-    <section id="overview" aria-label="Overview">
-      <p class="lede">I study how the solar wind becomes turbulent — where the energy of its
-      <em>1/f spectrum</em> comes from, and what fine structures like magnetic switchbacks
-      remember about the corona that launched them. My tools are magnetohydrodynamic
-      simulations and in situ data from Parker Solar Probe, Solar Orbiter, and Ulysses.</p>
-      <p>I also build open <em>agent infrastructure</em> for science: software that lets AI
-      systems run real heliophysics data pipelines — carefully, reproducibly, validated
-      against known physics.</p>
+  <article class="post-content">
+    <div class="about-grid">
+      <div>
+        <p>I am a heliophysicist at UCLA. I study the Alfvénic structures that fill the solar wind, from the magnetic switchbacks Parker Solar Probe flies through near the Sun to the <a href="/research/#alfvenons"><strong>Alfvénon</strong></a>: a three-dimensional solitary Alfvén wave, which I construct as a nonlinear solution of ideal MHD and simulate on GPUs.</p>
+        <p>I also build infrastructure for AI-driven science. <a href="/research/#lingtai"><strong>LingTai</strong></a> is an open-source runtime for lifelong research agents. <a href="/research/#scienceide"><strong>ScienceIDE</strong></a> turns real scientific codebases into environments where agents are evaluated and trained. Since October 2026 I have led the <a href="/research/#ale-astronomy"><strong>astronomy track of the Agent Last Exam</strong></a>, which maps the open problems of astronomy into tasks for AI agents.</p>
+        <p>I received my Ph.D. in Geophysics and Space Physics from UCLA in 2024, and my dissertation was awarded the 2024 IAU PhD Prize of Division E (Sun and Heliosphere).</p>
 
-      <figure class="instrument">
-        <svg viewBox="0 0 560 330" role="img" aria-label="Schematic log-log plot of a solar-wind magnetic power spectrum: a shallow 1/f range at low frequencies breaking to a steeper f to the minus five-thirds inertial range at the break frequency f b.">
-          <!-- frame -->
-          <rect x="0" y="0" width="560" height="330" fill="#151b28"/>
-          <!-- gridlines -->
-          <g stroke="#2a3346" stroke-width="1">
-            <line x1="70" y1="60" x2="530" y2="60"/>
-            <line x1="70" y1="120" x2="530" y2="120"/>
-            <line x1="70" y1="180" x2="530" y2="180"/>
-            <line x1="70" y1="240" x2="530" y2="240"/>
-            <line x1="180" y1="20" x2="180" y2="285"/>
-            <line x1="295" y1="20" x2="295" y2="285"/>
-            <line x1="410" y1="20" x2="410" y2="285"/>
-          </g>
-          <!-- axes -->
-          <g stroke="#a49f8e" stroke-width="1.5" fill="none">
-            <line x1="70" y1="20" x2="70" y2="285"/>
-            <line x1="70" y1="285" x2="530" y2="285"/>
-          </g>
-          <!-- 1/f slope continuation (dotted) -->
-          <line x1="295" y1="132" x2="490" y2="182" stroke="#6d7890" stroke-width="1.5" stroke-dasharray="3 5"/>
-          <!-- spectrum trace -->
-          <path d="M 92 78 L 295 132 L 512 262" fill="none" stroke="#d9a23f" stroke-width="2.75" stroke-linejoin="round" stroke-linecap="round"/>
-          <!-- break marker -->
-          <line x1="295" y1="132" x2="295" y2="285" stroke="#d9a23f" stroke-width="1" stroke-dasharray="2 5" opacity="0.7"/>
-          <circle cx="295" cy="132" r="4" fill="#151b28" stroke="#d9a23f" stroke-width="2"/>
-          <!-- labels -->
-          <g fill="#e9e4d7" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="13">
-            <text x="150" y="88">∝ <tspan font-style="italic">f</tspan><tspan baseline-shift="super" font-size="9.5">−1</tspan></text>
-            <text x="448" y="222">∝ <tspan font-style="italic">f</tspan><tspan baseline-shift="super" font-size="9.5">−5/3</tspan></text>
-          </g>
-          <g fill="#b8b3a2" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="11">
-            <text x="288" y="305"><tspan font-style="italic">f</tspan><tspan baseline-shift="sub" font-size="8.5">b</tspan></text>
-            <text x="126" y="52">low-frequency energy reservoir</text>
-            <text x="336" y="262">inertial range</text>
-            <text x="440" y="305">frequency →</text>
-            <text x="20" y="160" transform="rotate(-90 30 160)">power →</text>
-          </g>
-        </svg>
-        <figcaption><b>Fig. 1</b> — Schematic solar-wind magnetic power spectrum: a shallow
-        1/<i>f</i> range breaking to an <i>f</i><sup>−5/3</sup> inertial range at
-        <i>f</i><sub>b</sub>. Illustrative geometry, not fitted mission data.</figcaption>
-      </figure>
-    </section>
+        <h2>Current focus</h2>
+        <div class="focus-grid">
+          <a class="focus-card" href="/research/#alfvenons">
+            <div class="thumb"><img src="/images/research/alfvenon-theta.png" alt="" class="contain" loading="lazy"></div>
+            <div class="body"><h3>Alfvénons</h3><p>Solitary Alfvén waves in 3D: construction, propagation, and now head-on collisions on GPUs.</p></div>
+          </a>
+          <a class="focus-card" href="/research/#lingtai">
+            <div class="thumb"><img src="/images/research/lingtai-network-still.jpg" alt="" loading="lazy"></div>
+            <div class="body"><h3>LingTai 灵台</h3><p>An open-source runtime for lifelong digital scientists that remember, grow, and work in networks.</p></div>
+          </a>
+          <a class="focus-card" href="/research/#scienceide">
+            <div class="thumb"><img src="/images/research/scienceide-thumb.jpg" alt="" loading="lazy"></div>
+            <div class="body"><h3>ScienceIDE</h3><p>64 executable environments from 27 scientific codes, graded by the physics, for agent evaluation and RL.</p></div>
+          </a>
+          <a class="focus-card" href="/research/#ale-astronomy">
+            <div class="thumb"><svg viewBox="0 0 320 180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="180" fill="#fff"/><rect x="22" y="20" width="270.0" height="7" fill="#d5dee6"/><rect x="22" y="28" width="25.7" height="7" fill="#005587"/><rect x="47.7" y="28" width="96.0" height="7" fill="#8db5d2"/><rect x="22" y="41" width="258.0" height="7" fill="#d5dee6"/><rect x="22" y="49" width="23.1" height="7" fill="#005587"/><rect x="45.1" y="49" width="89.1" height="7" fill="#8db5d2"/><rect x="22" y="62" width="237.4" height="7" fill="#d5dee6"/><rect x="22" y="70" width="36.9" height="7" fill="#005587"/><rect x="58.9" y="70" width="112.3" height="7" fill="#8db5d2"/><rect x="22" y="83" width="209.1" height="7" fill="#d5dee6"/><rect x="22" y="91" width="24.0" height="7" fill="#005587"/><rect x="46.0" y="91" width="71.1" height="7" fill="#8db5d2"/><rect x="22" y="104" width="204.0" height="7" fill="#d5dee6"/><rect x="22" y="112" width="27.4" height="7" fill="#005587"/><rect x="49.4" y="112" width="78.9" height="7" fill="#8db5d2"/><rect x="22" y="125" width="186.0" height="7" fill="#d5dee6"/><rect x="22" y="133" width="33.4" height="7" fill="#005587"/><rect x="55.4" y="133" width="68.6" height="7" fill="#8db5d2"/><rect x="22" y="146" width="160.3" height="7" fill="#d5dee6"/><rect x="22" y="154" width="22.3" height="7" fill="#005587"/><rect x="44.3" y="154" width="54.9" height="7" fill="#8db5d2"/></svg></div>
+            <div class="body"><h3>Agent Last Exam: Astronomy</h3><p>1,779 open problems of astronomy, sorted into tasks where AI agents can keep improving.</p></div>
+          </a>
+        </div>
 
-    <section id="research" aria-labelledby="research-h">
-      <div class="sect-head">
-        <span class="num">01</span>
-        <h2 id="research-h">Research</h2>
-        <span class="aside" aria-hidden="true">turbulence · structures · simulation</span>
-      </div>
-      <p>The solar wind is the one turbulent astrophysical plasma we can fly through. My work
-      asks what its fluctuation spectrum is made of, where its energy comes from, and how its
-      structures survive the journey from the corona to 1&nbsp;AU.</p>
-      <ul class="themes">
-        <li>
-          <h3>The 1/f range</h3>
-          <div>
-            <p>Energy sources and spectral evolution of solar-wind turbulence at the lowest
-            frequencies — including evidence that the canonical 1/f range is not one
-            phenomenon but two, with distinct origins.</p>
-            <span class="theme-tags">Parker Solar Probe · spectral analysis</span>
-          </div>
-        </li>
-        <li>
-          <h3>Fine structures</h3>
-          <div>
-            <p>Magnetic switchbacks, coherent structures, and low-frequency oscillations near
-            the Alfvén surface — the wind's small-scale memory of the corona, traced across
-            heliocentric distance.</p>
-            <span class="theme-tags">switchbacks · Alfvén surface</span>
-          </div>
-        </li>
-        <li>
-          <h3>MHD simulations</h3>
-          <div>
-            <p>Magnetohydrodynamic simulations of the expanding solar wind — wave-action
-            conservation, Gaussianization of the magnetic-field magnitude, pseudo-spectral
-            solvers at scale.</p>
-            <span class="theme-tags">expanding-box MHD · parallel computing</span>
-          </div>
-        </li>
-        <li>
-          <h3>Multi-mission analysis</h3>
-          <div>
-            <p>In situ observations combined across missions and radial distances — from
-            Parker Solar Probe's perihelia to Ulysses over the poles: one wind, many
-            vantage points.</p>
-            <span class="theme-tags">PSP · Solar Orbiter · Ulysses</span>
-          </div>
-        </li>
-      </ul>
-      <div class="support">
-        <p class="kicker">Research support</p>
-        <ul>
-          <li><span class="grant-role">Co-I</span>NASA ROSES AIAH-24 — Solar Wind Structures Identified via Shannon Information Entropy, 2025–2026</li>
-          <li><span class="grant-role">PI</span>NSF ACCESS allocation — Gaussianization of Magnetic Magnitude in MHD Turbulence, 2024–2025</li>
+        <h2>News</h2>
+        <ul class="news">
+          <li><time datetime="2026-10">2026 Oct</time><span>Started leading the astronomy track of the Agent Last Exam: a taxonomy of 71 research directions and 1,779 harvested open problems so far.</span></li>
+          <li><time datetime="2026-09">2026 Sep</time><span><a href="https://github.com/aitofound/ScienceIDE">ScienceIDE</a> preview public on GitHub: code, 15 published environments and 30 ScienceIDE-Hard tasks.</span></li>
+          <li><time datetime="2026-07">2026 Jul</time><span><a href="https://doi.org/10.3847/2041-8213/ae82f5"><em>Solitary Alfvén Waves</em></a>, the paper introducing the Alfvénon, published in ApJ Letters.</span></li>
+          <li><time datetime="2026-07">2026 Jul</time><span>Co-author of <a href="https://doi.org/10.1038/s41550-026-02923-5"><em>Non-adiabatic entropy increase in the solar wind governed by velocity spikes</em></a> in Nature Astronomy.</span></li>
+          <li><time datetime="2026-02">2026 Feb</time><span><a href="https://doi.org/10.3847/2041-8213/ae43ec"><em>Evidence of 5 minute Oscillations from Parker Solar Probe</em></a> published in ApJ Letters.</span></li>
+          <li><time datetime="2025">2025</time><span>Received the 2024 IAU PhD Prize, Division E: Sun and Heliosphere.</span></li>
         </ul>
       </div>
-    </section>
 
-    <section id="publications" aria-labelledby="publications-h">
-      <div class="sect-head">
-        <span class="num">02</span>
-        <h2 id="publications-h">Selected publications</h2>
-        <span class="aside" aria-hidden="true">first-author · ApJ / ApJL</span>
-      </div>
-      <ol class="pubs">
-        <li>
-          <span class="pub-year">2025</span>
-          <div>
-            <span class="pub-title">Two Types of 1/f Range in Solar Wind Turbulence</span>
-            <div class="pub-venue">Zesen Huang et al. · <i>The Astrophysical Journal Letters</i> 990.2, L34</div>
-          </div>
-        </li>
-        <li>
-          <span class="pub-year">2024</span>
-          <div>
-            <span class="pub-title">Dominance of 2 Minute Oscillations near the Alfvén Surface</span>
-            <div class="pub-venue">Zesen Huang et al. · <i>The Astrophysical Journal Letters</i> 977.1, L12</div>
-          </div>
-        </li>
-        <li>
-          <span class="pub-year">2024</span>
-          <div>
-            <span class="pub-title">Solar Wind Structures from the Gaussianity of Magnetic Magnitude</span>
-            <div class="pub-venue">Zesen Huang et al. · <i>The Astrophysical Journal Letters</i> 973.1, L26</div>
-          </div>
-        </li>
-        <li>
-          <span class="pub-year">2023</span>
-          <div>
-            <span class="pub-title">New Observations of the Solar Wind 1/f Turbulence Spectrum from Parker Solar Probe</span>
-            <div class="pub-venue">Zesen Huang et al. · <i>The Astrophysical Journal Letters</i> 950.1, L8</div>
-          </div>
-        </li>
-        <li>
-          <span class="pub-year">2022</span>
-          <div>
-            <span class="pub-title">Conservation of Total Wave Action in the Expanding Solar Wind</span>
-            <div class="pub-venue">Zesen Huang et al. · <i>The Astrophysical Journal</i> 935.1, 60</div>
-          </div>
-        </li>
-      </ol>
-      <p class="pub-note">Eighteen peer-reviewed articles in total, in <i>The Astrophysical
-      Journal</i>, <i>ApJ Letters</i>, and <i>JGR</i>. Full record on
-      <a href="https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-9570-5975">NASA ADS</a>
-      and <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a>.</p>
-    </section>
-
-    <section id="software" aria-labelledby="software-h">
-      <div class="sect-head">
-        <span class="num">03</span>
-        <h2 id="software-h">Software &amp; agents</h2>
-        <span class="aside" aria-hidden="true">open source · agent infrastructure</span>
-      </div>
-      <p>Every observational science is bounded by its instruments. These are mine — open
-      software that lets AI agents work with real heliophysics data, and the runtime they
-      live in. Roles are as recorded in each repository's public contributor history.</p>
-      <ul class="instruments">
-        <li>
-          <div class="inst-head">
-            <h3>SPEDAS Agent Kit</h3>
-            <span class="role-chip">Author</span>
-            <a class="repo" href="https://github.com/spedas/spedas_agent_kit">spedas/spedas_agent_kit</a>
-          </div>
-          <p>A unified MCP server for agentic heliophysics workflows, hosted under the SPEDAS
-          organization: one data layer over NASA CDAWeb, the Planetary Data System, and
-          SPICE geometry.</p>
-        </li>
-        <li>
-          <div class="inst-head">
-            <h3>LingTai 灵台</h3>
-            <span class="role-chip">Lead contributor</span>
-            <a class="repo" href="https://github.com/Lingtai-AI/lingtai">Lingtai-AI/lingtai</a>
-          </div>
-          <p>An open-source (Apache-2.0) runtime for networks of persistent AI agents
-          collaborating over a shared mailbox — the substrate for my agent-science
-          experiments, from research trackers to multi-agent review panels.</p>
-        </li>
-        <li>
-          <div class="inst-head">
-            <h3>XHelio</h3>
-            <span class="role-chip">Author</span>
-            <a class="repo" href="https://github.com/huangzesen/xhelio">huangzesen/xhelio</a>
-          </div>
-          <p>An AI-powered natural-language interface for spacecraft and heliophysics data;
-          its xhelio-cdaweb and xhelio-spice backends power the SPEDAS Agent Kit's data
-          layer.</p>
-        </li>
-        <li>
-          <div class="inst-head">
-            <h3>HelioSI 501 corpus</h3>
-            <span class="role-chip">Author</span>
-            <a class="repo" href="https://github.com/huangzesen/heliosi-501-corpus-skill">huangzesen/heliosi-501-corpus-skill</a>
-          </div>
-          <p>501 heliophysics papers compiled into agent-native skills — literature an AI
-          system can act on: hypothesis generation, experiment design, topic routing.</p>
-        </li>
-      </ul>
-      <p class="throughline">The through-line: the same discipline that validates a spectral
-      solver against known physics applies to validating an agent's data pipeline against
-      known physics.</p>
-    </section>
-
-    <section id="trajectory" aria-labelledby="trajectory-h">
-      <div class="sect-head">
-        <span class="num">04</span>
-        <h2 id="trajectory-h">Trajectory</h2>
-        <span class="aside" aria-hidden="true">USTC → UCLA</span>
-      </div>
-      <ol class="timeline">
-        <li>
-          <span class="tl-years">2024 — present</span>
-          <h3>Assistant Researcher, UCLA</h3>
-          <p>Department of Earth, Planetary, and Space Sciences. Solar-wind turbulence and
-          agent infrastructure for heliophysics.</p>
-        </li>
-        <li>
-          <span class="tl-years">2024</span>
-          <h3>Ph.D., Geophysics &amp; Space Physics, UCLA</h3>
-          <p>Dissertation on the drivers of solar-wind turbulence and its spectral evolution.</p>
-        </li>
-        <li>
-          <span class="tl-years">2022</span>
-          <h3>M.S., Geophysics &amp; Space Physics, UCLA</h3>
-          <p>MHD simulation and multi-spacecraft data analysis.</p>
-        </li>
-        <li>
-          <span class="tl-years">2019</span>
-          <h3>B.S., Geophysics, USTC</h3>
-          <p>University of Science and Technology of China. Space-physics major; ranked 1st of 17.</p>
-        </li>
-      </ol>
-    </section>
-
-    <section id="recognition" aria-labelledby="recognition-h">
-      <div class="sect-head">
-        <span class="num">05</span>
-        <h2 id="recognition-h">Recognition</h2>
-      </div>
-      <div class="prize">
-        <h3>2024 IAU PhD Prize — Division E, Sun &amp; Heliosphere</h3>
-        <p>Awarded 2025 by the International Astronomical Union for outstanding doctoral
-        research in solar and heliospheric physics.</p>
-      </div>
-      <ul class="honors">
-        <li>Bachelor Honor Grade (top 4%), USTC, 2019</li>
-        <li>UCLA EPSS Department Fellowship, 2019</li>
-      </ul>
-    </section>
-
-    <section id="site" aria-labelledby="site-h">
-      <div class="sect-head">
-        <span class="num">06</span>
-        <h2 id="site-h">On this site</h2>
-      </div>
-      <p style="margin-bottom: 1.1rem;">Standalone pages that live alongside these notes.</p>
-      <ul class="stations">
-        <li>
-          <a href="switch_back.html">
-            <span class="station-kicker">Visual essay</span>
-            <strong>Switchback Explorer</strong>
-            <p>An interactive tour of magnetic switchbacks — the abrupt field reversals
-            Parker Solar Probe flies through near the Sun. Heavy page: loads best on
-            desktop.</p>
-            <span class="station-go">switch_back.html →</span>
-          </a>
-        </li>
-        <li>
-          <a href="data-center-tracker/">
-            <span class="station-kicker">Long-running tracker</span>
-            <strong>Data-Center Tracker</strong>
-            <p>An evolving panorama of US data-center construction — a physical substrate
-            of the AI build-out, tracked over time.</p>
-            <span class="station-go">data-center-tracker/ →</span>
-          </a>
-        </li>
-        <li>
-          <a href="https://huangzesen.github.io/scientific-resources/">
-            <span class="station-kicker">Research resource tracker</span>
-            <strong>Scientific Resources</strong>
-            <p>A dated, official-source tracker for scientific compute, API and cloud credits,
-            and AI-for-science or open-science funding.</p>
-            <span class="station-go">scientific-resources/ →</span>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section id="contact" aria-labelledby="contact-h">
-      <div class="sect-head">
-        <span class="num">07</span>
-        <h2 id="contact-h">Contact</h2>
-      </div>
-      <dl class="contact">
-        <div>
-          <dt>Email</dt>
-          <dd><a href="mailto:zesenhuang@g.ucla.edu">zesenhuang@g.ucla.edu</a></dd>
-        </div>
-        <div>
-          <dt>ORCID</dt>
-          <dd><a href="https://orcid.org/0000-0001-9570-5975">0000-0001-9570-5975</a></dd>
-        </div>
-        <div>
-          <dt>NASA ADS</dt>
-          <dd><a href="https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-9570-5975">orcid:0000-0001-9570-5975</a></dd>
-        </div>
-        <div>
-          <dt>GitHub</dt>
-          <dd><a href="https://github.com/huangzesen">github.com/huangzesen</a></dd>
-        </div>
-        <div>
-          <dt>Affiliation</dt>
-          <dd>Department of Earth, Planetary, and Space Sciences, UCLA</dd>
-        </div>
-      </dl>
-    </section>
-  </main>
+      <aside class="about-side">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:zesenhuang@g.ucla.edu">zesenhuang@g.ucla.edu</a></li>
+          <li><a href="https://github.com/huangzesen">github.com/huangzesen</a></li>
+          <li><a href="https://orcid.org/0000-0001-9570-5975">ORCID 0000-0001-9570-5975</a></li>
+          <li><a href="https://ui.adsabs.harvard.edu/search/q=orcid%3A0000-0001-9570-5975&amp;sort=date%20desc">NASA ADS</a></li>
+        </ul>
+        <h4>Positions &amp; education</h4>
+        <ul>
+          <li><b>2024–</b> Assistant Researcher, UCLA EPSS</li>
+          <li><b>2024</b> Ph.D., Geophysics &amp; Space Physics, UCLA</li>
+          <li><b>2022</b> M.S., Geophysics &amp; Space Physics, UCLA</li>
+          <li><b>2019</b> B.S., Geophysics, USTC (ranked 1st of 17)</li>
+        </ul>
+        <h4>Recognition</h4>
+        <ul>
+          <li class="award">2024 IAU PhD Prize, Division E</li>
+          <li>Bachelor Honor Grade (top 4%), USTC, 2019</li>
+          <li>UCLA EPSS Department Fellowship, 2019</li>
+        </ul>
+        <h4>Missions</h4>
+        <ul>
+          <li>Parker Solar Probe · Solar Orbiter · Ulysses · Wind</li>
+        </ul>
+      </aside>
+    </div>
+  </article>
 </div>
+  </div>
+</main>
 
-<footer>
-  <div class="foot-inner">
-    <p>© 2026 Zesen Huang · Typeset as a single HTML file — no trackers, no external requests.</p>
-    <p>Facts and links reflect the public record as of July 2026.</p>
+<footer class="site-footer">
+  <div class="wrapper">
+    <span>© 2026 Zesen Huang · Department of Earth, Planetary, and Space Sciences, UCLA</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated October 2026</span>
   </div>
 </footer>
 
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
 <script>
-// Optional scroll-spy: highlights the current section in the rail index.
-// Progressive enhancement only — the page is fully usable without it.
 (function () {
-  if (!("IntersectionObserver" in window)) return;
-  var links = document.querySelectorAll('nav[aria-label="Sections"] a[href^="#"]');
-  if (!links.length) return;
-  var byId = {};
-  links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
-  var current = null;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      var link = byId[e.target.id];
-      if (!link || link === current) return;
-      if (current) current.removeAttribute("aria-current");
-      link.setAttribute("aria-current", "true");
-      current = link;
-    });
-  }, { rootMargin: "-20% 0px -65% 0px" });
-  Object.keys(byId).forEach(function (id) {
-    var el = document.getElementById(id);
-    if (el) io.observe(el);
+  var box = document.getElementById('lightbox'), img = box.querySelector('img'), cap = box.querySelector('p');
+  function close() { box.classList.remove('active'); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.lightbox-trigger');
+    if (a) {
+      e.preventDefault();
+      img.src = a.getAttribute('href');
+      img.alt = (a.querySelector('img') || {}).alt || '';
+      var dd = a.closest('dl') && a.closest('dl').querySelector('dd');
+      cap.textContent = dd ? dd.textContent.trim() : '';
+      box.classList.add('active');
+      box.querySelector('button').focus();
+    } else if (e.target === box || e.target.closest('#lightbox button')) { close(); }
   });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+  }
 })();
 </script>
 </body>
