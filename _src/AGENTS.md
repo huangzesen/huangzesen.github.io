@@ -2,7 +2,7 @@
 
 This repository (`huangzesen/huangzesen.github.io`, public, GitHub Pages) is Zesen's personal site.
 `https://zesen.me` is the Cloudflare Worker `zesen-me-private-travel` (route `zesen.me/*`), which proxies every
-path to `https://huangzesen.github.io`. Pushing to `main` is what publishes the site: **it is public, so ask Zesen
+path to `https://huangzesen.github.io`. Pushing to `master` is what publishes the site: **it is public, so ask Zesen
 before pushing.**
 
 `_src/` is not published (Jekyll skips folders that start with `_`).
@@ -43,5 +43,5 @@ removed; the wrangler token cannot edit DNS.
 ```
 python3 -I _src/build.py
 python3 -m http.server 18431 --bind 127.0.0.1   # port 8765 is the spedas-tplot workbench
-git add -A && git commit && git push origin <branch>:main   # only with Zesen's go-ahead
+git add -A && git commit && git push origin <branch>:master   # Pages builds from master; only with Zesen's go-ahead
 ```
