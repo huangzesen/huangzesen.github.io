@@ -1,4 +1,4 @@
-<!--meta {"title": "Alfvénons · Zesen Huang", "description": "Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, an interactive 3D explorer, and first results from simulations of colliding Alfvénons.", "path": "/research/alfvenons/", "nav": "research", "scripts": ["/js/player.js"]} -->
+<!--meta {"title": "Alfvénons · Zesen Huang", "description": "Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, interactive 3D field lines, and first results from simulations of colliding Alfvénons.", "path": "/research/alfvenons/", "nav": "research"} -->
 <div class="post">
   <header class="post-header">
     <div class="crumbs"><a href="/research/">Research</a> › Alfvénons</div>
@@ -7,7 +7,7 @@
   </header>
 
   <article class="post-content">
-<!--include partials/alfvenon-viewer.html -->
+<!--include partials/alfvenon-lines.html -->
 
     <h3 id="solitary">Solitary Alfvén waves in three dimensions</h3>
     <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>. They are abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>
@@ -57,13 +57,6 @@
       });
     })();
     </script>
-
-    <h4 id="large-small-collision">A large Alfvénon meets a small one, in 3D</h4>
-
-    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
-      <dt><div class="sim-player" data-tmax="1" data-frames="101"><video src="/images/research/alfvenon-collision.mp4" poster="/images/research/alfvenon-collision-poster.jpg" width="1600" height="1000" autoplay muted loop playsinline preload="auto" aria-label="Three-dimensional movie of a large and a small Alfvénon colliding, shown as nested translucent surfaces of the deflection angle theta"></video></div></dt>
-      <dd>A large Alfvénon (θ<sub>max</sub> ≈ 164°) meets a small one (θ<sub>max</sub> ≈ 45°) head-on, in a double-precision MHD simulation on a 512×256×256 grid run on NVIDIA H100 GPUs. The nested shells are surfaces of constant θ from 4° to 60°, brighter where the field is bent more. The camera follows the large Alfvénon (centre x = 0.5 + t) and circles it once while the two pass through each other, from t = 0 to t = 1. Drag the slider to step through the 101 frames.</dd>
-    </dl>
 
     <p>A turbulent cascade needs counter-propagating Alfvén waves to collide, and the Alfvénon makes a clean collision experiment possible. An isolated Alfvénon carries no compressive component (δ|B| ≈ 0, δρ ≈ 0) and stays that way as it propagates. Any compressive energy that appears when two of them meet is therefore made by the collision. The mechanism is simple: each Alfvénon has constant |B| on its own, but their superposition does not. Where they overlap, a magnetic-pressure imbalance of order <b>b</b>₊·<b>b</b>₋ launches magnetosonic waves carrying a fraction of order (δb/B₀)² of the Alfvénic energy. That is order unity at the large amplitudes Parker Solar Probe sees near the Sun.</p>
 

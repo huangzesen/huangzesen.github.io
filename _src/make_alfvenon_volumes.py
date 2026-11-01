@@ -108,7 +108,7 @@ def single():
     w = th ** 2
     cy = float((w.sum((0, 2)) * (np.arange(n) + 0.5)).sum() / w.sum() / n)
     cz = float((w.sum((0, 1)) * (np.arange(n) + 0.5)).sum() / w.sum() / n)
-    seeds = seeds_around(cy, cz, [0.0, 0.03, 0.06, 0.1, 0.15], [1, 6, 10, 12, 14])
+    seeds = seeds_around(cy, cz, [0.0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.125, 0.15], [1, 6, 8, 10, 12, 14, 16, 18])
     lines = trace(H, (1, 1, 1), seeds, smax=1.4, ds=0.25 / n)
     meta = {"box": [1, 1, 1], "dims": list(vol.shape), "order": "x fastest",
             "crop": [[x0 / n, x1 / n], [y0 / n, y1 / n], [z0 / n, z1 / n]], "theta_max": float(th.max()),

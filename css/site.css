@@ -277,13 +277,6 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
 
 /* ---------- dark media panels (simulation movie, star map, explorer) ---------- */
 .panel-dark { background: #05080f; border-radius: 8px 8px 0 0; position: relative; }
-.sim-player video { display: block; width: 100%; height: auto; background: #05080f; }
-.sim-controls { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: #0c1320; color: #dfe8f5; font-family: var(--nav); font-size: 13.5px; }
-.sim-controls button { background: #1b2a42; color: #fff; border: 1px solid #2f4466; border-radius: 4px; padding: 5px 11px; font: inherit; font-weight: 600; cursor: pointer; min-width: 64px; }
-.sim-controls button:hover { background: #24395a; }
-.sim-controls input[type=range] { flex: 1; accent-color: var(--gold); min-width: 80px; }
-.sim-controls .t { font-family: var(--mono); font-size: 13px; color: var(--gold); min-width: 5.6em; text-align: right; }
-.sim-controls .rate { min-width: 48px; }
 
 .ale-map { position: relative; background: #070f1b; border-radius: 8px 8px 0 0; }
 .ale-map svg { display: block; width: 100%; height: auto; }
@@ -406,51 +399,6 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
 .sw, .misc-card { transition: transform .25s ease, box-shadow .25s ease; }
 .misc-card:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,30,60,.12); }
 
-/* full-bleed blocks */
-.bleed { width: 100vw; margin-left: calc(50% - 50vw); }
-
-/* ---------- Alfvénon viewer ---------- */
-.av { position: relative; background: #05070d; color: #e6edf7; margin-top: -30px; margin-bottom: 30px; }
-.av-stage { position: relative; height: min(78vh, 760px); min-height: 440px; }
-.av-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
-.av-stage canvas:active { cursor: grabbing; }
-.av:fullscreen .av-stage { height: 100vh; }
-.av-top { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; gap: 6px; padding: 5px; border-radius: 999px; background: rgba(12,20,36,.72); backdrop-filter: blur(8px); border: 1px solid rgba(120,150,200,.25); }
-.av-top button { font-family: var(--nav); font-size: 14px; font-weight: 600; color: #cfdbec; background: transparent; border: 0; border-radius: 999px; padding: 7px 16px; cursor: pointer; }
-.av-top button[aria-selected=true] { background: linear-gradient(135deg, #ffb81c, #ff8a3d); color: #1a1205; }
-.av-panel { position: absolute; z-index: 3; left: 16px; bottom: 16px; width: 270px; padding: 14px 16px; border-radius: 12px; background: rgba(10,16,30,.74); backdrop-filter: blur(10px); border: 1px solid rgba(120,150,200,.22); font-family: var(--nav); font-size: 13px; }
-.av-panel label { display: block; color: #9fb4cc; font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; margin: 8px 0 3px; }
-.av-panel label b { float: right; color: #ffd98a; font-weight: 600; letter-spacing: 0; }
-.av-panel input[type=range] { width: 100%; accent-color: #ffb81c; }
-.av-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-.av-chips button { font: inherit; font-size: 12.5px; font-weight: 600; color: #cfdbec; background: rgba(30,45,72,.8); border: 1px solid rgba(120,150,200,.3); border-radius: 999px; padding: 4px 11px; cursor: pointer; }
-.av-chips button[aria-pressed=true] { background: #e9f1fb; color: #0c1424; border-color: #e9f1fb; }
-.av-tools { position: absolute; z-index: 3; right: 16px; top: 16px; display: flex; gap: 6px; }
-.av-tools button { font-family: var(--nav); font-size: 12.5px; font-weight: 600; color: #cfdbec; background: rgba(12,20,36,.72); border: 1px solid rgba(120,150,200,.25); border-radius: 8px; padding: 6px 10px; cursor: pointer; backdrop-filter: blur(8px); }
-.av-timeline { position: absolute; z-index: 3; left: 302px; right: 16px; bottom: 16px; display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px; background: rgba(10,16,30,.74); backdrop-filter: blur(10px); border: 1px solid rgba(120,150,200,.22); font-family: var(--nav); }
-.av-timeline button { width: 38px; height: 38px; border-radius: 50%; border: 0; background: linear-gradient(135deg, #ffb81c, #ff8a3d); color: #1a1205; font-size: 14px; font-weight: 700; cursor: pointer; flex: none; }
-.av-timeline .av-speed { width: auto; height: auto; border-radius: 6px; padding: 5px 9px; background: rgba(30,45,72,.9); color: #cfdbec; font-size: 12.5px; border: 1px solid rgba(120,150,200,.3); }
-.av-timeline input[type=range] { flex: 1; accent-color: #ffb81c; min-width: 60px; }
-.av-t { font-family: var(--mono); font-size: 14px; color: #ffd98a; min-width: 5.6em; text-align: right; }
-.av-cbar { position: absolute; z-index: 3; right: 18px; top: 64px; bottom: 90px; width: 12px; border-radius: 6px; background: linear-gradient(to top, #08061e, #34106a, #8a1e8c, #d64069, #fa7d32, #fdcd50, #fffce1); box-shadow: 0 0 0 1px rgba(255,255,255,.12); }
-.av-cbar span { position: absolute; right: 18px; font-family: var(--mono); font-size: 11.5px; color: #cfdbec; white-space: nowrap; }
-.av-cbar .av-cbar-max { top: -4px; } .av-cbar .av-cbar-min { bottom: -4px; }
-.av-cbar .av-cbar-lab { top: 50%; transform: translateY(-50%) rotate(-90deg); transform-origin: right center; right: 30px; color: #9fb4cc; }
-.av-cap { position: absolute; z-index: 2; left: 18px; top: 18px; max-width: 360px; font-size: 13px; line-height: 1.45; color: #b9c8dc; pointer-events: none; text-shadow: 0 1px 8px #000; }
-.av-cap b { color: #fff; display: block; font-size: 15px; font-family: var(--nav); }
-.av-load { position: absolute; inset: 0; z-index: 4; display: none; align-items: center; justify-content: center; font-family: var(--nav); color: #cfdbec; background: rgba(5,7,13,.55); }
-.av-loading .av-load { display: flex; }
-.av-nogl .av-stage { background: #05070d url(/images/research/alfvenon-collision-poster.jpg) center / contain no-repeat; }
-.av-nogl .av-panel, .av-nogl .av-timeline, .av-nogl .av-tools, .av-nogl .av-top, .av-nogl .av-cbar { display: none; }
-.av-hint { position: absolute; z-index: 2; left: 50%; bottom: 76px; transform: translateX(-50%); font-family: var(--nav); font-size: 12px; letter-spacing: .06em; color: rgba(200,215,235,.6); pointer-events: none; }
-@media (max-width: 760px) {
-  .av-stage { height: 72vh; min-height: 520px; }
-  .av-panel { left: 10px; right: 10px; width: auto; bottom: 74px; padding: 10px 12px; }
-  .av-panel label { margin-top: 4px; }
-  .av-timeline { left: 10px; right: 10px; bottom: 10px; }
-  .av-cap { display: none; } .av-cbar { top: 70px; bottom: 260px; } .av-hint { display: none; }
-  .av-tools { top: 62px; right: 10px; }
-}
 
 /* ---------- publications filter ---------- */
 .pub-filter { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 12px 14px; margin: 0 0 22px; background: rgba(253,253,253,.92); backdrop-filter: blur(8px); border: 1px solid var(--rule); border-radius: 10px; box-shadow: 0 4px 14px rgba(0,30,60,.06); }
@@ -483,9 +431,25 @@ a.lightbox-trigger { display: block; cursor: zoom-in; }
 .btn.ghost-dark:hover { background: rgba(255,255,255,.14); color: #fff; }
 @media (max-width: 720px) { .hero-about .post-title { font-size: 42px; } .hero-about .hero-inner { padding-top: 48px; padding-bottom: 44px; } }
 @media (min-width: 760px) { .cv-toc { flex-wrap: wrap; overflow: visible; gap: 2px 4px; } .cv-toc a { padding: 4px 9px; font-size: 12px; } }
-@media (max-width: 760px) {
-  .av-top button { white-space: nowrap; font-size: 13px; padding: 6px 13px; }
-  .av-tools { top: 66px; } .av-tools button { font-size: 12px; padding: 5px 9px; }
-  .av-cbar { top: 108px; }
-}
 @media print { .reveal { opacity: 1 !important; transform: none !important; transition: none !important; } .hero a { color: #005587 !important; } .hero .btn { display: none; } }
+
+/* ---------- Alfvénon field lines (js/alfvenon-lines.js) ---------- */
+.afl { position: relative; margin: 26px 0 30px; border-radius: 14px; overflow: hidden; background: #05070d; box-shadow: 0 10px 30px rgba(0,20,50,.18); }
+.afl-stage { position: relative; height: 480px; }
+.afl-stage canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+.afl-stage canvas:active { cursor: grabbing; }
+.afl:fullscreen .afl-stage { height: calc(100vh - 90px); }
+.afl-tools { position: absolute; top: 12px; right: 12px; z-index: 2; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.afl-tools button { font-family: var(--nav); font-size: 12.5px; font-weight: 600; color: #cfdbec; background: rgba(12,20,36,.72); border: 1px solid rgba(120,150,200,.28); border-radius: 999px; padding: 5px 11px; cursor: pointer; backdrop-filter: blur(8px); }
+.afl-tools button[aria-pressed=true] { background: #e9f1fb; color: #0c1424; border-color: #e9f1fb; }
+.afl-cbar { position: absolute; z-index: 2; left: 16px; top: 18px; height: 150px; width: 10px; border-radius: 5px; background: linear-gradient(to top, #5680cd, #7c62e6 22%, #cd46aa 45%, #fa803c 70%, #ffecbe); box-shadow: 0 0 0 1px rgba(255,255,255,.12); }
+.afl-cbar span { position: absolute; left: 16px; font-family: var(--mono); font-size: 11.5px; color: #cfdbec; white-space: nowrap; }
+.afl-cbar-max { top: -5px; } .afl-cbar-min { bottom: -5px; } .afl-cbar-lab { top: 50%; transform: translateY(-50%); color: #9fb4cc; }
+.afl-hint { position: absolute; z-index: 2; left: 50%; transform: translateX(-50%); top: 446px; font-family: var(--nav); font-size: 12px; letter-spacing: .06em; color: rgba(200,215,235,.55); pointer-events: none; white-space: nowrap; }
+.afl-load { position: absolute; left: 0; right: 0; top: 0; height: 480px; display: flex; align-items: center; justify-content: center; font-family: var(--nav); color: #9fb4cc; pointer-events: none; }
+.afl-ready .afl-load { display: none; }
+.afl figcaption { background: #fff; color: var(--muted, #555); font-size: 14px; line-height: 1.55; padding: 12px 16px 14px; border-top: 1px solid rgba(0,0,0,.06); }
+.afl-nogl .afl-stage { background: #05070d url(/images/research/alfvenon-theta.png) center / contain no-repeat; }
+.afl-nogl .afl-tools, .afl-nogl .afl-cbar, .afl-nogl .afl-hint, .afl-nogl .afl-load { display: none; }
+@media (max-width: 760px) { .afl-stage, .afl-load { height: 400px; } .afl-hint { top: 370px; } .afl-tools button { font-size: 11.5px; padding: 4px 9px; } }
+@media print { .afl { display: none; } }

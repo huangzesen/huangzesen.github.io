@@ -5,16 +5,16 @@
 <script>if(location.hostname==='huangzesen.github.io'){location.replace('https://zesen.me'+location.pathname+location.search+location.hash)}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Alfvénons · Zesen Huang</title>
-<meta name="description" content="Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, an interactive 3D explorer, and first results from simulations of colliding Alfvénons.">
+<meta name="description" content="Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, interactive 3D field lines, and first results from simulations of colliding Alfvénons.">
 <meta name="author" content="Zesen Huang">
 <link rel="canonical" href="https://zesen.me/research/alfvenons/">
 <meta property="og:title" content="Alfvénons · Zesen Huang">
-<meta property="og:description" content="Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, an interactive 3D explorer, and first results from simulations of colliding Alfvénons.">
+<meta property="og:description" content="Alfvénons: three-dimensional solitary Alfvén waves built as nonlinear solutions of ideal MHD, interactive 3D field lines, and first results from simulations of colliding Alfvénons.">
 <meta property="og:url" content="https://zesen.me/research/alfvenons/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://zesen.me/images/research/alfvenon-theta.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="/css/site.css?v=20261031">
+<link rel="stylesheet" href="/css/site.css?v=20261101">
 </head>
 <body class="page-research">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -57,39 +57,21 @@
 <div class="post">
 
   <article class="post-content">
-<div class="av bleed" data-base="/data/alfvenon/" data-start="collision">
-      <div class="av-stage"></div>
-      <div class="av-top" role="tablist" aria-label="Choose a simulation">
-        <button type="button" role="tab" data-mode="collision" aria-selected="true">Collision</button>
-        <button type="button" role="tab" data-mode="single" aria-selected="false">One Alfvénon</button>
+<figure class="afl" data-base="/data/alfvenon/">
+      <div class="afl-stage"></div>
+      <div class="afl-tools">
+        <button type="button" data-afl="rotate" aria-pressed="true">Auto-rotate</button>
+        <button type="button" data-afl="pulses" aria-pressed="true">Pulses</button>
+        <button type="button" data-afl="reset">Reset</button>
+        <button type="button" data-afl="full">Full screen</button>
       </div>
-      <div class="av-cap" data-for="collision"><b>A large Alfvénon meets a small one</b>Double-precision MHD on a 512×256×256 grid. Glow shows the angle θ = cos⁻¹(B<sub>x</sub>/|B|) by which the field is bent; it turns white-hot where the field folds back past 90°, as in a switchback. Pulses run along the field lines.</div>
-      <div class="av-cap" data-for="single" hidden><b>One Alfvénon</b>The 128³ solitary Alfvén wave of Huang et al. (2026a), θ<sub>max</sub> ≈ 45°. The field lines enter and leave along the background field: the structure is localized, with nearly constant |B| and open field lines.</div>
-      <div class="av-tools"><button type="button" class="av-reset">Reset view</button><button type="button" class="av-full">Full screen</button></div>
-      <div class="av-cbar" aria-hidden="true"><span class="av-cbar-max">90°+</span><span class="av-cbar-min">0°</span><span class="av-cbar-lab">θ</span></div>
-      <div class="av-panel">
-        <label>Show θ above <b class="av-thr-v">5°</b></label>
-        <input type="range" class="av-thr" min="0" max="76" value="5" aria-label="Minimum theta shown">
-        <label>Glow</label>
-        <input type="range" class="av-gain" min="0.2" max="3" step="0.05" value="1" aria-label="Glow">
-        <div class="av-chips">
-          <button type="button" data-toggle="lines" aria-pressed="true">Field lines</button>
-          <button type="button" data-toggle="bands" aria-pressed="false">Nested shells</button>
-          <button type="button" data-toggle="rotate" aria-pressed="true">Auto-rotate</button>
-        </div>
-      </div>
-      <div class="av-timeline" hidden>
-        <button type="button" class="av-play" aria-label="Pause">❚❚</button>
-        <input type="range" class="av-scrub" min="0" max="1000" value="0" aria-label="Simulation time">
-        <span class="av-t">t = 0.00</span>
-        <button type="button" class="av-speed" aria-label="Playback speed">1×</button>
-      </div>
-      <div class="av-hint">drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
-      <div class="av-load">Loading the simulation…</div>
-    </div>
+      <div class="afl-cbar" aria-hidden="true"><span class="afl-cbar-max">45°</span><span class="afl-cbar-min">0°</span><span class="afl-cbar-lab">θ</span></div>
+      <div class="afl-hint">drag to rotate · scroll or pinch to zoom</div>
+      <div class="afl-load">Loading field lines…</div>
+      <figcaption>Field lines of the Alfvénon, in 3D: drag to turn it. Each line is coloured by its local angle θ = cos⁻¹(B<sub>x</sub>/|B|) to the background field B₀ = x̂ (arrow), from 0° in steel blue to 45° in gold, and glows brighter where it bends. The lines enter straight, twist through the structure and leave straight again: the perturbation is localized, and every field line stays open. 85 lines traced through the 128³ field of <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>.</figcaption>
+    </figure>
     <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
-    <script type="module" src="/js/alfvenon-viewer.js?v=20261101c"></script>
-    <p class="btn-row"><a class="btn ghost" href="/explorers/alfvenon-small-amplitude.html">Classic 3D view (PyVista, θ shells and field lines)</a><a class="btn ghost" href="/switch_back.html">Switchback field-line explorer (59 MB)</a></p>
+    <script type="module" src="/js/alfvenon-lines.js?v=20261101e"></script>
 
     <h3 id="solitary">Solitary Alfvén waves in three dimensions</h3>
     <p>Parker Solar Probe found that the youngest solar wind is filled with large-amplitude Alfvénic fluctuations that look <em>solitary</em>. They are abrupt rotations of the magnetic field, up to full reversals (the "switchbacks"), set in an otherwise quiet coronal field, with nearly constant |B| and one-sided proton jets. The textbook nonlinear Alfvén wave, the spherically polarized Alfvén wave, defines its background field B₀ as the average of <b>B</b>. In spacecraft data that average is arbitrary: it changes even within a single solar-wind stream, and the Alfvén speed changes with it.</p>
@@ -140,13 +122,6 @@
     })();
     </script>
 
-    <h4 id="large-small-collision">A large Alfvénon meets a small one, in 3D</h4>
-
-    <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
-      <dt><div class="sim-player" data-tmax="1" data-frames="101"><video src="/images/research/alfvenon-collision.mp4" poster="/images/research/alfvenon-collision-poster.jpg" width="1600" height="1000" autoplay muted loop playsinline preload="auto" aria-label="Three-dimensional movie of a large and a small Alfvénon colliding, shown as nested translucent surfaces of the deflection angle theta"></video></div></dt>
-      <dd>A large Alfvénon (θ<sub>max</sub> ≈ 164°) meets a small one (θ<sub>max</sub> ≈ 45°) head-on, in a double-precision MHD simulation on a 512×256×256 grid run on NVIDIA H100 GPUs. The nested shells are surfaces of constant θ from 4° to 60°, brighter where the field is bent more. The camera follows the large Alfvénon (centre x = 0.5 + t) and circles it once while the two pass through each other, from t = 0 to t = 1. Drag the slider to step through the 101 frames.</dd>
-    </dl>
-
     <p>A turbulent cascade needs counter-propagating Alfvén waves to collide, and the Alfvénon makes a clean collision experiment possible. An isolated Alfvénon carries no compressive component (δ|B| ≈ 0, δρ ≈ 0) and stays that way as it propagates. Any compressive energy that appears when two of them meet is therefore made by the collision. The mechanism is simple: each Alfvénon has constant |B| on its own, but their superposition does not. Where they overlap, a magnetic-pressure imbalance of order <b>b</b>₊·<b>b</b>₋ launches magnetosonic waves carrying a fraction of order (δb/B₀)² of the Alfvénic energy. That is order unity at the large amplitudes Parker Solar Probe sees near the Sun.</p>
 
     <p>We are testing this with shock-capturing, double-precision GPU simulations of head-on collisions, on grids up to 1024×512×512, which conserve energy to better than one part in 10⁸.</p>
@@ -185,12 +160,11 @@
 <footer class="site-footer">
   <div class="wrapper">
     <span>© 2026 Zesen Huang · Department of Earth, Planetary, and Space Sciences, UCLA</span>
-    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated October 2026</span>
+    <span><a href="mailto:zesenhuang@g.ucla.edu">Email</a> · <a href="https://github.com/huangzesen">GitHub</a> · <a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · Updated November 2026</span>
   </div>
 </footer>
 
-<script src="/js/site.js?v=20261031" defer></script>
-<script src="/js/player.js?v=20261031" defer></script>
+<script src="/js/site.js?v=20261101" defer></script>
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
 <script>
 (function () {
