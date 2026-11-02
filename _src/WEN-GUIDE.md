@@ -63,3 +63,5 @@ English stays the main site; the 文言 pages live under /wen/.
 | open source | 开源 |
 | Mars / the Sun | 荧惑 / 日 |
 | Publications / CV / Projects (Software; explorers, reports and trackers) / Research / About / Travel | 著述 / 履历 / 器用杂录（器用；观览、报告与追踪） / 所究 / 自述 / 行迹 |
+
+The scene hints and the ScienceIDE verifier line are 文言 too; they live in `js/hero-scene.js` (`hint: [English, 文言]`), not in `pages-wen/`.

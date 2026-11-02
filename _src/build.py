@@ -47,6 +47,23 @@ NAV_WEN = [
     ("travel", "行迹", "/wen/travel/", []),
 ]
 
+# per-page look (Zesen, 2026-11-02: "add fancy themes to other pages"): English path -> scene in js/hero-scene.js and how far it
+# reaches. "" = the scene fills the hero and the page stays on paper (About, Research, Publications, CV, Projects);
+# "th-full" = fixed behind the whole page; "th-dark" = the page's text is light. Style in css/site.css under "per-page themes".
+THEMES = {
+    "/": ("about", ""),
+    "/research/": ("research", ""),
+    "/research/alfvenons/": ("alfvenons", "th-full th-dark"),
+    "/research/lingtai/": ("lingtai", "th-full"),
+    "/research/scienceide/": ("scienceide", "th-full th-dark"),
+    "/research/ale-astronomy/": ("ale", "th-full th-dark"),
+    "/research/solar-wind/": ("solar", "th-full th-dark"),
+    "/publications/": ("publications", ""),
+    "/cv/": ("cv", ""),
+    "/projects/": ("projects", ""),
+    "/travel/": ("travel", ""),
+}
+
 # pages that moved: old address -> new one, so links already out there keep working
 REDIRECTS = {
     "/software/": "/projects/#software",
@@ -154,11 +171,14 @@ def main():
             hl = "lzh" if lang == "en" else "en"
             alternates = f'<link rel="alternate" hreflang="{hl}" href="https://zesen.me{twin}">\n'
         html = layout
+        english_path = meta["path"][len("/wen"):] or "/" if lang == "wen" else meta["path"]
+        theme, reach = THEMES[english_path]
         for k, v in {
             "title": meta["title"],
             "description": meta["description"],
             "path": meta["path"],
             "slug": meta["nav"],
+            "theme": f"theme-{theme} {reach}".strip(),
             "lang": cfg["html"],
             "home": cfg["home"],
             "brand": cfg["brand"],

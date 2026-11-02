@@ -3,9 +3,11 @@
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- hero: magnetic field lines carrying solitary Alfvénic kinks ---------- */
-  var cv = document.body.classList.contains('page-travel') ? null : document.querySelector('.hero-canvas'); // /travel/ has js/travel-sky.js
-  if (cv && cv.getContext) {
-    var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+  // js/hero-scene.js and js/travel-sky.js draw their own; LingTai's hero is paper, so gold lines would not suit it
+  var cls = document.body.classList, cv = cls.contains('page-travel') || cls.contains('theme-lingtai') || document.documentElement.classList.contains('scene-on') ? null : document.querySelector('.hero-canvas');
+  var ctx = cv && cv.getContext && cv.getContext('2d');
+  if (ctx) {
+    var W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
     var NL = 15, solitons = [], rings = [], last = 0, lastSpawn = 0, seen = true;
     function size() {
       var r = cv.getBoundingClientRect(); W = r.width; H = r.height;
