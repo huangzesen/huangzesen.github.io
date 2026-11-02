@@ -17,7 +17,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&display=swap">
-<link rel="stylesheet" href="/css/site.css?v=20261102">
+<link rel="stylesheet" href="/css/site.css?v=e621dcc9a9">
 </head>
 <body class="page-travel">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -54,6 +54,7 @@
 <section class="hero hero-travel"><canvas class="hero-canvas" aria-hidden="true"></canvas><div class="wrapper hero-inner">
 <h1 class="post-title">Where I've Been</h1>
     <p class="lede"><b data-draw="items">—</b> geotagged photos and videos from <b data-draw="firstYear">—</b> to <b data-draw="lastYear">—</b>. <b data-draw="topCountry">—</b> accounts for <b data-draw="topShare">—</b> of them.</p>
+    <p class="tv-hint"><span class="tv-hint-move">Move your pointer to stir the magnetic field. </span>Click or tap the sky to send a wave along it.</p>
 </div><svg class="hero-waves" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path class="w1" d="M0 34 C 160 14 300 14 460 30 S 760 52 920 34 S 1220 10 1440 30 V80 H0 Z"/><path class="w2" d="M0 52 C 200 34 360 40 540 52 S 860 66 1040 50 S 1300 38 1440 50 V80 H0 Z"/><path class="w3" d="M0 66 C 180 56 380 60 560 68 S 900 76 1100 66 S 1340 60 1440 66 V80 H0 Z"/></svg></section>
 
 <main id="main" class="page-content">
@@ -81,7 +82,7 @@
         <div class="tv-bar">
           <div>
             <h2>Map by administrative region</h2>
-            <p class="tv-note">Darker means more items. Drag to pan, and scroll or pinch to zoom. Dots mark places with no boundary map. Hover over a dashed outline to see who claims it.</p>
+            <p class="tv-note">Brighter means more items. Drag to pan, and scroll or pinch to zoom. Dots mark places with no boundary map. Hover over a dashed outline to see who claims it.</p>
           </div>
           <div class="tv-controls">
             <select class="tv-level" aria-label="Region level">
@@ -197,6 +198,7 @@
       </div>
 
       <section class="tv-notes" id="notes">
+        <p class="tv-note tv-sky-note">The globe behind this page is a drawing. Its lights are the 0.5° blocks from the map above. Its magnetic field, aurora and solar wind are a sketch, not a simulation, and no line on it is a route.</p>
         <p class="tv-note">What counts as a second-level region follows each boundary map, so sizes vary. Italy and Greece are mapped at a broader level than provinces, and Taiwan at a finer level. Hong Kong, Macao and Vatican City have no boundary map, so they use the place names in Photos. Points just outside a coastline go to the nearest region, and points near a border can land in the neighboring one.</p>
         <p class="tv-note">Country, first-level and second-level lines for countries with a boundary map all come from one simplified shape set, so they meet exactly. Canada, Australia and a few other countries with very intricate coasts are simplified more. Boundary lines hide briefly while you pan or zoom. Lines elsewhere come from Natural Earth and can sit slightly apart where the two sources meet.</p>
         <p class="tv-note">Dashed outlines follow Natural Earth's list of disputed areas, including its choices about what to list, such as Taiwan, Israel and Belize. Solid lines can run underneath a dashed outline. None of this is a statement on who controls or should control any territory.</p>
@@ -216,9 +218,10 @@
   </div>
 </footer>
 
-<script src="/js/site.js?v=20261102" defer></script>
-<script src="/js/d3.v7.9.0.min.js?v=20261102" defer></script>
-<script src="/js/travel.js?v=20261102" defer></script>
+<script src="/js/site.js?v=e621dcc9a9" defer></script>
+<script src="/js/d3.v7.9.0.min.js?v=e621dcc9a9" defer></script>
+<script src="/js/travel.js?v=e621dcc9a9" defer></script>
+<script src="/js/travel-sky.js?v=e621dcc9a9" defer></script>
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
 <script>
 (function () {

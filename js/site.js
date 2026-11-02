@@ -3,7 +3,7 @@
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- hero: magnetic field lines carrying solitary Alfvénic kinks ---------- */
-  var cv = document.querySelector('.hero-canvas');
+  var cv = document.body.classList.contains('page-travel') ? null : document.querySelector('.hero-canvas'); // /travel/ has js/travel-sky.js
   if (cv && cv.getContext) {
     var ctx = cv.getContext('2d'), W = 0, H = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
     var NL = 15, solitons = [], rings = [], last = 0, lastSpawn = 0, seen = true;

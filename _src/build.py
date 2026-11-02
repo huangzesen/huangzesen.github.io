@@ -8,6 +8,7 @@ _src/layout.html. Run from anywhere:  python3 -I _src/build.py
 Folders starting with "_" are not published by GitHub Pages (Jekyll), so _src/ stays private.
 """
 import datetime
+import hashlib
 import json
 import pathlib
 import re
@@ -62,6 +63,14 @@ LANGS = {
 }
 
 
+def asset_version():
+    """Changes whenever a stylesheet or script does, so a second publish on one day still reaches browsers."""
+    h = hashlib.sha1()
+    for f in sorted([*(ROOT / "css").glob("*.css"), *(ROOT / "js").glob("*.js")]):
+        h.update(f.read_bytes())
+    return h.hexdigest()[:10]
+
+
 def nav_html(active, nav=NAV):
     out = []
     for key, label, href, subs in nav:
@@ -91,7 +100,7 @@ def lang_switch(lang, path, wen_paths, en_paths):
 def main():
     layout = (SRC / "layout.html").read_text()
     today = datetime.date.today()
-    version = today.strftime("%Y%m%d")
+    version = asset_version()
     updated = {"en": today.strftime("%B %Y"), "wen": f"{today.year}年{today.month}月"}
     pages = {}
     for lang, cfg in LANGS.items():

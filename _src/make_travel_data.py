@@ -85,10 +85,9 @@ def polygons(path):
 
 
 def land_rings(folder):
+    """All of it, Antarctica included for the globe in js/travel-sky.js; the flat map skips what is south of its edge."""
     rings = []
     for ring in polygons(folder / "ne_10m_land.geojson"):
-        if max(p[1] for p in ring) < BOTTOM:
-            continue
         s = simplify(ring)
         if len(s) >= 4:
             rings.append(s)
@@ -132,7 +131,7 @@ def outside(line, cells):
 def world_lines(folder, land, boundaries):
     """Coasts (from the same rings as the land fill) and land borders outside the mapped countries."""
     cells = mapped_cells(boundaries)
-    lines = [part for ring in land for part in outside(ring, cells)]
+    lines = [part for ring in land if max(p[1] for p in ring) >= BOTTOM for part in outside(ring, cells)]
     for f in json.loads((folder / "ne_10m_admin_0_boundary_lines_land.geojson").read_text())["features"]:
         if f["properties"]["FEATURECLA"] in NOT_BORDERS:
             continue

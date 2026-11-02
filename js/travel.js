@@ -7,7 +7,7 @@
   if (!root) return;
 
   const WEN = document.documentElement.lang === 'lzh';
-  const SERIES = '#005587';
+  const SERIES = getComputedStyle(root).getPropertyValue('--tv-series').trim() || '#f0c566';
   const T = WEN ? {
     loading: '载入中…', failed: '载入未成', allYears: '诸年', disputed: '有争之地',
     year: (y) => y + '年', items: (n) => n + '件', days: (n) => n + '日', adm2: (n) => '二级行政区' + n,
@@ -65,14 +65,16 @@
       d.deps = deps;
     }
   };
+  // shared with js/travel-sky.js, so each file downloads once
+  const requests = {};
+  const tvRows = window.tvRows = (id) => requests[id] || (requests[id] = fetch('/data/travel/' + id + '.json').then((r) => {
+    if (!r.ok) throw new Error(id + ': HTTP ' + r.status);
+    return r.json();
+  }));
   const load = (id) => {
     if (sets.has(id)) return;
     sets.set(id, {status: 'loading', data: []});
-    fetch('/data/travel/' + id + '.json')
-      .then((r) => {
-        if (!r.ok) throw new Error(id + ': HTTP ' + r.status);
-        return r.json();
-      })
+    tvRows(id)
       .then((rows) => sets.set(id, {status: 'ok', data: rows}), () => sets.set(id, {status: 'error', data: []}))
       .then(() => touch(id));
   };
@@ -108,6 +110,7 @@
     },
     setParams(p) {
       Object.assign(state, p);
+      if ('year' in p) document.dispatchEvent(new CustomEvent('tv:year', {detail: p.year}));
       Object.keys(p).forEach((k) => touch('param:' + k));
     },
   };
@@ -273,13 +276,13 @@
       .attr('vector-effect', 'non-scaling-stroke')
       .style('stroke', color).style('stroke-width', width).style('stroke-linejoin', 'round');
     const second = withSecond ? addLines(layers.adm2, 'var(--tv-axis)', 0.5 * fine) : null;
-    const first = addLines(layers.adm1, 'var(--muted)', 0.75 * fine);
-    addLines(layers.country, 'var(--muted)', Math.max(0.5, 1.25 * fine));
+    const first = addLines(layers.adm1, 'var(--tv-line)', 0.75 * fine);
+    addLines(layers.country, 'var(--tv-line)', Math.max(0.5, 1.25 * fine));
 
     const disputedLayer = g.append('g').style('fill', 'none');
     disputedLayer.selectAll('path.line').data(layers.disputed).join('path').attr('class', 'line')
       .attr('d', (d) => d.d).attr('vector-effect', 'non-scaling-stroke')
-      .style('stroke', 'var(--muted)').style('stroke-width', 1.25).style('stroke-dasharray', '4 3')
+      .style('stroke', 'var(--tv-line)').style('stroke-width', 1.25).style('stroke-dasharray', '4 3')
       .style('pointer-events', 'none');
     disputedLayer.selectAll('path.hit').data(layers.disputed).join('path').attr('class', 'hit')
       .attr('d', (d) => d.d).attr('vector-effect', 'non-scaling-stroke')
