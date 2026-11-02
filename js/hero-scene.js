@@ -8,7 +8,7 @@
 
   /* ---------- GLSL shared by everything ---------- */
   var HEAD = '#version 300 es\nprecision highp float;\nprecision highp int;\n' +
-    'uniform vec2 uRes;uniform float uPx;uniform float uT;uniform vec3 uPtr;uniform float uDim;uniform vec4 uK[8];uniform vec4 uA[8];\n';
+    'uniform vec2 uRes;uniform float uPx;uniform float uT;uniform vec3 uPtr;uniform float uDim;uniform float uScroll;uniform vec4 uK[8];uniform vec4 uA[8];\n';
   var NOISE = `
 #define TAU 6.2831853
 #define PI 3.14159265
@@ -42,23 +42,23 @@ vQ=q;vId=id;vD=a;gl_Position=vec4((a.xy+shape(q,a))/uRes*2.-1.,0.,1.);}`;
     return {
       type: 'points', blend: 'add', n: function (A) { return Math.min(700, Math.round(A.W * A.H / density)); },
       place: 'vec4 place(float id){vec2 h=vec2(h11(id*1.37+3.1),h11(id*2.71+7.7));float m=h11(id*5.1+.3);m=m*m*m;return vec4(h*uRes,1.1+2.6*m,m);}',
-      sprite: 'vec4 sprite(){float d=dot(vQ,vQ);float tw=.66+.34*sin(uT*(.5+h11(vId)*1.4)+vId);float a=exp(-d*5.)*(.2+.9*vD.w)*tw*' + (dim || '1.') + ';vec3 c=mix(vec3(.78,.86,1.),vec3(1.,.93,.78),h11(vId*3.3));return vec4(c*a,0.);}'
+      sprite: 'vec4 sprite(){float d=dot(vQ,vQ);float tw=.66+.34*sin(uT*(.5+h11(vId)*1.4)+vId);float a=exp(-d*5.)*(.2+.9*vD.w)*tw*(1.-.45*uDim)*' + (dim || '1.') + ';vec3 c=mix(vec3(.78,.86,1.),vec3(1.,.93,.78),h11(vId*3.3));return vec4(c*a,0.);}'
     };
   }
   function lang() { return document.documentElement.lang === 'lzh' ? 1 : 0; }
 
   /* ---------- About: the Sun, the Parker spiral and Parker Solar Probe's orbit ---------- */
   var HELIO = `
-vec2 SUN(){return uRes.x<720.?vec2(uRes.x*.95,uRes.y*.13):vec2(uRes.x*.8,uRes.y*.56);}
+vec2 SUN(){return uRes.x<720.?vec2(uRes.x*.8,uRes.y*.25):vec2(uRes.x*.8,uRes.y*.56);}
 float AU(){return max(uRes.x*.6,uRes.y*1.05);}
-float RS(){return uRes.x<720.?13.:max(18.,min(uRes.y*.07,40.));}
+float RS(){return uRes.x<720.?20.:max(22.,min(uRes.y*.058,56.));}
 `;
   SCENES.about = {
-    still: 31,
+    full: true, still: 31,
     hint: ['Move or tap: launch a switchback along the Parker spiral. The bright dot is Parker Solar Probe.', '拂之或触之，以发折返于磁力线。明点者，帕克太阳探测器也。'],
     n: 30,
     launch: function (A, x, y, amp, spread) {
-      var au = Math.max(A.W * 0.6, A.H * 1.05), c = A.W < 720 ? [A.W * 0.95, A.H * 0.13] : [A.W * 0.8, A.H * 0.56];
+      var au = Math.max(A.W * 0.6, A.H * 1.05), c = A.W < 720 ? [A.W * 0.8, A.H * 0.25] : [A.W * 0.8, A.H * 0.56];
       var dx = x - c[0], dy = y - c[1], r = Math.hypot(dx, dy), th = Math.atan2(dy, dx);
       var id = Math.round((th + r / au - A.T * 0.045) / TAU * this.n), n = this.n;
       id = ((id % n) + n) % n;
@@ -76,9 +76,9 @@ float RS(){return uRes.x<720.?13.:max(18.,min(uRes.y*.07,40.));}
       { type: 'quad', blend: 'none', fs: HELIO + `
 void main(){vec2 c=SUN(),p=vP-c;float d=length(p),R=RS();vec2 dir=p/max(d,1.);
 vec2 uv=vP/uRes;vec3 col=mix(vec3(.024,.047,.115),vec3(.052,.098,.215),ss(1.25,0.,length((uv-vec2(.5,-.2))*vec2(.8,1.))));
-float st=fbm(dir*2.2+vec2(uT*.012,0.),4),st2=fbm(dir*5.5-vec2(0.,uT*.018),3);
+float near=ss(R*20.,R*11.,d),st=0.,st2=0.;if(near>0.){st=fbm(dir*2.2+vec2(uT*.012,0.),4);st2=fbm(dir*5.5-vec2(0.,uT*.018),3);}
 float glow=pw(R/max(d,R),1.45);
-col+=vec3(1.,.70,.36)*glow*(.30+1.05*st*st2*2.);
+col+=vec3(1.,.70,.36)*glow*(.30+1.05*st*st2*2.*near);
 col+=vec3(.55,.42,.7)*pw(R/max(d,R),.62)*.07;
 vec3 surf=mix(vec3(1.,.74,.36),vec3(1.,.97,.86),pw(1.-min(d/R,1.),.45));
 surf*=.9+.2*fbm(p/R*5.+uT*.05,3);
@@ -100,7 +100,7 @@ const float N=30.;
 vec4 ink(){float c=exp(-vCross*vCross*2.4),f=pw(max(1.-vS,0.),1.6),h=clamp(vHeat,0.,1.);
 float sec=ss(-.25,.25,sin(vId/N*TAU+uT*.045+.9));
 vec3 col=mix(vec3(.50,.68,.98),vec3(.92,.76,.44),sec);col=mix(col,vec3(1.,.95,.78),h);
-float a=(.035+.52*f+.92*h*(.45+.55*f))*c*ss(0.,.03,vS);return vec4(col*a,0.);}` },
+float a=(.035+.52*f+.92*h*(.45+.55*f))*c*ss(0.,.03,vS)*(1.-.5*uDim);return vec4(col*a,0.);}` },
       { type: 'lines', blend: 'add', n: 4, seg: 420, path: HELIO + `
 vec4 path(float s,float id){vec2 c=SUN();float au=AU(),a=s*TAU,r;
 if(id<2.5){r=(id<.5?.387:id<1.5?.723:1.)*au;}else{r=.388*(1.-.881*.881)/(1.+.881*cos(a))*au;a+=2.75;}
@@ -128,24 +128,24 @@ vec4 sprite(){float d=dot(vQ,vQ);float a=exp(-d*5.)*.5*pw(max(1.-vD.w,0.),1.8);r
   /* ---------- Research overview: an orrery whose bodies are the five topics ---------- */
   var ORB = { tint: [[.62, .42, 1], [.9, .3, .2], [.42, .72, 1], [.2, .85, .8], [1, .66, .2]], w: [.17, .13, .105, .08, .06], ph: [.6, 2.4, 4.1, 5.5, 1.5], size: [15, 12, 13, 14, 18], ring: [.40, .55, .70, .85, 1] };
   SCENES.research = {
-    still: 12,
+    full: true, still: 12,
     hint: ['Each body is a topic. Point at one to name it, click to open it.', '一星一题。指之见其名，触之入其篇。'],
     init: function (A) {
       this.links = [].slice.call(document.querySelectorAll('.site-nav .sub-menu a')).slice(0, 5);
       this.hover = -1; this.heat = [0, 0, 0, 0, 0]; this.ph = ORB.ph.slice();
     },
     tick: function (A, dt) {
-      var nar = A.W < 720, cx = A.W * (nar ? .5 : .71), cy = A.H * (nar ? .42 : .58), R = nar ? A.W * .46 : Math.min(A.W * .27, A.H * 1.04), fl = .36, tilt = -.2;
+      var nar = A.W < 720, cx = A.W * (nar ? .52 : .67), cy = A.H * (nar ? .34 : .56), R = nar ? A.W * .47 : Math.min(A.W * .3, A.H * .56), fl = .42, tilt = -.2, big = nar ? .95 : 1.45;
       var ct = Math.cos(tilt), st = Math.sin(tilt);
       A.a[20] = cx; A.a[21] = cy; A.a[22] = R; A.a[23] = fl;
       var hit = -1, best = 1e9;
       for (var i = 0; i < 5; i++) {
         this.ph[i] += dt * ORB.w[i] * (this.hover >= 0 ? .12 : 1);
         var rr = R * ORB.ring[i], x = Math.cos(this.ph[i]) * rr, y = Math.sin(this.ph[i]) * rr * fl, px = cx + x * ct - y * st, py = cy + x * st + y * ct;
-        var depth = 1 - .26 * Math.sin(this.ph[i]), r = ORB.size[i] * depth * (nar ? .8 : 1);
+        var depth = 1 - .26 * Math.sin(this.ph[i]), r = ORB.size[i] * depth * big;
         this.heat[i] += ((this.hover === i ? 1 : 0) - this.heat[i]) * Math.min(1, dt * 7);
         A.a[i * 4] = px; A.a[i * 4 + 1] = py; A.a[i * 4 + 2] = r * (1 + .28 * this.heat[i]); A.a[i * 4 + 3] = this.heat[i];
-        if (A.ptr.on) { var d = Math.hypot(A.ptr.x - px, A.ptr.y - py); if (d < r + 16 && d < best) { best = d; hit = i; } }
+        if (A.ptr.on && A.ptr.inHero) { var d = Math.hypot(A.ptr.x - px, A.ptr.y - py); if (d < r + 16 && d < best) { best = d; hit = i; } }
       }
       if (hit !== this.hover) {
         this.hover = hit;
@@ -155,6 +155,7 @@ vec4 sprite(){float d=dot(vQ,vQ);float a=exp(-d*5.)*.5*pw(max(1.-vD.w,0.),1.8);r
       if (hit >= 0 && this.links[hit]) A.label(this.links[hit].textContent, A.a[hit * 4], A.a[hit * 4 + 1] + A.a[hit * 4 + 2] + 12);
     },
     press: function (A, x, y) {
+      if (!A.ptr.inHero) return;
       for (var i = 0; i < 5; i++) if (Math.hypot(x - A.a[i * 4], y - A.a[i * 4 + 1]) < A.a[i * 4 + 2] + 16 && this.links[i]) { location.href = this.links[i].getAttribute('href'); return; }
     },
     layers: [
@@ -166,7 +167,7 @@ col+=vec3(.75,.58,.3)*exp(-d*d*3.5)*.13;C=vec4(col+dith(),1.);}` },
       { type: 'lines', blend: 'add', n: 5, seg: 240, path: `
 vec4 path(float s,float id){float a=s*TAU,R=uA[5].z*(id<.5?.40:id<1.5?.55:id<2.5?.70:id<3.5?.85:1.),ct=cos(-.2),st=sin(-.2);
 float x=cos(a)*R,y=sin(a)*R*uA[5].w;return vec4(uA[5].xy+vec2(x*ct-y*st,x*st+y*ct),.42,sin(a));}`, ink: `
-vec4 ink(){float c=exp(-vCross*vCross*2.2);float front=.5-.5*vHeat;return vec4(vec3(.89,.78,.51)*(.10+.26*front)*c,0.);}` },
+vec4 ink(){float c=exp(-vCross*vCross*2.2);float front=.5-.5*vHeat;return vec4(vec3(.89,.78,.51)*(.10+.26*front)*c*(1.-.5*uDim),0.);}` },
       { type: 'points', blend: 'over', n: 6, place: `
 vec4 place(float id){if(id>4.5)return vec4(uA[5].xy,17.,0.);return vec4(uA[int(id)].xy,uA[int(id)].z/.6,uA[int(id)].w);}`, sprite: `
 vec3 cmapA(float h){return h<.33?mix(vec3(.34,.5,.8),vec3(.49,.38,.9),h*3.):h<.66?mix(vec3(.49,.38,.9),vec3(.8,.27,.67),(h-.33)*3.):mix(vec3(.8,.27,.67),vec3(1.,.74,.24),(h-.66)*3.);}
@@ -411,7 +412,7 @@ vec4 sprite(){float d=dot(vQ,vQ);float a=vD.w*vD.w*vD.w*(exp(-d*22.)*1.8+exp(-d*
 
   /* ---------- Publications: the sky is the list. Each star is a work on this page, by year; first-author works are gold and joined in order ---------- */
   SCENES.publications = {
-    still: 6,
+    full: true, still: 6,
     hint: ['Every star is a work below, placed by year. Gold is first-author. Point at one to name it, click to find it.', '一星一篇，以年序之。金者，首署之文也。指之见其题，触之至其处。'],
     init: function (A) {
       var items = [];
@@ -434,7 +435,7 @@ vec4 sprite(){float d=dot(vQ,vQ);float a=vD.w*vD.w*vD.w*(exp(-d*22.)*1.8+exp(-d*
     },
     resize: function (A) { this.layout(A); },
     layout: function (A) {
-      var items = this.items, span = this.ymax - this.ymin + 1, nar = A.W < 720, left = A.W * (nar ? .05 : .07), width = A.W * (nar ? .9 : .9), top = A.H * .9, bottom = A.H * (nar ? .3 : .26);
+      var items = this.items, span = this.ymax - this.ymin + 1, nar = A.W < 720, left = A.W * (nar ? .05 : .07), width = A.W * (nar ? .9 : .9), docTop = A.heroTop + A.scroll, top = A.H - docTop - 60, bottom = A.H - docTop - A.heroH + 112;
       var cw = width / span, pts = [];
       items.forEach(function (it, i) {
         var h1 = fh(it.title, 7), h2 = fh(it.title, 13);
@@ -448,7 +449,7 @@ vec4 sprite(){float d=dot(vQ,vQ);float a=vD.w*vD.w*vD.w*(exp(-d*22.)*1.8+exp(-d*
       var data = new Float32Array(items.length * 4);
       items.forEach(function (it, i) {
         var hid = it.li.hidden, first = it.k === 'first', pre = it.k === 'pre', ws = it.k === 'ws';
-        data[i * 4] = it.x; data[i * 4 + 1] = it.py; data[i * 4 + 2] = hid ? 0 : (first ? 15 : pre ? 10 : ws ? 6.5 : 8.5); data[i * 4 + 3] = first ? 0 : pre ? 1 : ws ? 3 : 2;
+        data[i * 4] = it.x; data[i * 4 + 1] = it.py; data[i * 4 + 2] = hid ? 0 : (first ? 19 : pre ? 12 : ws ? 8 : 10.5); data[i * 4 + 3] = first ? 0 : pre ? 1 : ws ? 3 : 2;
       });
       var starsL = this.layers[3]; starsL.data = data; starsL.dirty = true; starsL.count = items.length;
       var chain = items.filter(function (it) { return it.k === 'first' && !it.li.hidden; }).sort(function (a, b) { return a.y - b.y || a.x - b.x; });
@@ -459,14 +460,15 @@ vec4 sprite(){float d=dot(vQ,vQ);float a=vD.w*vD.w*vD.w*(exp(-d*22.)*1.8+exp(-d*
     },
     tick: function (A, dt) {
       var hit = -1, best = 1e9;
-      if (A.ptr.on) this.items.forEach(function (it, i) { if (it.li.hidden) return; var d = Math.hypot(A.ptr.x - it.x, A.ptr.y - it.py); if (d < 20 && d < best) { best = d; hit = i; } });
+      if (A.ptr.on && A.ptr.inHero) this.items.forEach(function (it, i) { if (it.li.hidden) return; var d = Math.hypot(A.ptr.x - it.x, A.ptr.y - (it.py + A.scroll)); if (d < 20 && d < best) { best = d; hit = i; } });
       if (hit !== this.hover) { this.hover = hit; A.hero.style.cursor = hit >= 0 ? 'pointer' : ''; if (hit < 0) A.label(''); }
       A.a[0] = hit;
-      if (hit >= 0) A.label(this.items[hit].y + '  ' + this.items[hit].title, this.items[hit].x, this.items[hit].py + 18);
+      if (hit >= 0) A.label(this.items[hit].y + '  ' + this.items[hit].title, this.items[hit].x, this.items[hit].py + A.scroll + 18);
     },
     press: function (A, x, y) {
+      if (!A.ptr.inHero) return;
       var hit = -1, best = 24;
-      this.items.forEach(function (it, i) { if (it.li.hidden) return; var d = Math.hypot(x - it.x, y - it.py); if (d < best) { best = d; hit = i; } });
+      this.items.forEach(function (it, i) { if (it.li.hidden) return; var d = Math.hypot(x - it.x, y - (it.py + A.scroll)); if (d < best) { best = d; hit = i; } });
       if (hit < 0) return;
       var li = this.items[hit].li, reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
       li.scrollIntoView({ block: 'center', behavior: reduce ? 'auto' : 'smooth' });
@@ -478,25 +480,25 @@ void main(){vec2 uv=vP/uRes;vec2 q=vP/380.;float band=exp(-pw((uv.y-.62+(uv.x-.5
 vec3 col=mix(vec3(.018,.032,.085),vec3(.042,.075,.17),ss(1.3,0.,length((uv-vec2(.5,-.2))*vec2(.8,1.))));
 col+=vec3(.34,.33,.48)*band*n*n*.42*(1.-.72*ss(.44,.66,d));C=vec4(col,1.);}` },
       { type: 'quad', blend: 'none', fs: `void main(){C=vec4(texture(uBake,vP/uRes).rgb+dith(),1.);}` },
-      { type: 'lines', blend: 'add', n: 0, seg: 1, path: `vec4 path(float s,float id){return vec4(mix(aI.xy,aI.zw,s),.5,0.);}`, ink: `
+      { type: 'lines', blend: 'add', n: 0, seg: 1, path: `vec4 path(float s,float id){return vec4(mix(aI.xy,aI.zw,s)+vec2(0.,uScroll),.5,0.);}`, ink: `
 vec4 ink(){float c=exp(-vCross*vCross*2.);return vec4(vec3(.89,.76,.47)*.42*c,0.);}` },
-      { type: 'points', blend: 'add', n: 0, place: `vec4 place(float id){return vec4(aI.xy,aI.z*(id==uA[0].x?1.55:1.),aI.w);}`, sprite: `
+      { type: 'points', blend: 'add', n: 0, place: `vec4 place(float id){return vec4(aI.xy+vec2(0.,uScroll),aI.z*(id==uA[0].x?1.55:1.),aI.w);}`, sprite: `
 vec4 sprite(){float d=dot(vQ,vQ),k=vD.w;float hov=vId==uA[0].x?1.:0.;float tw=.82+.18*sin(uT*(.5+h11(vId)*1.1)+vId*2.);
 if(k<.5){float sp=exp(-abs(vQ.x)*5.5)*exp(-vQ.y*vQ.y*180.)+exp(-abs(vQ.y)*5.5)*exp(-vQ.x*vQ.x*180.);float a=(exp(-d*34.)*1.6+exp(-d*6.)*.5+sp*.95)*tw;return vec4(vec3(1.,.84,.5)*a*(1.+hov*.5),0.);}
 vec3 c=k<1.5?vec3(1.,.74,.62):k<2.5?vec3(.74,.85,1.):vec3(.62,.72,.9);float a=(exp(-d*14.)*1.5+exp(-d*4.)*.28)*tw*(k<2.5?1.:.72);return vec4(c*a*(1.+hov),0.);}` },
-      stars(4600, '.6')
+      stars(3000, '.7')
     ]
   };
   function fh(s, seed) { var h = seed * 2654435761 % 4294967296; for (var i = 0; i < s.length; i++) { h = Math.imul(h ^ s.charCodeAt(i), 2654435761); h ^= h >>> 13; } return ((h >>> 0) % 100000) / 100000; }
 
   /* ---------- CV: a banknote's guilloché, engraved in gilt on intaglio blue ---------- */
   var GUIL = `
-vec2 GC(){return uRes.x<720.?vec2(uRes.x*.84,uRes.y*.46):vec2(uRes.x*.875,uRes.y*.54);}
-float GR(){return uRes.x<720.?uRes.y*.56:max(uRes.y*.62,uRes.x*.16);}
+vec2 GC(){return uRes.x<720.?vec2(uRes.x*.62,uRes.y*.22):vec2(uRes.x*.875,uRes.y*.56);}
+float GR(){return uRes.x<720.?uRes.x*.72:min(uRes.x*.19,uRes.y*.36);}
 vec2 bendp(vec2 p){vec2 d=p-uPtr.xy;float g=exp(-dot(d,d)/(2.*80.*80.))*uPtr.z;return p+d/max(length(d),1.)*g*24.;}
 `;
   SCENES.cv = {
-    still: 7,
+    full: true, still: 7,
     hint: ['Move: bend the engraving.', '拂之，纹随之曲。'],
     layers: [
       { type: 'quad', bake: true, every: 0, scale: 1, fs: `
@@ -507,11 +509,11 @@ float h=sin(vP.y*PI*2./3.)*.5+.5;col+=vec3(.024,.034,.046)*h*h;float w=fbm(vP*ve
 vec4 path(float s,float id){float a=s*TAU,fam=mod(id,3.),i=floor(id/3.),ph=i/32.*TAU;float R=GR(),t=uT*.035;float r;
 if(fam<.5)r=.66+.22*sin(12.*a+ph+t)*cos(2.*a-ph*.5);else if(fam<1.5)r=.40+.13*sin(18.*a-ph*2.-t*1.4)+.04*sin(3.*a+ph);else r=.93+.05*sin(36.*a+ph*3.+t)+.035*sin(6.*a-ph);
 return vec4(bendp(GC()+R*r*vec2(cos(a),sin(a))),.32,fam);}`, ink: `
-vec4 ink(){float c=exp(-vCross*vCross*2.2);vec3 col=vHeat<.5?vec3(.90,.75,.42):vHeat<1.5?vec3(.50,.76,.78):vec3(.96,.84,.56);return vec4(col*(vHeat<1.5?.17:.2)*c*mix(.26,1.,ss(1180.,1400.,uRes.x)),0.);}` },
+vec4 ink(){float c=exp(-vCross*vCross*2.2);vec3 col=vHeat<.5?vec3(.90,.75,.42):vHeat<1.5?vec3(.50,.76,.78):vec3(.96,.84,.56);return vec4(col*(vHeat<1.5?.17:.2)*c*mix(.26,1.,ss(1180.,1400.,uRes.x))*(1.-.5*uDim),0.);}` },
       { type: 'lines', blend: 'add', n: 18, seg: 700, path: GUIL + `
 vec4 path(float s,float id){float x=s*uRes.x*1.02-uRes.x*.01,ph=id/18.*TAU,t=uT*.05;
 float y=38.+13.*sin(x*.028+ph+t)*cos(x*.0041-ph*.5)+6.*sin(x*.11+ph*2.);return vec4(bendp(vec2(x,y)),.3,0.);}`, ink: `
-vec4 ink(){float c=exp(-vCross*vCross*2.2);return vec4(vec3(.9,.75,.42)*.2*c*ss(0.,.06,vS),0.);}` }
+vec4 ink(){float c=exp(-vCross*vCross*2.2);return vec4(vec3(.9,.75,.42)*.2*c*ss(0.,.06,vS)*(1.-.5*uDim),0.);}` }
     ]
   };
 
@@ -522,7 +524,7 @@ vec2 bar(vec2 p,vec4 m,float q){vec2 u=vec2(cos(m.z),sin(m.z))*(m.w);return pole
 vec2 BF(vec2 p){return bar(p,uA[0],1.)+bar(p,uA[1],uA[2].x);}
 `;
   SCENES.projects = {
-    still: 5,
+    full: true, still: 5,
     hint: ['Iron filings. Your pointer holds a bar magnet: click to flip it.', '铁屑也。指所至有磁石，触之反其极。'],
     init: function (A) { this.q = 1; this.qt = 1; this.mx = A.W * .3; this.my = A.H * .5; this.ang = 1.1; },
     press: function () { this.qt = -this.qt; },
@@ -539,11 +541,11 @@ vec2 BF(vec2 p){return bar(p,uA[0],1.)+bar(p,uA[1],uA[2].x);}
 void main(){vec2 uv=vP/uRes;float n=fbm(vP*vec2(.012,.018),4),f=fbm(vP*vec2(.3,.03),3);
 vec3 col=mix(vec3(.052,.075,.098),vec3(.098,.128,.158),n);col+=vec3(.012)*(f-.5);col*=1.-.42*pw(length((uv-.5)*vec2(1.2,1.3)),2.);C=vec4(col,1.);}` },
       { type: 'quad', blend: 'none', fs: `void main(){C=vec4(texture(uBake,vP/uRes).rgb+dith(),1.);}` },
-      { type: 'points', blend: 'add', n: function (A) { return Math.min(14000, Math.round(A.W * A.H / 62)); }, count: true, place: MAG + `
+      { type: 'points', blend: 'add', n: function (A) { return Math.min(15000, Math.round(A.W * A.H / 86)); }, count: true, place: MAG + `
 uniform float uN;
 vec4 place(float id){vec2 h=vec2(h11(id*1.13+.3),h11(id*2.91+1.1));vec2 p=h*uRes;vec2 b=BF(p);float m=length(b);float s=2.6+5.4*h11(id*.71+2.);return vec4(p,s,m);}`, shape: `
 vec2 shape(vec2 q,vec4 a){vec2 b=BF(a.xy);float l=length(b);vec2 u=l>1e-5?b/l:vec2(1.,0.);float k=ss(.0006,.016,a.w);float len=a.z*(.62+.6*k);return u*q.x*len+vec2(-u.y,u.x)*q.y*.62;}`, sprite: `
-vec4 sprite(){float ex=ss(1.,.62,abs(vQ.x)),ey=exp(-vQ.y*vQ.y*1.6);float k=ss(.0012,.05,vD.w);vec3 c=mix(vec3(.56,.65,.76),vec3(1.,.88,.68),k*k);float sh=.55+.45*h11(vId*3.1);return vec4(c*ex*ey*(.40+.55*k)*sh,0.);}` },
+vec4 sprite(){float ex=ss(1.,.62,abs(vQ.x)),ey=exp(-vQ.y*vQ.y*1.6);float k=ss(.0012,.05,vD.w);vec3 c=mix(vec3(.56,.65,.76),vec3(1.,.88,.68),k*k);float sh=.55+.45*h11(vId*3.1);return vec4(c*ex*ey*(.40+.55*k)*sh*(1.-.55*uDim),0.);}` },
       { type: 'points', blend: 'over', n: 4, place: `
 vec4 place(float id){int j=int(id/2.);vec4 m=uA[j];float sgn=mod(id,2.)<.5?1.:-1.;vec2 u=vec2(cos(m.z),sin(m.z))*m.w;return vec4(m.xy+u*sgn,6.5,sgn*(j==1?uA[2].x:1.));}`, sprite: `
 vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),ss(-.3,.3,vD.w));float a=ss(.72,.6,r);vec3 g=c*exp(-r*r*3.)*.7;return vec4(c*a+g*(1.-a),a);}` }
@@ -568,7 +570,7 @@ vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),s
 
   var A = {
     W: 1, H: 1, T: still ? (S.still || 10) : 0, heroH: 1, heroTop: 0,
-    k: new Float32Array(32), a: new Float32Array(32), ptr: { x: 0, y: 0, on: false }, sm: [0, 0, 0], dim: 0,
+    k: new Float32Array(32), a: new Float32Array(32), ptr: { x: 0, y: 0, on: false, inHero: false }, sm: [0, 0, 0], dim: 0, scroll: 0,
     hero: hero, cv: cv, kn: 0,
     kick: function (x, y, z, w) { var i = this.kn++ % 8; this.k[i * 4] = x; this.k[i * 4 + 1] = y; this.k[i * 4 + 2] = z; this.k[i * 4 + 3] = w; },
     label: function (text, x, y) {
@@ -583,7 +585,7 @@ vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),s
     }
   };
 
-  var UN = ['uRes', 'uPx', 'uT', 'uPtr', 'uDim', 'uK', 'uA', 'uSeg', 'uBake', 'uN'];
+  var UN = ['uRes', 'uPx', 'uT', 'uPtr', 'uDim', 'uScroll', 'uK', 'uA', 'uSeg', 'uBake', 'uN'];
   function compile(type, src) {
     var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
     if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(s) + '\n' + src.split('\n').slice(0, 3).join(' '));
@@ -624,7 +626,7 @@ vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),s
 
   function size() {
     var r = cv.getBoundingClientRect(), hr = hero.getBoundingClientRect();
-    A.W = Math.max(1, r.width); A.H = Math.max(1, r.height); A.heroH = hr.height; A.heroTop = hr.top + (S.full ? 0 : 0);
+    A.W = Math.max(1, r.width); A.H = Math.max(1, r.height); A.heroH = hr.height; A.heroTop = hr.top; A.scroll = S.full ? scrollY : 0;
     var w = Math.round(A.W * scale), h = Math.round(A.H * scale);
     if (cv.width !== w || cv.height !== h) { cv.width = w; cv.height = h; drawnBake = false; }
     var L = S.layers.filter(function (l) { return l.bake; })[0];
@@ -650,7 +652,7 @@ vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),s
     var u = L.prog.u;
     gl.useProgram(L.prog.p);
     gl.uniform2f(u.uRes, A.W, A.H); gl.uniform1f(u.uPx, cv.width / A.W); gl.uniform1f(u.uT, A.T);
-    gl.uniform3f(u.uPtr, A.sm[0], A.sm[1], A.sm[2]); gl.uniform1f(u.uDim, A.dim);
+    gl.uniform3f(u.uPtr, A.sm[0], A.sm[1], A.sm[2]); gl.uniform1f(u.uDim, A.dim); gl.uniform1f(u.uScroll, A.scroll);
     if (u.uK) gl.uniform4fv(u.uK, A.k);
     if (u.uA) gl.uniform4fv(u.uA, A.a);
     if (u.uSeg) gl.uniform1f(u.uSeg, L.seg);
@@ -686,17 +688,18 @@ vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),s
   }
 
   /* pointer */
+  function inHero(e) { var r = hero.getBoundingClientRect(); return e.clientY > r.top && e.clientY < r.bottom; }
   function toCanvas(e) { var r = cv.getBoundingClientRect(); return [e.clientX - r.left, A.H - (e.clientY - r.top)]; }
   var host = S.full ? window : hero;
   host.addEventListener('pointermove', function (e) {
-    var p = toCanvas(e); A.ptr.x = p[0]; A.ptr.y = p[1]; A.ptr.on = true; A.lastPtr = performance.now();
+    var p = toCanvas(e); A.ptr.x = p[0]; A.ptr.y = p[1]; A.ptr.on = true; A.ptr.inHero = inHero(e);
     if (!still && S.move) S.move(A, p[0], p[1], e);
   }, { passive: true });
   (S.full ? document.documentElement : hero).addEventListener('pointerleave', function () { A.ptr.on = false; });
   host.addEventListener('pointerdown', function (e) {
     if (still) return;
     if (e.target.closest && e.target.closest('a,button,input,select,label,summary,video,iframe,img,svg,.afl,.ale-map,.site-header,dl')) return;
-    var p = toCanvas(e); A.ptr.x = p[0]; A.ptr.y = p[1]; if (S.press) S.press(A, p[0], p[1], e);
+    var p = toCanvas(e); A.ptr.x = p[0]; A.ptr.y = p[1]; A.ptr.inHero = inHero(e); if (S.press) S.press(A, p[0], p[1], e);
   });
 
   /* the loop: capped, paused when off screen or idle, settling on a still frame if the machine cannot keep up */
@@ -734,7 +737,7 @@ vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),s
   function step(dt) {
     var s = Math.min(1, dt * 8);
     A.sm[0] += (A.ptr.x - A.sm[0]) * s; A.sm[1] += (A.ptr.y - A.sm[1]) * s; A.sm[2] += ((A.ptr.on ? 1 : 0) - A.sm[2]) * Math.min(1, dt * 3);
-    if (S.full) { var r = hero.getBoundingClientRect(); A.heroTop = r.top; A.dim += (Math.min(1, Math.max(0, scrollY / (A.heroH * .8))) - A.dim) * Math.min(1, dt * 5); }
+    if (S.full) { var r = hero.getBoundingClientRect(); A.heroTop = r.top; A.scroll = scrollY; A.dim += (Math.min(1, Math.max(0, scrollY / (A.heroH * .8))) - A.dim) * Math.min(1, dt * 5); }
     else A.dim = 0;
     if (S.tick) S.tick(A, dt);
   }
@@ -778,7 +781,7 @@ vec4 sprite(){float r=length(vQ);vec3 c=mix(vec3(.3,.56,.95),vec3(.92,.28,.22),s
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(onResize);
   ['pointermove', 'pointerdown', 'scroll', 'keydown', 'touchstart'].forEach(function (ev) { window.addEventListener(ev, wake, { passive: true }); });
   if (!S.full && 'IntersectionObserver' in window) new IntersectionObserver(function (en) { seen = en[0].isIntersecting; if (seen) schedule(); }).observe(hero);
-  if (S.full && still) window.addEventListener('scroll', function () { var d = Math.min(1, scrollY / (A.heroH * .8)); if (Math.abs(d - A.dim) > .04) { A.dim = d; A.heroTop = hero.getBoundingClientRect().top; if (S.tick) S.tick(A, 0); draw(); } }, { passive: true });
+  if (S.full && still) window.addEventListener('scroll', function () { var d = Math.min(1, scrollY / (A.heroH * .8)); if (Math.abs(d - A.dim) > .04 || Math.abs(scrollY - A.scroll) > 2) { A.dim = d; A.scroll = scrollY; A.heroTop = hero.getBoundingClientRect().top; if (S.tick) S.tick(A, 0); draw(); } }, { passive: true });
   cv.addEventListener('webglcontextlost', function (e) { e.preventDefault(); stopped = true; });
   cv.addEventListener('webglcontextrestored', function () { stopped = false; S.layers.forEach(function (L) { L.vao = null; }); build(); drawnBake = false; bake.w = 0; size(); draw(); schedule(); });
   schedule();

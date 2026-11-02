@@ -47,21 +47,35 @@ NAV_WEN = [
     ("travel", "行迹", "/wen/travel/", []),
 ]
 
-# per-page look (Zesen, 2026-11-02: "add fancy themes to other pages"): English path -> scene in js/hero-scene.js and how far it
-# reaches. "" = the scene fills the hero and the page stays on paper (About, Research, Publications, CV, Projects);
-# "th-full" = fixed behind the whole page; "th-dark" = the page's text is light. Style in css/site.css under "per-page themes".
+# per-page look (Zesen, 2026-11-02: "add fancy themes to other pages", then "full screen rendering like travel, no white spaces"):
+# English path -> scene in js/hero-scene.js and reach. "th-full" = fixed behind the whole page; "th-dark" = the page's text is light.
 THEMES = {
-    "/": ("about", ""),
-    "/research/": ("research", ""),
+    "/": ("about", "th-full th-dark"),
+    "/research/": ("research", "th-full th-dark"),
     "/research/alfvenons/": ("alfvenons", "th-full th-dark"),
     "/research/lingtai/": ("lingtai", "th-full"),
     "/research/scienceide/": ("scienceide", "th-full th-dark"),
     "/research/ale-astronomy/": ("ale", "th-full th-dark"),
     "/research/solar-wind/": ("solar", "th-full th-dark"),
-    "/publications/": ("publications", ""),
-    "/cv/": ("cv", ""),
-    "/projects/": ("projects", ""),
+    "/publications/": ("publications", "th-full th-dark"),
+    "/cv/": ("cv", "th-full th-dark"),
+    "/projects/": ("projects", "th-full th-dark"),
     "/travel/": ("travel", ""),
+}
+
+# data figures with a dark version (_src/make_dark_figures.py): on th-dark pages the screen shows it, print and enlarge the original
+FIGURES_DARK = {
+    "/images/research/alfvenon-propagation.png": "/images/research/alfvenon-propagation-dark.webp",
+    "/images/research/alfvenon-theta.png": "/images/research/alfvenon-theta-dark.webp",
+    "/images/research/psp-5min-e22.jpg": "/images/research/psp-5min-e22-dark.webp",
+}
+
+# the collision movies and their posters; every mention on a th-dark page is swapped, and print shows the original poster instead of a frame
+MOVIES_DARK = {
+    "/images/research/collision-small-2d-bmag.mp4": "/images/research/collision-small-2d-bmag-dark.mp4",
+    "/images/research/collision-small-2d-theta.mp4": "/images/research/collision-small-2d-theta-dark.mp4",
+    "/images/research/collision-small-2d-bmag-poster.jpg": "/images/research/collision-small-2d-bmag-dark-poster.jpg",
+    "/images/research/collision-small-2d-theta-poster.jpg": "/images/research/collision-small-2d-theta-dark-poster.jpg",
 }
 
 # pages that moved: old address -> new one, so links already out there keep working
@@ -84,6 +98,20 @@ LANGS = {
                       '<span><a href="mailto:zesenhuang@g.ucla.edu">书信</a> · <a href="https://github.com/huangzesen">GitHub</a> · '
                       '<a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · {updated}修订</span>'},
 }
+
+
+def use_dark_figures(body):
+    def swap(m):
+        dark = FIGURES_DARK.get(m.group(1))
+        if not dark:
+            return m.group(0)
+        return f'<picture class="dark-fig"><source media="screen" srcset="{dark}">{m.group(0)}</picture>'
+    body = re.sub(r'<img\b[^>]*?\bsrc="([^"]+)"[^>]*>', swap, body)
+    for original, dark in MOVIES_DARK.items():
+        body = body.replace(original + '"', dark + '"')
+    return re.sub(r'(<video id="small-collision-video"[^>]*>.*?</video>)',
+                  lambda m: m.group(1) + '<img class="movie-print" src="/images/research/collision-small-2d-bmag-poster.jpg" alt="">',
+                  body, flags=re.S)
 
 
 def write_redirects():
@@ -173,6 +201,8 @@ def main():
         html = layout
         english_path = meta["path"][len("/wen"):] or "/" if lang == "wen" else meta["path"]
         theme, reach = THEMES[english_path]
+        if "th-dark" in reach:
+            body = use_dark_figures(body)
         for k, v in {
             "title": meta["title"],
             "description": meta["description"],

@@ -17,7 +17,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&family=B612+Mono&display=swap">
-<link rel="stylesheet" href="/css/site.css?v=d420cc79b3">
+<link rel="stylesheet" href="/css/site.css?v=6afbe7a797">
 </head>
 <body class="page-research theme-alfvenons th-full th-dark">
 <a class="skip-link" href="#main">径至正文</a>
@@ -88,14 +88,14 @@
     <p>吾等于 <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a> 别立一法，书阿尔芬波为<strong>理想磁流体（MHD）之孤波解</strong>：局部之扰动，乘于未受扰之远场之上，|B| 恒定。欲于三维构此场，非易事也。须严守无散，且磁力线皆开放；|B| 须几近恒定；远场须不为所动。吾等以迭代之法构之：谱域之 Helmholtz–Hodge 投影以去其散度，|B| 之归一，二者交替而行，迭代乃收敛。名其所得曰<strong>阿尔芬子</strong>（Alfvénon）。</p>
 
     <dl class="wp-caption aligncenter" style="width: 640px; max-width: 100%">
-      <dt><a href="/images/research/alfvenon-theta.png" class="lightbox-trigger"><img src="/images/research/alfvenon-theta.png" width="1100" height="976" alt="场偏转角 θ 之半透明等值面层层相套，于单位盒中成一局部之肾形阿尔芬子；灰色磁力线径直穿之" loading="lazy"></a></dt>
+      <dt><a href="/images/research/alfvenon-theta.png" class="lightbox-trigger"><picture class="dark-fig"><source media="screen" srcset="/images/research/alfvenon-theta-dark.webp"><img src="/images/research/alfvenon-theta.png" width="1100" height="976" alt="场偏转角 θ 之半透明等值面层层相套，于单位盒中成一局部之肾形阿尔芬子；灰色磁力线径直穿之" loading="lazy"></picture></a></dt>
       <dd>128³ 网格上之阿尔芬子。层层相套之面示 θ = cos⁻¹(B<sub>x</sub>/|B|)，即局部之场与未受扰之背景场 B₀ = x̂ 之夹角；其极值 ≈45°。灰色磁力线沿 x̂ 出入此结构：扰动局于一处，|B| 几近恒定，磁力线无不开放。出自 <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>。</dd>
     </dl>
 
     <p>以伪谱代码 LAPS 直接作磁流体模拟（β = 0.1，不设显式之黏性与电阻），见阿尔芬子以阿尔芬速度行进，持其形，仅有轻微之弛豫。扰动之三分量皆保阿尔芬性，总能量守恒至约 10⁻⁹。其徐徐变形，主因相混合：阿尔芬子之内，V<sub>A</sub> 之变约1%。密度之微小起伏，生于所构之场之小疵，如 |B| 未尽恒定。阿尔芬子于理想磁流体之下，其行止如非线性之阿尔芬式孤立解。</p>
 
     <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
-      <dt><a href="/images/research/alfvenon-propagation.png" class="lightbox-trigger"><img src="/images/research/alfvenon-propagation.png" width="1600" height="1465" alt="四行子图，时刻 0、5、10、100：一维之场与速度剖面，θ、阿尔芬速度与密度之切片" loading="lazy"></a></dt>
+      <dt><a href="/images/research/alfvenon-propagation.png" class="lightbox-trigger"><picture class="dark-fig"><source media="screen" srcset="/images/research/alfvenon-propagation-dark.webp"><img src="/images/research/alfvenon-propagation.png" width="1600" height="1465" alt="四行子图，时刻 0、5、10、100：一维之场与速度剖面，θ、阿尔芬速度与密度之切片" loading="lazy"></picture></a></dt>
       <dd>阿尔芬子之磁流体模拟，t = 0、5、10、100（各行）。(a) 过中心之 <b>B</b> 与 <b>u</b> 剖面，平移至同一位置；(b) x–y 中平面之 θ；(c) 阿尔芬速度 V<sub>A</sub> = |B|/√ρ；(d) 密度 ρ。注意 (c)、(d) 之色标，所跨仅 ±0.5%。出自 <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>。</dd>
     </dl>
 
@@ -104,10 +104,10 @@
     <h4 id="small-collision">二小阿尔芬子，屡屡相撞</h4>
     <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
       <dt><div class="vtabs" role="tablist" aria-label="择所示">
-        <button type="button" role="tab" aria-selected="true" data-src="/images/research/collision-small-2d-bmag.mp4" data-poster="/images/research/collision-small-2d-bmag-poster.jpg" data-cap="b">|B|：压缩波</button>
-        <button type="button" role="tab" aria-selected="false" data-src="/images/research/collision-small-2d-theta.mp4" data-poster="/images/research/collision-small-2d-theta-poster.jpg" data-cap="t">θ：阿尔芬子</button>
+        <button type="button" role="tab" aria-selected="true" data-src="/images/research/collision-small-2d-bmag-dark.mp4" data-poster="/images/research/collision-small-2d-bmag-dark-poster.jpg" data-cap="b">|B|：压缩波</button>
+        <button type="button" role="tab" aria-selected="false" data-src="/images/research/collision-small-2d-theta-dark.mp4" data-poster="/images/research/collision-small-2d-theta-dark-poster.jpg" data-cap="t">θ：阿尔芬子</button>
       </div>
-      <video id="small-collision-video" src="/images/research/collision-small-2d-bmag.mp4" poster="/images/research/collision-small-2d-bmag-poster.jpg" width="1280" height="854" autoplay muted loop playsinline controls preload="metadata" aria-label="二小幅阿尔芬子相撞之模拟切片"></video></dt>
+      <video id="small-collision-video" src="/images/research/collision-small-2d-bmag-dark.mp4" poster="/images/research/collision-small-2d-bmag-dark-poster.jpg" width="1280" height="854" autoplay muted loop playsinline controls preload="metadata" aria-label="二小幅阿尔芬子相撞之模拟切片"></video><img class="movie-print" src="/images/research/collision-small-2d-bmag-poster.jpg" alt=""></dt>
       <dd><span class="cap-b">二小阿尔芬子（θ<sub>max</sub> ≈ 45°）于 2×1×1 周期盒中迎面相撞，再三不已。模拟用伪谱磁流体代码 LAPS，网格 512×256×256。阿尔芬子独处时，|B| 几近恒定。二者相叠之处，|B| 偏离 1 数个百分点，其扰动化为压缩波之波前，向外扩展，辐射而去。左上：过中心沿 x 之 <b>B</b>（实线）与 <b>u</b>（虚线）。余图：三中平面之 |B|，t = 0 至 5.8。</span><span class="cap-t" hidden>同一模拟，示 θ = cos⁻¹(B<sub>x</sub>/|B|)，自 t = 0 至 78。周期盒中二阿尔芬子每一相交，辄互相穿过，渐渐磨损。左上：过中心沿 x 之 <b>B</b>（实线）与 <b>u</b>（虚线）。余图：三中平面之 θ。LAPS，512×256×256。</span></dd>
     </dl>
     <script>
@@ -168,8 +168,8 @@
   </div>
 </footer>
 
-<script src="/js/hero-scene.js?v=d420cc79b3" defer></script>
-<script src="/js/site.js?v=d420cc79b3" defer></script>
+<script src="/js/hero-scene.js?v=6afbe7a797" defer></script>
+<script src="/js/site.js?v=6afbe7a797" defer></script>
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
 <script>
 (function () {

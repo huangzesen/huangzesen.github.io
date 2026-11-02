@@ -17,7 +17,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23005587'/%3E%3Cpath%20d='M8%2040%20C20%2040%2024%2018%2032%2018%20C40%2018%2044%2040%2056%2040'%20stroke='%23ffb81c'%20stroke-width='5'%20fill='none'%20stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600&family=B612+Mono&display=swap">
-<link rel="stylesheet" href="/css/site.css?v=d420cc79b3">
+<link rel="stylesheet" href="/css/site.css?v=6afbe7a797">
 </head>
 <body class="page-research theme-alfvenons th-full th-dark">
 <a class="skip-link" href="#main">Skip to content</a>
@@ -88,14 +88,14 @@
     <p>In <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a> we instead write the Alfvén wave as a <strong>solitary solution of ideal MHD</strong>: a localized perturbation riding on an unperturbed far field, with constant |B|. Building such a field in three dimensions is not trivial. It has to be divergence-free with open field lines exactly, keep |B| nearly constant, and leave the far field untouched. We construct it with an iterative algorithm that alternates a spectral Helmholtz–Hodge projection, which removes the divergence, with a normalization of |B|, and the iteration converges. We call the result an <strong>Alfvénon</strong>.</p>
 
     <dl class="wp-caption aligncenter" style="width: 640px; max-width: 100%">
-      <dt><a href="/images/research/alfvenon-theta.png" class="lightbox-trigger"><img src="/images/research/alfvenon-theta.png" width="1100" height="976" alt="Nested translucent contours of the field deflection angle theta forming a localized, kidney-shaped Alfvénon in a unit box, with grey field lines threading straight through it" loading="lazy"></a></dt>
+      <dt><a href="/images/research/alfvenon-theta.png" class="lightbox-trigger"><picture class="dark-fig"><source media="screen" srcset="/images/research/alfvenon-theta-dark.webp"><img src="/images/research/alfvenon-theta.png" width="1100" height="976" alt="Nested translucent contours of the field deflection angle theta forming a localized, kidney-shaped Alfvénon in a unit box, with grey field lines threading straight through it" loading="lazy"></picture></a></dt>
       <dd>An Alfvénon on a 128³ grid. Nested surfaces show θ = cos⁻¹(B<sub>x</sub>/|B|), the angle between the local field and the unperturbed background field B₀ = x̂; it peaks at ≈45°. The grey field lines enter and leave the structure along x̂: the perturbation is localized, |B| stays nearly constant, and every field line stays open. From <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>.</dd>
     </dl>
 
     <p>Direct MHD simulations with the pseudo-spectral code LAPS (β = 0.1, no explicit viscosity or resistivity) show the Alfvénon travelling at the Alfvén speed and holding its shape, with only mild relaxation. The perturbations stay Alfvénic in all three components, and total energy is conserved to about 10⁻⁹. The slow deformation comes mainly from phase mixing: V<sub>A</sub> varies by about 1% inside the Alfvénon. Small density fluctuations grow from minor defects of the constructed field, such as its slightly non-constant |B|. The Alfvénon behaves as a nonlinear solitary Alfvénic solution under ideal MHD.</p>
 
     <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
-      <dt><a href="/images/research/alfvenon-propagation.png" class="lightbox-trigger"><img src="/images/research/alfvenon-propagation.png" width="1600" height="1465" alt="Four rows of panels at times 0, 5, 10 and 100: one-dimensional field and velocity profiles, slices of theta, of the Alfvén speed and of density" loading="lazy"></a></dt>
+      <dt><a href="/images/research/alfvenon-propagation.png" class="lightbox-trigger"><picture class="dark-fig"><source media="screen" srcset="/images/research/alfvenon-propagation-dark.webp"><img src="/images/research/alfvenon-propagation.png" width="1600" height="1465" alt="Four rows of panels at times 0, 5, 10 and 100: one-dimensional field and velocity profiles, slices of theta, of the Alfvén speed and of density" loading="lazy"></picture></a></dt>
       <dd>MHD simulation of the Alfvénon at t = 0, 5, 10 and 100 (rows). (a) Profiles of <b>B</b> and <b>u</b> through the centre, shifted to a common position; (b) θ in the x–y mid-plane; (c) the Alfvén speed V<sub>A</sub> = |B|/√ρ; (d) density ρ. Note the colour scales of (c) and (d), which span only ±0.5%. From <a href="https://doi.org/10.3847/2041-8213/ae82f5">Huang et al. (2026a)</a>.</dd>
     </dl>
 
@@ -104,10 +104,10 @@
     <h4 id="small-collision">Two small Alfvénons, colliding again and again</h4>
     <dl class="wp-caption aligncenter" style="width: 900px; max-width: 100%">
       <dt><div class="vtabs" role="tablist" aria-label="Choose what to show">
-        <button type="button" role="tab" aria-selected="true" data-src="/images/research/collision-small-2d-bmag.mp4" data-poster="/images/research/collision-small-2d-bmag-poster.jpg" data-cap="b">|B|: compressive waves</button>
-        <button type="button" role="tab" aria-selected="false" data-src="/images/research/collision-small-2d-theta.mp4" data-poster="/images/research/collision-small-2d-theta-poster.jpg" data-cap="t">θ: the Alfvénons</button>
+        <button type="button" role="tab" aria-selected="true" data-src="/images/research/collision-small-2d-bmag-dark.mp4" data-poster="/images/research/collision-small-2d-bmag-dark-poster.jpg" data-cap="b">|B|: compressive waves</button>
+        <button type="button" role="tab" aria-selected="false" data-src="/images/research/collision-small-2d-theta-dark.mp4" data-poster="/images/research/collision-small-2d-theta-dark-poster.jpg" data-cap="t">θ: the Alfvénons</button>
       </div>
-      <video id="small-collision-video" src="/images/research/collision-small-2d-bmag.mp4" poster="/images/research/collision-small-2d-bmag-poster.jpg" width="1280" height="854" autoplay muted loop playsinline controls preload="metadata" aria-label="Slices of a simulation of two small-amplitude Alfvénons colliding"></video></dt>
+      <video id="small-collision-video" src="/images/research/collision-small-2d-bmag-dark.mp4" poster="/images/research/collision-small-2d-bmag-dark-poster.jpg" width="1280" height="854" autoplay muted loop playsinline controls preload="metadata" aria-label="Slices of a simulation of two small-amplitude Alfvénons colliding"></video><img class="movie-print" src="/images/research/collision-small-2d-bmag-poster.jpg" alt=""></dt>
       <dd><span class="cap-b">Two small Alfvénons (θ<sub>max</sub> ≈ 45°) collide head-on, again and again, in a periodic 2×1×1 box. The simulation uses the pseudo-spectral MHD code LAPS on a 512×256×256 grid. Each Alfvénon alone has nearly constant |B|. Where the two overlap, |B| departs from 1 by a few percent, and the disturbance radiates away as expanding fronts of compressive waves. Top left: <b>B</b> (solid) and <b>u</b> (dashed) along x through the centre. Other panels: |B| in three mid-planes, t = 0 to 5.8.</span><span class="cap-t" hidden>The same run, showing θ = cos⁻¹(B<sub>x</sub>/|B|) from t = 0 to 78. The two Alfvénons pass through each other at every crossing of the periodic box and are slowly worn down. Top left: <b>B</b> (solid) and <b>u</b> (dashed) along x through the centre. Other panels: θ in three mid-planes. LAPS, 512×256×256.</span></dd>
     </dl>
     <script>
@@ -168,8 +168,8 @@
   </div>
 </footer>
 
-<script src="/js/hero-scene.js?v=d420cc79b3" defer></script>
-<script src="/js/site.js?v=d420cc79b3" defer></script>
+<script src="/js/hero-scene.js?v=6afbe7a797" defer></script>
+<script src="/js/site.js?v=6afbe7a797" defer></script>
 <div id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged figure"><button type="button" aria-label="Close">×</button><img alt=""><p></p></div>
 <script>
 (function () {
