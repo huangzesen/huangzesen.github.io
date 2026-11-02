@@ -27,8 +27,7 @@ NAV = [
     ]),
     ("publications", "Publications", "/publications/", []),
     ("cv", "CV", "/cv/", []),
-    ("software", "Software", "/software/", []),
-    ("miscellany", "Miscellany", "/miscellany/", []),
+    ("projects", "Projects", "/projects/", []),
     ("travel", "Travel", "/travel/", []),
 ]
 
@@ -44,10 +43,17 @@ NAV_WEN = [
     ]),
     ("publications", "著述", "/wen/publications/", []),
     ("cv", "履历", "/wen/cv/", []),
-    ("software", "器用", "/wen/software/", []),
-    ("miscellany", "杂录", "/wen/miscellany/", []),
+    ("projects", "器用杂录", "/wen/projects/", []),
     ("travel", "行迹", "/wen/travel/", []),
 ]
+
+# pages that moved: old address -> new one, so links already out there keep working
+REDIRECTS = {
+    "/software/": "/projects/#software",
+    "/miscellany/": "/projects/#more",
+    "/wen/software/": "/wen/projects/#software",
+    "/wen/miscellany/": "/wen/projects/#more",
+}
 
 LANGS = {
     "en": {"dir": "pages", "prefix": "", "html": "en", "nav": NAV, "home": "/",
@@ -61,6 +67,26 @@ LANGS = {
                       '<span><a href="mailto:zesenhuang@g.ucla.edu">书信</a> · <a href="https://github.com/huangzesen">GitHub</a> · '
                       '<a href="https://orcid.org/0000-0001-9570-5975">ORCID</a> · {updated}修订</span>'},
 }
+
+
+def write_redirects():
+    for old, new in REDIRECTS.items():
+        out = ROOT / old.lstrip("/") / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(f"""<!DOCTYPE html>
+<html lang="{'lzh' if old.startswith('/wen/') else 'en'}">
+<head>
+<meta charset="utf-8">
+<title>{new}</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://zesen.me{new.split('#')[0]}">
+<meta http-equiv="refresh" content="0; url={new}">
+<script>location.replace({new!r} + location.search)</script>
+</head>
+<body><a href="{new}">{new}</a></body>
+</html>
+""")
+        print(f"wrote {out.relative_to(ROOT)}  (redirect to {new})")
 
 
 def asset_version():
@@ -155,6 +181,7 @@ def main():
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(html)
         print(f"wrote {out.relative_to(ROOT)}  ({len(html):,} bytes)")
+    write_redirects()
 
 
 if __name__ == "__main__":

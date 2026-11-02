@@ -11,7 +11,7 @@ English stays the main site; the 文言 pages live under /wen/.
 - Keep the HTML structure, classes, ids, images, videos, `<!--include ... -->` lines, data attributes and scripts exactly.
   Translate only the visible text (and `alt`, `aria-label`, `title` attributes).
 - Internal links to pages that have a 文言 twin get `/wen` in front: `/`, `/research/`, `/research/alfvenons/`, `/research/lingtai/`,
-  `/research/scienceide/`, `/research/ale-astronomy/`, `/research/solar-wind/`, `/publications/`, `/cv/`, `/software/`, `/miscellany/`, `/travel/`
+  `/research/scienceide/`, `/research/ale-astronomy/`, `/research/solar-wind/`, `/publications/`, `/cv/`, `/projects/`, `/travel/`
   (anchors kept, e.g. `/wen/research/#lingtai`). Links to files (images, PDFs, `/explorers/…`, `/switch_back.html`, `/data/…`,
   other old pages) and external links stay as they are.
 - If a page includes a partial with English prose, write a 文言 copy in `_src/partials/wen/<name>` and include that instead
@@ -62,4 +62,4 @@ English stays the main site; the 文言 pages live under /wen/.
 | reinforcement learning | 强化学习 |
 | open source | 开源 |
 | Mars / the Sun | 荧惑 / 日 |
-| Publications / CV / Software / Miscellany / Research / About / Travel | 著述 / 履历 / 器用 / 杂录 / 所究 / 自述 / 行迹 |
+| Publications / CV / Projects (Software; explorers, reports and trackers) / Research / About / Travel | 著述 / 履历 / 器用杂录（器用；观览、报告与追踪） / 所究 / 自述 / 行迹 |
