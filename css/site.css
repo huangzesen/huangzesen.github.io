@@ -633,6 +633,61 @@ html[lang=lzh] .post-content .tv-card h2 { font-family: "Noto Serif SC", "Songti
   .tv-card { padding: 18px 14px; }
   .post-content .tv-card h2 { font-size: 27px; }
 }
+/* 3D mode: the globe takes the screen; controls sit on it as small plates */
+.tv-3d-open { display: none; visibility: hidden; margin-top: 18px; pointer-events: auto; font: inherit; font-size: .98rem; font-weight: 500; color: var(--tv-night); background: var(--tv-gilt); border: 1px solid var(--tv-gilt); padding: 9px 20px; cursor: pointer; transition: background .2s ease, color .2s ease; }
+.tv-sky-on .tv-3d-open { display: inline-block; }
+.tv-sky-ready .tv-3d-open { visibility: visible; }
+.tv-3d-open:hover { background: var(--tv-pale); }
+.tv-3d-open:focus-visible { outline: 2px solid var(--tv-pale); outline-offset: 3px; }
+.page-travel .site-header, .page-travel .hero-inner, .page-travel .page-content, .page-travel .site-footer { transition: opacity .28s ease; }
+.tv-3d-fade .site-header, .tv-3d-fade .hero-inner, .tv-3d-fade .tv-page, .tv-3d-fade .site-footer { opacity: 0; }
+html.tv-3d-lock, html.tv-3d-lock body { overflow: hidden; }
+.tv-3d #tv-sky { z-index: 30; pointer-events: auto; cursor: grab; touch-action: none; }
+.tv-3d-ui { position: fixed; inset: 0; z-index: 31; pointer-events: none; color: var(--tv-parchment); font-size: .88rem; line-height: 1.4; }
+.tv-3d-ui[hidden], .tv-3d-card[hidden], .tv-3d-tip[hidden] { display: none; }
+.tv-3d-ui button, .tv-3d-ui input, .tv-3d-ui label, .tv-3d-card, .tv-3d-layers { pointer-events: auto; }
+.tv-3d-ui button { font: inherit; color: var(--tv-parchment); background: rgba(6,12,28,.72); border: 1px solid rgba(226,198,130,.45); padding: 6px 13px; cursor: pointer; }
+.tv-3d-ui button:hover:not(:disabled) { color: var(--tv-night); background: var(--tv-gilt); }
+.tv-3d-ui .tv-3d-all:disabled { display: none; }
+.tv-3d-close { flex: none; white-space: nowrap; }
+.tv-3d-ui :focus-visible { outline: 2px solid var(--tv-gilt); outline-offset: 2px; }
+.tv-3d-head { position: absolute; top: 18px; left: 22px; right: 22px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.tv-3d-help { margin: 0; color: var(--tv-ash); max-width: 34rem; text-shadow: 0 0 10px #060c1c; }
+.tv-3d-layers { position: absolute; left: 22px; bottom: 84px; margin: 0; padding: 10px 14px 12px; display: grid; gap: 4px; border: 1px solid rgba(226,198,130,.32); background: rgba(6,12,28,.66); }
+.tv-3d-layers legend { padding: 0 6px; color: var(--tv-gilt); font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.08rem; }
+html[lang=lzh] .tv-3d-layers legend { font-family: "Noto Serif SC", "Songti SC", serif; font-size: .92rem; }
+.tv-3d-layers label { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+.tv-3d-layers input { accent-color: var(--tv-gilt); margin: 0; }
+.tv-3d-time { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); width: min(760px, calc(100% - 44px)); display: flex; align-items: center; gap: 12px; padding: 9px 12px; border: 1px solid rgba(226,198,130,.32); background: rgba(6,12,28,.72); }
+.tv-3d-year { flex: 1 1 auto; min-width: 60px; accent-color: var(--tv-gilt); margin: 0; }
+.tv-3d-now { flex: none; min-width: 9.5em; text-align: right; font-variant-numeric: tabular-nums lining-nums; color: var(--tv-pale); }
+.tv-3d-card { position: absolute; right: 22px; top: 76px; width: 292px; max-width: calc(100% - 44px); padding: 16px 18px 12px; border: 1px solid rgba(226,198,130,.45); outline: 1px solid rgba(226,198,130,.14); outline-offset: -5px; background: rgba(6,12,28,.86); }
+.tv-3d-card h2 { margin: 0 22px 6px 0; font-family: "Cormorant Garamond", Georgia, serif; font-size: 25px; font-weight: 500; line-height: 1.12; color: var(--tv-gilt); }
+html[lang=lzh] .tv-3d-card h2 { font-family: "Noto Serif SC", "Songti SC", serif; font-size: 19px; }
+.tv-3d-card p { margin: 0 0 3px; }
+.tv-3d-block, .tv-3d-span { color: var(--tv-ash); font-size: .82rem; font-variant-numeric: lining-nums; }
+.tv-3d-count { color: var(--tv-pale); }
+.tv-3d-card svg { display: block; width: 100%; height: 60px; margin-top: 10px; overflow: visible; }
+.tv-3d-card svg rect { cursor: pointer; }
+.tv-3d-card svg .on { fill: rgba(240,197,102,.72); }
+.tv-3d-card svg .off { fill: rgba(226,198,130,.2); }
+.tv-3d-card svg .now { fill: var(--tv-pale); }
+.tv-3d-axis { display: flex; justify-content: space-between; color: var(--tv-ash); font-size: .76rem; font-variant-numeric: lining-nums; }
+.tv-3d-ui .tv-3d-card-x { position: absolute; top: 6px; right: 6px; width: 26px; height: 26px; padding: 0; line-height: 1; font-size: 1.1rem; background: none; border-color: transparent; }
+.tv-3d-tip { position: fixed; z-index: 32; pointer-events: none; background: #0b1730; border: 1px solid rgba(226,198,130,.5); padding: 5px 9px; font-size: .82rem; max-width: 17rem; box-shadow: 0 6px 22px rgba(0,0,0,.5); }
+.tv-3d-tip div:first-child { color: var(--tv-gilt); font-weight: 600; }
+@media (max-width: 720px) {
+  .tv-3d-head { top: 10px; left: 12px; right: 12px; }
+  .tv-3d-help { font-size: .78rem; }
+  .tv-3d-ui button { padding: 5px 9px; }
+  .tv-3d-layers { left: 12px; right: 12px; bottom: 112px; display: flex; flex-wrap: wrap; gap: 3px 12px; padding: 6px 10px 8px; font-size: .78rem; }
+  .tv-3d-time { bottom: 12px; width: calc(100% - 24px); flex-wrap: wrap; gap: 6px 10px; }
+  .tv-3d-year { order: 3; flex-basis: 100%; }
+  .tv-3d-now { flex: 1 1 auto; min-width: 0; }
+  .tv-3d-card { top: auto; right: 12px; left: 12px; bottom: 192px; width: auto; max-width: none; padding: 10px 12px 8px; }
+  .tv-3d-card h2 { font-size: 20px; }
+  .tv-3d-card svg { height: 34px; margin-top: 4px; }
+}
 @media print {
   #tv-sky { display: none; }
   body.page-travel { --ink: #161616; --ink-soft: #4a4a4a; --muted: #6b6b6b; --rule: #e6e6e6; --paper: #fff; --link: #0a67b0; background: #fff; color: #000; color-scheme: light; }

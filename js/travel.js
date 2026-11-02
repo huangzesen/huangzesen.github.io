@@ -115,6 +115,8 @@
     },
   };
 
+  document.addEventListener('tv:set-year', (e) => dash.setParams({year: e.detail})); // from the 3D mode in js/travel-sky.js
+
   /* ---------- summary ---------- */
   const fmt = d3.format(',');
 

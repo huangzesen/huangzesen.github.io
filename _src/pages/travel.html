@@ -4,6 +4,7 @@
     <h1 class="post-title">Where I've Been</h1>
     <p class="lede"><b data-draw="items">—</b> geotagged photos and videos from <b data-draw="firstYear">—</b> to <b data-draw="lastYear">—</b>. <b data-draw="topCountry">—</b> accounts for <b data-draw="topShare">—</b> of them.</p>
     <p class="tv-hint"><span class="tv-hint-move">Move your pointer to stir the magnetic field. </span>Click or tap the sky to send a wave along it.</p>
+    <button type="button" class="tv-3d-open">Explore in 3D</button>
   </header>
 
   <article class="post-content">
@@ -152,4 +153,34 @@
       </section>
     </div>
   </article>
+  <div class="tv-3d-ui" hidden>
+    <div class="tv-3d-head">
+      <p class="tv-3d-help">Drag to turn the Earth. Scroll or pinch to zoom. Click a light to see its years.</p>
+      <button type="button" class="tv-3d-close">Back to the page</button>
+    </div>
+    <fieldset class="tv-3d-layers">
+      <legend>Layers</legend>
+      <label><input type="checkbox" data-layer="pillars" checked> Columns of light</label>
+      <label><input type="checkbox" data-layer="lines" checked> Magnetic field</label>
+      <label><input type="checkbox" data-layer="wind" checked> Solar wind</label>
+      <label><input type="checkbox" data-layer="aurora" checked> Aurora</label>
+      <label><input type="checkbox" data-layer="day"> Daylight everywhere</label>
+    </fieldset>
+    <div class="tv-3d-time">
+      <button type="button" class="tv-3d-play" aria-pressed="false">Play the years</button>
+      <input type="range" class="tv-3d-year" step="1" aria-label="Year shown on the globe">
+      <output class="tv-3d-now">All years</output>
+      <button type="button" class="tv-3d-all">All years</button>
+    </div>
+    <aside class="tv-3d-card" hidden aria-live="polite">
+      <button type="button" class="tv-3d-card-x" aria-label="Close this place">×</button>
+      <h2></h2>
+      <p class="tv-3d-block"></p>
+      <p class="tv-3d-count"></p>
+      <p class="tv-3d-span"></p>
+      <svg role="img" aria-label="Items in this block by year"></svg>
+      <p class="tv-3d-axis"><span class="tv-3d-first"></span><span class="tv-3d-last"></span></p>
+    </aside>
+    <div class="tv-3d-tip" hidden></div>
+  </div>
 </div>

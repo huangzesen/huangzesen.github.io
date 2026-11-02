@@ -15,6 +15,14 @@
   document.body.prepend(canvas);
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const WEN = document.documentElement.lang === 'lzh';
+  const T = WEN ? {
+    all: '诸年', year: (y) => y + '年', items: (n) => n + '件', days: (n) => n + '日', span: (a, b) => (a === b ? a + '年' : a + '年至' + b + '年'),
+    at: (y, n) => y + '年：' + n + '件', play: '逐年观之', stop: '止',
+  } : {
+    all: 'All years', year: (y) => String(y), items: (n) => n + (n === '1' ? ' item' : ' items'), days: (n) => n + (n === '1' ? ' day' : ' days'),
+    span: (a, b) => (a === b ? String(a) : a + ' to ' + b), at: (y, n) => y + ': ' + n + (n === '1' ? ' item' : ' items'), play: 'Play the years', stop: 'Stop',
+  };
   document.body.classList.add('tv-sky-on');
   if (!reduce) document.body.classList.add('tv-sky-live');
   const phone = innerWidth < 760;
@@ -82,9 +90,13 @@
   const EARTH_FS = HEAD + NOISE + COLORS + `
     uniform mat3 uE; uniform vec3 uS,uDip;
     uniform sampler2D uLand;
-    uniform float uR,uPx,uTime,uAurora,uDim,uLandOn,uTexH;
+    uniform float uR,uPx,uTime,uAurora,uDim,uLandOn,uTexH,uDay;
     in vec2 v; out vec4 o;
     const float PI=3.14159265;
+    float engrave(float q,float wid){
+      float qa=fwidth(q),h=1.-smoothstep(wid-qa,wid+qa,abs(fract(q)-.5)*2.);
+      return mix(h,wid,smoothstep(.45,.9,qa));
+    }
     void main(){
       float r=length(v),px=1./uR;
       if(r>1.){
@@ -100,7 +112,7 @@
       vec3 n=vec3(v,z),e=transpose(uE)*n;
       float lat=asin(clamp(e.z,-1.,1.)),lon=atan(e.y,e.x);
       vec2 uv=vec2(lon/(2.*PI)+.5,.5-lat/PI);
-      float light=smoothstep(-.10,.60,dot(n,uS));
+      float light=mix(smoothstep(-.10,.60,dot(n,uS)),.82,uDay);
 
       float lod=max(0.,log2((uTexH/PI)/(uR*max(z,.05))));
       float m=textureLod(uLand,uv,lod).r;
@@ -115,10 +127,10 @@
       sea+=GILT*wl*mix(.07,.34,light)*uLandOn*clear;
 
       /* land: parallels engraved, thick where the sun falls and fine in shadow */
-      float q=lat*uR/max(4.4,3.1*uPx),qa=fwidth(q);
       float wid=mix(.13,.44,light);
-      float hatch=1.-smoothstep(wid-qa,wid+qa,abs(fract(q)-.5)*2.);
-      hatch=mix(wid,mix(hatch,wid,smoothstep(.45,.9,qa)),clear);
+      float base=max(4.,2.9*uPx),lv=log2(uR/base),f0=floor(lv);
+      float hatch=mix(engrave(lat*pow(2.,f0),wid),engrave(lat*pow(2.,f0+1.),wid),smoothstep(.72,1.,lv-f0));
+      hatch=mix(wid,hatch,clear);
       vec3 ground=mix(vec3(.030,.056,.118),vec3(.082,.078,.076),light);
       vec3 ink=mix(vec3(.27,.34,.50),GILT*1.08,light);
       vec3 terra=ground+ink*hatch*mix(.50,1.,light);
@@ -165,7 +177,7 @@
       float tw=.9+.1*sin(uTime*1.3+a.x*90.+a.y*57.);
       v_a=on*vis*step(.001,w)*(1.-.34*dayf)*tw*(.55+.45*w)*uDim;
       v_h=flash;
-      gl_PointSize=v_a>0.?uPx*(uR/uPx/360.)*(4.+22.*w*w+7.*w)*(1.+1.5*flash):0.;
+      gl_PointSize=v_a>0.?uPx*min(uR/uPx/360.,1.7)*(4.+22.*w*w+7.*w)*(1.+1.5*flash):0.;
     }`;
   const PLACE_FS = HEAD + `
     in float v_a; in float v_h; out vec4 o;
@@ -272,6 +284,32 @@
     in float v_x; in float v_a; out vec4 o;
     void main(){o=vec4(vec3(.74,.82,.98)*exp(-v_x*v_x*3.)*v_a,0.);}`;
 
+  const PILLAR_VS = HEAD + CORNERS + `
+    layout(location=0) in vec4 a; layout(location=1) in float w;
+    uniform mat3 uE; uniform vec2 uC,uRes; uniform float uR,uPx,uIg,uDim,uOn;
+    out float v_x; out float v_t; out float v_a;
+    void main(){
+      vec2 c=CO[gl_VertexID];
+      float on=smoothstep(0.,.3,uIg-a.w),h=(.014+.10*w+.46*w*w*w)*uOn*on;
+      vec3 b=uE*a.xyz,t=uE*(a.xyz*(1.+h));
+      vec2 s0=uC+b.xy*uR,s1=uC+t.xy*uR,d=s1-s0;
+      float l=length(d);
+      d=l>1e-3?d/l:vec2(0,1);
+      float wd=uPx*min(uR/uPx/360.,2.4)*(.8+3.4*w);
+      vec2 sp=mix(s0,s1,c.x)+vec2(-d.y,d.x)*c.y*wd*mix(1.,.6,c.x);
+      gl_Position=vec4(sp/uRes*2.-1.,0,1);
+      vec3 p=mix(b,t,c.x);
+      float hid=p.z<0.?smoothstep(.985,1.02,length(p.xy)):1.;
+      v_x=c.y; v_t=c.x;
+      v_a=hid*step(.001,w)*uOn*on*uDim;
+    }`;
+  const PILLAR_FS = HEAD + COLORS + `
+    in float v_x; in float v_t; in float v_a; out vec4 o;
+    void main(){
+      vec3 c=mix(vec3(1.,.46,.15),mix(GILT,PALE,.5),smoothstep(0.,.7,v_t));
+      o=vec4(c*exp(-v_x*v_x*2.4)*pow(1.-v_t,1.25)*v_a*.95,0.);
+    }`;
+
   const compile = (type, src) => {
     const s = gl.createShader(type);
     gl.shaderSource(s, src);
@@ -294,7 +332,7 @@
     P = {
       sky: program(FULL_VS, SKY_FS), blit: program(FULL_VS, BLIT_FS), twinkle: program(TWINKLE_VS, TWINKLE_FS),
       earth: program(EARTH_VS, EARTH_FS), place: program(PLACE_VS, PLACE_FS), ring: program(RING_VS, RING_FS),
-      line: program(LINE_VS, LINE_FS), wind: program(WIND_VS, WIND_FS),
+      line: program(LINE_VS, LINE_FS), wind: program(WIND_VS, WIND_FS), pillar: program(PILLAR_VS, PILLAR_FS),
     };
   } catch (err) {
     console.error('travel sky: shader failed', err);
@@ -376,9 +414,13 @@
   let lon = reduce ? LON_END : LON_START, pitch = PITCH;
   const ptr = {x: 0, y: 0, tx: 0, ty: 0, px: -1e4, py: -1e4};
   let E = new Float32Array(9), F = new Float32Array(9), dipView = [0, 0, 1];
+  let mode3d = false, k3 = 0, zoom = 1, zoomGoal = 1, lastTouch = 0;
+  const vel = {x: 0, y: 0};
+  const layerGoal = {pillars: 0, lines: 1, wind: 1, aurora: 1, day: 0}, layer = {...layerGoal};
+  const choice = {pillars: 1, lines: 1, wind: 1, aurora: 1, day: 0};
   const updateMatrices = () => {
-    const l = lon + ptr.x * 0.09, p = pitch + ptr.y * 0.05;
-    const cl = Math.cos(l), sl = Math.sin(l), cp = Math.cos(p), sp = Math.sin(p), cr = Math.cos(ROLL), sr = Math.sin(ROLL);
+    const l = lon + ptr.x * 0.09 * (1 - k3), p = pitch + ptr.y * 0.05 * (1 - k3), roll = ROLL * (1 - k3);
+    const cl = Math.cos(l), sl = Math.sin(l), cp = Math.cos(p), sp = Math.sin(p), cr = Math.cos(roll), sr = Math.sin(roll);
     const X = [-sl, cl, 0], Y0 = [0, 0, 1], Z0 = [cl, sl, 0];
     const Y = [Y0[0] * cp - Z0[0] * sp, Y0[1] * cp - Z0[1] * sp, Y0[2] * cp - Z0[2] * sp];
     const Z = [Y0[0] * sp + Z0[0] * cp, Y0[1] * sp + Z0[1] * cp, Y0[2] * sp + Z0[2] * cp];
@@ -411,7 +453,9 @@
   let storm = 0.34, shock = 0, cx = 0, cy = 0, R = 1, dim = 1, dimGoal = 1, lastScroll = scrollY;
   let landOn = 0, landTex = null, landH = 1;
   let ignite = 0, igniteFrom = 0, igniteTo = 0, igniteStart = -1, shown = false;
-  let places = null, placeCount = 0, placeVao = null, wBuffer = null, wNow = null, wGoal = null, wMoving = false;
+  let places = null, placeCount = 0, placeVao = null, pillarVao = null, wBuffer = null, wNow = null, wGoal = null, wMoving = false;
+  let ringPos = null, ringStart = 0, pinned = null, shownYear = null, still = reduce, perfSum = 0, perfN = 0;
+  const started = performance.now();
   let focus = null, focusPos = null, focusStart = 0;
   let skyTex = null, skyFbo = null;
 
@@ -420,7 +464,7 @@
   let nextPulse = 0, nextAuto = 2.2;
   const landings = [];
   const launch = (id, strength) => {
-    if (reduce) return;
+    if (still) return;
     pulses.set([id, time, strength, rnd() < 0.5 ? 1 : 0], nextPulse * 4);
     nextPulse = (nextPulse + 1) % 8;
     landings.push({at: time + 1 / SPEED, strength});
@@ -447,11 +491,13 @@
     const a = wide ? {x: W * 0.755, y: H * 0.47, r: Math.min(H * 0.43, W * 0.29)} : {x: W * 0.66, y: H * 0.74, r: W * 0.56};
     const b = wide ? {x: W - Math.max(60, (W - 930) / 4), y: H * 0.5, r: Math.min(H * 0.5, W * 0.4)} : {x: W * 0.5, y: H * 0.52, r: W * 0.8};
     const k = smooth(scrollY / (H * 0.85));
-    const shiftX = reduce ? 0 : ptr.x * 8, shiftY = reduce ? 0 : ptr.y * 6;
-    cx = (a.x + (b.x - a.x) * k + shiftX) * dpr;
-    cy = (H - (a.y + (b.y - a.y) * k) + shiftY) * dpr;
-    R = (a.r + (b.r - a.r) * k) * dpr;
-    dimGoal = 1 - 0.26 * k * (focus ? 0 : 1);
+    const shiftX = still ? 0 : ptr.x * 8 * (1 - k3), shiftY = still ? 0 : ptr.y * 6 * (1 - k3);
+    const stage = {x: W / 2, y: wide ? H * 0.5 : H * 0.46, r: Math.min(W * 0.44, H * (wide ? 0.4 : 0.34)) * zoom};
+    const px = a.x + (b.x - a.x) * k, py = a.y + (b.y - a.y) * k, pr = a.r + (b.r - a.r) * k;
+    cx = (px + (stage.x - px) * k3 + shiftX) * dpr;
+    cy = (H - (py + (stage.y - py) * k3) + shiftY) * dpr;
+    R = (pr + (stage.r - pr) * k3) * dpr;
+    dimGoal = 1 - 0.26 * k * (focus || mode3d ? 0 : 1);
   };
 
   const bakeSky = () => {
@@ -525,13 +571,15 @@
     gl.uniform3fv(P.wind.u('uV'), WV);
     gl.uniform1f(P.wind.u('uShock'), shock);
     gl.uniform1f(P.wind.u('uX'), 7.5);
+    gl.uniform1f(P.wind.u('uDim'), dim * layer.wind / (1 + (zoom - 1) * 0.5));
     gl.bindVertexArray(windVao);
     gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, windCount);
 
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
     common(P.earth);
     gl.uniform3fv(P.earth.u('uDip'), DIP);
-    gl.uniform1f(P.earth.u('uAurora'), storm);
+    gl.uniform1f(P.earth.u('uAurora'), storm * layer.aurora);
+    gl.uniform1f(P.earth.u('uDay'), layer.day);
     gl.uniform1f(P.earth.u('uLandOn'), landOn);
     gl.uniform1f(P.earth.u('uTexH'), landH);
     gl.uniform1i(P.earth.u('uLand'), 0);
@@ -546,15 +594,23 @@
       gl.bindVertexArray(placeVao);
       gl.drawArrays(gl.POINTS, 0, placeCount);
     }
-    if (focusPos) {
+    if (pillarVao && igniteStart >= 0 && layer.pillars > 0.002) {
+      common(P.pillar);
+      gl.uniform1f(P.pillar.u('uIg'), ignite);
+      gl.uniform1f(P.pillar.u('uOn'), layer.pillars);
+      gl.bindVertexArray(pillarVao);
+      gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, placeCount);
+    }
+    if (focusPos || ringPos) {
       common(P.ring);
-      gl.uniform3fv(P.ring.u('uPos'), focusPos);
-      gl.uniform1f(P.ring.u('uT'), time - focusStart);
+      gl.uniform3fv(P.ring.u('uPos'), focusPos || ringPos);
+      gl.uniform1f(P.ring.u('uT'), still ? 0.4 : time - (focusPos ? focusStart : ringStart));
       gl.bindVertexArray(empty);
       gl.drawArrays(gl.POINTS, 0, 1);
     }
 
     common(P.line);
+    gl.uniform1f(P.line.u('uDim'), dim * Math.sqrt(layer.lines / (1 + (zoom - 1) * 0.9)));
     gl.uniformMatrix3fv(P.line.u('uF'), false, F);
     gl.uniform2f(P.line.u('uPtr'), ptr.px, ptr.py);
     gl.uniform1f(P.line.u('uShock'), shock);
@@ -574,21 +630,32 @@
     raf = requestAnimationFrame(frame);
     const raw = (now - last) / 1000, dt = Math.min(0.05, raw);
     last = now;
-    time += dt;
+    if (!still) time += dt; // with reduced motion only the reader's own hand moves anything
 
     /* keep it light: a slow machine gets fewer pixels, then less wind */
-    if (raw < 0.5 && ++frames > 90) {
-      slowSum += raw;
-      if (frames % 60 === 0) {
-        if (slowSum / 60 > 0.03) {
+    if (raw < 3 && now - started > 3500) {
+      perfSum += raw;
+      perfN++;
+      if (perfSum >= 1.5) {
+        const avg = perfSum / perfN;
+        perfSum = perfN = 0;
+        if (avg > 0.03) {
           if (scale > 0.56) {
             scale *= 0.8;
             resize();
-          } else {
+          } else if (windCount > 150) {
             windCount = Math.max(150, windCount >> 1);
+          } else if (avg > 0.14 && !mode3d) {
+            /* still struggling at the lowest setting: settle on a still picture rather than tie up the machine */
+            still = true;
+            document.body.classList.remove('tv-sky-live');
+            cancelAnimationFrame(raf);
+            ignite = igniteTo;
+            landOn = 1;
+            render();
+            return;
           }
         }
-        slowSum = 0;
       }
     }
 
@@ -598,20 +665,32 @@
     const y = scrollY, doc = Math.max(1, document.documentElement.scrollHeight - H);
     lon -= ((y - lastScroll) / doc) * 5.2;
     lastScroll = y;
+    k3 += ((mode3d ? 1 : 0) - k3) * (still ? 1 : 1 - Math.exp(-dt * 4.5));
+    zoom += (zoomGoal - zoom) * (still ? 1 : 1 - Math.exp(-dt * 7));
+    for (const key in layer) layer[key] += (layerGoal[key] - layer[key]) * (still ? 1 : 1 - Math.exp(-dt * 6));
     if (focus && time < focus.until) {
       lon += wrap(focus.lon - lon) * (1 - Math.exp(-dt * 3));
       pitch += (focus.pitch - pitch) * (1 - Math.exp(-dt * 3));
     } else {
       focus = null;
       focusPos = null;
-      lon -= SPIN * dt;
-      pitch += (PITCH - pitch) * (1 - Math.exp(-dt * 0.8));
+      if (mode3d) {
+        lon -= vel.x * dt;
+        pitch = Math.max(-1.4, Math.min(1.4, pitch + vel.y * dt));
+        const fade = Math.exp(-dt * 2.6);
+        vel.x *= fade;
+        vel.y *= fade;
+        if (!reduce && !pinned && !drag && zoomGoal < 1.6 && time - lastTouch > 6) lon -= SPIN * 0.6 * dt;
+      } else {
+        if (!still) lon -= SPIN * dt;
+        pitch += (PITCH - pitch) * (1 - Math.exp(-dt * 0.8));
+      }
     }
 
     storm += (0.34 - storm) * (1 - Math.exp(-dt / 3));
     shock *= Math.exp(-dt * 1.5);
     while (landings.length && landings[0].at <= time) storm = Math.min(1.5, storm + 0.34 * landings.shift().strength);
-    if (time > nextAuto) {
+    if (time > nextAuto && layerGoal.lines) {
       launch(lines[Math.floor(rnd() * lines.length)].id, 0.62);
       nextAuto = time + 2.6 + rnd() * 3.4;
     }
@@ -620,7 +699,7 @@
     if (igniteStart >= 0 && ignite < igniteTo) {
       const k = Math.min(1, Math.max(0, (time - igniteStart) / 6));
       ignite = igniteFrom + (igniteTo - igniteFrom) * (k * k * (3 - 2 * k));
-      if (!focus) lon = LON_START + (LON_END - LON_START) * smooth((ignite - SWING_FROM) / (SWING_TO - SWING_FROM));
+      if (!focus && !mode3d) lon = LON_START + (LON_END - LON_START) * smooth((ignite - SWING_FROM) / (SWING_TO - SWING_FROM));
     }
     if (wMoving) {
       let moving = false;
@@ -644,7 +723,7 @@
   };
 
   const redraw = () => {
-    if (!reduce) return;
+    if (!still || mode3d) return;
     place();
     render();
   };
@@ -690,10 +769,15 @@
     for (const r of rows) {
       if (Number(r.size) !== size) continue;
       const key = r.lat + ',' + r.lon;
-      const c = cells.get(key) || {lat: Number(r.lat) + size / 2, lon: Number(r.lon) + size / 2, by: {}, total: 0, first: 9999};
+      const ns = Number(r.lat), ew = Number(r.lon);
+      const c = cells.get(key) || {lat: ns + size / 2, lon: ew + size / 2, by: {}, daysBy: {}, total: 0, days: 0, first: 9999, last: 0, place: r.place,
+        block: `${size}° ${Math.abs(ns).toFixed(1)}°${ns >= 0 ? 'N' : 'S'} ${Math.abs(ew).toFixed(1)}°${ew >= 0 ? 'E' : 'W'}`};
       c.by[r.year] = Number(r.items);
+      c.daysBy[r.year] = Number(r.days);
       c.total += Number(r.items);
+      c.days += Number(r.days);
       c.first = Math.min(c.first, Number(r.year));
+      c.last = Math.max(c.last, Number(r.year));
       cells.set(key, c);
     }
     places = [...cells.values()];
@@ -702,36 +786,47 @@
     const data = new Float32Array(placeCount * 4);
     places.forEach((c, i) => {
       const v = earthVec(c.lat, c.lon);
+      c.v = v;
       data.set([v[0], v[1], v[2], c.first], i * 4);
     });
     wNow = new Float32Array(places.map((c) => weight(c.total, places.max)));
     wGoal = wNow.slice();
-    placeVao = gl.createVertexArray();
-    gl.bindVertexArray(placeVao);
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    const dataBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, dataBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(0);
-    gl.vertexAttribPointer(0, 4, gl.FLOAT, false, 0, 0);
     wBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, wBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, wNow, gl.DYNAMIC_DRAW);
-    gl.enableVertexAttribArray(1);
-    gl.vertexAttribPointer(1, 1, gl.FLOAT, false, 0, 0);
-    gl.bindVertexArray(null);
+    const wire = (divisor) => {
+      const vao = gl.createVertexArray();
+      gl.bindVertexArray(vao);
+      gl.bindBuffer(gl.ARRAY_BUFFER, dataBuffer);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 4, gl.FLOAT, false, 0, 0);
+      gl.vertexAttribDivisor(0, divisor);
+      gl.bindBuffer(gl.ARRAY_BUFFER, wBuffer);
+      gl.enableVertexAttribArray(1);
+      gl.vertexAttribPointer(1, 1, gl.FLOAT, false, 0, 0);
+      gl.vertexAttribDivisor(1, divisor);
+      gl.bindVertexArray(null);
+      return vao;
+    };
+    placeVao = wire(0);
+    pillarVao = wire(1);
     const firsts = places.map((c) => c.first);
     igniteFrom = Math.max(2011.5, Math.min(...firsts) - 0.5);
     igniteTo = Math.max(...firsts) + 2;
   };
   const focusOn = (lat, lonDeg, seconds) => {
     if (reduce) return;
-    focus = {lon: rad(lonDeg), pitch: Math.max(-0.55, Math.min(0.95, rad(lat) * 0.85)), until: time + seconds};
+    focus = {lon: rad(lonDeg), pitch: mode3d ? rad(lat) : Math.max(-0.55, Math.min(0.95, rad(lat) * 0.85)), until: time + seconds};
     focusPos = earthVec(lat, lonDeg);
     focusStart = time;
   };
 
   /* ---------- the reader ---------- */
   addEventListener('pointermove', (e) => {
-    if (reduce || e.pointerType === 'touch') return;
+    if (still || mode3d || e.pointerType === 'touch') return;
     ptr.tx = (e.clientX / W) * 2 - 1;
     ptr.ty = 1 - (e.clientY / H) * 2;
     ptr.px = e.clientX * dpr;
@@ -745,7 +840,7 @@
     }
   }, {passive: true});
   addEventListener('pointerdown', (e) => {
-    if (reduce || !e.target.closest || e.target.closest('a, button, input, select, label, .tv-card, .site-header, .site-footer')) return;
+    if (still || mode3d || !e.target.closest || e.target.closest('a, button, input, select, label, .tv-card, .site-header, .site-footer')) return;
     nearestLines(e.clientX, e.clientY, 3).forEach((id) => launch(id, 1));
     shock = 1;
     storm = Math.min(1.5, storm + 0.42);
@@ -761,13 +856,15 @@
       if (n && (!top || n > top.n)) top = {n, c};
     });
     wMoving = true;
-    if (reduce) {
+    shownYear = year;
+    showYear();
+    if (still) {
       wNow.set(wGoal);
       gl.bindBuffer(gl.ARRAY_BUFFER, wBuffer);
       gl.bufferSubData(gl.ARRAY_BUFFER, 0, wNow);
       wMoving = false;
       redraw();
-    } else if (year !== null && top) {
+    } else if (year !== null && top && !mode3d) {
       focusOn(top.c.lat, top.c.lon, 3.2);
     }
   });
@@ -775,7 +872,9 @@
   let hoverTimer = 0;
   const hoverPlace = (lat, lonDeg) => {
     clearTimeout(hoverTimer);
-    hoverTimer = setTimeout(() => focusOn(lat, lonDeg, 3.5), 180);
+    hoverTimer = setTimeout(() => {
+      if (!mode3d) focusOn(lat, lonDeg, 3.5);
+    }, 180);
   };
   document.addEventListener('pointerover', (e) => {
     const t = e.target;
@@ -790,6 +889,330 @@
     const d = t.__data__;
     if (t.tagName === 'rect' && t.closest('#block-map') && d && d.lat !== undefined) hoverPlace(d.lat + 0.25, d.lon + 0.25);
   });
+
+  /* ---------- 3D mode: the globe takes the whole screen and answers directly ---------- */
+  const ui = document.querySelector('.tv-3d-ui');
+  const openBtn = document.querySelector('.tv-3d-open');
+  const $ = (s) => ui.querySelector(s);
+  const fmt = (n) => Number(n).toLocaleString('en-US');
+  let drag = null, playTimer = 0;
+  const touches = new Map();
+  let pinch = 0;
+
+  const yearRange = () => {
+    const ys = places.flatMap((c) => Object.keys(c.by).map(Number));
+    return [Math.min(...ys), Math.max(...ys)];
+  };
+  const countFor = (c, y) => (y === null ? {items: c.total, days: c.days} : {items: c.by[y] || 0, days: c.daysBy[y] || 0});
+  const showYear = () => {
+    if (!ui || !places) return;
+    const slider = $('.tv-3d-year'), now = $('.tv-3d-now'), all = $('.tv-3d-all');
+    if (shownYear === null) {
+      slider.value = slider.max;
+      now.textContent = T.all;
+    } else {
+      slider.value = shownYear;
+      const n = places.reduce((sum, c) => sum + (c.by[shownYear] || 0), 0);
+      now.textContent = T.at(shownYear, fmt(n));
+    }
+    all.disabled = shownYear === null;
+    if (pinned) fillCard(pinned);
+  };
+  const setYear = (y) => document.dispatchEvent(new CustomEvent('tv:set-year', {detail: y}));
+  const stopPlay = () => {
+    clearInterval(playTimer);
+    playTimer = 0;
+    $('.tv-3d-play').textContent = T.play;
+    $('.tv-3d-play').setAttribute('aria-pressed', 'false');
+  };
+  const startPlay = () => {
+    const [a, b] = yearRange();
+    let y = Math.max(a, 2011);
+    $('.tv-3d-play').textContent = T.stop;
+    $('.tv-3d-play').setAttribute('aria-pressed', 'true');
+    setYear(y);
+    playTimer = setInterval(() => {
+      y += 1;
+      if (y > b) {
+        stopPlay();
+        setYear(null);
+      } else {
+        setYear(y);
+      }
+    }, 800);
+  };
+
+  const fillCard = (c) => {
+    const card = $('.tv-3d-card'), [a, b] = yearRange();
+    card.querySelector('h2').textContent = c.place;
+    card.querySelector('.tv-3d-block').textContent = c.block;
+    const n = countFor(c, shownYear);
+    card.querySelector('.tv-3d-count').textContent = (shownYear === null ? '' : T.year(shownYear) + (WEN ? '：' : ': ')) + T.items(fmt(n.items)) + (WEN ? '，' : ', ') + T.days(fmt(n.days));
+    card.querySelector('.tv-3d-span').textContent = T.span(c.first, c.last);
+    const svg = card.querySelector('svg'), NS = 'http://www.w3.org/2000/svg', years = b - a + 1, top = Math.max(...Object.values(c.by));
+    svg.setAttribute('viewBox', `0 0 ${years * 10} 44`);
+    svg.replaceChildren();
+    for (let y = a; y <= b; y++) {
+      const v = c.by[y] || 0;
+      const r = document.createElementNS(NS, 'rect');
+      const h = v ? 2 + (Math.sqrt(v) / Math.sqrt(top)) * 40 : 0.6;
+      r.setAttribute('x', (y - a) * 10 + 1);
+      r.setAttribute('width', 8);
+      r.setAttribute('y', 44 - h);
+      r.setAttribute('height', h);
+      r.setAttribute('class', (v ? 'on' : 'off') + (y === shownYear ? ' now' : ''));
+      r.dataset.year = y;
+      const tip = document.createElementNS(NS, 'title');
+      tip.textContent = T.at(y, fmt(v));
+      r.append(tip);
+      svg.append(r);
+    }
+    card.querySelector('.tv-3d-first').textContent = a;
+    card.querySelector('.tv-3d-last').textContent = b;
+    card.hidden = false;
+  };
+  const pin = (c) => {
+    pinned = c;
+    if (!c) {
+      $('.tv-3d-card').hidden = true;
+      ringPos = null;
+      return;
+    }
+    ringPos = c.v;
+    ringStart = time;
+    fillCard(c);
+    focusOn(c.lat, c.lon, 1.8);
+  };
+  const pick = (x, y) => {
+    if (!places) return null;
+    const scalePx = R / dpr, ox = cx / dpr, oy = H - cy / dpr;
+    let best = null, bestD = 1e9;
+    places.forEach((c, i) => {
+      if (wNow[i] < 0.001) return;
+      const v = c.v, z = E[2] * v[0] + E[5] * v[1] + E[8] * v[2];
+      if (z < 0.02) return;
+      const px = E[0] * v[0] + E[3] * v[1] + E[6] * v[2], py = E[1] * v[0] + E[4] * v[1] + E[7] * v[2];
+      const d = Math.hypot(ox + px * scalePx - x, oy - py * scalePx - y), reach = 11 + 13 * wNow[i];
+      if (d < reach && d - reach * 0.35 < bestD) {
+        bestD = d - reach * 0.35;
+        best = c;
+      }
+    });
+    return best;
+  };
+  const showTip = (c, x, y) => {
+    const tip = $('.tv-3d-tip');
+    if (!c) {
+      tip.hidden = true;
+      canvas.style.cursor = drag ? 'grabbing' : 'grab';
+      if (!pinned) ringPos = null;
+      return;
+    }
+    const n = countFor(c, shownYear);
+    tip.replaceChildren(...[c.place, T.items(fmt(n.items)) + (WEN ? '，' : ', ') + T.days(fmt(n.days))].map((s) => {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d;
+    }));
+    tip.hidden = false;
+    tip.style.left = Math.min(W - tip.offsetWidth - 8, x + 14) + 'px';
+    tip.style.top = (y - tip.offsetHeight - 12 < 0 ? y + 14 : y - tip.offsetHeight - 12) + 'px';
+    canvas.style.cursor = 'pointer';
+    if (!pinned && ringPos !== c.v) {
+      ringPos = c.v;
+      ringStart = time;
+    }
+  };
+  const zoomBy = (f) => {
+    zoomGoal = Math.max(0.6, Math.min(9, zoomGoal * f));
+    lastTouch = time;
+  };
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!mode3d) return;
+    canvas.setPointerCapture(e.pointerId);
+    touches.set(e.pointerId, [e.clientX, e.clientY]);
+    if (touches.size === 2) {
+      const [p, q] = [...touches.values()];
+      pinch = Math.hypot(p[0] - q[0], p[1] - q[1]);
+      drag = null;
+      return;
+    }
+    drag = {x: e.clientX, y: e.clientY, sx: e.clientX, sy: e.clientY, t: performance.now(), moved: 0, last: performance.now()};
+    vel.x = vel.y = 0;
+    focus = null;
+    focusPos = null;
+    lastTouch = time;
+    showTip(null);
+  });
+  canvas.addEventListener('pointermove', (e) => {
+    if (!mode3d) return;
+    if (touches.has(e.pointerId)) touches.set(e.pointerId, [e.clientX, e.clientY]);
+    if (touches.size === 2) {
+      const [p, q] = [...touches.values()], d = Math.hypot(p[0] - q[0], p[1] - q[1]);
+      if (pinch) zoomBy(d / pinch);
+      pinch = d;
+      return;
+    }
+    if (drag) {
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y, rc = Math.max(40, R / dpr), now = performance.now();
+      const dt = Math.max(0.004, (now - drag.last) / 1000);
+      lon -= dx / rc;
+      pitch = Math.max(-1.4, Math.min(1.4, pitch + dy / rc));
+      vel.x = (dx / rc) / dt;
+      vel.y = (dy / rc) / dt;
+      drag.x = e.clientX;
+      drag.y = e.clientY;
+      drag.last = now;
+      drag.moved = Math.max(drag.moved, Math.hypot(e.clientX - drag.sx, e.clientY - drag.sy));
+      lastTouch = time;
+      canvas.style.cursor = 'grabbing';
+      if (still) {
+        place();
+        render();
+      }
+      return;
+    }
+    if (e.pointerType !== 'touch') showTip(pick(e.clientX, e.clientY), e.clientX, e.clientY);
+  });
+  const release = (e) => {
+    if (!mode3d) return;
+    touches.delete(e.pointerId);
+    if (touches.size < 2) pinch = 0;
+    if (!drag) return;
+    const d = drag, now = performance.now();
+    drag = null;
+    canvas.style.cursor = 'grab';
+    if (now - d.last > 90 || reduce) vel.x = vel.y = 0;
+    vel.x = Math.max(-3, Math.min(3, vel.x));
+    vel.y = Math.max(-3, Math.min(3, vel.y));
+    if (d.moved < 6 && now - d.t < 500 && e.type === 'pointerup') {
+      const c = pick(e.clientX, e.clientY);
+      if (c) {
+        pin(c);
+      } else {
+        pin(null);
+        if (layerGoal.lines) {
+          nearestLines(e.clientX, e.clientY, 3).forEach((id) => launch(id, 1));
+          shock = 1;
+          storm = Math.min(1.5, storm + 0.42);
+        }
+      }
+    }
+  };
+  canvas.addEventListener('pointerup', release);
+  canvas.addEventListener('pointercancel', release);
+  canvas.addEventListener('pointerleave', () => showTip(null));
+  canvas.addEventListener('wheel', (e) => {
+    if (!mode3d) return;
+    e.preventDefault();
+    zoomBy(Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0016)));
+    $('.tv-3d-tip').hidden = true;
+  }, {passive: false});
+
+  const shut = '.site-header, .hero, .tv-page, .site-footer, .skip-link';
+  const enter3d = () => {
+    if (mode3d || !places) return;
+    mode3d = true;
+    igniteStart = Math.max(igniteStart, 0); // entering early skips the load sequence: every light is on at once
+    ignite = igniteTo;
+    landOn = 1;
+    lastTouch = time;
+    vel.x = vel.y = 0;
+    focus = null;
+    focusPos = null;
+    Object.assign(layerGoal, choice);
+    document.body.classList.add('tv-3d-fade');
+    document.documentElement.classList.add('tv-3d-lock');
+    const show = () => {
+      document.body.classList.add('tv-3d');
+      ui.hidden = false;
+      document.querySelectorAll(shut).forEach((el) => {
+        el.inert = true;
+      });
+      $('.tv-3d-close').focus({preventScroll: true});
+      showYear();
+    };
+    if (reduce) {
+      show();
+      last = performance.now();
+      raf = requestAnimationFrame(frame);
+    } else {
+      setTimeout(show, 300);
+    }
+  };
+  const exit3d = () => {
+    if (!mode3d) return;
+    mode3d = false;
+    stopPlay();
+    pin(null);
+    zoomGoal = 1;
+    vel.x = vel.y = 0;
+    Object.assign(layerGoal, {pillars: 0, lines: 1, wind: 1, aurora: 1, day: 0});
+    ui.hidden = true;
+    $('.tv-3d-tip').hidden = true;
+    document.body.classList.remove('tv-3d', 'tv-3d-fade');
+    document.documentElement.classList.remove('tv-3d-lock');
+    canvas.style.cursor = '';
+    document.querySelectorAll(shut).forEach((el) => {
+      el.inert = false;
+    });
+    lastScroll = scrollY;
+    if (openBtn) openBtn.focus({preventScroll: true});
+    if (reduce) {
+      k3 = 0;
+      zoom = 1;
+      Object.assign(layer, layerGoal);
+      cancelAnimationFrame(raf);
+      place();
+      render();
+    }
+  };
+
+  if (ui && openBtn) {
+    openBtn.addEventListener('click', enter3d);
+    $('.tv-3d-close').addEventListener('click', exit3d);
+    $('.tv-3d-card-x').addEventListener('click', () => pin(null));
+    $('.tv-3d-year').addEventListener('input', (e) => {
+      stopPlay();
+      setYear(Number(e.target.value));
+    });
+    $('.tv-3d-all').addEventListener('click', () => {
+      stopPlay();
+      setYear(null);
+    });
+    $('.tv-3d-play').addEventListener('click', () => (playTimer ? stopPlay() : startPlay()));
+    ui.querySelectorAll('[data-layer]').forEach((box) => {
+      box.addEventListener('change', () => {
+        choice[box.dataset.layer] = box.checked ? 1 : 0;
+        layerGoal[box.dataset.layer] = choice[box.dataset.layer];
+      });
+    });
+    $('.tv-3d-card svg').addEventListener('click', (e) => {
+      if (e.target.dataset && e.target.dataset.year) {
+        stopPlay();
+        setYear(Number(e.target.dataset.year));
+      }
+    });
+    addEventListener('keydown', (e) => {
+      if (!mode3d) return;
+      if (e.key === 'Escape') {
+        exit3d();
+        return;
+      }
+      if (e.target.matches && e.target.matches('input[type=range]')) return;
+      const step = 0.16 / Math.max(1, zoomGoal);
+      if (e.key === 'ArrowLeft') lon += step;
+      else if (e.key === 'ArrowRight') lon -= step;
+      else if (e.key === 'ArrowUp') pitch = Math.min(1.4, pitch + step);
+      else if (e.key === 'ArrowDown') pitch = Math.max(-1.4, pitch - step);
+      else if (e.key === '+' || e.key === '=') zoomBy(1.25);
+      else if (e.key === '-' || e.key === '_') zoomBy(0.8);
+      else return;
+      e.preventDefault();
+      lastTouch = time;
+    });
+  }
 
   let resizeTimer = 0, lastW = 0, lastH = 0;
   addEventListener('resize', () => {
@@ -822,6 +1245,14 @@
     later(() => {
       uploadLand(land);
       setupPlaces(blocks);
+      if (ui) {
+        const [a, b] = yearRange();
+        $('.tv-3d-year').min = a;
+        $('.tv-3d-year').max = b;
+        showYear();
+      }
+      document.body.classList.add('tv-sky-ready');
+      if (location.hash === '#3d') requestAnimationFrame(enter3d);
       if (reduce) {
         landOn = 1;
         ignite = 9999;
