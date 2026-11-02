@@ -1,0 +1,153 @@
+<!--meta {"title": "行迹 · 黄泽森", "description": "自2003年以来，吾照片、影片所记之地，以行政区、定格及年列之为图。", "path": "/wen/travel/", "nav": "miscellany", "scripts": ["/js/d3.v7.9.0.min.js", "/js/travel.js"]} -->
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">行迹</h1>
+    <p class="lede">照片、影片之记其地者，自<b data-draw="firstYear">—</b>年至<b data-draw="lastYear">—</b>年，凡<b data-draw="items">—</b>件。<b data-draw="topCountry">—</b>居其<b data-draw="topShare">—</b>。</p>
+  </header>
+
+  <article class="post-content">
+    <div class="tv-page">
+      <div class="stats">
+        <div class="stat"><b data-draw="countriesTile">—</b><span>国与地区</span></div>
+        <div class="stat"><b data-draw="adm1Tile">—</b><span>一级行政区</span></div>
+        <div class="stat"><b data-draw="adm2Tile">—</b><span>二级行政区</span></div>
+        <div class="stat"><b data-draw="daysTile">—</b><span>记地之日</span></div>
+        <div class="stat"><b data-draw="photosTile">—</b><span>照片</span></div>
+        <div class="stat"><b data-draw="videosTile">—</b><span>影片</span></div>
+      </div>
+
+      <section class="tv-card" id="years">
+        <h2>逐年记地之件数</h2>
+        <p class="tv-note">点其柱，则两图皆示是年；再点，复示诸年。</p>
+        <div class="tv-years" data-draw="yearBars">—</div>
+      </section>
+
+      <section class="tv-card" id="region-map">
+        <div class="tv-bar">
+          <div>
+            <h2>行政区图</h2>
+            <p class="tv-note">色愈深者件愈多。拖之可移，滚轮或两指可缩放。圆点者，无疆界图之地也。指虚线之界，可见何方主张之。</p>
+          </div>
+          <div class="tv-controls">
+            <select class="tv-level" aria-label="行政区之级">
+              <option value="2">二级行政区</option>
+              <option value="1">一级行政区</option>
+            </select>
+            <select data-draw="year" aria-label="行政区图所示之年"></select>
+          </div>
+        </div>
+        <div class="tv-map" data-draw="regionMap">—</div>
+        <div class="tv-scale" data-draw="regionScale">—</div>
+        <ul class="tv-key">
+          <li><i class="tv-line-country"></i>国界</li>
+          <li><i class="tv-line-adm1"></i>一级之界</li>
+          <li><i class="tv-line-adm2"></i>二级之界</li>
+          <li><i class="tv-line-disputed"></i>有争之地</li>
+        </ul>
+      </section>
+
+      <section class="tv-card" id="block-map">
+        <div class="tv-bar">
+          <div>
+            <h2>定格图</h2>
+            <p class="tv-note">同此诸件，以等度之格计之，故诸地可相较，不拘疆界。放大之，小格乃明。</p>
+          </div>
+          <div class="tv-controls">
+            <select class="tv-block-size" aria-label="格之大小">
+              <option value="0.1">0.1°格</option>
+              <option value="0.5">0.5°格</option>
+            </select>
+            <select data-draw="year" aria-label="定格图所示之年"></select>
+          </div>
+        </div>
+        <div class="tv-map" data-draw="blockMap">—</div>
+        <div class="tv-scale" data-draw="blockScale">—</div>
+        <ul class="tv-key">
+          <li><i class="tv-line-country"></i>国界</li>
+          <li><i class="tv-line-adm1"></i>一级之界</li>
+          <li><i class="tv-line-disputed"></i>有争之地</li>
+        </ul>
+      </section>
+
+      <section class="tv-card" id="concentration">
+        <h2>照片之聚散</h2>
+        <p class="tv-note">通计诸年。面积者，合至少有一件之诸格而计，各依其纬度之实广。</p>
+        <div class="tv-scroll">
+          <table>
+            <thead><tr><th>格之大小</th><th>有件之格</th><th>面积，km²</th><th>聚半数之格</th><th>聚90%之格</th><th>首格所占</th><th>止一件之格</th></tr></thead>
+            <tbody data-draw="gridStatsTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="tv-card" id="blocks">
+        <div class="tv-bar">
+          <div>
+            <h2>诸格</h2>
+            <p class="tv-note"><span class="tv-if-sizes">随图上所择之格。</span>通计诸年，件多者居前。地者，格中最常见之区也。</p>
+          </div>
+          <input class="tv-search" data-table="blocksTable" type="search" placeholder="检索诸格" aria-label="检索诸格">
+        </div>
+        <div class="tv-scroll">
+          <table>
+            <thead><tr><th>格</th><th class="tv-left">地</th><th>件</th><th>日</th><th>面积，km²</th></tr></thead>
+            <tbody data-draw="blocksTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="tv-card" id="second-level">
+        <div class="tv-bar">
+          <div>
+            <h2>二级行政区</h2>
+            <p class="tv-note">若美国之县、中国之地级市。通计诸年，件多者居前。始、终者，年与月也。地名依 Photos 与疆界图之原文。</p>
+          </div>
+          <input class="tv-search" data-table="adm2Table" type="search" placeholder="检索诸区" aria-label="检索二级行政区">
+        </div>
+        <div class="tv-scroll">
+          <table>
+            <thead><tr><th>区</th><th>件</th><th>日</th><th>始</th><th>终</th></tr></thead>
+            <tbody data-draw="adm2Table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="tv-two">
+        <section class="tv-card" id="first-level">
+          <div class="tv-bar">
+            <div>
+              <h2>一级行政区</h2>
+              <p class="tv-note">若州、若省。</p>
+            </div>
+            <input class="tv-search" data-table="adm1Table" type="search" placeholder="检索诸区" aria-label="检索一级行政区">
+          </div>
+          <div class="tv-scroll">
+            <table>
+              <thead><tr><th>区</th><th>件</th><th>日</th><th>始</th><th>终</th></tr></thead>
+              <tbody data-draw="adm1Table"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="tv-card" id="countries">
+          <h2>国与地区</h2>
+          <p class="tv-note">其名据 Photos 所录，译以常称。</p>
+          <div class="tv-scroll">
+            <table>
+              <thead><tr><th>国</th><th>件</th><th>日</th><th>始</th><th>终</th></tr></thead>
+              <tbody data-draw="countriesTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section class="tv-notes" id="notes">
+        <p class="tv-note">何者为二级行政区，各依其疆界图，故大小不一。意大利、希腊之图，其级广于省；台湾之图，其级细焉。香港、澳门、梵蒂冈无疆界图，故用 Photos 所录之地名。点在海岸之外者，归于最近之区；点近疆界者，或落于邻区。</p>
+        <p class="tv-note">凡有疆界图之国，其国界、一级之界、二级之界皆出于同一简化之形，故相合无间。加拿大、澳大利亚及他数国，海岸曲折尤甚，简化亦尤甚。移图缩放之际，界线暂隐。他处之线出于 Natural Earth，两源相接之处，或微有相离。</p>
+        <p class="tv-note">虚线依 Natural Earth 所列有争之地，其去取亦从之，若台湾、以色列、伯利兹是也。实线或行于虚线之下。凡此皆非言何方治某地、或当治某地也。</p>
+        <p class="tv-note">此处所存，唯各区各格之总数；确切之经纬、街巷之址、文件之名，皆不录。富士相机之照片<span data-draw="inferred">—</span>件，其地取自时间最近之 iPhone 所摄，故为估计。</p>
+        <p class="tv-note">疆界出于 <a href="https://www.geoboundaries.org/">geoBoundaries</a> 及其开放数据之源，所循许可有 CC BY、CC BY-SA、ODbL 等。国界、陆地、有争之地出于 <a href="https://www.naturalearthdata.com/">Natural Earth</a>。</p>
+      </section>
+    </div>
+  </article>
+</div>

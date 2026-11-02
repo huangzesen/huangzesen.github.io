@@ -11,7 +11,7 @@ English stays the main site; the 文言 pages live under /wen/.
 - Keep the HTML structure, classes, ids, images, videos, `<!--include ... -->` lines, data attributes and scripts exactly.
   Translate only the visible text (and `alt`, `aria-label`, `title` attributes).
 - Internal links to pages that have a 文言 twin get `/wen` in front: `/`, `/research/`, `/research/alfvenons/`, `/research/lingtai/`,
-  `/research/scienceide/`, `/research/ale-astronomy/`, `/research/solar-wind/`, `/publications/`, `/cv/`, `/software/`, `/miscellany/`
+  `/research/scienceide/`, `/research/ale-astronomy/`, `/research/solar-wind/`, `/publications/`, `/cv/`, `/software/`, `/miscellany/`, `/travel/`
   (anchors kept, e.g. `/wen/research/#lingtai`). Links to files (images, PDFs, `/explorers/…`, `/switch_back.html`, `/data/…`,
   other old pages) and external links stay as they are.
 - If a page includes a partial with English prose, write a 文言 copy in `_src/partials/wen/<name>` and include that instead

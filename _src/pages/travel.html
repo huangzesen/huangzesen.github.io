@@ -1,0 +1,153 @@
+<!--meta {"title": "Where I've Been · Zesen Huang", "description": "A map of the places in my geotagged photos and videos since 2003, by administrative region, fixed block and year.", "path": "/travel/", "nav": "miscellany", "scripts": ["/js/d3.v7.9.0.min.js", "/js/travel.js"]} -->
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">Where I've Been</h1>
+    <p class="lede"><b data-draw="items">—</b> geotagged photos and videos from <b data-draw="firstYear">—</b> to <b data-draw="lastYear">—</b>. <b data-draw="topCountry">—</b> accounts for <b data-draw="topShare">—</b> of them.</p>
+  </header>
+
+  <article class="post-content">
+    <div class="tv-page">
+      <div class="stats">
+        <div class="stat"><b data-draw="countriesTile">—</b><span>Countries and territories</span></div>
+        <div class="stat"><b data-draw="adm1Tile">—</b><span>First-level regions</span></div>
+        <div class="stat"><b data-draw="adm2Tile">—</b><span>Second-level regions</span></div>
+        <div class="stat"><b data-draw="daysTile">—</b><span>Days with a location</span></div>
+        <div class="stat"><b data-draw="photosTile">—</b><span>Photos</span></div>
+        <div class="stat"><b data-draw="videosTile">—</b><span>Videos</span></div>
+      </div>
+
+      <section class="tv-card" id="years">
+        <h2>Items with a location, by year</h2>
+        <p class="tv-note">Click a bar to show that year on both maps. Click it again to show all years.</p>
+        <div class="tv-years" data-draw="yearBars">—</div>
+      </section>
+
+      <section class="tv-card" id="region-map">
+        <div class="tv-bar">
+          <div>
+            <h2>Map by administrative region</h2>
+            <p class="tv-note">Darker means more items. Drag to pan, and scroll or pinch to zoom. Dots mark places with no boundary map. Hover over a dashed outline to see who claims it.</p>
+          </div>
+          <div class="tv-controls">
+            <select class="tv-level" aria-label="Region level">
+              <option value="2">Second-level regions</option>
+              <option value="1">First-level regions</option>
+            </select>
+            <select data-draw="year" aria-label="Year shown on the region map"></select>
+          </div>
+        </div>
+        <div class="tv-map" data-draw="regionMap">—</div>
+        <div class="tv-scale" data-draw="regionScale">—</div>
+        <ul class="tv-key">
+          <li><i class="tv-line-country"></i>Country border</li>
+          <li><i class="tv-line-adm1"></i>First-level boundary</li>
+          <li><i class="tv-line-adm2"></i>Second-level boundary</li>
+          <li><i class="tv-line-disputed"></i>Disputed area</li>
+        </ul>
+      </section>
+
+      <section class="tv-card" id="block-map">
+        <div class="tv-bar">
+          <div>
+            <h2>Map by fixed block</h2>
+            <p class="tv-note">The same items counted in equal-degree blocks, so places can be compared without regard to borders. Zoom in to see small blocks clearly.</p>
+          </div>
+          <div class="tv-controls">
+            <select class="tv-block-size" aria-label="Block size">
+              <option value="0.1">0.1° blocks</option>
+              <option value="0.5">0.5° blocks</option>
+            </select>
+            <select data-draw="year" aria-label="Year shown on the block map"></select>
+          </div>
+        </div>
+        <div class="tv-map" data-draw="blockMap">—</div>
+        <div class="tv-scale" data-draw="blockScale">—</div>
+        <ul class="tv-key">
+          <li><i class="tv-line-country"></i>Country border</li>
+          <li><i class="tv-line-adm1"></i>First-level boundary</li>
+          <li><i class="tv-line-disputed"></i>Disputed area</li>
+        </ul>
+      </section>
+
+      <section class="tv-card" id="concentration">
+        <h2>How concentrated my photos are</h2>
+        <p class="tv-note">All years. Area adds up the blocks that hold at least one item, using each block's real size at its latitude.</p>
+        <div class="tv-scroll">
+          <table>
+            <thead><tr><th>Block size</th><th>Blocks with items</th><th>Area, km²</th><th>Blocks holding half of all items</th><th>Blocks holding 90%</th><th>Share in the top block</th><th>Blocks with one item</th></tr></thead>
+            <tbody data-draw="gridStatsTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="tv-card" id="blocks">
+        <div class="tv-bar">
+          <div>
+            <h2>Blocks</h2>
+            <p class="tv-note"><span class="tv-if-sizes">Follows the block size chosen on the map. </span>All years, most items first. The place is the most common region in the block.</p>
+          </div>
+          <input class="tv-search" data-table="blocksTable" type="search" placeholder="Search blocks" aria-label="Search blocks">
+        </div>
+        <div class="tv-scroll">
+          <table>
+            <thead><tr><th>Block</th><th class="tv-left">Place</th><th>Items</th><th>Days</th><th>Area, km²</th></tr></thead>
+            <tbody data-draw="blocksTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="tv-card" id="second-level">
+        <div class="tv-bar">
+          <div>
+            <h2>Second-level regions</h2>
+            <p class="tv-note">Such as counties in the US and prefectures in China. All years, most items first. First and last are year and month.</p>
+          </div>
+          <input class="tv-search" data-table="adm2Table" type="search" placeholder="Search regions" aria-label="Search second-level regions">
+        </div>
+        <div class="tv-scroll">
+          <table>
+            <thead><tr><th>Region</th><th>Items</th><th>Days</th><th>First</th><th>Last</th></tr></thead>
+            <tbody data-draw="adm2Table"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="tv-two">
+        <section class="tv-card" id="first-level">
+          <div class="tv-bar">
+            <div>
+              <h2>First-level regions</h2>
+              <p class="tv-note">Such as states and provinces.</p>
+            </div>
+            <input class="tv-search" data-table="adm1Table" type="search" placeholder="Search regions" aria-label="Search first-level regions">
+          </div>
+          <div class="tv-scroll">
+            <table>
+              <thead><tr><th>Region</th><th>Items</th><th>Days</th><th>First</th><th>Last</th></tr></thead>
+              <tbody data-draw="adm1Table"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="tv-card" id="countries">
+          <h2>Countries and territories</h2>
+          <p class="tv-note">Names as recorded by Photos.</p>
+          <div class="tv-scroll">
+            <table>
+              <thead><tr><th>Country</th><th>Items</th><th>Days</th><th>First</th><th>Last</th></tr></thead>
+              <tbody data-draw="countriesTable"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      <section class="tv-notes" id="notes">
+        <p class="tv-note">What counts as a second-level region follows each boundary map, so sizes vary. Italy and Greece are mapped at a broader level than provinces, and Taiwan at a finer level. Hong Kong, Macao and Vatican City have no boundary map, so they use the place names in Photos. Points just outside a coastline go to the nearest region, and points near a border can land in the neighboring one.</p>
+        <p class="tv-note">Country, first-level and second-level lines for countries with a boundary map all come from one simplified shape set, so they meet exactly. Canada, Australia and a few other countries with very intricate coasts are simplified more. Boundary lines hide briefly while you pan or zoom. Lines elsewhere come from Natural Earth and can sit slightly apart where the two sources meet.</p>
+        <p class="tv-note">Dashed outlines follow Natural Earth's list of disputed areas, including its choices about what to list, such as Taiwan, Israel and Belize. Solid lines can run underneath a dashed outline. None of this is a statement on who controls or should control any territory.</p>
+        <p class="tv-note">Only totals per region and block are stored here. Exact coordinates, street addresses and filenames are left out. <span data-draw="inferred">—</span> Fujifilm photos took their location from the nearest iPhone item in time, so those are estimates.</p>
+        <p class="tv-note">Boundaries come from <a href="https://www.geoboundaries.org/">geoBoundaries</a> and its open-data sources, under licenses including CC BY, CC BY-SA and ODbL. Country borders, land and disputed areas come from <a href="https://www.naturalearthdata.com/">Natural Earth</a>.</p>
+      </section>
+    </div>
+  </article>
+</div>

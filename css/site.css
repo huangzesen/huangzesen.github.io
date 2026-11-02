@@ -531,3 +531,46 @@ html[lang=lzh] .wp-caption dd, html[lang=lzh] figcaption { letter-spacing: .02em
 html[lang=lzh] .hero .post-title .zh { font-family: "Cormorant Garamond", Georgia, serif; font-size: .5em; letter-spacing: .02em; margin-left: .5em; }
 @media (max-width: 720px) { .hero-hint { display: none; } }
 html[lang=lzh] .fields, html[lang=lzh] .hero .fields { font-style: normal; letter-spacing: .06em; }
+
+/* ---------- Where I've Been (/travel/, js/travel.js) ---------- */
+.tv-page { --tv-land: #e9edf0; --tv-axis: #b4bec8; --tv-grid: #edf0f3; --tv-faded: #c9d3dc; display: grid; gap: 20px; min-width: 0; }
+.tv-page .stats { margin: 0; }
+.tv-page [hidden] { display: none !important; }
+.tv-card { background: var(--card); border: 1px solid var(--rule); border-radius: 6px; padding: 18px 20px; display: grid; gap: 10px; min-width: 0; }
+.post-content .tv-card h2 { margin: 0; padding: 0; border: 0; font-size: 23px; }
+.tv-note { color: var(--muted); font-size: .86rem; line-height: 1.5; margin: 0; max-width: 90ch; }
+.tv-notes { display: grid; gap: 8px; }
+.tv-bar { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.tv-bar > div { min-width: 0; display: grid; gap: 4px; flex: 1 1 18rem; }
+.tv-bar > .tv-controls { display: flex; flex-wrap: wrap; gap: 6px; flex: 0 1 auto; }
+.tv-page select, .tv-page input { font: inherit; font-size: .84rem; color: var(--ink); background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 4px 8px; }
+.tv-map, .tv-years { position: relative; min-width: 0; color: var(--muted); font-size: .9rem; }
+.tv-map { min-height: 16rem; }
+.tv-map:has(svg) { min-height: 0; }
+.tv-years { min-height: 11rem; }
+.tv-map svg { display: block; cursor: grab; touch-action: none; border-radius: 4px; }
+.tv-map svg:active { cursor: grabbing; }
+.tv-years svg { display: block; }
+.tv-years rect.hit { cursor: pointer; }
+.tv-tip { position: absolute; z-index: 2; pointer-events: none; background: #fff; color: var(--ink); border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 6px 18px rgba(0,30,60,.16); padding: 4px 8px; font-size: .82rem; line-height: 1.4; max-width: 16rem; }
+.tv-tip div:first-child { font-weight: 600; }
+.tv-tick { fill: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.tv-scale { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: .82rem; font-variant-numeric: tabular-nums; }
+.tv-key { display: flex; flex-wrap: wrap; gap: 4px 16px; color: var(--muted); font-size: .82rem; margin: 0; padding: 0; list-style: none; }
+.tv-key li { display: flex; align-items: center; gap: 6px; margin: 0; }
+.tv-key i { display: block; width: 1.5rem; border-top: 1px solid var(--muted); }
+.tv-key .tv-line-country { border-top-width: 2px; }
+.tv-key .tv-line-adm2 { border-top-color: var(--tv-axis); }
+.tv-key .tv-line-disputed { border-top: 2px dashed var(--muted); }
+.tv-swatches { display: flex; gap: 2px; }
+.tv-swatches i { display: block; width: 1.25rem; height: .625rem; border-radius: 2px; }
+.tv-two { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); min-width: 0; }
+.tv-scroll { max-height: 26rem; overflow: auto; }
+.tv-page table { width: 100%; border-collapse: collapse; font-size: .84rem; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.tv-page th { position: sticky; top: 0; background: var(--card); color: var(--muted); text-align: right; font-weight: 600; padding: 4px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.tv-page td { text-align: right; padding: 4px 8px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.tv-page th:first-child, .tv-page td:first-child { text-align: left; white-space: normal; }
+.tv-page th.tv-left, .tv-page td.tv-left { text-align: left; white-space: normal; }
+#concentration table { min-width: 34rem; }
+#concentration th { white-space: normal; vertical-align: bottom; }
+@media (max-width: 620px) { .tv-card { padding: 14px 12px; } }
