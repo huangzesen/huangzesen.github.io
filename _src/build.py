@@ -28,6 +28,7 @@ NAV = [
     ("cv", "CV", "/cv/", []),
     ("software", "Software", "/software/", []),
     ("miscellany", "Miscellany", "/miscellany/", []),
+    ("travel", "Travel", "/travel/", []),
 ]
 
 # the 文言 site under /wen/ (Zesen, 2026-11-01: a 文言 version, no modern-Chinese one); pages in _src/pages-wen/
@@ -44,6 +45,7 @@ NAV_WEN = [
     ("cv", "履历", "/wen/cv/", []),
     ("software", "器用", "/wen/software/", []),
     ("miscellany", "杂录", "/wen/miscellany/", []),
+    ("travel", "行迹", "/wen/travel/", []),
 ]
 
 LANGS = {

@@ -62,4 +62,4 @@ English stays the main site; the 文言 pages live under /wen/.
 | reinforcement learning | 强化学习 |
 | open source | 开源 |
 | Mars / the Sun | 荧惑 / 日 |
-| Publications / CV / Software / Miscellany / Research / About | 著述 / 履历 / 器用 / 杂录 / 所究 / 自述 |
+| Publications / CV / Software / Miscellany / Research / About / Travel | 著述 / 履历 / 器用 / 杂录 / 所究 / 自述 / 行迹 |

@@ -56,7 +56,7 @@ sub, sup { font-size: 0.72em; line-height: 0; }
 .site-header .wrapper { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; }
 .site-title {
   font-family: var(--serif);
-  font-size: 27px;
+  font-size: 25px;
   color: #fff;
   letter-spacing: 0;
   white-space: nowrap;
@@ -67,9 +67,9 @@ sub, sup { font-size: 0.72em; line-height: 0; }
 
 .site-nav .menu {
   list-style: none; margin: 0; padding: 0;
-  display: flex; gap: 22px; align-items: center;
-  font-family: var(--nav); font-weight: 600; font-size: 14.5px;
-  letter-spacing: 1px; text-transform: uppercase;
+  display: flex; gap: 15px; align-items: center;
+  font-family: var(--nav); font-weight: 600; font-size: 14px;
+  letter-spacing: .5px; text-transform: uppercase;
 }
 .site-nav .menu > li { position: relative; border-bottom: 3px solid transparent; padding: 2px 0; }
 .site-nav .menu > li.current { border-bottom-color: var(--gold); }
@@ -96,6 +96,10 @@ sub, sup { font-size: 0.72em; line-height: 0; }
 @media (max-width: 720px) {
   .wrapper { padding: 0 16px; }
   .site-title { font-size: 22px; }
+}
+/* below this the seven tabs no longer fit on one row beside the name; screen only, so print layout is unchanged */
+@media screen and (max-width: 980px) {
+  .site-nav { margin-left: auto; }
   .menu-icon { display: block; }
   .site-nav .menu {
     display: none; position: absolute; right: 16px; top: 58px;
