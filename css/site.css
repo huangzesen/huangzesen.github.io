@@ -908,3 +908,124 @@ html[lang=lzh] .tv-3d-card h2 { font-family: "Noto Serif SC", "Songti SC", serif
 @media print { .pub-years, .scene-label, .sci-readout, .hero-hint { display: none !important; } }
 @media print { .ale-ray { opacity: 1 !important; transform: none !important; } }
 @media print { #small-collision-video { display: none !important; } }
+
+/* =================== polish (2026-11-10): one type system, a reading measure, one corner radius ===================
+   Screen only, like the themes: print and cv/Zesen_Huang_CV.pdf do not change.
+   Type: Cormorant Garamond for titles and headings, Source Serif 4 for reading text (English pages; 文言 keeps Noto Serif SC),
+   the sans (--nav / --sans) only for controls, labels and captions. */
+@media screen {
+  :root { --display: "Cormorant Garamond", "Noto Serif SC", "Songti SC", Georgia, "Times New Roman", serif; --text: "Source Serif 4", "Source Serif Pro", Charter, "Iowan Old Style", Georgia, serif; --r: 3px; }
+  html:not([lang=lzh]) body { font-family: var(--text); font-size: 1.1rem; line-height: 1.64; font-optical-sizing: auto; font-variant-numeric: lining-nums; text-rendering: optimizeLegibility; }
+  html:not([lang=lzh]) .th-dark, html:not([lang=lzh]) .page-travel { font-weight: 410; }   /* light text on dark reads thinner */
+  ::selection { background: color-mix(in srgb, var(--th-accent, var(--gold)) 78%, transparent); color: var(--th-night, #060c1c); }
+  h1, h2, h3, h4 { text-wrap: balance; }
+  .post-content p, .post-content li { text-wrap: pretty; }
+
+  /* header: name on the left, tabs and the language switch together on the right edge of the column */
+  .site-header .wrapper::after, .site-footer .wrapper::after { content: none; }
+  .site-header .site-nav { margin-left: auto; }
+  html:not([lang=lzh]) .site-title { font-family: var(--display); font-weight: 600; font-size: 27px; letter-spacing: .005em; }
+  .site-title .zh { font-family: "Noto Serif SC", "Songti SC", serif; font-weight: 400; font-size: .68em; margin-left: .5em; opacity: .82; }
+  html[lang=lzh] .site-title .zh { font-family: var(--display); font-size: .8em; }
+  .site-nav .menu { gap: 22px; font-size: 13px; letter-spacing: .09em; }
+  .site-nav .menu > li { border-bottom-width: 2px; padding: 3px 0 1px; }
+  .lang-switch { margin-left: 14px; border-radius: var(--r); }
+  .sub-menu { border-width: 1px; border-radius: 0 0 var(--r) var(--r); letter-spacing: .01em; }
+
+  /* reading measure: prose stops near 75 characters; figures, lists of works and grids keep the full column */
+  .post-content :is(p, ul:not([class]), ol:not([class]), .support, .reflist) { max-width: 43rem; }
+  .post-content :is(.topic, .sw, .focus-card, .misc-card, .zishu, .cv-row, .tv-card, .tv-notes) p { max-width: none; }
+  .post-content .sw p { max-width: 41rem; }
+
+  /* headings */
+  html:not([lang=lzh]) .th-full .post-content h2 { font-family: var(--display); font-size: 36px; line-height: 1.14; letter-spacing: .003em; margin: 56px 0 18px; padding-top: 22px; }
+  html:not([lang=lzh]) .th-full .post-content h2:first-child { margin-top: 0; padding-top: 0; }
+  html:not([lang=lzh]) .post-content h3 { font-family: var(--display); font-weight: 600; font-size: 29px; line-height: 1.18; margin: 44px 0 12px; }
+  html:not([lang=lzh]) .post-content h4 { font-family: var(--text); font-size: 1.1rem; font-weight: 600; font-style: italic; letter-spacing: 0; margin: 28px 0 8px; }
+  html:not([lang=lzh]) .post-content h4.links { font-family: var(--nav); font-style: normal; font-size: 14.5px; font-weight: 600; letter-spacing: .02em; margin: 0 0 20px; }
+  html:not([lang=lzh]) .about-side h4 { font-family: var(--nav); font-style: normal; font-size: 12px; letter-spacing: .12em; margin: 0 0 8px; }
+  html:not([lang=lzh]) .focus-card h3 { font-size: 24px !important; line-height: 1.15; margin: 0 0 5px !important; }
+  html:not([lang=lzh]) .sw h3 { font-size: 27px !important; }
+  html:not([lang=lzh]) .misc-card h3 { font-size: 24px !important; line-height: 1.15; }
+  html:not([lang=lzh]) .topic h3 { font-size: 30px; }
+  html:not([lang=lzh]) .theme-lingtai .post-content :is(h2, h3) { font-family: var(--display); }
+  html:not([lang=lzh]) .theme-lingtai .post-content h2 { font-size: 36px; }
+  html:not([lang=lzh]) .theme-scienceide .post-content h2 { font-family: "B612 Mono", var(--mono); font-size: 24px; margin-top: 52px; padding-top: 14px; }
+  html:not([lang=lzh]) .theme-scienceide .post-content h3 { font-family: "B612 Mono", var(--mono); font-weight: 400; font-size: 19px; letter-spacing: -.01em; }
+  html:not([lang=lzh]) body .cv h2 { font-family: var(--nav) !important; font-size: 13px !important; margin: 38px 0 12px !important; padding-top: 11px !important; border-top-width: 1px !important; }
+  html:not([lang=lzh]) body .cv h3.cvsub { font-family: var(--text); font-style: italic; font-size: 1.04rem !important; font-weight: 600 !important; }
+  .post-content h3 .tag, .post-content h4 .tag { font-size: 10.5px; letter-spacing: .12em; vertical-align: 6px; border-radius: 2px; }
+
+  /* links inside prose carry a hairline, so they read as links without the gold doing all the work */
+  .post-content :is(p, li, dd) a:not(.btn, .more, .focus-card, .misc-card, .lightbox-trigger) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; text-decoration-color: color-mix(in srgb, currentColor 42%, transparent); }
+  .post-content :is(p, li, dd) a:not(.btn, .more, .focus-card, .misc-card, .lightbox-trigger):hover { text-decoration-color: currentColor; }
+  .linkrow a::before { content: none; }
+  .linkrow { gap: 4px 20px; font-size: 13.5px; }
+  .more { font-size: 13.5px; letter-spacing: .03em; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .32em; text-decoration-color: color-mix(in srgb, currentColor 42%, transparent); }
+  .more::after { content: none; }
+  .more:hover { text-decoration-color: currentColor; }
+
+  /* controls, labels and captions stay in the sans */
+  .wp-caption dd, .afl figcaption, figcaption, .tv-note, .tv-page table, .tv-key, .tv-scale, .site-footer, .zishu-en .src, .ale-tip, .tv-tip, .tv-3d-ui, .tv-hint, .pub-filter input { font-family: var(--sans); font-weight: 400; }
+  .wp-caption dd, .afl figcaption { font-size: .84rem; line-height: 1.5; padding: 11px 16px 13px; }
+  .kicker, .sw .role, .misc-card .k { font-size: 11.5px; letter-spacing: .12em; }
+
+  /* one corner radius for plates; only chips and filters stay round */
+  .focus-card, .misc-card, .zishu, .afl, .pub-filter, .pub-filter input, .sw .sw-thumb, .topic .media, .stat, .btn, .explorer-frame, .panel-dark, .ale-map, .th-full .wp-caption { border-radius: var(--r); }
+  .panel-dark, .ale-map, .explorer-frame { border-radius: var(--r) var(--r) 0 0; }
+  .btn { font-size: 13.5px; letter-spacing: .04em; padding: 9px 18px; }
+  .hero-tags a { font-size: 13px; letter-spacing: .04em; padding: 6px 14px; }
+  .hero-tags { margin-top: 26px; } .hero-btns { margin-top: 14px; }
+
+  /* About */
+  .about-side { font-size: .93rem; line-height: 1.5; padding-left: 28px; }
+  .about-side li { margin-bottom: 6px; }
+  .about-side ul { margin-bottom: 26px; }
+  .about-side b { font-weight: 600; font-variant-numeric: tabular-nums lining-nums; color: var(--th-accent, inherit); margin-right: .2em; }
+  .focus-card .body { padding: 14px 16px 16px; }
+  .focus-card p { font-size: .92rem; line-height: 1.48; }
+  .focus-card, .focus-card:hover { transform: none; }
+  .news li { grid-template-columns: 5.4rem minmax(0, 1fr); gap: 16px; padding: 9px 0; border-bottom-style: solid; font-size: 1rem; }
+  .news time { font-family: inherit; font-size: .9rem; font-variant-numeric: tabular-nums lining-nums; padding-top: 1px; }
+  .zishu-en p { font-size: 1.2rem; line-height: 1.55; }
+  .zishu-en .k { text-transform: none; letter-spacing: .02em; font-style: italic; font-size: 1.05rem; }
+
+  /* lists of works: figures in the text face, not the mono */
+  .pubs li { padding: 12px 10px 12px 3.1rem; border-radius: 0; }
+  .pubs li::before { font-family: inherit; font-size: .86rem; top: 14px; font-variant-numeric: tabular-nums lining-nums; }
+  .pubs .yr { font-family: inherit; font-size: .9rem; font-variant-numeric: tabular-nums lining-nums; margin-right: 8px; }
+  .pubs .ti { font-size: 1.04rem; }
+  .pubs .au { font-size: .95rem; }
+  .pubs .ve { font-size: .92rem; }
+  .pf-count { font-family: var(--nav); font-size: 12.5px; letter-spacing: .04em; }
+
+  /* topic overview, software rows */
+  .topic { gap: 36px; padding: 34px 0; }
+  .topic .media, .topic .media:hover { transform: none; }
+  .topic p { margin-bottom: 12px; }
+  .sw { gap: 26px; padding: 26px 0; }
+  .misc-card { padding: 18px 20px 20px; border-top-width: 2px; }
+  .misc-card:hover, .stat:hover { transform: none; }
+  .misc-card p { font-size: .95rem; line-height: 1.5; }
+
+  /* CV */
+  .cv-row { padding: 6px 0; gap: 22px; }
+  .cv-row .when { font-size: 13px; letter-spacing: .02em; padding-top: 4px; font-variant-numeric: tabular-nums lining-nums; }
+  .cv-row .what { font-size: 1rem; }
+  .cv-toc a { letter-spacing: .08em; font-size: 11.5px; }
+
+  /* footer */
+  .site-footer { padding: 26px 0 38px; font-size: .82rem; letter-spacing: .01em; }
+}
+@media screen and (min-width: 821px) { .about-grid { gap: 48px; grid-template-columns: minmax(0, 1fr) 250px; } }
+@media screen and (max-width: 720px) {
+  html:not([lang=lzh]) body { font-size: 1.06rem; }
+  .th-full .hero { min-height: min(58vh, 500px); }
+  .theme-about.th-full .hero { min-height: min(74vh, 640px); }
+  html:not([lang=lzh]) .th-full .post-content h2 { font-size: 30px; margin-top: 44px; }
+  html:not([lang=lzh]) .post-content h3, html:not([lang=lzh]) .topic h3 { font-size: 26px; }
+  .site-nav .menu { gap: 0; }
+}
+/* print must not catch the hero entrance mid-flight (it printed the CV's name block blank or blurred, depending on timing) */
+@media print { .hero-inner > *, .hero .post-title, .hero .post-title .gilt { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; } }
+@media print { .hero .lede, .hero .crumbs, .hero .lede a { text-shadow: none !important; } }
