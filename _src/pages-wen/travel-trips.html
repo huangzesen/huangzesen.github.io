@@ -1,0 +1,51 @@
+<!--meta {"title": "驱车游记 · 黄泽森", "description": "自2019年以来驱车之游二十有九，逐日列之：以照片所记之地，连为道路。", "path": "/wen/travel/trips/", "nav": "travel", "scripts": ["/js/d3.v7.9.0.min.js", "/js/trips.js"]} -->
+<div class="post">
+  <header class="post-header">
+    <p class="crumbs"><a href="/wen/travel/">行迹</a> › 驱车游记</p>
+    <h1 class="post-title">驱车游记</h1>
+    <p class="lede">自<b data-trip="first">—</b>年以来，凡<b data-trip="count">—</b>游，行约<b data-trip="miles">—</b>英里，皆据照片所记之地复原之。</p>
+  </header>
+
+  <article class="post-content">
+    <div class="tv-page trips">
+      <div class="stats">
+        <div class="stat"><b data-trip="count">—</b><span>游</span></div>
+        <div class="stat"><b data-trip="days">—</b><span>有照之日</span></div>
+        <div class="stat"><b data-trip="miles">—</b><span>常道里程（英里）</span></div>
+        <div class="stat"><b data-trip="media">—</b><span>照片与影片之入图者</span></div>
+      </div>
+
+      <div class="trips-grid">
+        <section class="tv-card trips-mapcard" id="map">
+          <div class="tv-bar">
+            <div>
+              <h2 class="trips-now" aria-live="polite">诸游</h2>
+              <p class="tv-note trips-sub">择一游于右，或点图中之路。拖之可移，滚轮或两指可缩放。</p>
+            </div>
+            <div class="tv-controls"><button type="button" class="trips-all" hidden>诸游</button></div>
+          </div>
+          <div class="trips-stage">
+            <canvas class="trips-canvas" role="img" aria-label="本页所列诸游之图"></canvas>
+            <div class="tv-tip trips-tip" hidden></div>
+            <p class="trips-load">图方载入……</p>
+          </div>
+          <div class="trips-days" role="group" aria-label="游之某日" hidden></div>
+          <p class="tv-note trips-places" hidden></p>
+        </section>
+
+        <section class="tv-card trips-listcard" id="list">
+          <h2>诸游</h2>
+          <p class="tv-note">新者居前。日数者，有记地之照之日也。</p>
+          <div class="trips-list"></div>
+        </section>
+      </div>
+
+      <section class="tv-notes" id="notes">
+        <p class="tv-note">图中之路，非行车所录之迹也。或为行前所存之计划，或为照片诸地之间寻常之车道，故可见一游之所至，不可见其每一转折。里程循此线量之。</p>
+        <p class="tv-note">驻足之处，乃照片之聚，径约一公里，以城镇或名胜名之。洛杉矶市中心<span data-trip="homekm">35</span>公里之内，一概不绘：诸路至此圆而止，以直线连于市中心。照片之说明、确切之位置及宿处，皆不录。</p>
+        <p class="tv-note">一日之游，车程逾一百英里者乃录。埃及一游亦在其中，其线为所存之计划，非车行也。日期从相机所记，未校时区。</p>
+        <p class="tv-note">照片诸地间之路，出自 <a href="https://project-osrm.org/">OSRM</a>，据 © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> 贡献者之数据。陆地与疆界出自 <a href="https://www.naturalearthdata.com/">Natural Earth</a> 与 <a href="https://www.geoboundaries.org/">geoBoundaries</a>。</p>
+      </section>
+    </div>
+  </article>
+</div>

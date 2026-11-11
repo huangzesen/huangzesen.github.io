@@ -28,7 +28,10 @@ NAV = [
     ("publications", "Publications", "/publications/", []),
     ("cv", "CV", "/cv/", []),
     ("projects", "Projects", "/projects/", []),
-    ("travel", "Travel", "/travel/", []),
+    ("travel", "Travel", "/travel/", [
+        ("Where I've been", "/travel/"),
+        ("Road trips", "/travel/trips/"),
+    ]),
 ]
 
 # the 文言 site under /wen/ (Zesen, 2026-11-01: a 文言 version, no modern-Chinese one); pages in _src/pages-wen/
@@ -44,7 +47,10 @@ NAV_WEN = [
     ("publications", "著述", "/wen/publications/", []),
     ("cv", "履历", "/wen/cv/", []),
     ("projects", "器用杂录", "/wen/projects/", []),
-    ("travel", "行迹", "/wen/travel/", []),
+    ("travel", "行迹", "/wen/travel/", [
+        ("行迹", "/wen/travel/"),
+        ("驱车游记", "/wen/travel/trips/"),
+    ]),
 ]
 
 # per-page look (Zesen, 2026-11-02: "add fancy themes to other pages", then "full screen rendering like travel, no white spaces"):
@@ -61,6 +67,7 @@ THEMES = {
     "/cv/": ("cv", "th-full th-dark"),
     "/projects/": ("projects", "th-full th-dark"),
     "/travel/": ("travel", ""),
+    "/travel/trips/": ("travel", "page-trips"),
 }
 
 # data figures with a dark version (_src/make_dark_figures.py): on th-dark pages the screen shows it, print and enlarge the original

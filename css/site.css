@@ -1029,3 +1029,58 @@ html[lang=lzh] .tv-3d-card h2 { font-family: "Noto Serif SC", "Songti SC", serif
 /* print must not catch the hero entrance mid-flight (it printed the CV's name block blank or blurred, depending on timing) */
 @media print { .hero-inner > *, .hero .post-title, .hero .post-title .gilt { animation: none !important; opacity: 1 !important; filter: none !important; transform: none !important; } }
 @media print { .hero .lede, .hero .crumbs, .hero .lede a { text-shadow: none !important; } }
+
+/* ---------- Road trips (/travel/trips/, js/trips.js): the Travel page's night sky and atlas plates, one map and one list ---------- */
+@media screen {
+  .page-trips .wrapper { max-width: 1320px; }
+  .page-trips .hero { min-height: 0; display: block; }
+  .page-trips .hero-inner { padding-top: 74px; padding-bottom: 34px; }
+  .page-trips .post-title { font-size: clamp(52px, 6.4vw, 92px); max-width: none; }
+  .page-trips .hero .lede { max-width: 34rem; margin-top: 14px; }
+  .page-trips .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .tv-more { margin: 14px 0 0; pointer-events: auto; font-family: var(--nav); font-size: 13.5px; font-weight: 600; letter-spacing: .03em; }
+  .tv-more a { color: var(--tv-gilt); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .3em; text-decoration-color: rgba(226,198,130,.5); text-shadow: 0 0 10px #060c1c; }
+  .tv-more a:hover { color: var(--tv-pale); text-decoration-color: currentColor; }
+  .trips-grid { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(300px, 1fr); gap: 26px; align-items: start; min-width: 0; }
+  .trips-mapcard { position: sticky; top: 14px; }
+  .trips-stage { position: relative; height: min(66vh, 640px); min-height: 340px; background: rgba(4,9,22,.6); overflow: hidden; }
+  .trips-canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+  .trips-canvas:active { cursor: grabbing; }
+  .trips-load { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-family: var(--sans); font-size: .9rem; pointer-events: none; }
+  .trips-ready .trips-load { display: none; }
+  .trips-now { min-height: 1.12em; }
+  .trips-all, .trips-days button { font-family: var(--nav); font-size: 12.5px; font-weight: 600; letter-spacing: .03em; color: var(--tv-parchment); background: transparent; border: 1px solid var(--rule); padding: 5px 11px; cursor: pointer; border-radius: 999px; }
+  .trips-all { border-radius: 2px; white-space: nowrap; }
+  .trips-all:hover, .trips-days button:hover { border-color: var(--tv-gilt); color: var(--tv-pale); }
+  .trips-days { display: flex; flex-wrap: wrap; gap: 6px; }
+  .trips-days button[aria-pressed=true] { background: var(--tv-gilt); border-color: var(--tv-gilt); color: var(--tv-night); }
+  .trips-places { min-height: 2.9em; }
+  .trips-list { display: grid; gap: 2px; max-height: none; }
+  .post-content .trips-list h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500; font-size: 25px; line-height: 1; color: var(--tv-gilt); margin: 18px 0 6px; padding-bottom: 7px; border-bottom: 1px solid var(--rule); font-variant-numeric: lining-nums; }
+  .post-content .trips-list h3:first-child { margin-top: 4px; }
+  .trips-year { display: grid; }
+  .trip { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; column-gap: 12px; row-gap: 1px; align-items: baseline; text-align: left; font: inherit; color: var(--ink); background: transparent; border: 0; border-left: 2px solid transparent; border-bottom: 1px solid rgba(226,198,130,.12); padding: 9px 8px 9px 10px; cursor: pointer; }
+  .trip:hover { background: rgba(226,198,130,.07); }
+  .trip[aria-pressed=true] { background: rgba(226,198,130,.12); border-left-color: var(--tv-gilt); }
+  .trip-title { grid-column: 1 / -1; font-size: 1rem; line-height: 1.3; color: var(--tv-parchment); }
+  .trip[aria-pressed=true] .trip-title { color: var(--tv-pale); }
+  .trip-when, .trip-num { font-family: var(--sans); font-size: .78rem; color: var(--tv-ash); font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+  .trip-num { text-align: right; }
+  .trips :focus-visible { outline: 2px solid var(--tv-gilt); outline-offset: 2px; }
+  html[lang=lzh] .trip-when, html[lang=lzh] .trip-num, html[lang=lzh] .trips-all, html[lang=lzh] .trips-days button { font-family: "Noto Serif SC", "Songti SC", serif; letter-spacing: .04em; }
+}
+@media screen and (max-width: 900px) {
+  .trips-grid { grid-template-columns: 1fr; }
+  .trips-mapcard { position: static; }
+  .trips-stage { height: 58vh; }
+  .page-trips .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-trips .stat:nth-child(3n + 1) { border-left: 1px solid var(--rule); }
+  .page-trips .stat:nth-child(2n + 1) { border-left: 0; }
+  .page-trips .stat:nth-child(n + 3) { border-top: 1px solid var(--rule); }
+  .page-trips .stat:nth-child(n + 4) { border-top: 1px solid var(--rule); }
+  .page-trips .hero-inner { padding-top: 40px; padding-bottom: 24px; }
+  .trip { grid-template-columns: minmax(0, 1fr) auto auto; }
+  .trip-when { grid-column: 1 / -1; }
+  .trip-num:first-of-type { text-align: left; }
+}
+@media print { .trips-stage, .trips-days, .trips-all { display: none; } }

@@ -1,0 +1,51 @@
+<!--meta {"title": "Road Trips · Zesen Huang", "description": "Twenty-nine road trips since 2019, day by day: the roads between the places where my photos were taken.", "path": "/travel/trips/", "nav": "travel", "scripts": ["/js/d3.v7.9.0.min.js", "/js/trips.js"]} -->
+<div class="post">
+  <header class="post-header">
+    <p class="crumbs"><a href="/travel/">Travel</a> › Road trips</p>
+    <h1 class="post-title">Road Trips</h1>
+    <p class="lede"><b data-trip="count">—</b> trips since <b data-trip="first">—</b>, about <b data-trip="miles">—</b> miles of road, put back together from where my photos were taken.</p>
+  </header>
+
+  <article class="post-content">
+    <div class="tv-page trips">
+      <div class="stats">
+        <div class="stat"><b data-trip="count">—</b><span>Trips</span></div>
+        <div class="stat"><b data-trip="days">—</b><span>Days with photos</span></div>
+        <div class="stat"><b data-trip="miles">—</b><span>Miles of typical road route</span></div>
+        <div class="stat"><b data-trip="media">—</b><span>Photos and videos placed</span></div>
+      </div>
+
+      <div class="trips-grid">
+        <section class="tv-card trips-mapcard" id="map">
+          <div class="tv-bar">
+            <div>
+              <h2 class="trips-now" aria-live="polite">All trips</h2>
+              <p class="tv-note trips-sub">Pick a trip from the list, or click a road. Drag to pan, and scroll or pinch to zoom.</p>
+            </div>
+            <div class="tv-controls"><button type="button" class="trips-all" hidden>All trips</button></div>
+          </div>
+          <div class="trips-stage">
+            <canvas class="trips-canvas" role="img" aria-label="Map of the road trips listed on this page"></canvas>
+            <div class="tv-tip trips-tip" hidden></div>
+            <p class="trips-load">Loading the map…</p>
+          </div>
+          <div class="trips-days" role="group" aria-label="Day of the trip" hidden></div>
+          <p class="tv-note trips-places" hidden></p>
+        </section>
+
+        <section class="tv-card trips-listcard" id="list">
+          <h2>The trips</h2>
+          <p class="tv-note">Newest first. Days count the days with a located photo.</p>
+          <div class="trips-list"></div>
+        </section>
+      </div>
+
+      <section class="tv-notes" id="notes">
+        <p class="tv-note">The roads are not recorded tracks. Each line is either a plan I saved before the trip or the usual driving route between the places where photos were taken, so it shows where a trip went, not every turn. Miles are measured along those lines.</p>
+        <p class="tv-note">Stops are groups of photos about a kilometre across, named by town or sight. Nothing within <span data-trip="homekm">35</span> km of central Los Angeles is drawn: every road is cut at that circle and joined to the city centre by a straight line. Photo captions, exact photo positions and lodging are left out.</p>
+        <p class="tv-note">Day trips are included when the drive is at least 100 miles. One trip to Egypt is here too; its line is the saved plan, not a drive. Dates are the camera's, without time-zone correction.</p>
+        <p class="tv-note">Routes between photo stops come from <a href="https://project-osrm.org/">OSRM</a> on © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' data. Land and borders are from <a href="https://www.naturalearthdata.com/">Natural Earth</a> and <a href="https://www.geoboundaries.org/">geoBoundaries</a>.</p>
+      </section>
+    </div>
+  </article>
+</div>
