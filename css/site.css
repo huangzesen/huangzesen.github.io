@@ -1117,13 +1117,13 @@ html[lang=lzh] .tv-3d-card h2 { font-family: "Noto Serif SC", "Songti SC", serif
 }
 @media screen and (max-width: 760px) {
   .tv-3d-open-trips { margin-left: 0; }
-  .tv-3d-modes { top: auto; bottom: 150px; left: 12px; }
+  .tv-3d-modes { top: 56px; left: 12px; }
+  .tv-3d-tripmode .tv-3d-help { visibility: hidden; max-height: 2.8em; overflow: hidden; }
   .tv-3d-tripmode .tv-3d-layers { display: none; }
   .tv-3d-trips { display: none; }
   .tv-3d-trip { bottom: 12px; width: calc(100% - 24px); flex-wrap: wrap; gap: 6px 8px; }
   .tv-3d-tinfo { order: -1; flex-basis: 100%; }
   .tv-3d-tname { font-size: 1.12rem; white-space: normal; }
   .tv-3d-tsub { white-space: normal; }
-  .tv-3d-tripmode .tv-3d-modes { bottom: 128px; }
 }
 @media print { .trips-globe { display: none; } }

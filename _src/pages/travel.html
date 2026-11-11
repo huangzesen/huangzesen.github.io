@@ -146,7 +146,7 @@
       </div>
 
       <section class="tv-notes" id="notes">
-        <p class="tv-note tv-sky-note">The globe behind this page is a drawing. Its lights are the 0.5° blocks from the map above. Its magnetic field, aurora and solar wind are a sketch, not a simulation, and none of those lines is a route. Only the trip mode of the 3D view draws roads: the planned or typical driving routes of the <a href="/travel/trips/">road trips</a>, not recorded tracks.</p>
+        <p class="tv-note tv-sky-note">The globe behind this page is a drawing. Its lights are the 0.5° blocks from the map above. Its magnetic field, aurora and solar wind are a sketch, not a simulation, and none of those lines is a route. The 3D view draws the same boundary lines as the maps above (second-level lines appear as you zoom in, and not on phones). Only its trip mode draws roads: the planned or typical driving routes of the <a href="/travel/trips/">road trips</a>, not recorded tracks.</p>
         <p class="tv-note">What counts as a second-level region follows each boundary map, so sizes vary. Italy and Greece are mapped at a broader level than provinces, and Taiwan at a finer level. Hong Kong, Macao and Vatican City have no boundary map, so they use the place names in Photos. Points just outside a coastline go to the nearest region, and points near a border can land in the neighboring one.</p>
         <p class="tv-note">Country, first-level and second-level lines for countries with a boundary map all come from one simplified shape set, so they meet exactly. Canada, Australia and a few other countries with very intricate coasts are simplified more. Boundary lines hide briefly while you pan or zoom. Lines elsewhere come from Natural Earth and can sit slightly apart where the two sources meet.</p>
         <p class="tv-note">Dashed outlines follow Natural Earth's list of disputed areas, including its choices about what to list, such as Taiwan, Israel and Belize. Solid lines can run underneath a dashed outline. None of this is a statement on who controls or should control any territory.</p>
@@ -167,6 +167,7 @@
     <fieldset class="tv-3d-layers">
       <legend>Layers</legend>
       <label><input type="checkbox" data-layer="pillars" checked> Columns of light</label>
+      <label><input type="checkbox" data-layer="adm" checked> Administrative regions</label>
       <label><input type="checkbox" data-layer="lines" checked> Magnetic field</label>
       <label><input type="checkbox" data-layer="wind" checked> Solar wind</label>
       <label><input type="checkbox" data-layer="aurora" checked> Aurora</label>

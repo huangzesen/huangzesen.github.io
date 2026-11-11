@@ -352,6 +352,27 @@
       gl_PointSize=v_a>0.?uPx*(7.+17.*a.w):0.;
     }`;
 
+  /* administrative lines in the 3D view: countries, first level and (zoomed in) second level, as on the page's maps */
+  const ADM_VS = HEAD + CORNERS + `
+    layout(location=0) in vec3 a0; layout(location=1) in vec3 a1;
+    uniform mat3 uE; uniform vec2 uC,uRes; uniform float uR,uPx,uDim,uOn,uW;
+    out float v_x; out float v_a;
+    void main(){
+      vec2 c=CO[gl_VertexID];
+      vec3 p0=uE*a0*1.0006,p1=uE*a1*1.0006;
+      vec2 s0=uC+p0.xy*uR,s1=uC+p1.xy*uR,d=s1-s0;
+      float l=length(d);
+      d=l>1e-4?d/l:vec2(1,0);
+      float w=uW*uPx+.45;
+      vec2 sp=mix(s0-d*w*.3,s1+d*w*.3,c.x)+vec2(-d.y,d.x)*c.y*w;
+      gl_Position=vec4(sp/uRes*2.-1.,0,1);
+      v_x=c.y;
+      v_a=smoothstep(0.,.08,mix(p0.z,p1.z,c.x))*uOn*uDim;
+    }`;
+  const ADM_FS = HEAD + `
+    uniform vec3 uCol; in float v_x; in float v_a; out vec4 o;
+    void main(){float a=exp(-v_x*v_x*2.4)*v_a;o=vec4(uCol*a,a*.85);}`;
+
   const compile = (type, src) => {
     const s = gl.createShader(type);
     gl.shaderSource(s, src);
@@ -375,7 +396,7 @@
       sky: program(FULL_VS, SKY_FS), blit: program(FULL_VS, BLIT_FS), twinkle: program(TWINKLE_VS, TWINKLE_FS),
       earth: program(EARTH_VS, EARTH_FS), place: program(PLACE_VS, PLACE_FS), ring: program(RING_VS, RING_FS),
       line: program(LINE_VS, LINE_FS), wind: program(WIND_VS, WIND_FS), pillar: program(PILLAR_VS, PILLAR_FS),
-      route: program(ROUTE_VS, ROUTE_FS), stop: program(STOP_VS, PLACE_FS),
+      route: program(ROUTE_VS, ROUTE_FS), stop: program(STOP_VS, PLACE_FS), adm: program(ADM_VS, ADM_FS),
     };
   } catch (err) {
     console.error('travel sky: shader failed', err);
@@ -401,6 +422,8 @@
     gl.bindVertexArray(null);
     return vao;
   };
+
+  const later = window.requestIdleCallback ? (fn) => requestIdleCallback(fn, {timeout: 1500}) : (fn) => setTimeout(fn, 60);
 
   /* ---------- geometry ---------- */
   const rnd = (() => {
@@ -459,8 +482,9 @@
   let E = new Float32Array(9), F = new Float32Array(9), dipView = [0, 0, 1];
   let mode3d = false, k3 = 0, zoom = 1, zoomGoal = 1, lastTouch = 0;
   const vel = {x: 0, y: 0};
-  const layerGoal = {pillars: 0, lines: 1, wind: 1, aurora: 1, day: 0}, layer = {...layerGoal};
-  const choice = {pillars: 1, lines: 1, wind: 1, aurora: 1, day: 0};
+  const layerGoal = {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0}, layer = {...layerGoal};
+  const choice = {pillars: 1, adm: 1, lines: 1, wind: 1, aurora: 1, day: 0};
+  let adm = null, admLoading = false;
   const updateMatrices = () => {
     const l = lon + ptr.x * 0.09 * (1 - k3), p = pitch + ptr.y * 0.05 * (1 - k3), roll = ROLL * (1 - k3);
     const cl = Math.cos(l), sl = Math.sin(l), cp = Math.cos(p), sp = Math.sin(p), cr = Math.cos(roll), sr = Math.sin(roll);
@@ -630,6 +654,18 @@
     gl.bindTexture(gl.TEXTURE_2D, landTex);
     gl.bindVertexArray(empty);
     if (landTex) gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    if (adm && layer.adm > 0.002) {
+      common(P.adm);
+      const second = Math.min(1, Math.max(0, (zoom - 2.2) / 1.6));
+      for (const [l, col, w, a] of [[adm[2], [0.62, 0.74, 0.98], 0.55, 0.5 * second], [adm[1], [0.74, 0.84, 1], 0.8, 0.8], [adm[0], [1, 0.953, 0.784], 0.8, 0.72]]) {
+        if (!l || a < 0.004) continue;
+        gl.uniform3fv(P.adm.u('uCol'), col);
+        gl.uniform1f(P.adm.u('uW'), w);
+        gl.uniform1f(P.adm.u('uOn'), layer.adm * a);
+        gl.bindVertexArray(l.vao);
+        gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, l.n);
+      }
+    }
 
     gl.blendFunc(gl.ONE, gl.ONE);
     if (placeVao && igniteStart >= 0) {
@@ -727,7 +763,7 @@
     lon -= ((y - lastScroll) / doc) * 5.2;
     lastScroll = y;
     k3 += ((mode3d ? 1 : 0) - k3) * (still ? 1 : 1 - Math.exp(-dt * 4.5));
-    zoom += (zoomGoal - zoom) * (still ? 1 : 1 - Math.exp(-dt * 7));
+    zoom += (zoomGoal - zoom) * (still ? 1 : 1 - Math.exp(-dt * (focus && tripMode ? 2.2 : 7))); // a flight to a trip zooms no faster than it turns
     for (const key in layer) layer[key] += (layerGoal[key] - layer[key]) * (still ? 1 : 1 - Math.exp(-dt * 6));
     tripK += ((tripMode ? 1 : 0) - tripK) * (still ? 1 : 1 - Math.exp(-dt * 5));
     if (tripPlay) stepTrip(now, dt);
@@ -1185,6 +1221,35 @@
     $('.tv-3d-tip').hidden = true;
   }, {passive: false});
 
+  /* ---------- administrative lines, built when the 3D view first opens ---------- */
+  const loadAdm = () => {
+    if (adm || admLoading) return;
+    admLoading = true;
+    Promise.all([window.tvRows('boundaries'), phone ? [] : window.tvRows('boundaries2')]).then(([b1, b2]) => {
+      const build = (lines, gap) => {
+        const out = [];
+        for (const line of lines) {
+          let prev = null;
+          line.forEach(([a, b], i) => {
+            const v = earthVec(b, a);
+            if (!prev) {
+              prev = v;
+            } else if (i === line.length - 1 || dot(prev, v) < gap) { // skip points closer than about 2 km
+              out.push(prev[0], prev[1], prev[2], v[0], v[1], v[2]);
+              prev = v;
+            }
+          });
+        }
+        return {vao: buffer(new Float32Array(out), [3, 3], 1), n: out.length / 6};
+      };
+      const level = (n) => b1.filter((r) => Number(r.level) === n).flatMap((r) => r.rings);
+      later(() => {
+        adm = [build(level(0), Math.cos(0.00032)), build(level(1), Math.cos(0.00032)), b2.length ? build(b2.flatMap((r) => r.rings), Math.cos(0.0004)) : null];
+        if (still) render();
+      });
+    }).catch((err) => console.error('travel sky: boundaries failed', err));
+  };
+
   /* ---------- trip mode: road trips on the globe ---------- */
   const lonLat = (v) => [Math.atan2(v[1], v[0]), Math.asin(Math.max(-1, Math.min(1, v[2])))];
   const project = (v) => {
@@ -1484,6 +1549,7 @@
     focus = null;
     focusPos = null;
     Object.assign(layerGoal, choice);
+    loadAdm();
     document.body.classList.add('tv-3d-fade');
     document.documentElement.classList.add('tv-3d-lock');
     const show = () => {
@@ -1512,7 +1578,7 @@
     pin(null);
     zoomGoal = 1;
     vel.x = vel.y = 0;
-    Object.assign(layerGoal, {pillars: 0, lines: 1, wind: 1, aurora: 1, day: 0});
+    Object.assign(layerGoal, {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0});
     ui.hidden = true;
     $('.tv-3d-tip').hidden = true;
     document.body.classList.remove('tv-3d', 'tv-3d-fade');
@@ -1612,7 +1678,6 @@
   place();
   updateMatrices();
 
-  const later = window.requestIdleCallback || ((fn) => setTimeout(fn, 60));
   Promise.all([window.tvRows('land'), window.tvRows('block_years')]).then(([land, blocks]) => {
     later(() => {
       uploadLand(land);
