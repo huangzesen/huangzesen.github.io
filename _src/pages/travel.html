@@ -5,6 +5,7 @@
     <p class="lede"><b data-draw="items">—</b> geotagged photos and videos from <b data-draw="firstYear">—</b> to <b data-draw="lastYear">—</b>. <b data-draw="topCountry">—</b> accounts for <b data-draw="topShare">—</b> of them.</p>
     <p class="tv-hint"><span class="tv-hint-move">Move your pointer to stir the magnetic field. </span>Click or tap the sky to send a wave along it.</p>
     <button type="button" class="tv-3d-open">Explore in 3D</button>
+    <button type="button" class="tv-3d-open tv-3d-open-trips" data-mode="trips">Road trips in 3D</button>
     <p class="tv-more"><a href="/travel/trips/">Road trips, day by day</a></p>
   </header>
 
@@ -145,7 +146,7 @@
       </div>
 
       <section class="tv-notes" id="notes">
-        <p class="tv-note tv-sky-note">The globe behind this page is a drawing. Its lights are the 0.5° blocks from the map above. Its magnetic field, aurora and solar wind are a sketch, not a simulation, and no line on it is a route.</p>
+        <p class="tv-note tv-sky-note">The globe behind this page is a drawing. Its lights are the 0.5° blocks from the map above. Its magnetic field, aurora and solar wind are a sketch, not a simulation, and none of those lines is a route. Only the trip mode of the 3D view draws roads: the planned or typical driving routes of the <a href="/travel/trips/">road trips</a>, not recorded tracks.</p>
         <p class="tv-note">What counts as a second-level region follows each boundary map, so sizes vary. Italy and Greece are mapped at a broader level than provinces, and Taiwan at a finer level. Hong Kong, Macao and Vatican City have no boundary map, so they use the place names in Photos. Points just outside a coastline go to the nearest region, and points near a border can land in the neighboring one.</p>
         <p class="tv-note">Country, first-level and second-level lines for countries with a boundary map all come from one simplified shape set, so they meet exactly. Canada, Australia and a few other countries with very intricate coasts are simplified more. Boundary lines hide briefly while you pan or zoom. Lines elsewhere come from Natural Earth and can sit slightly apart where the two sources meet.</p>
         <p class="tv-note">Dashed outlines follow Natural Earth's list of disputed areas, including its choices about what to list, such as Taiwan, Israel and Belize. Solid lines can run underneath a dashed outline. None of this is a statement on who controls or should control any territory.</p>
@@ -158,6 +159,10 @@
     <div class="tv-3d-head">
       <p class="tv-3d-help">Drag to turn the Earth. Scroll or pinch to zoom. Click a light to see its years.</p>
       <button type="button" class="tv-3d-close">Back to the page</button>
+    </div>
+    <div class="tv-3d-modes" role="group" aria-label="What the globe shows">
+      <button type="button" data-mode="places" aria-pressed="true">Places</button>
+      <button type="button" data-mode="trips" aria-pressed="false">Road trips</button>
     </div>
     <fieldset class="tv-3d-layers">
       <legend>Layers</legend>
@@ -173,6 +178,15 @@
       <output class="tv-3d-now">All years</output>
       <button type="button" class="tv-3d-all">All years</button>
     </div>
+    <div class="tv-3d-trip" hidden>
+      <button type="button" class="tv-3d-prev" aria-label="Previous trip">‹</button>
+      <button type="button" class="tv-3d-next" aria-label="Next trip">›</button>
+      <p class="tv-3d-tinfo" aria-live="polite"><strong class="tv-3d-tname">All trips</strong><span class="tv-3d-tsub"></span></p>
+      <button type="button" class="tv-3d-tplay" aria-pressed="false" disabled>Play the trip</button>
+      <button type="button" class="tv-3d-tall" disabled>All trips</button>
+    </div>
+    <nav class="tv-3d-trips" aria-label="Road trips" hidden></nav>
+    <div class="tv-3d-labels" aria-hidden="true"></div>
     <aside class="tv-3d-card" hidden aria-live="polite">
       <button type="button" class="tv-3d-card-x" aria-label="Close this place">×</button>
       <h2></h2>

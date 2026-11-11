@@ -176,6 +176,8 @@
     nowEl.textContent = t ? t.title : T.all;
     subEl.textContent = t ? T.sub(t) : T.pick;
     allBtn.hidden = !t;
+    const globe = root.querySelector('.trips-globe');
+    if (globe) globe.href = globe.getAttribute('href').split('#')[0] + (t ? '#trip-' + t.id : '#trips');
     listEl.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(!!t && b.dataset.id === t.id)));
     daysEl.hidden = placesEl.hidden = !t;
     if (t) {

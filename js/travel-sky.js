@@ -19,9 +19,15 @@
   const T = WEN ? {
     all: '诸年', year: (y) => y + '年', items: (n) => n + '件', days: (n) => n + '日', span: (a, b) => (a === b ? a + '年' : a + '年至' + b + '年'),
     at: (y, n) => y + '年：' + n + '件', play: '逐年观之', stop: '止',
+    tripHelp: '拖之以转地球，滚轮或两指以缩放。择一游，循路而行；点路可择，指灯火可见其地。', trips: '诸游', pickTrip: (n) => '凡' + n + '游。择其一，或点图中之路。', playTrip: '循路而行', near: (n) => '近' + n,
+    tripSub: (a, d, m) => a + '　' + d + '日　约' + m + '英里', media: (ph, v) => ph + '照' + (v ? '，' + v + '影' : ''),
+    date: (d) => Number(d.slice(0, 4)) + '年' + Number(d.slice(5, 7)) + '月' + Number(d.slice(8)) + '日',
   } : {
     all: 'All years', year: (y) => String(y), items: (n) => n + (n === '1' ? ' item' : ' items'), days: (n) => n + (n === '1' ? ' day' : ' days'),
     span: (a, b) => (a === b ? String(a) : a + ' to ' + b), at: (y, n) => y + ': ' + n + (n === '1' ? ' item' : ' items'), play: 'Play the years', stop: 'Stop',
+    tripHelp: 'Drag to turn the Earth. Scroll or pinch to zoom. Pick a trip and play it; click a road to choose it, hover a light for the place.', trips: 'All trips', pickTrip: (n) => n + ' trips. Pick one from the list, or click a road.', playTrip: 'Play the trip', near: (n) => 'Near ' + n,
+    tripSub: (a, d, m) => a + '. ' + d + (d === 1 ? ' day' : ' days') + ', about ' + m + ' miles.', media: (ph, v) => ph + (ph === 1 ? ' photo' : ' photos') + (v ? ', ' + v + (v === 1 ? ' video' : ' videos') : ''),
+    date: (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}),
   };
   document.body.classList.add('tv-sky-on');
   if (!reduce) document.body.classList.add('tv-sky-live');
@@ -310,6 +316,42 @@
       o=vec4(c*exp(-v_x*v_x*2.4)*pow(1.-v_t,1.25)*v_a*.95,0.);
     }`;
 
+  /* trip mode: the road trips of data/travel/trips.json, drawn on the ground as ribbons (planned or typical routes) */
+  const ROUTE_VS = HEAD + CORNERS + `
+    layout(location=0) in vec3 a0; layout(location=1) in vec3 a1; layout(location=2) in vec3 m;
+    uniform mat3 uE; uniform vec2 uC,uRes; uniform float uR,uPx,uDim,uSel,uProg,uOn;
+    out float v_x; out float v_a; out float v_b;
+    void main(){
+      vec2 c=CO[gl_VertexID];
+      vec3 p0=uE*a0*1.0012,p1=uE*a1*1.0012;
+      vec2 s0=uC+p0.xy*uR,s1=uC+p1.xy*uR,d=s1-s0;
+      float l=length(d);
+      d=l>1e-4?d/l:vec2(1,0);
+      float sel=uSel<0.?0.:(abs(m.x-uSel)<.5?1.:-1.);
+      float done=step(mix(m.y,m.z,c.x),uProg);
+      float bright=sel>.5?mix(.26,1.,done):(sel<-.5?.09:.34);
+      float w=(sel>.5?1.5+1.1*done:.8)*uPx+.5;
+      vec2 sp=mix(s0-d*w*.4,s1+d*w*.4,c.x)+vec2(-d.y,d.x)*c.y*w;
+      gl_Position=vec4(sp/uRes*2.-1.,0,1);
+      vec3 p=mix(p0,p1,c.x);
+      v_x=c.y; v_b=sel>.5?done:0.;
+      v_a=smoothstep(0.,.07,p.z)*bright*uOn*uDim;
+    }`;
+  const ROUTE_FS = HEAD + COLORS + `
+    in float v_x; in float v_a; in float v_b; out vec4 o;
+    void main(){o=vec4(mix(GILT,PALE,v_b)*exp(-v_x*v_x*2.6)*v_a,0.);}`;
+  const STOP_VS = HEAD + `
+    layout(location=0) in vec4 a; layout(location=1) in float tr;
+    uniform mat3 uE; uniform vec2 uC,uRes; uniform float uR,uPx,uDim,uSel,uOn;
+    out float v_a; out float v_h;
+    void main(){
+      vec3 p=uE*a.xyz;
+      gl_Position=vec4((uC+p.xy*uR)/uRes*2.-1.,0,1);
+      v_a=(abs(tr-uSel)<.5?1.:0.)*smoothstep(-.01,.09,p.z)*uOn*uDim*(.62+.38*a.w);
+      v_h=.7;
+      gl_PointSize=v_a>0.?uPx*(7.+17.*a.w):0.;
+    }`;
+
   const compile = (type, src) => {
     const s = gl.createShader(type);
     gl.shaderSource(s, src);
@@ -333,6 +375,7 @@
       sky: program(FULL_VS, SKY_FS), blit: program(FULL_VS, BLIT_FS), twinkle: program(TWINKLE_VS, TWINKLE_FS),
       earth: program(EARTH_VS, EARTH_FS), place: program(PLACE_VS, PLACE_FS), ring: program(RING_VS, RING_FS),
       line: program(LINE_VS, LINE_FS), wind: program(WIND_VS, WIND_FS), pillar: program(PILLAR_VS, PILLAR_FS),
+      route: program(ROUTE_VS, ROUTE_FS), stop: program(STOP_VS, PLACE_FS),
     };
   } catch (err) {
     console.error('travel sky: shader failed', err);
@@ -458,6 +501,7 @@
   const started = performance.now();
   let focus = null, focusPos = null, focusStart = 0;
   let skyTex = null, skyFbo = null;
+  let tripMode = false, tripK = 0, trips = null, tripSel = -1, tripProg = 2, tripPlay = null, routeVao = null, routeCount = 0, stopVao = null, stopCount = 0;
 
   const pulses = new Float32Array(32).fill(-100);
   for (let i = 0; i < 8; i++) pulses[i * 4 + 2] = 0;
@@ -590,6 +634,7 @@
     gl.blendFunc(gl.ONE, gl.ONE);
     if (placeVao && igniteStart >= 0) {
       common(P.place);
+      gl.uniform1f(P.place.u('uDim'), dim * (1 - 0.8 * tripK));
       gl.uniform1f(P.place.u('uIg'), ignite);
       gl.bindVertexArray(placeVao);
       gl.drawArrays(gl.POINTS, 0, placeCount);
@@ -600,6 +645,21 @@
       gl.uniform1f(P.pillar.u('uOn'), layer.pillars);
       gl.bindVertexArray(pillarVao);
       gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, placeCount);
+    }
+    if (routeVao && tripK > 0.002) {
+      common(P.route);
+      gl.uniform1f(P.route.u('uSel'), tripSel);
+      gl.uniform1f(P.route.u('uProg'), tripProg);
+      gl.uniform1f(P.route.u('uOn'), tripK);
+      gl.bindVertexArray(routeVao);
+      gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, routeCount);
+      if (tripSel >= 0) {
+        common(P.stop);
+        gl.uniform1f(P.stop.u('uSel'), tripSel);
+        gl.uniform1f(P.stop.u('uOn'), tripK);
+        gl.bindVertexArray(stopVao);
+        gl.drawArrays(gl.POINTS, 0, stopCount);
+      }
     }
     if (focusPos || ringPos) {
       common(P.ring);
@@ -623,6 +683,7 @@
       shown = true;
       canvas.classList.add('on');
     }
+    if (tripMode) placeLabels();
   };
 
   const wrap = (a) => Math.atan2(Math.sin(a), Math.cos(a));
@@ -668,6 +729,8 @@
     k3 += ((mode3d ? 1 : 0) - k3) * (still ? 1 : 1 - Math.exp(-dt * 4.5));
     zoom += (zoomGoal - zoom) * (still ? 1 : 1 - Math.exp(-dt * 7));
     for (const key in layer) layer[key] += (layerGoal[key] - layer[key]) * (still ? 1 : 1 - Math.exp(-dt * 6));
+    tripK += ((tripMode ? 1 : 0) - tripK) * (still ? 1 : 1 - Math.exp(-dt * 5));
+    if (tripPlay) stepTrip(now, dt);
     if (focus && time < focus.until) {
       lon += wrap(focus.lon - lon) * (1 - Math.exp(-dt * 3));
       pitch += (focus.pitch - pitch) * (1 - Math.exp(-dt * 3));
@@ -680,7 +743,7 @@
         const fade = Math.exp(-dt * 2.6);
         vel.x *= fade;
         vel.y *= fade;
-        if (!reduce && !pinned && !drag && zoomGoal < 1.6 && time - lastTouch > 6) lon -= SPIN * 0.6 * dt;
+        if (!reduce && !pinned && !drag && !tripMode && zoomGoal < 1.6 && time - lastTouch > 6) lon -= SPIN * 0.6 * dt;
       } else {
         if (!still) lon -= SPIN * dt;
         pitch += (PITCH - pitch) * (1 - Math.exp(-dt * 0.8));
@@ -1024,7 +1087,7 @@
     }
   };
   const zoomBy = (f) => {
-    zoomGoal = Math.max(0.6, Math.min(9, zoomGoal * f));
+    zoomGoal = Math.max(0.6, Math.min(tripMode ? 40 : 9, zoomGoal * f));
     lastTouch = time;
   };
 
@@ -1039,6 +1102,7 @@
       return;
     }
     drag = {x: e.clientX, y: e.clientY, sx: e.clientX, sy: e.clientY, t: performance.now(), moved: 0, last: performance.now()};
+    if (tripPlay) tripPlay.follow = false; // the reader's hand takes the camera; the trip keeps playing
     vel.x = vel.y = 0;
     focus = null;
     focusPos = null;
@@ -1073,6 +1137,10 @@
       }
       return;
     }
+    if (tripMode) {
+      if (e.pointerType !== 'touch') hoverTrip(e.clientX, e.clientY);
+      return;
+    }
     if (e.pointerType !== 'touch') showTip(pick(e.clientX, e.clientY), e.clientX, e.clientY);
   });
   const release = (e) => {
@@ -1086,6 +1154,13 @@
     if (now - d.last > 90 || reduce) vel.x = vel.y = 0;
     vel.x = Math.max(-3, Math.min(3, vel.x));
     vel.y = Math.max(-3, Math.min(3, vel.y));
+    if (tripMode) {
+      if (d.moved < 6 && now - d.t < 500 && e.type === 'pointerup') {
+        const hit = pickTrip(e.clientX, e.clientY);
+        if (hit && hit.trip !== tripSel) selectTrip(hit.trip);
+      }
+      return;
+    }
     if (d.moved < 6 && now - d.t < 500 && e.type === 'pointerup') {
       const c = pick(e.clientX, e.clientY);
       if (c) {
@@ -1109,6 +1184,293 @@
     zoomBy(Math.exp(-e.deltaY * (e.ctrlKey ? 0.01 : 0.0016)));
     $('.tv-3d-tip').hidden = true;
   }, {passive: false});
+
+  /* ---------- trip mode: road trips on the globe ---------- */
+  const lonLat = (v) => [Math.atan2(v[1], v[0]), Math.asin(Math.max(-1, Math.min(1, v[2])))];
+  const project = (v) => {
+    const s = R / dpr;
+    return [cx / dpr + (E[0] * v[0] + E[3] * v[1] + E[6] * v[2]) * s, H - cy / dpr - (E[1] * v[0] + E[4] * v[1] + E[7] * v[2]) * s, E[2] * v[0] + E[5] * v[1] + E[8] * v[2]];
+  };
+  const setupTrips = (data) => {
+    const segs = [], stops = [];
+    trips = data.trips.map((t, ti) => {
+      const pts = []; // every vertex of the trip in order: [unit vector, distance so far]
+      let len = 0;
+      const mark = [];
+      for (const line of t.routes) {
+        let prev = null;
+        for (const [a, b] of line) {
+          const v = earthVec(b, a);
+          if (prev) {
+            const ang = Math.acos(Math.max(-1, Math.min(1, dot(prev, v)))), n = Math.max(1, Math.ceil(ang / 0.012));
+            for (let k = 1; k <= n; k++) { // long legs follow the great circle
+              const q = n === 1 ? v : norm([prev[0] + (v[0] - prev[0]) * k / n, prev[1] + (v[1] - prev[1]) * k / n, prev[2] + (v[2] - prev[2]) * k / n]);
+              const last = pts[pts.length - 1];
+              len += Math.acos(Math.max(-1, Math.min(1, dot(last.v, q))));
+              pts.push({v: q, d: len});
+              mark.push(pts.length - 1);
+            }
+          } else {
+            pts.push({v, d: len});
+          }
+          prev = v;
+        }
+      }
+      for (const i of mark) segs.push(...pts[i - 1].v, ...pts[i].v, ti, pts[i - 1].d / (len || 1), pts[i].d / (len || 1));
+      pts.forEach((q) => { q.d /= len || 1; });
+      const top = Math.max(1, ...t.stops.map((s) => s.ph + s.v));
+      const st = t.stops.map((s) => ({...s, vec: earthVec(s.p[1], s.p[0]), w: Math.sqrt((s.ph + s.v) / top)}));
+      st.forEach((s) => stops.push(...s.vec, s.w, ti));
+      const all = pts.map((q) => q.v).concat(st.map((s) => s.vec));
+      const c = norm(all.reduce((a, v) => [a[0] + v[0], a[1] + v[1], a[2] + v[2]], [0, 0, 0]));
+      const radius = Math.max(0.006, ...all.map((v) => Math.acos(Math.max(-1, Math.min(1, dot(c, v))))));
+      const groups = new Map(); // labels: the busiest places, one per name
+      for (const s of st) {
+        const name = s.n.split(', ')[0];
+        if (!name) continue;
+        const g = groups.get(name) || {name, n: 0, best: s};
+        g.n += s.ph + s.v;
+        if (s.ph + s.v > g.best.ph + g.best.v) g.best = s;
+        groups.set(name, g);
+      }
+      const labels = [...groups.values()].sort((a, b) => b.n - a.n).slice(0, phone ? 5 : 9).map((g) => ({name: g.name, vec: g.best.vec}));
+      return {...t, pts, st, c, radius, labels};
+    });
+    routeCount = segs.length / 9;
+    routeVao = buffer(new Float32Array(segs), [3, 3, 3], 1);
+    stopCount = stops.length / 5;
+    stopVao = buffer(new Float32Array(stops), [4, 1], 0);
+    buildTripList();
+  };
+  const flyTo = (v, seconds, z) => {
+    const [l, p] = lonLat(v);
+    zoomGoal = z;
+    lastTouch = time;
+    vel.x = vel.y = 0;
+    if (still) {
+      lon = l;
+      pitch = p;
+      zoom = z;
+    } else {
+      focus = {lon: l, pitch: Math.max(-1.4, Math.min(1.4, p)), until: time + seconds};
+      focusPos = null;
+    }
+  };
+  const fitZoom = (t) => Math.max(1, Math.min(40, 0.6 / Math.sin(Math.min(1.2, t.radius))));
+  const tripRange = (t) => (t.start === t.end ? T.date(t.start) : WEN ? T.date(t.start) + '至' + T.date(t.end) : T.date(t.start) + ' to ' + T.date(t.end));
+  const labelBox = ui && $('.tv-3d-labels');
+  let labelEls = [];
+  const placeLabels = () => {
+    if (!labelBox) return;
+    const boxes = [];
+    for (const l of labelEls) {
+      const [x, y, z] = project(l.vec);
+      let ok = z > 0.12 && x > 8 && y > 70 && x < W - l.w - 8 && y < H - 96;
+      const box = [x + 9, y - 9, x + 9 + l.w, y + 9];
+      if (ok) ok = !boxes.some((b) => box[0] < b[2] + 4 && box[2] > b[0] - 4 && box[1] < b[3] + 2 && box[3] > b[1] - 2);
+      if (ok) boxes.push(box);
+      l.el.style.opacity = ok ? 1 : 0;
+      if (ok) l.el.style.transform = `translate(${(x + 9).toFixed(1)}px,${(y - 9).toFixed(1)}px)`;
+    }
+  };
+  const stopTripPlay = () => {
+    if (!tripPlay) return;
+    tripPlay = null;
+    tripProg = 2;
+    ringPos = null;
+    $('.tv-3d-tplay').textContent = T.playTrip;
+    $('.tv-3d-tplay').setAttribute('aria-pressed', 'false');
+    if (tripSel >= 0) $('.tv-3d-tsub').textContent = T.tripSub(tripRange(trips[tripSel]), trips[tripSel].days, fmt(trips[tripSel].miles));
+  };
+  const headAt = (t, k) => {
+    const pts = t.pts;
+    let lo = 0, hi = pts.length - 1;
+    while (hi - lo > 1) {
+      const mid = (lo + hi) >> 1;
+      if (pts[mid].d <= k) lo = mid;
+      else hi = mid;
+    }
+    const a = pts[lo], b = pts[hi], f = b.d > a.d ? (k - a.d) / (b.d - a.d) : 0;
+    return norm([a.v[0] + (b.v[0] - a.v[0]) * f, a.v[1] + (b.v[1] - a.v[1]) * f, a.v[2] + (b.v[2] - a.v[2]) * f]);
+  };
+  const stepTrip = (now, dt) => {
+    const t = trips[tripSel];
+    const k = (now - tripPlay.t0) / tripPlay.dur;
+    if (k >= 1) {
+      stopTripPlay();
+      flyTo(t.c, 2.2, fitZoom(t));
+      return;
+    }
+    tripProg = k;
+    const head = headAt(t, k);
+    ringPos = head;
+    if (tripPlay.follow && !drag) {
+      const [l, p] = lonLat(head), e = still ? 1 : 1 - Math.exp(-dt * 2.4);
+      focus = null;
+      lon += wrap(l - lon) * e;
+      pitch += (p - pitch) * e;
+    }
+    let near = null, best = 0.9998; // within about 130 km
+    for (const s of t.st) {
+      const c = dot(s.vec, head);
+      if (c > best && s.n) {
+        best = c;
+        near = s;
+      }
+    }
+    if (near && near !== tripPlay.near) {
+      tripPlay.near = near;
+      $('.tv-3d-tsub').textContent = T.near(near.n.split(', ').slice(0, 2).join(', ')) + (WEN ? '　' : ' · ') + T.date(near.d);
+    }
+  };
+  const startTripPlay = () => {
+    if (tripSel < 0 || trips[tripSel].pts.length < 2) return;
+    const t = trips[tripSel];
+    tripPlay = {t0: performance.now(), dur: Math.max(7, Math.min(26, 5 + t.miles / 130)) * 1000, follow: true, near: null};
+    tripProg = 0;
+    ringStart = time;
+    focus = null;
+    zoomGoal = Math.max(1.4, Math.min(40, fitZoom(t) * (t.radius > 0.05 ? 1.7 : 1.15)));
+    $('.tv-3d-tplay').textContent = T.stop;
+    $('.tv-3d-tplay').setAttribute('aria-pressed', 'true');
+  };
+  const selectTrip = (i, quiet) => {
+    if (!trips) return;
+    stopTripPlay();
+    tripSel = i;
+    const t = i >= 0 ? trips[i] : null;
+    $('.tv-3d-tname').textContent = t ? t.title : T.trips;
+    $('.tv-3d-tsub').textContent = t ? T.tripSub(tripRange(t), t.days, fmt(t.miles)) : T.pickTrip(trips.length);
+    $('.tv-3d-tplay').disabled = !t || t.pts.length < 2;
+    $('.tv-3d-tall').disabled = !t;
+    $('.tv-3d-trips').querySelectorAll('button').forEach((b) => {
+      const on = Number(b.dataset.trip) === i;
+      b.setAttribute('aria-pressed', String(on));
+      if (on && !quiet) b.scrollIntoView({block: 'nearest'});
+    });
+    $('.tv-3d-tip').hidden = true;
+    labelEls = [];
+    labelBox.replaceChildren();
+    if (t) {
+      for (const l of t.labels) {
+        const el = document.createElement('span');
+        el.textContent = l.name;
+        labelBox.append(el);
+        labelEls.push({el, vec: l.vec, w: el.offsetWidth});
+      }
+      flyTo(t.c, 2.6, fitZoom(t));
+    } else {
+      flyTo(earthVec(40, -113), 2.6, 2.5); // the West, where most of the roads are
+    }
+    if (mode3d) history.replaceState(null, '', t ? '#trip-' + t.id : '#trips');
+  };
+  const buildTripList = () => {
+    const list = $('.tv-3d-trips');
+    list.replaceChildren();
+    let year = '';
+    trips.map((t, i) => [t, i]).reverse().forEach(([t, i]) => {
+      if (t.start.slice(0, 4) !== year) {
+        year = t.start.slice(0, 4);
+        const h = document.createElement('h3');
+        h.textContent = WEN ? year + '年' : year;
+        list.append(h);
+      }
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.dataset.trip = i;
+      b.setAttribute('aria-pressed', 'false');
+      const name = document.createElement('span'), meta = document.createElement('small');
+      name.textContent = t.title;
+      meta.textContent = (WEN ? Number(t.start.slice(5, 7)) + '月　' + t.days + '日　' : new Date(t.start + 'T12:00:00').toLocaleDateString('en-US', {month: 'short'}) + ' · ' + t.days + (t.days === 1 ? ' day · ' : ' days · ')) + fmt(t.miles) + (WEN ? '英里' : ' mi');
+      b.append(name, meta);
+      b.addEventListener('click', () => selectTrip(i, true));
+      list.append(b);
+    });
+  };
+  /* the nearest stop of the chosen trip, else the nearest road of any trip */
+  const pickTrip = (x, y) => {
+    if (!trips) return null;
+    let best = null, bestD = 13;
+    if (tripSel >= 0) {
+      for (const s of trips[tripSel].st) {
+        const [px, py, z] = project(s.vec);
+        const d = Math.hypot(px - x, py - y) - 5 * s.w;
+        if (z > 0.03 && d < bestD) {
+          bestD = d;
+          best = {trip: tripSel, stop: s};
+        }
+      }
+      if (best) return best;
+    }
+    bestD = 9;
+    trips.forEach((t, ti) => {
+      if (dot(t.c, [E[2], E[5], E[8]]) < -0.2) return;
+      for (const q of t.pts) {
+        const [px, py, z] = project(q.v);
+        const d = Math.hypot(px - x, py - y) - (ti === tripSel ? 2 : 0);
+        if (z > 0.03 && d < bestD) {
+          bestD = d;
+          best = {trip: ti};
+        }
+      }
+    });
+    return best;
+  };
+  const hoverTrip = (x, y) => {
+    const tip = $('.tv-3d-tip'), hit = pickTrip(x, y);
+    if (!hit || (!hit.stop && hit.trip === tripSel)) {
+      tip.hidden = true;
+      canvas.style.cursor = 'grab';
+      return;
+    }
+    const t = trips[hit.trip];
+    const rows = hit.stop ? [hit.stop.n || t.title, T.date(hit.stop.d), T.media(hit.stop.ph, hit.stop.v)] : [t.title, tripRange(t)];
+    tip.replaceChildren(...rows.map((s) => {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d;
+    }));
+    tip.hidden = false;
+    tip.style.left = Math.min(W - tip.offsetWidth - 8, x + 14) + 'px';
+    tip.style.top = (y - tip.offsetHeight - 12 < 0 ? y + 14 : y - tip.offsetHeight - 12) + 'px';
+    canvas.style.cursor = hit.stop ? 'default' : 'pointer';
+  };
+  const helpEl = ui && $('.tv-3d-help'), helpText = helpEl ? helpEl.textContent : '';
+  let tripsLoading = null;
+  const setMode = (m, id) => {
+    const on = m === 'trips';
+    if (on && !trips) {
+      tripsLoading = tripsLoading || fetch('/data/travel/trips.json').then((r) => {
+        if (!r.ok) throw new Error('trips ' + r.status);
+        return r.json();
+      }).then(setupTrips);
+      tripsLoading.then(() => {
+        if (mode3d) setMode('trips', id);
+      }).catch((err) => console.error('travel sky: trips failed', err));
+      return;
+    }
+    tripMode = on;
+    ui.classList.toggle('tv-3d-tripmode', on);
+    ui.querySelectorAll('.tv-3d-modes button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
+    helpEl.textContent = on ? T.tripHelp : helpText;
+    $('.tv-3d-time').hidden = on;
+    $('.tv-3d-trip').hidden = $('.tv-3d-trips').hidden = !on;
+    $('.tv-3d-tip').hidden = true;
+    if (on) {
+      stopPlay();
+      pin(null);
+      layerGoal.pillars = 0;
+      const i = id ? trips.findIndex((t) => t.id === id) : tripSel;
+      selectTrip(i);
+    } else {
+      stopTripPlay();
+      labelEls = [];
+      labelBox.replaceChildren();
+      layerGoal.pillars = mode3d ? choice.pillars : 0;
+      if (zoomGoal > 9) zoomGoal = 2.5;
+      if (mode3d) history.replaceState(null, '', '#3d');
+    }
+  };
 
   const shut = '.site-header, .hero, .tv-page, .site-footer, .skip-link';
   const enter3d = () => {
@@ -1145,6 +1507,8 @@
     if (!mode3d) return;
     mode3d = false;
     stopPlay();
+    if (tripMode) setMode('places');
+    history.replaceState(null, '', location.pathname);
     pin(null);
     zoomGoal = 1;
     vel.x = vel.y = 0;
@@ -1170,7 +1534,15 @@
   };
 
   if (ui && openBtn) {
-    openBtn.addEventListener('click', enter3d);
+    document.querySelectorAll('.tv-3d-open').forEach((b) => b.addEventListener('click', () => {
+      enter3d();
+      if (mode3d) setMode(b.dataset.mode || 'places');
+    }));
+    ui.querySelectorAll('.tv-3d-modes button').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.mode)));
+    $('.tv-3d-tplay').addEventListener('click', () => (tripPlay ? stopTripPlay() : startTripPlay()));
+    $('.tv-3d-tall').addEventListener('click', () => selectTrip(-1));
+    $('.tv-3d-prev').addEventListener('click', () => selectTrip(tripSel < 0 ? trips.length - 1 : (tripSel + trips.length - 1) % trips.length));
+    $('.tv-3d-next').addEventListener('click', () => selectTrip(tripSel < 0 ? 0 : (tripSel + 1) % trips.length));
     $('.tv-3d-close').addEventListener('click', exit3d);
     $('.tv-3d-card-x').addEventListener('click', () => pin(null));
     $('.tv-3d-year').addEventListener('input', (e) => {
@@ -1185,7 +1557,7 @@
     ui.querySelectorAll('[data-layer]').forEach((box) => {
       box.addEventListener('change', () => {
         choice[box.dataset.layer] = box.checked ? 1 : 0;
-        layerGoal[box.dataset.layer] = choice[box.dataset.layer];
+        layerGoal[box.dataset.layer] = tripMode && box.dataset.layer === 'pillars' ? 0 : choice[box.dataset.layer];
       });
     });
     $('.tv-3d-card svg').addEventListener('click', (e) => {
@@ -1253,6 +1625,12 @@
       }
       document.body.classList.add('tv-sky-ready');
       if (location.hash === '#3d') requestAnimationFrame(enter3d);
+      else if (/^#trips?\b/.test(location.hash)) {
+        requestAnimationFrame(() => {
+          enter3d();
+          setMode('trips', location.hash.startsWith('#trip-') ? decodeURIComponent(location.hash.slice(6)) : null);
+        });
+      }
       if (reduce) {
         landOn = 1;
         ignite = 9999;

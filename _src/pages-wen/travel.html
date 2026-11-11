@@ -5,6 +5,7 @@
     <p class="lede">照片、影片之记其地者，自<b data-draw="firstYear">—</b>年至<b data-draw="lastYear">—</b>年，凡<b data-draw="items">—</b>件。<b data-draw="topCountry">—</b>居其<b data-draw="topShare">—</b>。</p>
     <p class="tv-hint"><span class="tv-hint-move">移指以扰磁场。</span>点空，则发波循线而行。</p>
     <button type="button" class="tv-3d-open">入三维观之</button>
+    <button type="button" class="tv-3d-open tv-3d-open-trips" data-mode="trips">三维观驱车之游</button>
     <p class="tv-more"><a href="/wen/travel/trips/">驱车游记，逐日观之</a></p>
   </header>
 
@@ -145,7 +146,7 @@
       </div>
 
       <section class="tv-notes" id="notes">
-        <p class="tv-note tv-sky-note">此页背后之地球，图绘而已。其上灯火，即上图之0.5°格；磁场、极光、太阳风皆为略图，非模拟也，其线亦非行程。</p>
+        <p class="tv-note tv-sky-note">此页背后之地球，图绘而已。其上灯火，即上图之0.5°格；磁场、极光、太阳风皆为略图，非模拟也，其线皆非行程。唯三维之“驱车游记”绘路，乃<a href="/wen/travel/trips/">诸游</a>所拟或常行之车路，非实录之迹。</p>
         <p class="tv-note">何者为二级行政区，各依其疆界图，故大小不一。意大利、希腊之图，其级广于省；台湾之图，其级细焉。香港、澳门、梵蒂冈无疆界图，故用 Photos 所录之地名。点在海岸之外者，归于最近之区；点近疆界者，或落于邻区。</p>
         <p class="tv-note">凡有疆界图之国，其国界、一级之界、二级之界皆出于同一简化之形，故相合无间。加拿大、澳大利亚及他数国，海岸曲折尤甚，简化亦尤甚。移图缩放之际，界线暂隐。他处之线出于 Natural Earth，两源相接之处，或微有相离。</p>
         <p class="tv-note">虚线依 Natural Earth 所列有争之地，其去取亦从之，若台湾、以色列、伯利兹是也。实线或行于虚线之下。凡此皆非言何方治某地、或当治某地也。</p>
@@ -158,6 +159,10 @@
     <div class="tv-3d-head">
       <p class="tv-3d-help">拖之以转地球，滚轮或两指以缩放。点灯火，可见其逐年之数。</p>
       <button type="button" class="tv-3d-close">返此页</button>
+    </div>
+    <div class="tv-3d-modes" role="group" aria-label="地球所示">
+      <button type="button" data-mode="places" aria-pressed="true">所至</button>
+      <button type="button" data-mode="trips" aria-pressed="false">驱车游记</button>
     </div>
     <fieldset class="tv-3d-layers">
       <legend>诸层</legend>
@@ -173,6 +178,15 @@
       <output class="tv-3d-now">诸年</output>
       <button type="button" class="tv-3d-all">诸年</button>
     </div>
+    <div class="tv-3d-trip" hidden>
+      <button type="button" class="tv-3d-prev" aria-label="前一游">‹</button>
+      <button type="button" class="tv-3d-next" aria-label="后一游">›</button>
+      <p class="tv-3d-tinfo" aria-live="polite"><strong class="tv-3d-tname">诸游</strong><span class="tv-3d-tsub"></span></p>
+      <button type="button" class="tv-3d-tplay" aria-pressed="false" disabled>循路而行</button>
+      <button type="button" class="tv-3d-tall" disabled>诸游</button>
+    </div>
+    <nav class="tv-3d-trips" aria-label="驱车游记" hidden></nav>
+    <div class="tv-3d-labels" aria-hidden="true"></div>
     <aside class="tv-3d-card" hidden aria-live="polite">
       <button type="button" class="tv-3d-card-x" aria-label="闭此地">×</button>
       <h2></h2>
