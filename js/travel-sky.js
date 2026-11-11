@@ -96,7 +96,7 @@
   const EARTH_FS = HEAD + NOISE + COLORS + `
     uniform mat3 uE; uniform vec3 uS,uDip;
     uniform sampler2D uLand;
-    uniform float uR,uPx,uTime,uAurora,uDim,uLandOn,uTexH,uDay;
+    uniform float uR,uPx,uTime,uAurora,uDim,uLandOn,uTexH,uDay,uNight;
     in vec2 v; out vec4 o;
     const float PI=3.14159265;
     float engrave(float q,float wid){
@@ -107,7 +107,7 @@
       float r=length(v),px=1./uR;
       if(r>1.){
         vec2 sd=normalize(uS.xy+1e-5);
-        float day=pow(max(dot(v/r,sd)*.5+.5,0.),2.2);
+        float day=pow(max(dot(v/r,sd)*.5+.5,0.),2.2)*(1.-.88*uNight);
         float g=exp(-(r-1.)*8.5)*(.12+.54*day);
         vec3 col=mix(LAPIS*1.5,vec3(.50,.66,.98),day);
         float rim=smoothstep(2.2*px,0.,r-1.)*(.20+.40*day);
@@ -118,7 +118,7 @@
       vec3 n=vec3(v,z),e=transpose(uE)*n;
       float lat=asin(clamp(e.z,-1.,1.)),lon=atan(e.y,e.x);
       vec2 uv=vec2(lon/(2.*PI)+.5,.5-lat/PI);
-      float light=mix(smoothstep(-.10,.60,dot(n,uS)),.82,uDay);
+      float light=mix(mix(smoothstep(-.10,.60,dot(n,uS)),.82,uDay),.03,uNight);
 
       float lod=max(0.,log2((uTexH/PI)/(uR*max(z,.05))));
       float m=textureLod(uLand,uv,lod).r;
@@ -173,13 +173,13 @@
   const PLACE_VS = HEAD + `
     layout(location=0) in vec4 a; layout(location=1) in float w;
     uniform mat3 uE; uniform vec3 uS; uniform vec2 uC,uRes;
-    uniform float uR,uIg,uPx,uDim,uTime;
+    uniform float uR,uIg,uPx,uDim,uTime,uNight;
     out float v_a; out float v_h;
     void main(){
       vec3 p=uE*a.xyz;
       gl_Position=vec4((uC+p.xy*uR)/uRes*2.-1.,0,1);
       float since=uIg-a.w,on=smoothstep(0.,.3,since),flash=exp(-max(since,0.)*1.5)*on;
-      float vis=smoothstep(-.01,.09,p.z),dayf=smoothstep(-.1,.55,dot(p,uS));
+      float vis=smoothstep(-.01,.09,p.z),dayf=smoothstep(-.1,.55,dot(p,uS))*(1.-uNight);
       float tw=.9+.1*sin(uTime*1.3+a.x*90.+a.y*57.);
       v_a=on*vis*step(.001,w)*(1.-.34*dayf)*tw*(.55+.45*w)*uDim;
       v_h=flash;
@@ -329,8 +329,8 @@
       d=l>1e-4?d/l:vec2(1,0);
       float sel=uSel<0.?0.:(abs(m.x-uSel)<.5?1.:-1.);
       float done=step(mix(m.y,m.z,c.x),uProg);
-      float bright=sel>.5?mix(.26,1.,done):(sel<-.5?.09:.34);
-      float w=(sel>.5?1.5+1.1*done:.8)*uPx+.5;
+      float bright=sel>.5?mix(.34,1.,done):(sel<-.5?.12:.62);
+      float w=(sel>.5?1.9+1.2*done:.95)*uPx+.5;
       vec2 sp=mix(s0-d*w*.4,s1+d*w*.4,c.x)+vec2(-d.y,d.x)*c.y*w;
       gl_Position=vec4(sp/uRes*2.-1.,0,1);
       vec3 p=mix(p0,p1,c.x);
@@ -339,7 +339,12 @@
     }`;
   const ROUTE_FS = HEAD + COLORS + `
     in float v_x; in float v_a; in float v_b; out vec4 o;
-    void main(){o=vec4(mix(GILT,PALE,v_b)*exp(-v_x*v_x*2.6)*v_a,0.);}`;
+    /* cyan over the gilt engraving, laid on top rather than added, so a road never melts into the hatching */
+    void main(){
+      float g=exp(-v_x*v_x*2.4),a=min(g*v_a*1.25,1.);
+      vec3 c=mix(vec3(.10,.86,1.),vec3(.86,1.,1.),exp(-v_x*v_x*13.)*(.35+.65*v_b));
+      o=vec4(c*a,a*.92);
+    }`;
   const STOP_VS = HEAD + `
     layout(location=0) in vec4 a; layout(location=1) in float tr;
     uniform mat3 uE; uniform vec2 uC,uRes; uniform float uR,uPx,uDim,uSel,uOn;
@@ -482,8 +487,8 @@
   let E = new Float32Array(9), F = new Float32Array(9), dipView = [0, 0, 1];
   let mode3d = false, k3 = 0, zoom = 1, zoomGoal = 1, lastTouch = 0;
   const vel = {x: 0, y: 0};
-  const layerGoal = {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0}, layer = {...layerGoal};
-  const choice = {pillars: 1, adm: 1, lines: 1, wind: 1, aurora: 1, day: 0};
+  const layerGoal = {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0, night: 0}, layer = {...layerGoal};
+  const choice = {pillars: 1, adm: 1, lines: 1, wind: 1, aurora: 1, day: 0, night: 0};
   let adm = null, admLoading = false;
   const updateMatrices = () => {
     const l = lon + ptr.x * 0.09 * (1 - k3), p = pitch + ptr.y * 0.05 * (1 - k3), roll = ROLL * (1 - k3);
@@ -648,6 +653,7 @@
     gl.uniform3fv(P.earth.u('uDip'), DIP);
     gl.uniform1f(P.earth.u('uAurora'), storm * layer.aurora);
     gl.uniform1f(P.earth.u('uDay'), layer.day);
+    gl.uniform1f(P.earth.u('uNight'), layer.night);
     gl.uniform1f(P.earth.u('uLandOn'), landOn);
     gl.uniform1f(P.earth.u('uTexH'), landH);
     gl.uniform1i(P.earth.u('uLand'), 0);
@@ -671,6 +677,7 @@
     if (placeVao && igniteStart >= 0) {
       common(P.place);
       gl.uniform1f(P.place.u('uDim'), dim * (1 - 0.8 * tripK));
+      gl.uniform1f(P.place.u('uNight'), layer.night);
       gl.uniform1f(P.place.u('uIg'), ignite);
       gl.bindVertexArray(placeVao);
       gl.drawArrays(gl.POINTS, 0, placeCount);
@@ -683,12 +690,14 @@
       gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, placeCount);
     }
     if (routeVao && tripK > 0.002) {
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
       common(P.route);
       gl.uniform1f(P.route.u('uSel'), tripSel);
       gl.uniform1f(P.route.u('uProg'), tripProg);
       gl.uniform1f(P.route.u('uOn'), tripK);
       gl.bindVertexArray(routeVao);
       gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, routeCount);
+      gl.blendFunc(gl.ONE, gl.ONE);
       if (tripSel >= 0) {
         common(P.stop);
         gl.uniform1f(P.stop.u('uSel'), tripSel);
@@ -1578,7 +1587,7 @@
     pin(null);
     zoomGoal = 1;
     vel.x = vel.y = 0;
-    Object.assign(layerGoal, {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0});
+    Object.assign(layerGoal, {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0, night: 0});
     ui.hidden = true;
     $('.tv-3d-tip').hidden = true;
     document.body.classList.remove('tv-3d', 'tv-3d-fade');
@@ -1623,6 +1632,11 @@
     ui.querySelectorAll('[data-layer]').forEach((box) => {
       box.addEventListener('change', () => {
         choice[box.dataset.layer] = box.checked ? 1 : 0;
+        const other = {day: 'night', night: 'day'}[box.dataset.layer]; // daylight and night everywhere exclude each other
+        if (other && box.checked) {
+          ui.querySelector('[data-layer="' + other + '"]').checked = false;
+          choice[other] = layerGoal[other] = 0;
+        }
         layerGoal[box.dataset.layer] = tripMode && box.dataset.layer === 'pillars' ? 0 : choice[box.dataset.layer];
       });
     });

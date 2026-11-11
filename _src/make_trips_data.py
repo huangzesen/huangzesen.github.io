@@ -13,7 +13,7 @@ much is written:
     to the centre by a straight line, stops inside it are dropped. Saved plans start at a street address;
     this keeps home and daily-life places out;
   - no photo captions, media ids, exact photo positions, saved pins (lodging) or hidden layers.
-"2025 Business Trip" (no dates, no route) is left out.
+"2025 Business Trip" (no dates, no route) is left out. So is "2023-03-25 Hemet and March Field", whose photos were taken from a plane.
 """
 import json
 import math
@@ -29,7 +29,7 @@ K = "{http://www.opengis.net/kml/2.2}"
 LA = (-118.2437, 34.0522)  # public city-centre reference, not a home
 HOME_KM = 35
 TOL_KM = 0.15
-SKIP = ("2025 Business Trip",)
+SKIP = ("2025 Business Trip", "2023-03-25")  # 2023-03-25 Hemet / March Field: not a drive, photos taken from a plane (Zesen, 2026-11-10)
 
 # file stem -> title on the page (the saved-plan names are working titles); others use the KMZ's own name
 TITLES = {
