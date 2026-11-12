@@ -22,12 +22,20 @@
     tripHelp: '拖之以转地球，滚轮或两指以缩放。择一游，循路而行；点路可择，指灯火可见其地。', trips: '诸游', pickTrip: (n) => '凡' + n + '游。择其一，或点图中之路。', playTrip: '循路而行', near: (n) => '近' + n,
     tripSub: (a, d, m) => a + '　' + d + '日　约' + m + '英里', media: (ph, v) => ph + '照' + (v ? '，' + v + '影' : ''),
     date: (d) => Number(d.slice(0, 4)) + '年' + Number(d.slice(5, 7)) + '月' + Number(d.slice(8)) + '日',
+    otherHelp: '拖之以转地球，滚轮或两指以缩放。择一游，循弧而行，或点图中之弧。弧非航线也。',
+    pickOther: (n) => '凡' + n + '游，得之于照片所记之地。择其一，或点图中之弧。',
+    otherSub: (a, d, m, f, t) => a + '　' + d + '日　直线约' + m + '英里' + (f ? '　自' + f + (t && t !== f ? '至' + t : '') : ''),
+    baseName: (n) => ({Guangzhou: '广州', Hefei: '合肥', 'Los Angeles': '洛杉矶'}[n] || n),
   } : {
     all: 'All years', year: (y) => String(y), items: (n) => n + (n === '1' ? ' item' : ' items'), days: (n) => n + (n === '1' ? ' day' : ' days'),
     span: (a, b) => (a === b ? String(a) : a + ' to ' + b), at: (y, n) => y + ': ' + n + (n === '1' ? ' item' : ' items'), play: 'Play the years', stop: 'Stop',
     tripHelp: 'Drag to turn the Earth. Scroll or pinch to zoom. Pick a trip and play it; click a road to choose it, hover a light for the place.', trips: 'All trips', pickTrip: (n) => n + ' trips. Pick one from the list, or click a road.', playTrip: 'Play the trip', near: (n) => 'Near ' + n,
     tripSub: (a, d, m) => a + '. ' + d + (d === 1 ? ' day' : ' days') + ', about ' + m + ' miles.', media: (ph, v) => ph + (ph === 1 ? ' photo' : ' photos') + (v ? ', ' + v + (v === 1 ? ' video' : ' videos') : ''),
     date: (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', {month: 'short', day: 'numeric', year: 'numeric'}),
+    otherHelp: 'Drag to turn the Earth, scroll or pinch to zoom. Pick a trip and play it, or click an arc. The arcs are not flight paths.',
+    pickOther: (n) => n + ' trips away from home, found in where my photos were taken. Pick one from the list, or click an arc.',
+    otherSub: (a, d, m, f, t) => a + '. ' + d + (d === 1 ? ' day' : ' days') + ', about ' + m + ' miles in straight lines' + (f ? ', from ' + f + (t && t !== f ? ' to ' + t : '') : '') + '.',
+    baseName: (n) => n,
   };
   document.body.classList.add('tv-sky-on');
   if (!reduce) document.body.classList.add('tv-sky-live');
@@ -316,7 +324,8 @@
       o=vec4(c*exp(-v_x*v_x*2.4)*pow(1.-v_t,1.25)*v_a*.95,0.);
     }`;
 
-  /* trip mode: the road trips of data/travel/trips.json, drawn on the ground as ribbons (planned or typical routes) */
+  /* trip mode: the road trips of data/travel/trips.json, drawn on the ground as ribbons (planned or typical routes),
+     or the other trips of data/travel/trips-other.json, drawn as arcs that rise between cities (not flight paths) */
   const ROUTE_VS = HEAD + CORNERS + `
     layout(location=0) in vec3 a0; layout(location=1) in vec3 a1; layout(location=2) in vec3 m;
     uniform mat3 uE; uniform vec2 uC,uRes; uniform float uR,uPx,uDim,uSel,uProg,uOn;
@@ -335,14 +344,15 @@
       gl_Position=vec4(sp/uRes*2.-1.,0,1);
       vec3 p=mix(p0,p1,c.x);
       v_x=c.y; v_b=sel>.5?done:0.;
-      v_a=smoothstep(0.,.07,p.z)*bright*uOn*uDim;
+      v_a=max(smoothstep(0.,.07,p.z),.55*smoothstep(1.004,1.02,length(p.xy)))*bright*uOn*uDim; // an arc shows past the limb too
     }`;
   const ROUTE_FS = HEAD + COLORS + `
+    uniform vec3 uCol,uCore;
     in float v_x; in float v_a; in float v_b; out vec4 o;
-    /* cyan over the gilt engraving, laid on top rather than added, so a road never melts into the hatching */
+    /* cyan (roads) or rose (arcs) over the gilt engraving, laid on top rather than added, so a line never melts into the hatching */
     void main(){
       float g=exp(-v_x*v_x*2.4),a=min(g*v_a*1.25,1.);
-      vec3 c=mix(vec3(.10,.86,1.),vec3(.86,1.,1.),exp(-v_x*v_x*13.)*(.35+.65*v_b));
+      vec3 c=mix(uCol,uCore,exp(-v_x*v_x*13.)*(.35+.65*v_b));
       o=vec4(c*a,a*.92);
     }`;
   const STOP_VS = HEAD + `
@@ -378,6 +388,42 @@
     uniform vec3 uCol; in float v_x; in float v_a; out vec4 o;
     void main(){float a=exp(-v_x*v_x*2.4)*v_a;o=vec4(uCol*a,a*.85);}`;
 
+  /* spacecraft: orbits to the Earth's scale, given in a frame of the spin axis and the Sun; a dot for each craft */
+  const ORBIT_VS = HEAD + CORNERS + `
+    layout(location=0) in vec3 a0; layout(location=1) in vec3 a1;
+    uniform mat3 uO; uniform vec2 uC,uRes; uniform float uR,uPx,uDim,uOn;
+    out float v_x; out float v_a;
+    void main(){
+      vec2 c=CO[gl_VertexID];
+      vec3 p0=uO*a0,p1=uO*a1;
+      vec2 s0=uC+p0.xy*uR,s1=uC+p1.xy*uR,d=s1-s0;
+      float l=length(d);
+      d=l>1e-4?d/l:vec2(1,0);
+      float w=.6*uPx+.45;
+      vec2 sp=mix(s0-d*w*.3,s1+d*w*.3,c.x)+vec2(-d.y,d.x)*c.y*w;
+      gl_Position=vec4(sp/uRes*2.-1.,0,1);
+      vec3 p=mix(p0,p1,c.x);
+      float hid=p.z<0.?smoothstep(.99,1.03,length(p.xy)):1.;
+      v_x=c.y;
+      v_a=hid*mix(.4,1.,smoothstep(-.5,.5,p.z/length(p)))*uOn*uDim;
+    }`;
+  const CRAFT_VS = HEAD + `
+    layout(location=0) in vec4 a;
+    uniform vec2 uC,uRes; uniform float uR,uPx,uDim,uOn;
+    out float v_a;
+    void main(){
+      gl_Position=vec4((uC+a.xy*uR)/uRes*2.-1.,0,1);
+      v_a=(a.z<0.?smoothstep(.99,1.03,length(a.xy)):1.)*uOn*uDim;
+      gl_PointSize=v_a>0.?11.*uPx:0.;
+    }`;
+  const CRAFT_FS = HEAD + `
+    in float v_a; out vec4 o;
+    void main(){
+      vec2 q=gl_PointCoord*2.-1.;float d=dot(q,q);
+      if(d>1.)discard;
+      o=vec4((vec3(.55,1.,.86)*exp(-d*4.5)*(1.-d)*.75+vec3(1.)*exp(-d*26.))*v_a,0.);
+    }`;
+
   const compile = (type, src) => {
     const s = gl.createShader(type);
     gl.shaderSource(s, src);
@@ -402,6 +448,7 @@
       earth: program(EARTH_VS, EARTH_FS), place: program(PLACE_VS, PLACE_FS), ring: program(RING_VS, RING_FS),
       line: program(LINE_VS, LINE_FS), wind: program(WIND_VS, WIND_FS), pillar: program(PILLAR_VS, PILLAR_FS),
       route: program(ROUTE_VS, ROUTE_FS), stop: program(STOP_VS, PLACE_FS), adm: program(ADM_VS, ADM_FS),
+      orbit: program(ORBIT_VS, ADM_FS), craft: program(CRAFT_VS, CRAFT_FS),
     };
   } catch (err) {
     console.error('travel sky: shader failed', err);
@@ -460,6 +507,46 @@
   const windVao = buffer(wd, [4], 1);
   let windCount = WINDS;
 
+  /* Spacecraft, on their real orbits to the Earth's scale (heights in km above the ground, angles in degrees).
+     node: where the orbit climbs through the equator, as an angle east of local noon, so an orbit keeps its local time
+     (true of DMSP, a fair snapshot of the rest). Twelve seconds here is one turn of the lowest orbit, about 94 minutes. */
+  const CRAFT = [
+    {name: 'ELFIN', lo: 450, hi: 450, inc: 93, node: 150, peri: 0, at: 0.12},
+    {name: 'Swarm', lo: 480, hi: 480, inc: 87.4, node: 40, peri: 0, at: 0.55},
+    {name: 'DMSP', lo: 850, hi: 850, inc: 98.8, node: 97, peri: 0, at: 0.3},
+    {name: 'Arase', lo: 400, hi: 32000, inc: 31, node: 180, peri: 200, at: 0.42},
+    {name: 'Van Allen Probes', lo: 618, hi: 30414, inc: 10.2, node: 135, peri: 180, at: 0.8},
+  ];
+  const ORBIT_SEG = 180;
+  CRAFT.forEach((c) => {
+    const rp = 1 + c.lo / 6371, ra = 1 + c.hi / 6371, a = (rp + ra) / 2, e = (ra - rp) / (ra + rp);
+    const cn = Math.cos(c.node * Math.PI / 180), sn = Math.sin(c.node * Math.PI / 180), ci = Math.cos(c.inc * Math.PI / 180), si = Math.sin(c.inc * Math.PI / 180);
+    const w = c.peri * Math.PI / 180, rate = (2 * Math.PI) / (12 * Math.pow(a / (1 + 450 / 6371), 1.5));
+    c.point = (ecc) => { // from the eccentric anomaly
+      const r = a * (1 - e * Math.cos(ecc)), nu = 2 * Math.atan2(Math.sqrt(1 + e) * Math.sin(ecc / 2), Math.sqrt(1 - e) * Math.cos(ecc / 2)), u = w + nu;
+      return [r * (cn * Math.cos(u) - sn * Math.sin(u) * ci), r * (sn * Math.cos(u) + cn * Math.sin(u) * ci), r * Math.sin(u) * si];
+    };
+    c.where = (t) => {
+      const m = c.at * 2 * Math.PI + rate * t;
+      let ecc = m;
+      for (let k = 0; k < 6; k++) ecc -= (ecc - e * Math.sin(ecc) - m) / (1 - e * Math.cos(ecc));
+      return c.point(ecc);
+    };
+  });
+  const orbitData = new Float32Array(CRAFT.length * ORBIT_SEG * 6);
+  CRAFT.forEach((c, i) => {
+    for (let k = 0; k < ORBIT_SEG; k++) orbitData.set([...c.point((k / ORBIT_SEG) * 2 * Math.PI), ...c.point(((k + 1) / ORBIT_SEG) * 2 * Math.PI)], (i * ORBIT_SEG + k) * 6);
+  });
+  const orbitVao = buffer(orbitData, [3, 3], 1);
+  const craftPos = new Float32Array(CRAFT.length * 4), craftVao = gl.createVertexArray(), craftBuf = gl.createBuffer();
+  gl.bindVertexArray(craftVao);
+  gl.bindBuffer(gl.ARRAY_BUFFER, craftBuf);
+  gl.bufferData(gl.ARRAY_BUFFER, craftPos, gl.DYNAMIC_DRAW);
+  gl.enableVertexAttribArray(0);
+  gl.vertexAttribPointer(0, 4, gl.FLOAT, false, 16, 0);
+  gl.bindVertexArray(null);
+  let craftOn = 0, craftLabels = null;
+
   /* ---------- view: a fixed sun on the left, Earth turning under it ---------- */
   const norm = (v) => {
     const n = Math.hypot(v[0], v[1], v[2]) || 1;
@@ -487,8 +574,8 @@
   let E = new Float32Array(9), F = new Float32Array(9), dipView = [0, 0, 1];
   let mode3d = false, k3 = 0, zoom = 1, zoomGoal = 1, lastTouch = 0;
   const vel = {x: 0, y: 0};
-  const layerGoal = {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0, night: 0}, layer = {...layerGoal};
-  const choice = {pillars: 1, adm: 1, lines: 1, wind: 1, aurora: 1, day: 0, night: 0};
+  const layerGoal = {pillars: 0, adm: 0, craft: 0, lines: 1, wind: 1, aurora: 1, day: 0, night: 0}, layer = {...layerGoal};
+  const choice = {pillars: 1, adm: 1, craft: 1, lines: 1, wind: 1, aurora: 1, day: 0, night: 0};
   let adm = null, admLoading = false;
   const updateMatrices = () => {
     const l = lon + ptr.x * 0.09 * (1 - k3), p = pitch + ptr.y * 0.05 * (1 - k3), roll = ROLL * (1 - k3);
@@ -531,6 +618,8 @@
   let focus = null, focusPos = null, focusStart = 0;
   let skyTex = null, skyFbo = null;
   let tripMode = false, tripK = 0, trips = null, tripSel = -1, tripProg = 2, tripPlay = null, routeVao = null, routeCount = 0, stopVao = null, stopCount = 0;
+  let tripSet = 'trips'; // which trips the trip mode shows: 'trips' (roads) or 'other' (arcs)
+  const sets = {};
 
   const pulses = new Float32Array(32).fill(-100);
   for (let i = 0; i < 8; i++) pulses[i * 4 + 2] = 0;
@@ -644,7 +733,7 @@
     gl.uniform3fv(P.wind.u('uV'), WV);
     gl.uniform1f(P.wind.u('uShock'), shock);
     gl.uniform1f(P.wind.u('uX'), 7.5);
-    gl.uniform1f(P.wind.u('uDim'), dim * layer.wind / (1 + (zoom - 1) * 0.5));
+    gl.uniform1f(P.wind.u('uDim'), dim * layer.wind / (1 + Math.max(0, zoom - 1) * 0.5));
     gl.bindVertexArray(windVao);
     gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, windCount);
 
@@ -692,6 +781,8 @@
     if (routeVao && tripK > 0.002) {
       gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
       common(P.route);
+      gl.uniform3fv(P.route.u('uCol'), tripSet === 'other' ? [1, 0.40, 0.66] : [0.10, 0.86, 1]);
+      gl.uniform3fv(P.route.u('uCore'), tripSet === 'other' ? [1, 0.90, 0.95] : [0.86, 1, 1]);
       gl.uniform1f(P.route.u('uSel'), tripSel);
       gl.uniform1f(P.route.u('uProg'), tripProg);
       gl.uniform1f(P.route.u('uOn'), tripK);
@@ -715,7 +806,7 @@
     }
 
     common(P.line);
-    gl.uniform1f(P.line.u('uDim'), dim * Math.sqrt(layer.lines / (1 + (zoom - 1) * 0.9)));
+    gl.uniform1f(P.line.u('uDim'), dim * Math.sqrt(layer.lines / (1 + Math.max(0, zoom - 1) * 0.9)));
     gl.uniformMatrix3fv(P.line.u('uF'), false, F);
     gl.uniform2f(P.line.u('uPtr'), ptr.px, ptr.py);
     gl.uniform1f(P.line.u('uShock'), shock);
@@ -723,6 +814,31 @@
     gl.uniform4fv(P.line.u('uPulse'), pulses);
     gl.bindVertexArray(lineVao);
     gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, lines.length * SEG);
+
+    /* spacecraft: seen from far enough to take in an orbit, and not while a trip is on the globe */
+    craftOn = layer.craft * (1 - tripK) * Math.min(1, Math.max(0, 1 - (zoom - 3) / 2.5));
+    if (craftOn > 0.003) {
+      const z = [E[6], E[7], E[8]], sz = dot(SUN, z);
+      const x = norm([SUN[0] - sz * z[0], SUN[1] - sz * z[1], SUN[2] - sz * z[2]]), y = cross(z, x);
+      common(P.orbit);
+      gl.uniformMatrix3fv(P.orbit.u('uO'), false, new Float32Array([x[0], x[1], x[2], y[0], y[1], y[2], z[0], z[1], z[2]]));
+      gl.uniform3fv(P.orbit.u('uCol'), [0.34, 0.62, 0.54]);
+      gl.uniform1f(P.orbit.u('uOn'), craftOn);
+      gl.bindVertexArray(orbitVao);
+      gl.drawArraysInstanced(gl.TRIANGLES, 0, 6, CRAFT.length * ORBIT_SEG);
+      CRAFT.forEach((c, i) => {
+        const q = c.where(time);
+        c.view = [x[0] * q[0] + y[0] * q[1] + z[0] * q[2], x[1] * q[0] + y[1] * q[1] + z[1] * q[2], x[2] * q[0] + y[2] * q[1] + z[2] * q[2]];
+        craftPos.set([c.view[0], c.view[1], c.view[2], 1], i * 4);
+      });
+      gl.bindVertexArray(craftVao);
+      gl.bindBuffer(gl.ARRAY_BUFFER, craftBuf);
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, craftPos);
+      common(P.craft);
+      gl.uniform1f(P.craft.u('uOn'), craftOn);
+      gl.drawArrays(gl.POINTS, 0, CRAFT.length);
+    }
+    if (craftLabels) placeCraft();
     gl.bindVertexArray(null);
     if (!shown) {
       shown = true;
@@ -1132,7 +1248,7 @@
     }
   };
   const zoomBy = (f) => {
-    zoomGoal = Math.max(0.6, Math.min(tripMode ? 40 : 9, zoomGoal * f));
+    zoomGoal = Math.max(layerGoal.craft && !tripMode ? 0.3 : 0.6, Math.min(tripMode ? 40 : 9, zoomGoal * f)); // far enough out to see the highest orbit whole
     lastTouch = time;
   };
 
@@ -1260,44 +1376,46 @@
   };
 
   /* ---------- trip mode: road trips on the globe ---------- */
-  const lonLat = (v) => [Math.atan2(v[1], v[0]), Math.asin(Math.max(-1, Math.min(1, v[2])))];
+  const lonLat = (v) => [Math.atan2(v[1], v[0]), Math.asin(Math.max(-1, Math.min(1, v[2] / Math.hypot(v[0], v[1], v[2]))))];
   const project = (v) => {
     const s = R / dpr;
     return [cx / dpr + (E[0] * v[0] + E[3] * v[1] + E[6] * v[2]) * s, H - cy / dpr - (E[1] * v[0] + E[4] * v[1] + E[7] * v[2]) * s, E[2] * v[0] + E[5] * v[1] + E[8] * v[2]];
   };
-  const setupTrips = (data) => {
-    const segs = [], stops = [];
-    trips = data.trips.map((t, ti) => {
-      const pts = []; // every vertex of the trip in order: [unit vector, distance so far]
+  const seen = (q) => q[2] > 0.03 || Math.hypot(q[0] - cx / dpr, q[1] - (H - cy / dpr)) > (R / dpr) * 1.004; // in front of the Earth, or past its limb
+  const angle = (a, b) => Math.acos(Math.max(-1, Math.min(1, dot(a, b))));
+  /* kind 'trips': roads on the ground (t.routes). kind 'other': arcs between the cities of t.legs, rising with their length. */
+  const setupTrips = (data, kind) => {
+    const segs = [], stops = [], arcs = kind === 'other';
+    const baseVec = {};
+    (data.bases || []).forEach((b) => { baseVec[b.name] = earthVec(b.p[1], b.p[0]); });
+    const list = data.trips.map((t, ti) => {
+      const pts = []; // every vertex of the trip in order: unit vector v, drawn position p, distance so far d
       let len = 0;
       const mark = [];
-      for (const line of t.routes) {
+      for (const line of arcs ? [t.legs] : t.routes) {
         let prev = null;
         for (const [a, b] of line) {
           const v = earthVec(b, a);
           if (prev) {
-            const ang = Math.acos(Math.max(-1, Math.min(1, dot(prev, v)))), n = Math.max(1, Math.ceil(ang / 0.012));
+            const ang = angle(prev, v), n = arcs ? Math.max(8, Math.ceil(ang / 0.02)) : Math.max(1, Math.ceil(ang / 0.012));
+            const lift = arcs ? Math.min(0.15, 0.3 * ang) : 0;
             for (let k = 1; k <= n; k++) { // long legs follow the great circle
               const q = n === 1 ? v : norm([prev[0] + (v[0] - prev[0]) * k / n, prev[1] + (v[1] - prev[1]) * k / n, prev[2] + (v[2] - prev[2]) * k / n]);
-              const last = pts[pts.length - 1];
-              len += Math.acos(Math.max(-1, Math.min(1, dot(last.v, q))));
-              pts.push({v: q, d: len});
+              const r = 1 + lift * Math.sin(Math.PI * k / n);
+              len += angle(pts[pts.length - 1].v, q);
+              pts.push({v: q, p: lift ? [q[0] * r, q[1] * r, q[2] * r] : q, d: len});
               mark.push(pts.length - 1);
             }
           } else {
-            pts.push({v, d: len});
+            pts.push({v, p: v, d: len});
           }
           prev = v;
         }
       }
-      for (const i of mark) segs.push(...pts[i - 1].v, ...pts[i].v, ti, pts[i - 1].d / (len || 1), pts[i].d / (len || 1));
+      for (const i of mark) segs.push(...pts[i - 1].p, ...pts[i].p, ti, pts[i - 1].d / (len || 1), pts[i].d / (len || 1));
       pts.forEach((q) => { q.d /= len || 1; });
       const top = Math.max(1, ...t.stops.map((s) => s.ph + s.v));
       const st = t.stops.map((s) => ({...s, vec: earthVec(s.p[1], s.p[0]), w: Math.sqrt((s.ph + s.v) / top)}));
-      st.forEach((s) => stops.push(...s.vec, s.w, ti));
-      const all = pts.map((q) => q.v).concat(st.map((s) => s.vec));
-      const c = norm(all.reduce((a, v) => [a[0] + v[0], a[1] + v[1], a[2] + v[2]], [0, 0, 0]));
-      const radius = Math.max(0.006, ...all.map((v) => Math.acos(Math.max(-1, Math.min(1, dot(c, v))))));
       const groups = new Map(); // labels: the busiest places, one per name
       for (const s of st) {
         const name = s.n.split(', ')[0];
@@ -1308,13 +1426,20 @@
         groups.set(name, g);
       }
       const labels = [...groups.values()].sort((a, b) => b.n - a.n).slice(0, phone ? 5 : 9).map((g) => ({name: g.name, vec: g.best.vec}));
+      if (arcs) { // the home city at each end of the line: a small light and a name, no counts
+        [[t.from, t.start], [t.to !== t.from ? t.to : null, t.end]].forEach(([name, d]) => {
+          if (!name || !baseVec[name]) return;
+          st.push({n: T.baseName(name), d, ph: 0, v: 0, vec: baseVec[name], w: 0.22, base: true});
+          labels.unshift({name: T.baseName(name), vec: baseVec[name]});
+        });
+      }
+      st.forEach((s) => stops.push(...s.vec, s.w, ti));
+      const all = pts.map((q) => q.v).concat(st.map((s) => s.vec));
+      const c = norm(all.reduce((a, v) => [a[0] + v[0], a[1] + v[1], a[2] + v[2]], [0, 0, 0]));
+      const radius = Math.max(0.006, ...all.map((v) => angle(c, v)));
       return {...t, pts, st, c, radius, labels};
     });
-    routeCount = segs.length / 9;
-    routeVao = buffer(new Float32Array(segs), [3, 3, 3], 1);
-    stopCount = stops.length / 5;
-    stopVao = buffer(new Float32Array(stops), [4, 1], 0);
-    buildTripList();
+    return {trips: list, sel: -1, routeCount: segs.length / 9, routeVao: buffer(new Float32Array(segs), [3, 3, 3], 1), stopCount: stops.length / 5, stopVao: buffer(new Float32Array(stops), [4, 1], 0)};
   };
   const flyTo = (v, seconds, z) => {
     const [l, p] = lonLat(v);
@@ -1332,12 +1457,14 @@
   };
   const fitZoom = (t) => Math.max(1, Math.min(40, 0.6 / Math.sin(Math.min(1.2, t.radius))));
   const tripRange = (t) => (t.start === t.end ? T.date(t.start) : WEN ? T.date(t.start) + '至' + T.date(t.end) : T.date(t.start) + ' to ' + T.date(t.end));
+  const subOf = (t) => (tripSet === 'other' ? T.otherSub(tripRange(t), t.days, fmt(t.miles), t.from && T.baseName(t.from), t.to && T.baseName(t.to)) : T.tripSub(tripRange(t), t.days, fmt(t.miles)));
   const labelBox = ui && $('.tv-3d-labels');
   let labelEls = [];
   const placeLabels = () => {
     if (!labelBox) return;
     const boxes = [];
     for (const l of labelEls) {
+      if (!l.w) l.w = l.el.offsetWidth; // made while the view was still hidden (a deep link): measure now
       const [x, y, z] = project(l.vec);
       let ok = z > 0.12 && x > 8 && y > 70 && x < W - l.w - 8 && y < H - 96;
       const box = [x + 9, y - 9, x + 9 + l.w, y + 9];
@@ -1354,7 +1481,7 @@
     ringPos = null;
     $('.tv-3d-tplay').textContent = T.playTrip;
     $('.tv-3d-tplay').setAttribute('aria-pressed', 'false');
-    if (tripSel >= 0) $('.tv-3d-tsub').textContent = T.tripSub(tripRange(trips[tripSel]), trips[tripSel].days, fmt(trips[tripSel].miles));
+    if (tripSel >= 0) $('.tv-3d-tsub').textContent = subOf(trips[tripSel]);
   };
   const headAt = (t, k) => {
     const pts = t.pts;
@@ -1365,7 +1492,7 @@
       else hi = mid;
     }
     const a = pts[lo], b = pts[hi], f = b.d > a.d ? (k - a.d) / (b.d - a.d) : 0;
-    return norm([a.v[0] + (b.v[0] - a.v[0]) * f, a.v[1] + (b.v[1] - a.v[1]) * f, a.v[2] + (b.v[2] - a.v[2]) * f]);
+    return [a.p[0] + (b.p[0] - a.p[0]) * f, a.p[1] + (b.p[1] - a.p[1]) * f, a.p[2] + (b.p[2] - a.p[2]) * f]; // on the line as drawn: the ground, or the arc above it
   };
   const stepTrip = (now, dt) => {
     const t = trips[tripSel];
@@ -1385,8 +1512,9 @@
       pitch += (p - pitch) * e;
     }
     let near = null, best = 0.9998; // within about 130 km
+    const below = norm(head);
     for (const s of t.st) {
-      const c = dot(s.vec, head);
+      const c = dot(s.vec, below);
       if (c > best && s.n) {
         best = c;
         near = s;
@@ -1400,7 +1528,7 @@
   const startTripPlay = () => {
     if (tripSel < 0 || trips[tripSel].pts.length < 2) return;
     const t = trips[tripSel];
-    tripPlay = {t0: performance.now(), dur: Math.max(7, Math.min(26, 5 + t.miles / 130)) * 1000, follow: true, near: null};
+    tripPlay = {t0: performance.now(), dur: Math.max(7, Math.min(26, 5 + t.miles / (tripSet === 'other' ? 620 : 130))) * 1000, follow: true, near: null};
     tripProg = 0;
     ringStart = time;
     focus = null;
@@ -1414,7 +1542,7 @@
     tripSel = i;
     const t = i >= 0 ? trips[i] : null;
     $('.tv-3d-tname').textContent = t ? t.title : T.trips;
-    $('.tv-3d-tsub').textContent = t ? T.tripSub(tripRange(t), t.days, fmt(t.miles)) : T.pickTrip(trips.length);
+    $('.tv-3d-tsub').textContent = t ? subOf(t) : (tripSet === 'other' ? T.pickOther : T.pickTrip)(trips.length);
     $('.tv-3d-tplay').disabled = !t || t.pts.length < 2;
     $('.tv-3d-tall').disabled = !t;
     $('.tv-3d-trips').querySelectorAll('button').forEach((b) => {
@@ -1434,9 +1562,10 @@
       }
       flyTo(t.c, 2.6, fitZoom(t));
     } else {
-      flyTo(earthVec(40, -113), 2.6, 2.5); // the West, where most of the roads are
+      if (tripSet === 'other') flyTo(earthVec(44, 178), 2.6, 1); // the North Pacific, with both home shores in view
+      else flyTo(earthVec(40, -113), 2.6, 2.5); // the West, where most of the roads are
     }
-    if (mode3d) history.replaceState(null, '', t ? '#trip-' + t.id : '#trips');
+    if (mode3d) history.replaceState(null, '', tripSet === 'other' ? (t ? '#other-' + t.id : '#other') : (t ? '#trip-' + t.id : '#trips'));
   };
   const buildTripList = () => {
     const list = $('.tv-3d-trips');
@@ -1478,11 +1607,11 @@
     }
     bestD = 9;
     trips.forEach((t, ti) => {
-      if (dot(t.c, [E[2], E[5], E[8]]) < -0.2) return;
+      if (t.radius < 0.4 && dot(t.c, [E[2], E[5], E[8]]) < -0.2) return;
       for (const q of t.pts) {
-        const [px, py, z] = project(q.v);
+        const at = project(q.p), px = at[0], py = at[1];
         const d = Math.hypot(px - x, py - y) - (ti === tripSel ? 2 : 0);
-        if (z > 0.03 && d < bestD) {
+        if (d < bestD && seen(at)) {
           bestD = d;
           best = {trip: ti};
         }
@@ -1498,7 +1627,7 @@
       return;
     }
     const t = trips[hit.trip];
-    const rows = hit.stop ? [hit.stop.n || t.title, T.date(hit.stop.d), T.media(hit.stop.ph, hit.stop.v)] : [t.title, tripRange(t)];
+    const rows = !hit.stop ? [t.title, tripRange(t)] : hit.stop.base ? [hit.stop.n] : [hit.stop.n || t.title, T.date(hit.stop.d), T.media(hit.stop.ph, hit.stop.v)];
     tip.replaceChildren(...rows.map((s) => {
       const d = document.createElement('div');
       d.textContent = s;
@@ -1510,23 +1639,31 @@
     canvas.style.cursor = hit.stop ? 'default' : 'pointer';
   };
   const helpEl = ui && $('.tv-3d-help'), helpText = helpEl ? helpEl.textContent : '';
-  let tripsLoading = null;
+  const SETS = {trips: '/data/travel/trips.json', other: '/data/travel/trips-other.json'}, loadingSet = {};
+  let wanted = 'places';
   const setMode = (m, id) => {
-    const on = m === 'trips';
-    if (on && !trips) {
-      tripsLoading = tripsLoading || fetch('/data/travel/trips.json').then((r) => {
-        if (!r.ok) throw new Error('trips ' + r.status);
+    const on = m in SETS;
+    wanted = m;
+    if (on && !sets[m]) {
+      loadingSet[m] = loadingSet[m] || fetch(SETS[m]).then((r) => {
+        if (!r.ok) throw new Error(m + ' ' + r.status);
         return r.json();
-      }).then(setupTrips);
-      tripsLoading.then(() => {
-        if (mode3d) setMode('trips', id);
+      }).then((data) => {
+        sets[m] = setupTrips(data, m);
+      });
+      loadingSet[m].then(() => {
+        if (mode3d && wanted === m) setMode(m, id);
       }).catch((err) => console.error('travel sky: trips failed', err));
       return;
+    }
+    if (tripMode) { // leaving the set on show: stop its play and remember its trip
+      stopTripPlay();
+      sets[tripSet].sel = tripSel;
     }
     tripMode = on;
     ui.classList.toggle('tv-3d-tripmode', on);
     ui.querySelectorAll('.tv-3d-modes button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === m)));
-    helpEl.textContent = on ? T.tripHelp : helpText;
+    helpEl.textContent = !on ? helpText : m === 'other' ? T.otherHelp : T.tripHelp;
     $('.tv-3d-time').hidden = on;
     $('.tv-3d-trip').hidden = $('.tv-3d-trips').hidden = !on;
     $('.tv-3d-tip').hidden = true;
@@ -1534,16 +1671,42 @@
       stopPlay();
       pin(null);
       layerGoal.pillars = 0;
-      const i = id ? trips.findIndex((t) => t.id === id) : tripSel;
-      selectTrip(i);
+      tripSet = m;
+      ({trips, routeVao, routeCount, stopVao, stopCount} = sets[m]);
+      tripSel = -1;
+      buildTripList();
+      selectTrip(id ? trips.findIndex((t) => t.id === id) : sets[m].sel);
     } else {
-      stopTripPlay();
       labelEls = [];
       labelBox.replaceChildren();
       layerGoal.pillars = mode3d ? choice.pillars : 0;
       if (zoomGoal > 9) zoomGoal = 2.5;
       if (mode3d) history.replaceState(null, '', '#3d');
     }
+  };
+
+  /* names beside the spacecraft */
+  const craftBox = ui && $('.tv-3d-craft');
+  if (craftBox) {
+    craftLabels = CRAFT.map((c) => {
+      const el = document.createElement('span');
+      el.textContent = c.name;
+      craftBox.append(el);
+      return el;
+    });
+  }
+  const placeCraft = () => {
+    const s = R / dpr, show = mode3d && craftOn > 0.5;
+    CRAFT.forEach((c, i) => {
+      const el = craftLabels[i], v = c.view;
+      let ok = show && v && !(v[2] < 0 && Math.hypot(v[0], v[1]) < 1.03);
+      if (ok) {
+        const x = cx / dpr + v[0] * s + 8, y = H - cy / dpr - v[1] * s - 9;
+        ok = x > 4 && y > 60 && x < W - 110 && y < H - 30;
+        if (ok) el.style.transform = `translate(${x.toFixed(1)}px,${y.toFixed(1)}px)`;
+      }
+      el.style.opacity = ok ? 1 : 0;
+    });
   };
 
   const shut = '.site-header, .hero, .tv-page, .site-footer, .skip-link';
@@ -1587,7 +1750,7 @@
     pin(null);
     zoomGoal = 1;
     vel.x = vel.y = 0;
-    Object.assign(layerGoal, {pillars: 0, adm: 0, lines: 1, wind: 1, aurora: 1, day: 0, night: 0});
+    Object.assign(layerGoal, {pillars: 0, adm: 0, craft: 0, lines: 1, wind: 1, aurora: 1, day: 0, night: 0});
     ui.hidden = true;
     $('.tv-3d-tip').hidden = true;
     document.body.classList.remove('tv-3d', 'tv-3d-fade');
@@ -1704,10 +1867,11 @@
       }
       document.body.classList.add('tv-sky-ready');
       if (location.hash === '#3d') requestAnimationFrame(enter3d);
-      else if (/^#trips?\b/.test(location.hash)) {
+      else if (/^#(trips?|other)\b/.test(location.hash)) {
         requestAnimationFrame(() => {
+          const other = location.hash.startsWith('#other'), id = /^#(trip|other)-/.test(location.hash) ? decodeURIComponent(location.hash.slice(location.hash.indexOf('-') + 1)) : null;
           enter3d();
-          setMode('trips', location.hash.startsWith('#trip-') ? decodeURIComponent(location.hash.slice(6)) : null);
+          setMode(other ? 'other' : 'trips', id);
         });
       }
       if (reduce) {

@@ -1098,7 +1098,7 @@ html[lang=lzh] .tv-3d-card h2 { font-family: "Noto Serif SC", "Songti SC", serif
   .tv-3d-tinfo { flex: 1 1 auto; min-width: 0; margin: 0; display: grid; gap: 1px; }
   .tv-3d-tname { font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.3rem; font-weight: 500; line-height: 1.15; color: var(--tv-gilt); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   html[lang=lzh] .tv-3d-tname { font-family: "Noto Serif SC", "Songti SC", serif; font-size: 1.05rem; }
-  .tv-3d-tsub { color: var(--tv-ash); font-size: .82rem; font-variant-numeric: lining-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tv-3d-tsub { color: var(--tv-ash); font-size: .82rem; font-variant-numeric: lining-nums; line-height: 1.3; overflow: hidden; }
   .tv-3d-ui .tv-3d-tplay, .tv-3d-ui .tv-3d-tall { flex: none; white-space: nowrap; }
   .tv-3d-ui .tv-3d-tplay:disabled, .tv-3d-ui .tv-3d-tall:disabled { display: none; }
   .tv-3d-ui .tv-3d-tplay[aria-pressed=true] { color: var(--tv-night); background: var(--tv-pale); }
@@ -1110,7 +1110,9 @@ html[lang=lzh] .tv-3d-card h2 { font-family: "Noto Serif SC", "Songti SC", serif
   .tv-3d-trips small { color: var(--tv-ash); font-size: .76rem; font-variant-numeric: lining-nums; }
   .tv-3d-labels { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
   .tv-3d-labels span { position: absolute; left: 0; top: 0; line-height: 18px; font-size: .78rem; font-weight: 600; white-space: nowrap; color: var(--tv-pale); text-shadow: 0 0 4px #060c1c, 0 0 9px #060c1c, 0 1px 2px #060c1c; opacity: 0; transition: opacity .25s; will-change: transform; }
-  .tv-3d-tripmode .tv-3d-layers label:first-of-type { display: none; }
+  .tv-3d-tripmode .tv-3d-layers label:first-of-type, .tv-3d-tripmode .tv-3d-layers label:has([data-layer=craft]) { display: none; }
+  .tv-3d-craft { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .tv-3d-craft span { position: absolute; left: 0; top: 0; line-height: 18px; font-family: var(--nav); font-size: 11.5px; font-weight: 600; letter-spacing: .04em; white-space: nowrap; color: #b9f3dc; text-shadow: 0 0 4px #060c1c, 0 0 9px #060c1c, 0 1px 2px #060c1c; opacity: 0; transition: opacity .25s; will-change: transform; }
   .trips-globe { margin-right: 10px; font-family: var(--nav); font-size: 12.5px; font-weight: 600; letter-spacing: .03em; color: var(--tv-gilt); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .3em; text-decoration-color: rgba(226,198,130,.5); white-space: nowrap; }
   .trips-globe:hover { color: var(--tv-pale); }
   html[lang=lzh] .trips-globe { font-family: "Noto Serif SC", "Songti SC", serif; }

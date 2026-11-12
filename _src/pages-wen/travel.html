@@ -146,7 +146,9 @@
       </div>
 
       <section class="tv-notes" id="notes">
-        <p class="tv-note tv-sky-note">此页背后之地球，图绘而已。其上灯火，即上图之0.5°格；磁场、极光、太阳风皆为略图，非模拟也，其线皆非行程。三维所绘之界，与上图同（二级之界，近观乃见，手机不绘）。唯三维之“驱车游记”绘路，乃<a href="/wen/travel/trips/">诸游</a>所拟或常行之车路，非实录之迹。</p>
+        <p class="tv-note tv-sky-note">此页背后之地球，图绘而已。其上灯火，即上图之0.5°格；磁场、极光、太阳风皆为略图，非模拟也，其线皆非行程。三维所绘之界，与上图同（二级之界，近观乃见，手机不绘）。唯三维之二游记绘行程。“驱车游记”绘路，乃<a href="/wen/travel/trips/">诸游</a>所拟或常行之车路，非实录之迹。“他游”以弧依日次连一游诸城，始终于当时所居之城之中心；弧非航线，其行以何具，亦未之录。</p>
+        <p class="tv-note">“星槎”一层，绘实有之五轨，皆依地球之比例：ELFIN（加州大学洛杉矶分校之双立方星，2018年至2022年）、Swarm、DMSP、Arase、Van Allen Probes（2012年至2019年）。每轨定于一地方时，其行约四百七十倍于实，故光点非其实时所在。图中太阳风绕地之处，远近于实（实约十地球半径之外），故更远之星，如THEMIS、MMS，及上游L1之Wind、ACE、DSCOVR，皆不绘。</p>
+        <p class="tv-note">“他游”得之于照片：连日之照，距当时所居之城（广州、合肥或洛杉矶）逾120公里者为一游，驱车游记之日、机窗所摄及机场转机之照皆除之。一驻者，一城一日也，位置取至0.1°（仅知其省者取至0.5°），近家者不绘。自洛杉矶出而近可驱车者不录，唯有一程疾于车者乃录。</p>
         <p class="tv-note">何者为二级行政区，各依其疆界图，故大小不一。意大利、希腊之图，其级广于省；台湾之图，其级细焉。香港、澳门、梵蒂冈无疆界图，故用 Photos 所录之地名。点在海岸之外者，归于最近之区；点近疆界者，或落于邻区。</p>
         <p class="tv-note">凡有疆界图之国，其国界、一级之界、二级之界皆出于同一简化之形，故相合无间。加拿大、澳大利亚及他数国，海岸曲折尤甚，简化亦尤甚。移图缩放之际，界线暂隐。他处之线出于 Natural Earth，两源相接之处，或微有相离。</p>
         <p class="tv-note">虚线依 Natural Earth 所列有争之地，其去取亦从之，若台湾、以色列、伯利兹是也。实线或行于虚线之下。凡此皆非言何方治某地、或当治某地也。</p>
@@ -163,6 +165,7 @@
     <div class="tv-3d-modes" role="group" aria-label="地球所示">
       <button type="button" data-mode="places" aria-pressed="true">所至</button>
       <button type="button" data-mode="trips" aria-pressed="false">驱车游记</button>
+      <button type="button" data-mode="other" aria-pressed="false">他游</button>
     </div>
     <fieldset class="tv-3d-layers">
       <legend>诸层</legend>
@@ -171,6 +174,7 @@
       <label><input type="checkbox" data-layer="lines" checked> 磁场</label>
       <label><input type="checkbox" data-layer="wind" checked> 太阳风</label>
       <label><input type="checkbox" data-layer="aurora" checked> 极光</label>
+      <label><input type="checkbox" data-layer="craft" checked> 星槎</label>
       <label><input type="checkbox" data-layer="day"> 昼光遍照</label>
       <label><input type="checkbox" data-layer="night"> 长夜遍覆</label>
     </fieldset>
@@ -187,7 +191,8 @@
       <button type="button" class="tv-3d-tplay" aria-pressed="false" disabled>循路而行</button>
       <button type="button" class="tv-3d-tall" disabled>诸游</button>
     </div>
-    <nav class="tv-3d-trips" aria-label="驱车游记" hidden></nav>
+    <nav class="tv-3d-trips" aria-label="诸游" hidden></nav>
+    <div class="tv-3d-craft" aria-hidden="true"></div>
     <div class="tv-3d-labels" aria-hidden="true"></div>
     <aside class="tv-3d-card" hidden aria-live="polite">
       <button type="button" class="tv-3d-card-x" aria-label="闭此地">×</button>

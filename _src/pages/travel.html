@@ -146,7 +146,9 @@
       </div>
 
       <section class="tv-notes" id="notes">
-        <p class="tv-note tv-sky-note">The globe behind this page is a drawing. Its lights are the 0.5° blocks from the map above. Its magnetic field, aurora and solar wind are a sketch, not a simulation, and none of those lines is a route. The 3D view draws the same boundary lines as the maps above (second-level lines appear as you zoom in, and not on phones). Only its trip mode draws roads: the planned or typical driving routes of the <a href="/travel/trips/">road trips</a>, not recorded tracks.</p>
+        <p class="tv-note tv-sky-note">The globe behind this page is a drawing. Its lights are the 0.5° blocks from the map above. Its magnetic field, aurora and solar wind are a sketch, not a simulation, and none of those lines is a route. The 3D view draws the same boundary lines as the maps above (second-level lines appear as you zoom in, and not on phones). Only its two trip modes draw journeys. Road trips draws the planned or typical driving routes of the <a href="/travel/trips/">road trips</a>, not recorded tracks. Other trips joins the cities of each trip in date order with arcs that begin and end at the centre of the home city of the time; the arcs are not flight paths, and how a trip was travelled is not recorded.</p>
+        <p class="tv-note">The spacecraft layer draws five real orbits to the Earth's scale: ELFIN (UCLA's twin CubeSats, 2018 to 2022), Swarm, DMSP, Arase and the Van Allen Probes (2012 to 2019). Each orbit is held at one local time and runs about 470 times faster than life, so the dots are not live positions. The solar wind in this drawing turns aside far closer to the Earth than the real one, which stands about ten Earth radii out, so missions that fly farther (THEMIS, MMS, and Wind, ACE and DSCOVR upstream at L1) are left off.</p>
+        <p class="tv-note">Other trips are found in the photo library: runs of days whose photos were taken more than 120 km from the home city of the time (Guangzhou, Hefei or Los Angeles), with the days of road trips, photos taken from a plane window and airport layovers taken out. A stop is a city and a day, placed to 0.1° (to 0.5° where only the province is known), and nothing nearer home is drawn. Trips from Los Angeles that were near enough to drive are left out unless one hop was too fast for a car.</p>
         <p class="tv-note">What counts as a second-level region follows each boundary map, so sizes vary. Italy and Greece are mapped at a broader level than provinces, and Taiwan at a finer level. Hong Kong, Macao and Vatican City have no boundary map, so they use the place names in Photos. Points just outside a coastline go to the nearest region, and points near a border can land in the neighboring one.</p>
         <p class="tv-note">Country, first-level and second-level lines for countries with a boundary map all come from one simplified shape set, so they meet exactly. Canada, Australia and a few other countries with very intricate coasts are simplified more. Boundary lines hide briefly while you pan or zoom. Lines elsewhere come from Natural Earth and can sit slightly apart where the two sources meet.</p>
         <p class="tv-note">Dashed outlines follow Natural Earth's list of disputed areas, including its choices about what to list, such as Taiwan, Israel and Belize. Solid lines can run underneath a dashed outline. None of this is a statement on who controls or should control any territory.</p>
@@ -163,6 +165,7 @@
     <div class="tv-3d-modes" role="group" aria-label="What the globe shows">
       <button type="button" data-mode="places" aria-pressed="true">Places</button>
       <button type="button" data-mode="trips" aria-pressed="false">Road trips</button>
+      <button type="button" data-mode="other" aria-pressed="false">Other trips</button>
     </div>
     <fieldset class="tv-3d-layers">
       <legend>Layers</legend>
@@ -171,6 +174,7 @@
       <label><input type="checkbox" data-layer="lines" checked> Magnetic field</label>
       <label><input type="checkbox" data-layer="wind" checked> Solar wind</label>
       <label><input type="checkbox" data-layer="aurora" checked> Aurora</label>
+      <label><input type="checkbox" data-layer="craft" checked> Spacecraft</label>
       <label><input type="checkbox" data-layer="day"> Daylight everywhere</label>
       <label><input type="checkbox" data-layer="night"> Night everywhere</label>
     </fieldset>
@@ -187,7 +191,8 @@
       <button type="button" class="tv-3d-tplay" aria-pressed="false" disabled>Play the trip</button>
       <button type="button" class="tv-3d-tall" disabled>All trips</button>
     </div>
-    <nav class="tv-3d-trips" aria-label="Road trips" hidden></nav>
+    <nav class="tv-3d-trips" aria-label="Trips" hidden></nav>
+    <div class="tv-3d-craft" aria-hidden="true"></div>
     <div class="tv-3d-labels" aria-hidden="true"></div>
     <aside class="tv-3d-card" hidden aria-live="polite">
       <button type="button" class="tv-3d-card-x" aria-label="Close this place">×</button>
